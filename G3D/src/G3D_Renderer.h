@@ -1,4 +1,5 @@
 #pragma once
+#ifdef _WIN64
 #include <d3d11.h>
 #include <dxgi.h>
 #include <DirectXMath.h>
@@ -6,7 +7,6 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 
-#ifdef _WIN64
 struct renderer
 {
 	//Basic DirectX

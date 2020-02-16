@@ -98,7 +98,7 @@
     <ClInclude Include="src\G3D_Assert.h" />
     <ClInclude Include="src\G3D_Game.h" />
     <ClInclude Include="src\G3D_GameSettings.h" />
-    <ClInclude Include="src\G3D_Win32Renderer.h" />
+    <ClInclude Include="src\G3D_Renderer.h" />
     <ClInclude Include="src\G3D_Win32Platform.h" />
     <ClInclude Include="src\G3D_Windows.h" />
   </ItemGroup>

@@ -6,7 +6,8 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 
-struct Win32Renderer
+#ifdef _WIN32
+struct renderer
 {
 	//Basic DirectX
 	ID3D11Device* Device;
@@ -22,8 +23,9 @@ struct Win32Renderer
 	ID3D11Texture2D* DepthStencilBuffer;
 	ID3D11DepthStencilView* DepthStencilView;
 };
+#endif
 
-bool RendererInitialize(Win32Renderer* Renderer);
-void RendererClear(Win32Renderer* Renderer, DirectX::XMFLOAT4 color);
-void RendererPresent(Win32Renderer* Renderer);
-void RendererShutdown(Win32Renderer* Renderer);
+bool RendererInitialize(renderer* Renderer);
+void RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color);
+void RendererPresent(renderer* Renderer);
+void RendererShutdown(renderer* Renderer);

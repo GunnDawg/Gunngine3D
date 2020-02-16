@@ -1,4 +1,4 @@
-#include "G3D_Win32Renderer.h"
+#include "G3D_Renderer.h"
 #include "G3D_Assert.h"
 
 #ifdef _DEBUG
@@ -8,7 +8,7 @@ UINT debugFlags = 0u;
 #endif
 
 internal bool
-RendererInitialize(Win32Renderer* Renderer)
+RendererInitialize(renderer* Renderer)
 {
 	ASSERT(Renderer != nullptr);
 	HRESULT Result = 0u;
@@ -181,7 +181,7 @@ RendererInitialize(Win32Renderer* Renderer)
 }
 
 internal void
-RendererClear(Win32Renderer* Renderer, DirectX::XMFLOAT4 color)
+RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color)
 {
 	ASSERT(Renderer != nullptr);
 
@@ -191,7 +191,7 @@ RendererClear(Win32Renderer* Renderer, DirectX::XMFLOAT4 color)
 }
 
 internal void
-RendererPresent(Win32Renderer* Renderer)
+RendererPresent(renderer* Renderer)
 {
 	ASSERT(Renderer != nullptr);
 
@@ -205,7 +205,7 @@ RendererPresent(Win32Renderer* Renderer)
 }
 
 internal void
-RendererShutdown(Win32Renderer* Renderer)
+RendererShutdown(renderer* Renderer)
 {
 	ASSERT(Renderer != nullptr);
 

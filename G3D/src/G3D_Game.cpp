@@ -18,7 +18,7 @@ GameHandleInput(game* Game)
 }
 
 internal void
-GameUpdateAndRender(game* Game, Win32Renderer* Renderer, float dt)
+GameUpdateAndRender(game* Game, renderer* Renderer, float dt)
 {
 	ASSERT(Game != nullptr);
 	//Update

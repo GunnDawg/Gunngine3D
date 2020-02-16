@@ -41,7 +41,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
 	local_persist float DeltaTime = 0.0f;
-	local_persist Win32Renderer* Renderer = new Win32Renderer;
+	local_persist renderer* Renderer = new renderer;
 
 #if 1
 	//@Temp: We're getting the users native screen resolution here before passing that

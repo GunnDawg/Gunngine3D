@@ -41,9 +41,9 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
 	local_persist float DeltaTime = 0.0f;
-	local_persist renderer* Renderer = new renderer;
+	local_persist Win32Renderer* Renderer = new Win32Renderer;
 
-#if 0
+#if 1
 	//@Temp: We're getting the users native screen resolution here before passing that
 	//information off to CreateWindow() and the SwapChain. Not sure if leaving it here is 
 	//best, or if it should be pushed to another function elsewhere.

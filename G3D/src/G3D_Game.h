@@ -1,5 +1,5 @@
 #pragma once
-#include "G3D_Renderer.h"
+#include "G3D_Win32Renderer.h"
 
 struct game
 {
@@ -8,5 +8,5 @@ struct game
 
 bool GameInitialize(game* Game);
 void GameHandleInput(game* Game);
-void GameUpdateAndRender(game* Game, renderer* Renderer, float dt);
+void GameUpdateAndRender(game* Game, Win32Renderer* Renderer, float dt);
 void GameShutdown(game* Game);

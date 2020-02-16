@@ -1,4 +1,3 @@
-#pragma warning(disable:6011)
 #include "G3D_Win32Platform.h"
 
 global_variable game* Game = new game;
@@ -92,7 +91,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 
 		//Main Loop
 		GameHandleInput(Game);
-		//TODO:Pass the frame time / delta time to this update function.
 		GameUpdateAndRender(Game, Renderer, DeltaTime);
 
 		//Query Performance Data

@@ -41,6 +41,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
 	local_persist float DeltaTime = 0.0f;
+	local_persist renderer* Renderer = new renderer;
 
 #if 0
 	//@Temp: We're getting the users native screen resolution here before passing that
@@ -56,7 +57,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.hCursor = LoadCursor(0, IDC_ARROW);
-	wc.hInstance = GetModuleHandle(0);
+	wc.hInstance = instance;
 	wc.lpfnWndProc = WndProc;
 	wc.lpszClassName = "WindowClass";
 	wc.style = CS_VREDRAW | CS_HREDRAW | CS_OWNDC;
@@ -67,6 +68,9 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 
 	hWnd = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, instance, 0);
 	if (!hWnd)
+		return -1;
+
+	if (!RendererInitialize(Renderer))
 		return -1;
 
 	if (!GameStartup(Game))
@@ -89,7 +93,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		//Main Loop
 		GameHandleInput(Game);
 		//TODO:Pass the frame time / delta time to this update function.
-		GameUpdateAndRender(Game, DeltaTime);
+		GameUpdateAndRender(Game, Renderer, DeltaTime);
 
 		//Query Performance Data
 		UINT64 EndCycleCount = __rdtsc();
@@ -119,6 +123,10 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	GameShutdown(Game);
 	delete Game;
 	Game = nullptr;
+
+	RendererShutdown(Renderer);
+	delete Renderer;
+	Renderer = nullptr;
 
 	return 0;
 }

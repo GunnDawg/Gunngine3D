@@ -6,7 +6,7 @@ struct game
 	bool IsRunning = false;
 };
 
-bool GameStartup(game* Game);
+bool GameInitialize(game* Game);
 void GameHandleInput(game* Game);
 void GameUpdateAndRender(game* Game, renderer* Renderer, float dt);
 void GameShutdown(game* Game);

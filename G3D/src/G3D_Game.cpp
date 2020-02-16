@@ -2,7 +2,7 @@
 #include "G3D_Assert.h"
 
 internal bool
-GameStartup(game* Game)
+GameInitialize(game* Game)
 {
 	ASSERT(Game != nullptr);
 

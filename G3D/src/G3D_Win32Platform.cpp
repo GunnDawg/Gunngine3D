@@ -73,7 +73,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	if (!RendererInitialize(Renderer))
 		return -1;
 
-	if (!GameStartup(Game))
+	if (!GameInitialize(Game))
 		return -1;
 
 	LARGE_INTEGER LastCounter;

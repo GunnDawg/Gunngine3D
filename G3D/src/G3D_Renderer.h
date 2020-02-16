@@ -26,7 +26,7 @@ struct renderer
 #elif __APPLE__
 struct renderer
 {
-	//Apple speficif rendering data here
+	//Apple specific rendering data here
 };
 #elif __linux__
 struct renderer

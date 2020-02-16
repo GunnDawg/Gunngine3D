@@ -6,7 +6,7 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 
-#ifdef _WIN32
+#ifdef _WIN64
 struct renderer
 {
 	//Basic DirectX
@@ -22,6 +22,16 @@ struct renderer
 	ID3D11DepthStencilState* DepthStencilState;
 	ID3D11Texture2D* DepthStencilBuffer;
 	ID3D11DepthStencilView* DepthStencilView;
+};
+#elif __APPLE__
+struct renderer
+{
+	//Apple speficif rendering data here
+};
+#elif __linux__
+struct renderer
+{
+	//Linux specific rendering data here
 };
 #endif
 

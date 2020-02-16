@@ -1,7 +1,5 @@
 #include "G3D_Win32Platform.h"
 
-global_variable game* Game = new game;
-
 LRESULT CALLBACK
 WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -10,7 +8,12 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 		case WM_CLOSE:
 		{
-			Game->IsRunning = false;
+			PostQuitMessage(0);
+		} break;
+
+		case WM_DESTROY:
+		{
+			PostQuitMessage(0);
 		} break;
 
 		case WM_KEYDOWN:
@@ -19,7 +22,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			{
 				case VK_ESCAPE:
 				{
-					Game->IsRunning = false;
+					PostQuitMessage(0);
 				} break;
 
 				default:
@@ -41,6 +44,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	HWND hWnd = {};
 	local_persist float DeltaTime = 0.0f;
 	local_persist renderer* Renderer = new renderer;
+	local_persist game* Game = new game;
 
 #if 1
 	//@Temp: We're getting the users native screen resolution here before passing that
@@ -85,6 +89,9 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	{
 		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
+			if (msg.message == WM_QUIT)
+				Game->IsRunning = false;
+
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}

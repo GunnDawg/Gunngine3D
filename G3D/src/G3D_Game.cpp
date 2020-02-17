@@ -4,7 +4,7 @@
 internal bool
 GameInitialize(game* Game)
 {
-	ASSERT(Game != nullptr);
+	ASSERT(Game != 0);
 
 	Game->IsRunning = true;
 
@@ -14,13 +14,13 @@ GameInitialize(game* Game)
 internal void
 GameHandleInput(game* Game)
 {
-	ASSERT(Game != nullptr);
+	ASSERT(Game != 0);
 }
 
 internal void
 GameUpdateAndRender(game* Game, renderer* Renderer, float dt)
 {
-	ASSERT(Game != nullptr);
+	ASSERT(Game != 0);
 	//Update
 #if 0
 	char Buffer[256];
@@ -37,5 +37,5 @@ GameUpdateAndRender(game* Game, renderer* Renderer, float dt)
 internal void
 GameShutdown(game* Game)
 {
-
+	ASSERT(Game != 0);
 }

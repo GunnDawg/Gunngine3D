@@ -1,4 +1,4 @@
-#include "G3D_Win32Platform.h"
+#include "G3D_Win64Platform.h"
 
 LRESULT CALLBACK
 WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)

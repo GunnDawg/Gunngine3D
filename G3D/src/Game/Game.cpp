@@ -1,5 +1,5 @@
-#include "G3D_Game.h"
-#include "G3D_Assert.h"
+#include "Game.h"
+#include "Engine/G3D_Assert.h"
 
 internal bool
 GameInitialize(game* Game)

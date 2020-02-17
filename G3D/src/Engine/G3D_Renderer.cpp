@@ -161,7 +161,9 @@ RendererInitialize(renderer* Renderer)
 	DXGI_ADAPTER_DESC desc;
 	IDXGIFactory* pDXGIFactory = 0;
 
-	CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pDXGIFactory));
+	Result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pDXGIFactory));
+	if (FAILED(Result))
+		return false;
 
 	Result = pDXGIFactory->EnumAdapters(0, &adapter);
 	if (FAILED(Result))
@@ -196,7 +198,7 @@ RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color)
 {
 	ASSERT(Renderer != 0);
 
-	const float clearColor[4] = { color.x, color.y, color.z, color.w };
+	local_persist const float clearColor[4] = { color.x, color.y, color.z, color.w };
 	Renderer->Context->ClearRenderTargetView(Renderer->RenderTargetView, clearColor);
 	Renderer->Context->ClearDepthStencilView(Renderer->DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
 }

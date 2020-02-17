@@ -127,11 +127,11 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	//Shut everything down
 	GameShutdown(Game);
 	delete Game;
-	Game = nullptr;
+	Game = 0;
 
 	RendererShutdown(Renderer);
 	delete Renderer;
-	Renderer = nullptr;
+	Renderer = 0;
 
 	return 0;
 }

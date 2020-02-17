@@ -10,7 +10,7 @@ UINT debugFlags = 0u;
 internal bool
 RendererInitialize(renderer* Renderer)
 {
-	ASSERT(Renderer != nullptr);
+	ASSERT(Renderer != 0);
 	HRESULT Result = 0u;
 
 	//Create our swap chain buffer description
@@ -50,9 +50,15 @@ RendererInitialize(renderer* Renderer)
 		0,
 		&Renderer->Context
 	);
-
 	if (FAILED(Result))
 		return false;
+
+#if 1
+	if (!Settings::Display::Windowed)
+		Result = Renderer->SwapChain->SetFullscreenState(true, 0);
+	if (FAILED(Result))
+		return false;
+#endif
 
 	//Create our BackBuffer
 	ID3D11Texture2D* BackBuffer;
@@ -149,16 +155,16 @@ RendererInitialize(renderer* Renderer)
 
 	//@Temp: All this is doing is getting the video card information. Stuff like memory, vendorID, etc, etc
 	//However, it needs to be moved elsewhere!!
-	IDXGIAdapter* adapter = nullptr;
+	IDXGIAdapter* adapter = 0;
 	DXGI_OUTPUT_DESC outputDesc;
-	IDXGIOutput* pOutput = nullptr;
+	IDXGIOutput* pOutput = 0;
 	DXGI_ADAPTER_DESC desc;
-	IDXGIFactory* pDXGIFactory = nullptr;
+	IDXGIFactory* pDXGIFactory = 0;
 
 	CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pDXGIFactory));
 
 	Result = pDXGIFactory->EnumAdapters(0, &adapter);
-	if (FAILED(Result)) // DXGIERR_NOT_FOUND is expected when the end of the list is hit
+	if (FAILED(Result))
 		return false;
 
 	Result = adapter->GetDesc(&desc);
@@ -174,8 +180,13 @@ RendererInitialize(renderer* Renderer)
 		return false;
 
 	adapter->Release();
+	adapter = 0;
+
 	pOutput->Release();
+	pOutput = 0;
+
 	pDXGIFactory->Release();
+	pDXGIFactory = 0;
 
 	return true;
 }
@@ -183,7 +194,7 @@ RendererInitialize(renderer* Renderer)
 internal void
 RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color)
 {
-	ASSERT(Renderer != nullptr);
+	ASSERT(Renderer != 0);
 
 	const float clearColor[4] = { color.x, color.y, color.z, color.w };
 	Renderer->Context->ClearRenderTargetView(Renderer->RenderTargetView, clearColor);
@@ -193,7 +204,7 @@ RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color)
 internal void
 RendererPresent(renderer* Renderer)
 {
-	ASSERT(Renderer != nullptr);
+	ASSERT(Renderer != 0);
 
 	HRESULT Result = 0;
 	Result = Renderer->SwapChain->Present(Settings::Display::VSync, 0u);
@@ -207,29 +218,55 @@ RendererPresent(renderer* Renderer)
 internal void
 RendererShutdown(renderer* Renderer)
 {
-	ASSERT(Renderer != nullptr);
+	ASSERT(Renderer != 0);
 
-	if(Renderer->Device)
+	Renderer->SwapChain->SetFullscreenState(false, 0);
+
+	if (Renderer->Device)
+	{
 		Renderer->Device->Release();
+		Renderer->Device = 0;
+	}
 
 	if (Renderer->Context)
+	{
 		Renderer->Context->Release();
+		Renderer->Context = 0;
+	}
 
 	if (Renderer->SwapChain)
+	{
 		Renderer->SwapChain->Release();
+		Renderer->SwapChain = 0;
+	}
 
 	if (Renderer->RenderTargetView)
+	{
 		Renderer->RenderTargetView->Release();
+		Renderer->RenderTargetView = 0;
+	}
 
 	if (Renderer->RasterizerState)
+	{
 		Renderer->RasterizerState->Release();
+		Renderer->RasterizerState = 0;
+	}
 
 	if (Renderer->DepthStencilState)
+	{
 		Renderer->DepthStencilState->Release();
+		Renderer->DepthStencilState = 0;
+	}
 
 	if (Renderer->DepthStencilBuffer)
+	{
 		Renderer->DepthStencilBuffer->Release();
+		Renderer->DepthStencilBuffer = 0;
+	}
 
 	if (Renderer->DepthStencilView)
+	{
 		Renderer->DepthStencilView->Release();
+		Renderer->DepthStencilView = 0;
+	}
 }

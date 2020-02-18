@@ -42,7 +42,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 {
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
-	local_persist float DeltaTime = 0.0f;
 	local_persist game* Game = new game;
 
 #if 1
@@ -94,7 +93,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 
 		//Main Loop
 		GameHandleInput(Game);
-		GameUpdateAndRender(Game, DeltaTime);
+		GameUpdateAndRender(Game);
 
 		//Query Performance Data
 		UINT64 EndCycleCount = __rdtsc();
@@ -108,7 +107,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		float FPS = (float)PerfCountFrequency / (float)TimeElapsed;
 		float MCPF = (float)CyclesElapsed / (1000.0f * 1000.0f);
 
-		DeltaTime = MSPerFrame;
+		Game->DeltaTime = MSPerFrame;
 
 #if 0
 		char Buffer[256];

@@ -25,13 +25,13 @@ GameHandleInput(game* Game)
 }
 
 internal void
-GameUpdateAndRender(game* Game, float dt)
+GameUpdateAndRender(game* Game)
 {
 	ASSERT(Game != 0);
 	//Update
-#if 0
+#if 1
 	char Buffer[256];
-	sprintf(Buffer, "DT: %.04f\n", dt);
+	sprintf(Buffer, "DT: %.04f\n", Game->DeltaTime);
 	OutputDebugStringA(Buffer);
 #endif
 

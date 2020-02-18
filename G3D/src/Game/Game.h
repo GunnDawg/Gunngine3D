@@ -9,9 +9,10 @@ struct game
 {
 	bool IsRunning = false;
 	renderer* Renderer = 0;
+	float DeltaTime = 0.0f;
 };
 
 bool GameInitialize(game* Game);
 void GameHandleInput(game* Game);
-void GameUpdateAndRender(game* Game, float dt);
+void GameUpdateAndRender(game* Game);
 void GameShutdown(game* Game);

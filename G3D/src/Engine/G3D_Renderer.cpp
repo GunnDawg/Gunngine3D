@@ -1,5 +1,5 @@
-#include "G3D_Renderer.h"
-#include "G3D_Assert.h"
+#include "Engine/G3D_Renderer.h"
+#include "Engine/G3D_Assert.h"
 
 #ifdef _DEBUG
 UINT debugFlags = D3D11_CREATE_DEVICE_DEBUG;

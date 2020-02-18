@@ -1,5 +1,6 @@
 #pragma once
 #include "G3D_Renderer.h"
+#include "Game/GameSettings.h"
 
 //@Note: If we're going to take cross platform compatibility very seriously,
 //then the data we put in this game structure needs to be platform agnostic.

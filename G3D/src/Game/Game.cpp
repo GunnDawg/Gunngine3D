@@ -36,7 +36,7 @@ GameUpdateAndRender(game* Game)
 #endif
 
 	//Render
-	RendererClear(Game->Renderer, DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
+	RendererClear(Game->Renderer, 0.0f, 0.0f, 0.0f, 1.0f);
 
 	RendererPresent(Game->Renderer);
 }

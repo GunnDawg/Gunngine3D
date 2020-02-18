@@ -8,6 +8,5 @@
 #include "G3D_LinuxPlatform.cpp"
 #endif
 
-
 #include "G3D_Renderer.cpp"
 #include "Game/Game.cpp"

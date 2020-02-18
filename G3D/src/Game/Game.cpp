@@ -6,6 +6,13 @@ GameInitialize(game* Game)
 {
 	ASSERT(Game != 0);
 
+	Game->Renderer = new renderer;
+	if (!Game->Renderer)
+		return false;
+
+	if (!RendererInitialize(Game->Renderer))
+		return false;
+
 	Game->IsRunning = true;
 
 	return true;
@@ -18,7 +25,7 @@ GameHandleInput(game* Game)
 }
 
 internal void
-GameUpdateAndRender(game* Game, renderer* Renderer, float dt)
+GameUpdateAndRender(game* Game, float dt)
 {
 	ASSERT(Game != 0);
 	//Update
@@ -29,13 +36,17 @@ GameUpdateAndRender(game* Game, renderer* Renderer, float dt)
 #endif
 
 	//Render
-	RendererClear(Renderer, DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
+	RendererClear(Game->Renderer, DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
 
-	RendererPresent(Renderer);
+	RendererPresent(Game->Renderer);
 }
 
 internal void
 GameShutdown(game* Game)
 {
 	ASSERT(Game != 0);
+
+	RendererShutdown(Game->Renderer);
+	delete Game->Renderer;
+	Game->Renderer = 0;
 }

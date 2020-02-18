@@ -43,7 +43,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
 	local_persist float DeltaTime = 0.0f;
-	local_persist renderer* Renderer = new renderer;
 	local_persist game* Game = new game;
 
 #if 1
@@ -73,9 +72,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	if (!hWnd)
 		return -1;
 
-	if (!RendererInitialize(Renderer))
-		return -1;
-
 	if (!GameInitialize(Game))
 		return -1;
 
@@ -98,7 +94,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 
 		//Main Loop
 		GameHandleInput(Game);
-		GameUpdateAndRender(Game, Renderer, DeltaTime);
+		GameUpdateAndRender(Game, DeltaTime);
 
 		//Query Performance Data
 		UINT64 EndCycleCount = __rdtsc();
@@ -128,10 +124,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	GameShutdown(Game);
 	delete Game;
 	Game = 0;
-
-	RendererShutdown(Renderer);
-	delete Renderer;
-	Renderer = 0;
 
 	return 0;
 }

@@ -1,5 +1,7 @@
 #include "Engine/G3D_Win64Platform.h"
 
+global_variable game* Game = new game;
+
 LRESULT CALLBACK
 WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -16,18 +18,25 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			PostQuitMessage(0);
 		} break;
 
+		//Keyboard Messages
 		case WM_KEYDOWN:
+		case WM_SYSKEYDOWN:
 		{
-			switch (wParam)
+			if (!(lParam & 0x40000000 || Game->Keyboard->AutorepeatIsEnabled()))
 			{
-				case VK_ESCAPE:
-				{
-					PostQuitMessage(0);
-				} break;
-
-				default:
-					break;
+				Game->Keyboard->OnKeyPressed(static_cast<u16>(wParam));
 			}
+		} break;
+
+		case WM_KEYUP:
+		case WM_SYSKEYUP:
+		{
+			Game->Keyboard->OnKeyReleased(static_cast<u16>(wParam));
+		} break;
+
+		case WM_CHAR:
+		{
+			Game->Keyboard->OnChar(static_cast<u16>(wParam));
 		} break;
 
 		default:
@@ -42,7 +51,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 {
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
-	local_persist game* Game = new game;
 
 #if 1
 	//@Temp: We're getting the users native screen resolution here before passing that

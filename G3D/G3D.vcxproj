@@ -96,6 +96,7 @@
   <ItemGroup>
     <ClInclude Include="src\Engine\G3D.h" />
     <ClInclude Include="src\Engine\G3D_Assert.h" />
+    <ClInclude Include="src\Engine\G3D_Keyboard.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Game\GameSettings.h" />
     <ClInclude Include="src\Engine\G3D_Renderer.h" />

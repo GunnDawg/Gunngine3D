@@ -10,3 +10,4 @@
 
 #include "Engine/G3D_Renderer.cpp"
 #include "Game/Game.cpp"
+#include "Engine/G3D_Keyboard.cpp"

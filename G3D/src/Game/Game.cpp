@@ -13,6 +13,10 @@ GameInitialize(game* Game)
 	if (!RendererInitialize(Game->Renderer))
 		return false;
 
+	Game->Keyboard = new keyboard;
+	if (!Game->Keyboard)
+		return false;
+
 	Game->IsRunning = true;
 
 	return true;
@@ -22,6 +26,8 @@ internal void
 GameHandleInput(game* Game)
 {
 	ASSERT(Game != 0);
+	if (Game->Keyboard->KeyIsPressed(VK_ESCAPE))
+		Game->IsRunning = false;
 }
 
 internal void
@@ -45,6 +51,9 @@ internal void
 GameShutdown(game* Game)
 {
 	ASSERT(Game != 0);
+
+	delete Game->Keyboard;
+	Game->Keyboard = 0;
 
 	RendererShutdown(Game->Renderer);
 	delete Game->Renderer;

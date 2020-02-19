@@ -1,5 +1,6 @@
 #include "Engine/G3D_Win64Platform.h"
 
+//@NOTE: Globals for now.
 global_variable game* Game = new game;
 
 LRESULT CALLBACK
@@ -52,7 +53,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
 
-#if 1
+#if 0
 	//@Temp: We're getting the users native screen resolution here before passing that
 	//information off to CreateWindow() and the SwapChain. Not sure if leaving it here is 
 	//best, or if it should be pushed to another function elsewhere.

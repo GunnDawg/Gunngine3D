@@ -20,7 +20,7 @@ public:
 		u16 code;
 
 	public:
-		Event() noexcept :
+		Event() :
 			type(Type::Invalid),
 			code(0u)
 		{}

@@ -28,6 +28,15 @@ GameHandleInput(game* Game)
 	ASSERT(Game != 0);
 	if (Game->Keyboard->KeyIsPressed(VK_ESCAPE))
 		Game->IsRunning = false;
+#if 1
+	if (Game->Keyboard->KeyIsPressed('D'))
+	{
+		char Buffer[256];
+		sprintf(Buffer, "DT: %.04f\n", Game->DeltaTime);
+		OutputDebugStringA(Buffer);
+	}
+#endif
+
 }
 
 internal void
@@ -35,11 +44,6 @@ GameUpdateAndRender(game* Game)
 {
 	ASSERT(Game != 0);
 	//Update
-#if 1
-	char Buffer[256];
-	sprintf(Buffer, "DT: %.04f\n", Game->DeltaTime);
-	OutputDebugStringA(Buffer);
-#endif
 
 	//Render
 	RendererClear(Game->Renderer, 0.0f, 0.0f, 0.0f, 1.0f);

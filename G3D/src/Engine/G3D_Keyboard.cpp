@@ -9,10 +9,7 @@ keyboard::Event keyboard::ReadKey()
 		return(e);
 	}
 	else
-
-	{
 		return(keyboard::Event());
-	}
 }
 
 u16 keyboard::ReadChar()
@@ -25,8 +22,5 @@ u16 keyboard::ReadChar()
 		return(charcode);
 	}
 	else
-
-	{
 		return(0);
-	}
 }

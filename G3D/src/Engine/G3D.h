@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning(disable:6011)
 
+#include <memory>
 #include <stdint.h>
 typedef uint8_t u8;
 typedef uint16_t u16;

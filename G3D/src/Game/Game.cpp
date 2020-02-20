@@ -24,7 +24,7 @@ GameInitialize(game* Game)
 	if (!Game->Mouse->Init())
 		return false;
 
-	Game->Mouse->DisableCursor();
+	//Game->Mouse->DisableCursor();
 
 	Game->IsRunning = true;
 

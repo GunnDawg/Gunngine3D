@@ -10,7 +10,9 @@ bool mouse::Init()
 	rid.hwndTarget = 0u;
 
 	if (RegisterRawInputDevices(&rid, 1, sizeof(rid)) == FALSE)
-		return -1;
+		return false;
+
+	return true;
 }
 
 mouse::Event mouse::Read()

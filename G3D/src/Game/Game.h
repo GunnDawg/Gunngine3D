@@ -11,8 +11,8 @@
 struct game
 {
 	bool IsRunning = false;
-	renderer* Renderer = 0;
 	float DeltaTime = 0.0f;
+	renderer* Renderer = 0;
 	keyboard* Keyboard = 0;
 	mouse* Mouse = 0;
 };

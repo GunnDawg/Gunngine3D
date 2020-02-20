@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/G3D_Renderer.h"
 #include "Engine/G3D_Keyboard.h"
+#include "Engine/G3D_Mouse.h"
 #include "Game/GameSettings.h"
 
 //@Note: If we're going to take cross platform compatibility very seriously,
@@ -13,6 +14,7 @@ struct game
 	renderer* Renderer = 0;
 	float DeltaTime = 0.0f;
 	keyboard* Keyboard = 0;
+	mouse* Mouse = 0;
 };
 
 bool GameInitialize(game* Game);

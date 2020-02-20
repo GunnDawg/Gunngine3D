@@ -17,6 +17,10 @@ GameInitialize(game* Game)
 	if (!Game->Keyboard)
 		return false;
 
+	Game->Mouse = new mouse;
+	if (!Game->Mouse)
+		return false;
+
 	Game->IsRunning = true;
 
 	return true;
@@ -26,6 +30,7 @@ internal void
 GameHandleInput(game* Game)
 {
 	ASSERT(Game);
+	//Keyboard Input
 	if (Game->Keyboard->KeyIsPressed(VK_ESCAPE))
 		Game->IsRunning = false;
 #if 1
@@ -37,6 +42,22 @@ GameHandleInput(game* Game)
 	}
 #endif
 
+	//Mouse Input
+	const auto e = Game->Mouse->Read();
+	//if (e.GetType() == G3D::Mouse::Event::Type::Move)
+	//{
+	//	
+	//}
+
+	//if (e.GetType() == mouse::Event::Type::RAW_MOVE)
+	if (e.GetType() == mouse::Event::Type::LPress)
+		OutputDebugStringA("L Mouse Pressed");
+	if (e.GetType() == mouse::Event::Type::RPress)
+		OutputDebugStringA("R Mouse Pressed");
+	if (e.GetType() == mouse::Event::Type::WheelUp)
+		OutputDebugStringA("Mouse Wheel Up");
+	if (e.GetType() == mouse::Event::Type::WheelDown)
+		OutputDebugStringA("Mouse Wheel Down");
 }
 
 internal void
@@ -58,6 +79,9 @@ GameShutdown(game* Game)
 
 	delete Game->Keyboard;
 	Game->Keyboard = 0;
+
+	delete Game->Mouse;
+	Game->Mouse = 0;
 
 	RendererShutdown(Game->Renderer);
 	delete Game->Renderer;

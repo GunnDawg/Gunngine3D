@@ -10,7 +10,7 @@ UINT debugFlags = 0u;
 internal bool
 RendererInitialize(renderer* Renderer)
 {
-	ASSERT(Renderer != 0);
+	ASSERT(Renderer);
 	HRESULT Result = 0u;
 
 	//Create our swap chain buffer description
@@ -196,7 +196,7 @@ RendererInitialize(renderer* Renderer)
 internal void
 RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color)
 {
-	ASSERT(Renderer != 0);
+	ASSERT(Renderer);
 
 	local_persist const float clearColor[4] = { color.x, color.y, color.z, color.w };
 	Renderer->Context->ClearRenderTargetView(Renderer->RenderTargetView, clearColor);
@@ -206,7 +206,7 @@ RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color)
 internal void 
 RendererClear(renderer* Renderer, float r, float g, float b, float a)
 {
-	ASSERT(Renderer != 0);
+	ASSERT(Renderer);
 
 	local_persist const float clearColor[4] = { r, g, b, a };
 	Renderer->Context->ClearRenderTargetView(Renderer->RenderTargetView, clearColor);
@@ -216,7 +216,7 @@ RendererClear(renderer* Renderer, float r, float g, float b, float a)
 internal void
 RendererPresent(renderer* Renderer)
 {
-	ASSERT(Renderer != 0);
+	ASSERT(Renderer);
 
 	HRESULT Result = 0;
 	Result = Renderer->SwapChain->Present(Settings::Display::VSync, 0u);
@@ -230,7 +230,7 @@ RendererPresent(renderer* Renderer)
 internal void
 RendererShutdown(renderer* Renderer)
 {
-	ASSERT(Renderer != 0);
+	ASSERT(Renderer);
 
 	Renderer->SwapChain->SetFullscreenState(false, 0);
 

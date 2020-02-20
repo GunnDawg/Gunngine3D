@@ -4,7 +4,7 @@
 internal bool
 GameInitialize(game* Game)
 {
-	ASSERT(Game != 0);
+	ASSERT(Game);
 
 	Game->Renderer = new renderer;
 	if (!Game->Renderer)
@@ -25,7 +25,7 @@ GameInitialize(game* Game)
 internal void
 GameHandleInput(game* Game)
 {
-	ASSERT(Game != 0);
+	ASSERT(Game);
 	if (Game->Keyboard->KeyIsPressed(VK_ESCAPE))
 		Game->IsRunning = false;
 #if 1
@@ -42,7 +42,7 @@ GameHandleInput(game* Game)
 internal void
 GameUpdateAndRender(game* Game)
 {
-	ASSERT(Game != 0);
+	ASSERT(Game);
 	//Update
 
 	//Render
@@ -54,7 +54,7 @@ GameUpdateAndRender(game* Game)
 internal void
 GameShutdown(game* Game)
 {
-	ASSERT(Game != 0);
+	ASSERT(Game);
 
 	delete Game->Keyboard;
 	Game->Keyboard = 0;

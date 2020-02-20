@@ -1,5 +1,18 @@
 #include "G3D_Mouse.h"
 
+bool mouse::Init()
+{
+	RAWINPUTDEVICE rid;
+	ZeroMemory(&rid, sizeof(RAWINPUTDEVICE));
+	rid.usUsagePage = 0x01;
+	rid.usUsage = 0x02;
+	rid.dwFlags = 0u;
+	rid.hwndTarget = 0u;
+
+	if (RegisterRawInputDevices(&rid, 1, sizeof(rid)) == FALSE)
+		return -1;
+}
+
 mouse::Event mouse::Read()
 {
 	if (buffer.size() > 0u)

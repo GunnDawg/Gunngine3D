@@ -169,20 +169,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	if (!GameInitialize(Game))
 		return -1;
 
-
-	//@TEMP: Do we keep this here in the platform layer or move it out to a mouse init function()?
-	RAWINPUTDEVICE rid;
-	ZeroMemory(&rid, sizeof(RAWINPUTDEVICE));
-	rid.usUsagePage = 0x01;
-	rid.usUsage = 0x02;
-	rid.dwFlags = 0u;
-	rid.hwndTarget = 0u;
-
-	if (RegisterRawInputDevices(&rid, 1, sizeof(rid)) == FALSE)
-		return -1;
-
-	Game->Mouse->DisableCursor();
-
 	LARGE_INTEGER LastCounter;
 	QueryPerformanceCounter(&LastCounter);
 

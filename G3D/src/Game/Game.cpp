@@ -21,6 +21,11 @@ GameInitialize(game* Game)
 	if (!Game->Mouse)
 		return false;
 
+	if (!Game->Mouse->Init())
+		return false;
+
+	Game->Mouse->DisableCursor();
+
 	Game->IsRunning = true;
 
 	return true;
@@ -45,10 +50,6 @@ GameHandleInput(game* Game)
 	//Mouse Input
 	const auto e = Game->Mouse->Read();
 	//if (e.GetType() == G3D::Mouse::Event::Type::Move)
-	//{
-	//	
-	//}
-
 	//if (e.GetType() == mouse::Event::Type::RAW_MOVE)
 	if (e.GetType() == mouse::Event::Type::LPress)
 		OutputDebugStringA("L Mouse Pressed");

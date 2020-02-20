@@ -1,6 +1,5 @@
 #pragma once
 #include <queue>
-#include <bitset>
 
 class mouse
 {
@@ -60,6 +59,8 @@ public:
 	mouse() = default;
 	mouse(const mouse&) = delete;
 	mouse& operator=(const mouse&) = delete;
+
+	bool Init();
 
 	inline std::pair<u16, u16> GetPos() const { return { x, y }; }
 	inline u16 GetPosY() const { return y; }
@@ -157,14 +158,17 @@ public:
 		HideCursor();
 		LockCursor();
 	}
+
 	inline void HideCursor()
 	{
 		while (::ShowCursor(FALSE) >= 0);
 	}
+
 	inline void ShowCursor()
 	{
 		while (::ShowCursor(TRUE) < 0);
 	}
+
 	inline void LockCursor()
 	{
 		RECT rect;
@@ -172,6 +176,7 @@ public:
 		MapWindowPoints(GetActiveWindow(), nullptr, reinterpret_cast<POINT*>(&rect), 2);
 		ClipCursor(&rect);
 	}
+
 	inline void UnlockCursor()
 	{
 		ClipCursor(nullptr);

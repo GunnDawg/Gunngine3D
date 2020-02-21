@@ -161,12 +161,12 @@ public:
 
 	inline void HideCursor()
 	{
-		while (::ShowCursor(FALSE) >= 0);
+		while (::ShowCursor(FALSE) >= 0u);
 	}
 
 	inline void ShowCursor()
 	{
-		while (::ShowCursor(TRUE) < 0);
+		while (::ShowCursor(TRUE) < 0u);
 	}
 
 	inline void LockCursor()

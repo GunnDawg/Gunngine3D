@@ -196,7 +196,7 @@ RendererInitialize(renderer* Renderer)
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 
-	Renderer->Context->RSSetViewports(1, &viewport);
+	Renderer->Context->RSSetViewports(1u, &viewport);
 
 	//@Temp: All this is doing is getting the video card information. Stuff like memory, vendorID, etc, etc
 	//However, it needs to be moved elsewhere!!
@@ -210,7 +210,7 @@ RendererInitialize(renderer* Renderer)
 	if (FAILED(Result))
 		return false;
 
-	Result = pDXGIFactory->EnumAdapters(0, &adapter);
+	Result = pDXGIFactory->EnumAdapters(0u, &adapter);
 	if (FAILED(Result))
 		return false;
 
@@ -218,7 +218,7 @@ RendererInitialize(renderer* Renderer)
 	if (FAILED(Result))
 		return false;
 
-	Result = adapter->EnumOutputs(0, &pOutput);
+	Result = adapter->EnumOutputs(0u, &pOutput);
 	if (FAILED(Result))
 		return false;
 
@@ -277,7 +277,7 @@ RendererShutdown(renderer* Renderer)
 {
 	ASSERT(Renderer);
 
-	Renderer->SwapChain->SetFullscreenState(false, 0);
+	Renderer->SwapChain->SetFullscreenState(false, 0u);
 
 	if (Renderer->Device)
 	{

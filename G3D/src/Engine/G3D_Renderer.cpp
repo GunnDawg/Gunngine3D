@@ -81,9 +81,7 @@ RendererInitialize(renderer* Renderer)
 		scd.SampleDesc.Quality = 0u;
 	}
 	scd.Windowed = Settings::Display::Windowed;
-	//scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
-	scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	if(Renderer->Enable4xMsaa)
 		scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	else

@@ -70,7 +70,7 @@ RendererInitialize(renderer* Renderer)
 	scd.BufferCount = 2u;
 	scd.OutputWindow = GetActiveWindow();
 	scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	if (Renderer->Enable4xMsaa)
+	if (Settings::Graphics::MSAA)
 	{
 		scd.SampleDesc.Count = 4u;
 		scd.SampleDesc.Quality = m4xMsaaQuality - 1u;
@@ -82,7 +82,7 @@ RendererInitialize(renderer* Renderer)
 	}
 	scd.Windowed = Settings::Display::Windowed;
 	scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
-	if(Renderer->Enable4xMsaa)
+	if(Settings::Graphics::MSAA)
 		scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	else
 		scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;

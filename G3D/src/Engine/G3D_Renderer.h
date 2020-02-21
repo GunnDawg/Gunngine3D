@@ -14,7 +14,6 @@ struct renderer
 	ID3D11DeviceContext* Context;
 	IDXGISwapChain* SwapChain;
 	ID3D11RenderTargetView* RenderTargetView;
-	bool Enable4xMsaa = true;
 
 	//Rasterizer
 	ID3D11RasterizerState* RasterizerState;

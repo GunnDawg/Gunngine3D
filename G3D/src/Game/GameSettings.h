@@ -15,7 +15,7 @@ namespace Settings::Audio
 
 namespace Settings::Graphics
 {
-
+	static bool MSAA = true;
 }
 
 namespace Settings::Controls

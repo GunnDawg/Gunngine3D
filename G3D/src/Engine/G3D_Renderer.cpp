@@ -13,6 +13,44 @@ RendererInitialize(renderer* Renderer)
 	ASSERT(Renderer);
 	HRESULT Result = 0u;
 
+	//Create our Device
+	D3D_FEATURE_LEVEL featureLevel;
+	Result = D3D11CreateDevice(
+		0,
+		D3D_DRIVER_TYPE_HARDWARE,
+		0,
+		debugFlags,
+		0, 0,
+		D3D11_SDK_VERSION,
+		&Renderer->Device,
+		&featureLevel,
+		&Renderer->Context
+	);
+	if (FAILED(Result))
+		return false;
+
+	//Check for MSAA quality support
+	UINT m4xMsaaQuality = 0u;
+	Result = Renderer->Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4, &m4xMsaaQuality);
+	if (FAILED(Result))
+		return false;
+	ASSERT(m4xMsaaQuality > 0);
+
+	IDXGIDevice* dxgiDevice = 0;
+	Result = Renderer->Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice);
+	if (FAILED(Result))
+		return false;
+
+	IDXGIAdapter* dxgiAdapter = 0;
+	Result = dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&dxgiAdapter);
+	if (FAILED(Result))
+		return false;
+
+	IDXGIFactory* dxgiFactory;
+	Result = dxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&dxgiFactory);
+	if (FAILED(Result))
+		return false;
+
 	//Create our swap chain buffer description
 	DXGI_MODE_DESC bufferDesc;
 	ZeroMemory(&bufferDesc, sizeof(DXGI_MODE_DESC));
@@ -31,33 +69,38 @@ RendererInitialize(renderer* Renderer)
 	scd.BufferCount = 2u;
 	scd.OutputWindow = GetActiveWindow();
 	scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	scd.SampleDesc.Count = 1u;
-	scd.SampleDesc.Quality = 0U;
+	if (Renderer->Enable4xMsaa)
+	{
+		scd.SampleDesc.Count = 4u;
+		scd.SampleDesc.Quality = m4xMsaaQuality - 1u;
+	}
+	else
+	{
+		scd.SampleDesc.Count = 1u;
+		scd.SampleDesc.Quality = 0u;
+	}
 	scd.Windowed = Settings::Display::Windowed;
-	scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	//scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
-	//Create our swap chain and device
-	Result = D3D11CreateDeviceAndSwapChain(
-		0,
-		D3D_DRIVER_TYPE_HARDWARE,
-		0,
-		debugFlags,
-		0,
-		0u,
-		D3D11_SDK_VERSION,
-		&scd,
-		&Renderer->SwapChain,
-		&Renderer->Device,
-		0,
-		&Renderer->Context
-	);
+	//Create swap chain
+	Result = dxgiFactory->CreateSwapChain(Renderer->Device, &scd, &Renderer->SwapChain);
 	if (FAILED(Result))
 		return false;
 
+	dxgiFactory->Release();
+	dxgiFactory = 0u;
+
+	dxgiDevice->Release();
+	dxgiDevice = 0u;
+
+	dxgiAdapter->Release();
+	dxgiAdapter = 0u;
+
 #if 1
 	if (!Settings::Display::Windowed)
-		Result = Renderer->SwapChain->SetFullscreenState(true, 0);
+		Result = Renderer->SwapChain->SetFullscreenState(true, 0u);
 	if (FAILED(Result))
 		return false;
 #endif
@@ -157,11 +200,11 @@ RendererInitialize(renderer* Renderer)
 
 	//@Temp: All this is doing is getting the video card information. Stuff like memory, vendorID, etc, etc
 	//However, it needs to be moved elsewhere!!
-	IDXGIAdapter* adapter = 0;
+	IDXGIAdapter* adapter = 0u;
 	DXGI_OUTPUT_DESC outputDesc;
-	IDXGIOutput* pOutput = 0;
+	IDXGIOutput* pOutput = 0u;
 	DXGI_ADAPTER_DESC desc;
-	IDXGIFactory* pDXGIFactory = 0;
+	IDXGIFactory* pDXGIFactory = 0u;
 
 	Result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pDXGIFactory));
 	if (FAILED(Result))
@@ -184,13 +227,13 @@ RendererInitialize(renderer* Renderer)
 		return false;
 
 	adapter->Release();
-	adapter = 0;
+	adapter = 0u;
 
 	pOutput->Release();
-	pOutput = 0;
+	pOutput = 0u;
 
 	pDXGIFactory->Release();
-	pDXGIFactory = 0;
+	pDXGIFactory = 0u;
 
 	return true;
 }
@@ -239,48 +282,48 @@ RendererShutdown(renderer* Renderer)
 	if (Renderer->Device)
 	{
 		Renderer->Device->Release();
-		Renderer->Device = 0;
+		Renderer->Device = 0u;
 	}
 
 	if (Renderer->Context)
 	{
 		Renderer->Context->Release();
-		Renderer->Context = 0;
+		Renderer->Context = 0u;
 	}
 
 	if (Renderer->SwapChain)
 	{
 		Renderer->SwapChain->Release();
-		Renderer->SwapChain = 0;
+		Renderer->SwapChain = 0u;
 	}
 
 	if (Renderer->RenderTargetView)
 	{
 		Renderer->RenderTargetView->Release();
-		Renderer->RenderTargetView = 0;
+		Renderer->RenderTargetView = 0u;
 	}
 
 	if (Renderer->RasterizerState)
 	{
 		Renderer->RasterizerState->Release();
-		Renderer->RasterizerState = 0;
+		Renderer->RasterizerState = 0u;
 	}
 
 	if (Renderer->DepthStencilState)
 	{
 		Renderer->DepthStencilState->Release();
-		Renderer->DepthStencilState = 0;
+		Renderer->DepthStencilState = 0u;
 	}
 
 	if (Renderer->DepthStencilBuffer)
 	{
 		Renderer->DepthStencilBuffer->Release();
-		Renderer->DepthStencilBuffer = 0;
+		Renderer->DepthStencilBuffer = 0u;
 	}
 
 	if (Renderer->DepthStencilView)
 	{
 		Renderer->DepthStencilView->Release();
-		Renderer->DepthStencilView = 0;
+		Renderer->DepthStencilView = 0u;
 	}
 }

@@ -31,17 +31,18 @@ RendererInitialize(renderer* Renderer)
 
 	//Check for MSAA quality support
 	UINT m4xMsaaQuality = 0u;
-	Result = Renderer->Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4, &m4xMsaaQuality);
+	Result = Renderer->Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4u, &m4xMsaaQuality);
 	if (FAILED(Result))
 		return false;
-	ASSERT(m4xMsaaQuality > 0);
 
-	IDXGIDevice* dxgiDevice = 0;
+	ASSERT(m4xMsaaQuality > 0u);
+
+	IDXGIDevice* dxgiDevice = 0u;
 	Result = Renderer->Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice);
 	if (FAILED(Result))
 		return false;
 
-	IDXGIAdapter* dxgiAdapter = 0;
+	IDXGIAdapter* dxgiAdapter = 0u;
 	Result = dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&dxgiAdapter);
 	if (FAILED(Result))
 		return false;

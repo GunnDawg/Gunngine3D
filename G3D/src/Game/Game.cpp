@@ -13,7 +13,7 @@ GameInitialize(game* Game)
 		return false;
 
 #if 0
-	Game->Mouse->DisableCursor();
+	Game->Mouse.DisableCursor();
 #endif
 
 	Game->IsRunning = true;

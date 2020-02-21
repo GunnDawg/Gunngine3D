@@ -36,8 +36,8 @@ struct renderer
 #endif
 
 bool RendererInitialize(renderer* Renderer);
-//@NOTE: This is a DirectX specific solution because of passing a DirectX float4 matrix. The more platform agnostic
-//way of doing it imo, is to just pass the r, g, b, a, and parse it out in the code.
+//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
+//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
 void RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color);
 void RendererClear(renderer* Renderer, float r, float g, float b, float a);
 void RendererPresent(renderer* Renderer);

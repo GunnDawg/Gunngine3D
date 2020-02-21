@@ -18,6 +18,8 @@ RendererInitialize(renderer* Renderer)
 	ZeroMemory(&bufferDesc, sizeof(DXGI_MODE_DESC));
 	bufferDesc.Width = Settings::Display::Width;
 	bufferDesc.Height = Settings::Display::Height;
+	bufferDesc.RefreshRate.Numerator = 60u;
+	bufferDesc.RefreshRate.Denominator = 1u;
 	bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	bufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
@@ -30,7 +32,7 @@ RendererInitialize(renderer* Renderer)
 	scd.OutputWindow = GetActiveWindow();
 	scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	scd.SampleDesc.Count = 1u;
-	scd.SampleDesc.Quality = 0;
+	scd.SampleDesc.Quality = 0U;
 	scd.Windowed = Settings::Display::Windowed;
 	scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;

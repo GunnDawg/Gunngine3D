@@ -1,5 +1,8 @@
 #pragma once
+#if 1
 #pragma warning(disable:6011)
+#pragma warning(disable:4244)
+#endif
 
 #include <memory>
 #include <stdint.h>

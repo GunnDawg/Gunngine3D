@@ -12,9 +12,9 @@ struct game
 {
 	bool IsRunning = false;
 	float DeltaTime = 0.0f;
-	renderer* Renderer = 0;
-	keyboard* Keyboard = 0;
-	mouse* Mouse = 0;
+	renderer Renderer = {};
+	keyboard Keyboard = {};
+	mouse Mouse = {};
 };
 
 bool GameInitialize(game* Game);

@@ -138,15 +138,13 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
 
-
-	//@Temp: We're getting the users native screen resolution here before passing that
-	//information off to CreateWindow() and the SwapChain. Not sure if leaving it here is 
-	//best, or if it should be pushed to another function elsewhere.
-	if (!Settings::Display::Windowed)
-	{
-		Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
-		Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
-	}
+#if _DEBUG
+	Settings::Display::Windowed = true;
+#else
+	Settings::Display::Windowed = false;
+	Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
+	Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
+#endif
 
 	LARGE_INTEGER PerfCountFrequencyResult;
 	QueryPerformanceFrequency(&PerfCountFrequencyResult);

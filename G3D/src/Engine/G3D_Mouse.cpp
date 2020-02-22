@@ -12,6 +12,11 @@ bool mouse::Init()
 	if (RegisterRawInputDevices(&rid, 1, sizeof(rid)) == FALSE)
 		return false;
 
+	if (Settings::Display::Windowed)
+		EnableCursor();
+	else
+		DisableCursor();
+
 	return true;
 }
 

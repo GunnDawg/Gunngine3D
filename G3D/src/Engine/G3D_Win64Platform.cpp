@@ -70,7 +70,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 		case WM_INPUT:
 		{
-			UINT dataSize;
+			UINT dataSize = 0u;
 			GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, 0u, &dataSize, sizeof(RAWINPUTHEADER));
 			if (dataSize > 0)
 			{

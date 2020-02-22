@@ -12,9 +12,6 @@ GameInitialize(game* Game)
 	if (!Game->Mouse.Init())
 		return false;
 
-	if(!Settings::Display::Windowed)
-		Game->Mouse.DisableCursor();
-
 	Game->IsRunning = true;
 
 	return true;

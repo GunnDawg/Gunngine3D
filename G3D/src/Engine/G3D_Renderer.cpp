@@ -7,6 +7,16 @@ UINT debugFlags = D3D11_CREATE_DEVICE_DEBUG;
 UINT debugFlags = 0u;
 #endif
 
+template<typename T>
+void SAFE_RELEASE(T& ptr)
+{
+	if (ptr)
+	{
+		ptr->Release();
+		ptr = 0;
+	}
+}
+
 internal bool
 RendererInitialize(renderer* Renderer)
 {
@@ -15,6 +25,7 @@ RendererInitialize(renderer* Renderer)
 
 	//Create our Device
 	D3D_FEATURE_LEVEL featureLevel;
+
 	Result = D3D11CreateDevice(
 		0,
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -27,6 +38,9 @@ RendererInitialize(renderer* Renderer)
 		&Renderer->Context
 	);
 	if (FAILED(Result))
+		return false;
+
+	if (featureLevel != D3D_FEATURE_LEVEL_11_0)
 		return false;
 
 	//Check for MSAA quality support
@@ -92,14 +106,9 @@ RendererInitialize(renderer* Renderer)
 	if (FAILED(Result))
 		return false;
 
-	dxgiFactory->Release();
-	dxgiFactory = 0u;
-
-	dxgiDevice->Release();
-	dxgiDevice = 0u;
-
-	dxgiAdapter->Release();
-	dxgiAdapter = 0u;
+	SAFE_RELEASE(dxgiFactory);
+	SAFE_RELEASE(dxgiDevice);
+	SAFE_RELEASE(dxgiAdapter);
 
 #if 1
 	if (!Settings::Display::Windowed)
@@ -119,7 +128,7 @@ RendererInitialize(renderer* Renderer)
 	if (FAILED(Result))
 		return false;
 
-	BackBuffer->Release();
+	SAFE_RELEASE(BackBuffer);
 
 	//Create our depth stencil state
 	D3D11_TEXTURE2D_DESC depthStencilDesc;
@@ -229,14 +238,9 @@ RendererInitialize(renderer* Renderer)
 	if (FAILED(Result))
 		return false;
 
-	adapter->Release();
-	adapter = 0u;
-
-	pOutput->Release();
-	pOutput = 0u;
-
-	pDXGIFactory->Release();
-	pDXGIFactory = 0u;
+	SAFE_RELEASE(adapter);
+	SAFE_RELEASE(pOutput);
+	SAFE_RELEASE(pDXGIFactory);
 
 	return true;
 }
@@ -282,51 +286,12 @@ RendererShutdown(renderer* Renderer)
 
 	Renderer->SwapChain->SetFullscreenState(false, 0u);
 
-	if (Renderer->Device)
-	{
-		Renderer->Device->Release();
-		Renderer->Device = 0u;
-	}
-
-	if (Renderer->Context)
-	{
-		Renderer->Context->Release();
-		Renderer->Context = 0u;
-	}
-
-	if (Renderer->SwapChain)
-	{
-		Renderer->SwapChain->Release();
-		Renderer->SwapChain = 0u;
-	}
-
-	if (Renderer->RenderTargetView)
-	{
-		Renderer->RenderTargetView->Release();
-		Renderer->RenderTargetView = 0u;
-	}
-
-	if (Renderer->RasterizerState)
-	{
-		Renderer->RasterizerState->Release();
-		Renderer->RasterizerState = 0u;
-	}
-
-	if (Renderer->DepthStencilState)
-	{
-		Renderer->DepthStencilState->Release();
-		Renderer->DepthStencilState = 0u;
-	}
-
-	if (Renderer->DepthStencilBuffer)
-	{
-		Renderer->DepthStencilBuffer->Release();
-		Renderer->DepthStencilBuffer = 0u;
-	}
-
-	if (Renderer->DepthStencilView)
-	{
-		Renderer->DepthStencilView->Release();
-		Renderer->DepthStencilView = 0u;
-	}
+	SAFE_RELEASE(Renderer->Device);
+	SAFE_RELEASE(Renderer->Context);
+	SAFE_RELEASE(Renderer->SwapChain);
+	SAFE_RELEASE(Renderer->RenderTargetView);
+	SAFE_RELEASE(Renderer->RasterizerState);
+	SAFE_RELEASE(Renderer->DepthStencilState);
+	SAFE_RELEASE(Renderer->DepthStencilBuffer);
+	SAFE_RELEASE(Renderer->DepthStencilView);
 }

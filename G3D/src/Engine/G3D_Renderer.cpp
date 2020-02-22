@@ -217,38 +217,6 @@ RendererInitialize(renderer* Renderer)
 
 	Renderer->Context->RSSetViewports(1u, &viewport);
 
-	//@Temp: All this is doing is getting the video card information. Stuff like memory, vendorID, etc, etc
-	//However, it needs to be moved elsewhere!!
-	IDXGIAdapter* adapter = 0u;
-	DXGI_OUTPUT_DESC outputDesc;
-	IDXGIOutput* pOutput = 0u;
-	DXGI_ADAPTER_DESC desc;
-	IDXGIFactory* pDXGIFactory = 0u;
-
-	Result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pDXGIFactory));
-	if (FAILED(Result))
-		return false;
-
-	Result = pDXGIFactory->EnumAdapters(0u, &adapter);
-	if (FAILED(Result))
-		return false;
-
-	Result = adapter->GetDesc(&desc);
-	if (FAILED(Result))
-		return false;
-
-	Result = adapter->EnumOutputs(0u, &pOutput);
-	if (FAILED(Result))
-		return false;
-
-	Result = pOutput->GetDesc(&outputDesc);
-	if (FAILED(Result))
-		return false;
-
-	SAFE_RELEASE(adapter);
-	SAFE_RELEASE(pOutput);
-	SAFE_RELEASE(pDXGIFactory);
-
 	return true;
 }
 

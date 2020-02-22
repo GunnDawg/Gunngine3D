@@ -161,19 +161,19 @@ public:
 
 	inline void HideCursor()
 	{
-		while (::ShowCursor(FALSE) >= 0u);
+		while (::ShowCursor(FALSE) >= 0);
 	}
 
 	inline void ShowCursor()
 	{
-		while (::ShowCursor(TRUE) < 0u);
+		while (::ShowCursor(TRUE) < 0);
 	}
 
 	inline void LockCursor()
 	{
 		RECT rect;
 		GetClientRect(GetActiveWindow(), &rect);
-		MapWindowPoints(GetActiveWindow(), nullptr, reinterpret_cast<POINT*>(&rect), 2);
+		MapWindowPoints(GetActiveWindow(), nullptr, reinterpret_cast<POINT*>(&rect), 2u);
 		ClipCursor(&rect);
 	}
 

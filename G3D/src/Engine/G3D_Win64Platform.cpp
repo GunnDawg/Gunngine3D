@@ -1,4 +1,5 @@
 #include "Engine/G3D_Win64Platform.h"
+#include <memory>
 
 //@NOTE: Globals for now.
 global_variable game Game;

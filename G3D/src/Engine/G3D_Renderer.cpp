@@ -1,5 +1,8 @@
 #include "Engine/G3D_Renderer.h"
 #include "Engine/G3D_Assert.h"
+#include "Engine/G3D_AdapterReader.h"
+
+#include <vector>
 
 #ifdef _DEBUG
 UINT debugFlags = D3D11_CREATE_DEVICE_DEBUG;
@@ -22,6 +25,10 @@ RendererInitialize(renderer* Renderer)
 {
 	ASSERT(Renderer);
 	HRESULT Result = 0u;
+
+	std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
+	if (adapters.size() < 1)
+		return(false);
 
 	//Create our Device
 	D3D_FEATURE_LEVEL featureLevel;
@@ -84,6 +91,8 @@ RendererInitialize(renderer* Renderer)
 	scd.BufferCount = 2u;
 	scd.OutputWindow = GetActiveWindow();
 	scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	scd.Windowed = Settings::Display::Windowed;
+	scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 	if (Settings::Graphics::MSAA)
 	{
 		scd.SampleDesc.Count = 4u;
@@ -94,8 +103,6 @@ RendererInitialize(renderer* Renderer)
 		scd.SampleDesc.Count = 1u;
 		scd.SampleDesc.Quality = 0u;
 	}
-	scd.Windowed = Settings::Display::Windowed;
-	scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 	if(Settings::Graphics::MSAA)
 		scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	else

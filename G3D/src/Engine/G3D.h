@@ -5,7 +5,6 @@
 #pragma warning(disable:26812)
 #endif
 
-#include <memory>
 #include <stdint.h>
 typedef uint8_t u8;
 typedef uint16_t u16;

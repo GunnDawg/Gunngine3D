@@ -1,12 +1,11 @@
 #pragma once
 #include <D3D11.h>
-#include <wrl/client.h>
 #include <vector>
 
 struct AdapterData
 {
 	AdapterData(IDXGIAdapter* pAdapter);
-	Microsoft::WRL::ComPtr<IDXGIAdapter> Adapter = nullptr;
+	IDXGIAdapter* Adapter = 0;
 	DXGI_ADAPTER_DESC Description = { 0 };
 };
 

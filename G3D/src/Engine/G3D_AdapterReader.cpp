@@ -5,23 +5,26 @@ std::vector<AdapterData> AdapterReader::GetAdapters()
 	if (Adapters.size() > 0)
 		return Adapters;
 
-	Microsoft::WRL::ComPtr<IDXGIFactory> pFactory = nullptr;
+	IDXGIFactory* pFactory = 0;
 
 	//Create DXGIFactory Object
 	HRESULT Result = 0;
-	Result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)pFactory.GetAddressOf());
+	Result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&pFactory);
 	if (FAILED(Result))
 	{
 		//(TODO): Error Logging.
 	}
 
-	Microsoft::WRL::ComPtr<IDXGIAdapter> pAdapter = nullptr;;
+	IDXGIAdapter* pAdapter = 0;
 	UINT index = 0;
 	while (SUCCEEDED(pFactory->EnumAdapters(index, &pAdapter)))
 	{
-		Adapters.emplace_back(AdapterData(pAdapter.Get()));
+		Adapters.emplace_back(AdapterData(pAdapter));
 		index += 1;
 	}
+
+	SAFE_RELEASE(pFactory);
+	SAFE_RELEASE(pAdapter);
 
 	return Adapters;
 }
@@ -35,4 +38,6 @@ AdapterData::AdapterData(IDXGIAdapter* pAdapter)
 	{
 		//(TODO): Error Logging.
 	}
+
+	SAFE_RELEASE(Adapter);
 }

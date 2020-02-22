@@ -2,6 +2,7 @@
 #if 1
 #pragma warning(disable:6011)
 #pragma warning(disable:4244)
+#pragma warning(disable:26812)
 #endif
 
 #include <memory>

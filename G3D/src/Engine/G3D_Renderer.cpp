@@ -225,7 +225,7 @@ RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color)
 {
 	ASSERT(Renderer);
 
-	local_persist const float clearColor[4] = { color.x, color.y, color.z, color.w };
+	local_persist const float clearColor[] = { color.x, color.y, color.z, color.w };
 	Renderer->Context->ClearRenderTargetView(Renderer->RenderTargetView, clearColor);
 	Renderer->Context->ClearDepthStencilView(Renderer->DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
 }
@@ -235,7 +235,7 @@ RendererClear(renderer* Renderer, float r, float g, float b, float a)
 {
 	ASSERT(Renderer);
 
-	local_persist const float clearColor[4] = { r, g, b, a };
+	local_persist const float clearColor[] = { r, g, b, a };
 	Renderer->Context->ClearRenderTargetView(Renderer->RenderTargetView, clearColor);
 	Renderer->Context->ClearDepthStencilView(Renderer->DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
 }

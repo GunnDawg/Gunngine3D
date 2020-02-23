@@ -212,6 +212,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		float MCPF = (float)CyclesElapsed / (1000.0f * 1000.0f);
 
 		Game.DeltaTime = MSPerFrame;
+		Game.FPS = FPS;
 
 #if 0
 		char Buffer[256];

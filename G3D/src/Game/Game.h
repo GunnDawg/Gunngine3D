@@ -12,6 +12,7 @@ struct game
 {
 	bool IsRunning = false;
 	float DeltaTime = 0.0f;
+	float FPS = 0.0f;
 };
 
 bool GameInitialize(game* Game);

@@ -28,7 +28,7 @@ RendererInitialize(renderer* Renderer)
 
 	std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
 	if (adapters.size() < 1)
-		return(false);
+		return false;
 
 	//Create our Device
 	D3D_FEATURE_LEVEL featureLevel;

@@ -12,12 +12,9 @@ struct game
 {
 	bool IsRunning = false;
 	float DeltaTime = 0.0f;
-	renderer Renderer = {};
-	keyboard Keyboard = {};
-	mouse Mouse = {};
 };
 
 bool GameInitialize(game* Game);
-void GameHandleInput(game* Game);
-void GameUpdateAndRender(game* Game);
+void GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse);
+void GameUpdateAndRender(game* Game, renderer* Renderer);
 void GameShutdown(game* Game);

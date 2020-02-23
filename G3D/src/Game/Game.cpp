@@ -6,26 +6,20 @@ GameInitialize(game* Game)
 {
 	ASSERT(Game);
 
-	if (!RendererInitialize(&Game->Renderer))
-		return false;
-
-	if (!Game->Mouse.Init())
-		return false;
-
 	Game->IsRunning = true;
 
 	return true;
 }
 
 internal void
-GameHandleInput(game* Game)
+GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse)
 {
 	ASSERT(Game);
 	//Keyboard Input
-	if (Game->Keyboard.KeyIsPressed(VK_ESCAPE))
+	if (Keyboard->KeyIsPressed(VK_ESCAPE))
 		Game->IsRunning = false;
 #if 1
-	if (Game->Keyboard.KeyIsPressed('D'))
+	if (Keyboard->KeyIsPressed('D'))
 	{
 		char Buffer[256];
 		sprintf(Buffer, "DT: %.04f\n", Game->DeltaTime);
@@ -34,7 +28,7 @@ GameHandleInput(game* Game)
 #endif
 
 	//Mouse Input
-	const auto e = Game->Mouse.Read();
+	const auto e = Mouse->Read();
 	//if (e.GetType() == G3D::Mouse::Event::Type::Move)
 	//if (e.GetType() == mouse::Event::Type::RAW_MOVE)
 	if (e.GetType() == mouse::Event::Type::LPress)
@@ -48,21 +42,19 @@ GameHandleInput(game* Game)
 }
 
 internal void
-GameUpdateAndRender(game* Game)
+GameUpdateAndRender(game* Game, renderer* Renderer)
 {
 	ASSERT(Game);
 	//Update
 
 	//Render
-	RendererClear(&Game->Renderer, 0.0f, 0.0f, 0.0f, 1.0f);
+	RendererClear(Renderer, 0.0f, 0.0f, 0.0f, 1.0f);
 
-	RendererPresent(&Game->Renderer);
+	RendererPresent(Renderer);
 }
 
 internal void
 GameShutdown(game* Game)
 {
 	ASSERT(Game);
-
-	RendererShutdown(&Game->Renderer);
 }

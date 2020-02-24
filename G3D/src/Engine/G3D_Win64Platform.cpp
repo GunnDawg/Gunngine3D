@@ -3,7 +3,6 @@
 
 //@NOTE: Globals for now.
 global_variable core_engine_data Engine;
-global_variable game Game;
 
 LRESULT CALLBACK
 WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -139,6 +138,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 {
 	WNDCLASSEX wc = {};
 	HWND hWnd = {};
+	local_persist game Game;
 
 #if _DEBUG
 	Settings::Display::Windowed = true;

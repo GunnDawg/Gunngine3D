@@ -5,7 +5,7 @@
 //better ways to handle that in the future
 #include <stdio.h>
 
-struct game_data
+struct core_engine_data
 {
 	renderer Renderer;
 	keyboard Keyboard;

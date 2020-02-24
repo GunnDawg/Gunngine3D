@@ -97,6 +97,7 @@
     <ClInclude Include="src\Engine\G3D.h" />
     <ClInclude Include="src\Engine\G3D_AdapterReader.h" />
     <ClInclude Include="src\Engine\G3D_Assert.h" />
+    <ClInclude Include="src\Engine\G3D_Core.h" />
     <ClInclude Include="src\Engine\G3D_Keyboard.h" />
     <ClInclude Include="src\Engine\G3D_Mouse.h" />
     <ClInclude Include="src\Game\Game.h" />

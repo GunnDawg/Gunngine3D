@@ -1,7 +1,7 @@
 #include "G3D_Timers.h"
 
 internal bool
-DeltaClockInit(delta_clock* clock)
+DeltaClockInitialize(delta_clock* clock)
 {
 	if (!QueryPerformanceFrequency(&clock->PerfCountFrequencyResult))
 		return false;

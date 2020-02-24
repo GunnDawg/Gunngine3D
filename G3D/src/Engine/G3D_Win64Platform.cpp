@@ -146,9 +146,8 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 #endif
 
-	LARGE_INTEGER PerfCountFrequencyResult;
-	QueryPerformanceFrequency(&PerfCountFrequencyResult);
-	INT64 PerfCountFrequency = PerfCountFrequencyResult.QuadPart;
+	//DT Init
+	DeltaClockInit(&Engine.DeltaClock);
 
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.hCursor = LoadCursor(0, IDC_ARROW);
@@ -174,11 +173,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	if (!GameInitialize(&Game))
 		return -1;
 
-	LARGE_INTEGER LastCounter;
-	QueryPerformanceCounter(&LastCounter);
-
-	UINT64 LastCycleCount = __rdtsc();
-
 	MSG msg;
 	while (Game.IsRunning)
 	{
@@ -195,29 +189,21 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		GameHandleInput(&Game, &Engine.Keyboard, &Engine.Mouse);
 		GameUpdateAndRender(&Game, &Engine.Renderer);
 
-		//Query Performance Data
-		UINT64 EndCycleCount = __rdtsc();
+		//DT Tick
+		DeltaClockTick(&Engine.DeltaClock);
 
-		LARGE_INTEGER EndCounter;
-		QueryPerformanceCounter(&EndCounter);
+		Game.DeltaTime = Engine.DeltaClock.MSPerFrame;
+		Game.FPS = Engine.DeltaClock.FPS;
+		Game.ClockCycles = Engine.DeltaClock.MCPF;
 
-		UINT64 CyclesElapsed = EndCycleCount - LastCycleCount;
-		INT64 TimeElapsed = EndCounter.QuadPart - LastCounter.QuadPart;
-		float MSPerFrame = ((1000.0f * TimeElapsed) / (float)PerfCountFrequency);
-		float FPS = (float)PerfCountFrequency / (float)TimeElapsed;
-		float MCPF = (float)CyclesElapsed / (1000.0f * 1000.0f);
-
-		Game.DeltaTime = MSPerFrame;
-		Game.FPS = FPS;
-
-#if 0
+#if _DEBUG
 		char Buffer[256];
-		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", MSPerFrame, FPS, MCPF);
+		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", Game.DeltaTime, Game.FPS, Game.ClockCycles);
 		OutputDebugStringA(Buffer);
 #endif
 
-		LastCounter = EndCounter;
-		LastCycleCount = EndCycleCount;
+		//DT Reset
+		DeltaClockReset(&Engine.DeltaClock);
 	}
 
 	//Shut everything down

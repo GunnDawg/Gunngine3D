@@ -12,5 +12,6 @@
 #include "Engine/G3D_AdapterReader.cpp"
 #include "Engine/G3D_Keyboard.cpp"
 #include "Engine/G3D_Mouse.cpp"
+#include "Engine/G3D_Timers.cpp"
 
 #include "Game/Game.cpp"

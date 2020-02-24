@@ -40,7 +40,6 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			Engine.Keyboard.OnChar(static_cast<u16>(wParam));
 		} break;
 
-
 		//Mouse Messages
 		case WM_MOUSEMOVE:
 		{

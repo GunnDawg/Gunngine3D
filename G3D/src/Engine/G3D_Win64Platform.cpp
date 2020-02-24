@@ -2,10 +2,7 @@
 #include <memory>
 
 //@NOTE: Globals for now.
-global_variable renderer Renderer;
-global_variable keyboard Keyboard;
-global_variable mouse Mouse;
-global_variable game Game;
+global_variable game_data GameData;
 
 LRESULT CALLBACK
 WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -27,21 +24,21 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		case WM_KEYDOWN:
 		case WM_SYSKEYDOWN:
 		{
-			if (!(lParam & 0x40000000 || Keyboard.AutorepeatIsEnabled()))
+			if (!(lParam & 0x40000000 || GameData.Keyboard.AutorepeatIsEnabled()))
 			{
-				Keyboard.OnKeyPressed(static_cast<u16>(wParam));
+				GameData.Keyboard.OnKeyPressed(static_cast<u16>(wParam));
 			}
 		} break;
 
 		case WM_KEYUP:
 		case WM_SYSKEYUP:
 		{
-			Keyboard.OnKeyReleased(static_cast<u16>(wParam));
+			GameData.Keyboard.OnKeyReleased(static_cast<u16>(wParam));
 		} break;
 
 		case WM_CHAR:
 		{
-			Keyboard.OnChar(static_cast<u16>(wParam));
+			GameData.Keyboard.OnChar(static_cast<u16>(wParam));
 		} break;
 
 
@@ -51,23 +48,23 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			POINTS pt = MAKEPOINTS(lParam);
 			if (pt.x >= 0 && pt.x < Settings::Display::Width && pt.y >= 0 && pt.y < Settings::Display::Height)
 			{
-				Mouse.OnMouseMove(pt.x, pt.y);
-				if (!Mouse.IsInWindow())
+				GameData.Mouse.OnMouseMove(pt.x, pt.y);
+				if (!GameData.Mouse.IsInWindow())
 				{
 					SetCapture(hwnd);
-					Mouse.OnMouseEnter();
+					GameData.Mouse.OnMouseEnter();
 				}
 			}
 			else
 			{
 				if (wParam & (MK_LBUTTON | MK_RBUTTON))
 				{
-					Mouse.OnMouseMove(pt.x, pt.y);
+					GameData.Mouse.OnMouseMove(pt.x, pt.y);
 				}
 				else
 				{
 					ReleaseCapture();
-					Mouse.OnMouseLeave();
+					GameData.Mouse.OnMouseLeave();
 				}
 			}
 		} break;
@@ -84,7 +81,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 					RAWINPUT* raw = reinterpret_cast<RAWINPUT*>(rawData.get());
 					if (raw->header.dwType == RIM_TYPEMOUSE)
 					{
-						Mouse.OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
+						GameData.Mouse.OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
 					}
 				}
 			}
@@ -95,25 +92,25 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		case WM_LBUTTONDOWN:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			Mouse.OnLeftPressed(pt.x, pt.y);
+			GameData.Mouse.OnLeftPressed(pt.x, pt.y);
 		} break;
 
 		case WM_RBUTTONDOWN:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			Mouse.OnRightPressed(pt.x, pt.y);
+			GameData.Mouse.OnRightPressed(pt.x, pt.y);
 		} break;
 
 		case WM_LBUTTONUP:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			Mouse.OnLeftReleased(pt.x, pt.y);
+			GameData.Mouse.OnLeftReleased(pt.x, pt.y);
 		} break;
 
 		case WM_RBUTTONUP:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			Mouse.OnRightReleased(pt.x, pt.y);
+			GameData.Mouse.OnRightReleased(pt.x, pt.y);
 		} break;
 
 		case WM_MOUSEWHEEL:
@@ -121,11 +118,11 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			const POINTS pt = MAKEPOINTS(lParam);
 			if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
 			{
-				Mouse.OnWheelUp(pt.x, pt.y);
+				GameData.Mouse.OnWheelUp(pt.x, pt.y);
 			}
 			else if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
 			{
-				Mouse.OnWheelDown(pt.x, pt.y);
+				GameData.Mouse.OnWheelDown(pt.x, pt.y);
 			}
 		} break;
 
@@ -169,13 +166,13 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	if (!hWnd)
 		return -1;
 
-	if (!RendererInitialize(&Renderer))
+	if (!RendererInitialize(&GameData.Renderer))
 		return -1;
 
-	if (!Mouse.Init())
+	if (!GameData.Mouse.Init())
 		return -1;
 
-	if (!GameInitialize(&Game))
+	if (!GameInitialize(&GameData.Game))
 		return -1;
 
 	LARGE_INTEGER LastCounter;
@@ -184,20 +181,20 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	UINT64 LastCycleCount = __rdtsc();
 
 	MSG msg;
-	while (Game.IsRunning)
+	while (GameData.Game.IsRunning)
 	{
 		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
 			if (msg.message == WM_QUIT)
-				Game.IsRunning = false;
+				GameData.Game.IsRunning = false;
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
 
 		//Main Loop
-		GameHandleInput(&Game, &Keyboard, &Mouse);
-		GameUpdateAndRender(&Game, &Renderer);
+		GameHandleInput(&GameData.Game, &GameData.Keyboard, &GameData.Mouse);
+		GameUpdateAndRender(&GameData.Game, &GameData.Renderer);
 
 		//Query Performance Data
 		UINT64 EndCycleCount = __rdtsc();
@@ -211,8 +208,8 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		float FPS = (float)PerfCountFrequency / (float)TimeElapsed;
 		float MCPF = (float)CyclesElapsed / (1000.0f * 1000.0f);
 
-		Game.DeltaTime = MSPerFrame;
-		Game.FPS = FPS;
+		GameData.Game.DeltaTime = MSPerFrame;
+		GameData.Game.FPS = FPS;
 
 #if 0
 		char Buffer[256];
@@ -225,8 +222,8 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	}
 
 	//Shut everything down
-	RendererShutdown(&Renderer);
-	GameShutdown(&Game);
+	RendererShutdown(&GameData.Renderer);
+	GameShutdown(&GameData.Game);
 
 	return 0;
 }

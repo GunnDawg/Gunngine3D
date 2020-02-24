@@ -16,6 +16,6 @@ struct delta_clock
 	float MCPF = 0.0f;
 };
 
-void DeltaClockInit(delta_clock* clock);
+bool DeltaClockInit(delta_clock* clock);
 void DeltaClockTick(delta_clock* clock);
 void DeltaClockReset(delta_clock* clock);

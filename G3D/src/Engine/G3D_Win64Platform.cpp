@@ -146,9 +146,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 #endif
 
-	//DT Init
-	DeltaClockInit(&Engine.DeltaClock);
-
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.hCursor = LoadCursor(0, IDC_ARROW);
 	wc.hInstance = instance;
@@ -162,6 +159,9 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 
 	hWnd = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, instance, 0);
 	if (!hWnd)
+		return -1;
+
+	if (!DeltaClockInit(&Engine.DeltaClock))
 		return -1;
 
 	if (!RendererInitialize(&Engine.Renderer))

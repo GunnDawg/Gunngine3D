@@ -1,13 +1,17 @@
 #include "G3D_Timers.h"
 
-internal void
+internal bool
 DeltaClockInit(delta_clock* clock)
 {
-	QueryPerformanceFrequency(&clock->PerfCountFrequencyResult);
+	if (!QueryPerformanceFrequency(&clock->PerfCountFrequencyResult))
+		return false;
 	clock->PerfCountFrequency = clock->PerfCountFrequencyResult.QuadPart;
 
-	QueryPerformanceCounter(&clock->LastCounter);
+	if (!QueryPerformanceCounter(&clock->LastCounter))
+		return false;
 	clock->LastCycleCount = __rdtsc();
+
+	return true;
 }
 
 internal void

@@ -12,7 +12,7 @@ GameInitialize(game* Game)
 }
 
 internal void
-GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse)
+GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse, delta_clock* dt)
 {
 	ASSERT(Game);
 	//Keyboard Input
@@ -22,7 +22,7 @@ GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse)
 	if (Keyboard->KeyIsPressed('D'))
 	{
 		char Buffer[256];
-		sprintf(Buffer, "DT: %.04f\n", Game->DeltaTime);
+		sprintf(Buffer, "DT: %.04f\n", dt->MSPerFrame);
 		OutputDebugStringA(Buffer);
 	}
 #endif
@@ -42,7 +42,7 @@ GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse)
 }
 
 internal void
-GameUpdateAndRender(game* Game, renderer* Renderer)
+GameUpdateAndRender(game* Game, renderer* Renderer, delta_clock* dt)
 {
 	ASSERT(Game);
 	//Update

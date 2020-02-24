@@ -186,19 +186,15 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		}
 
 		//Main Loop
-		GameHandleInput(&Game, &Engine.Keyboard, &Engine.Mouse);
-		GameUpdateAndRender(&Game, &Engine.Renderer);
+		GameHandleInput(&Game, &Engine.Keyboard, &Engine.Mouse, &Engine.DeltaClock);
+		GameUpdateAndRender(&Game, &Engine.Renderer, &Engine.DeltaClock);
 
 		//DT Tick
 		DeltaClockTick(&Engine.DeltaClock);
 
-		Game.DeltaTime = Engine.DeltaClock.MSPerFrame;
-		Game.FPS = Engine.DeltaClock.FPS;
-		Game.ClockCycles = Engine.DeltaClock.MCPF;
-
 #if _DEBUG
 		char Buffer[256];
-		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", Game.DeltaTime, Game.FPS, Game.ClockCycles);
+		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", Engine.DeltaClock.MSPerFrame, Engine.DeltaClock.FPS, Engine.DeltaClock.MCPF);
 		OutputDebugStringA(Buffer);
 #endif
 

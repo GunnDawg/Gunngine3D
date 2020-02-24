@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine/G3D_Timers.h"
 #include "Engine/G3D_Renderer.h"
 #include "Engine/G3D_Keyboard.h"
 #include "Engine/G3D_Mouse.h"
@@ -11,12 +12,9 @@
 struct game
 {
 	bool IsRunning = false;
-	float DeltaTime = 0.0f;
-	float FPS = 0.0f;
-	float ClockCycles = 0.0f;
 };
 
 bool GameInitialize(game* Game);
-void GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse);
-void GameUpdateAndRender(game* Game, renderer* Renderer);
+void GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse, delta_clock* dt);
+void GameUpdateAndRender(game* Game, renderer* Renderer, delta_clock* dt);
 void GameShutdown(game* Game);

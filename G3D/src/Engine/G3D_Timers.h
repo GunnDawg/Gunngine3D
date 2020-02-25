@@ -1,5 +1,4 @@
 #pragma once
-#include "G3D_Windows.h"
 
 struct delta_clock
 {

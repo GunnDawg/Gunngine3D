@@ -144,7 +144,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 #endif
 
-	if (!EngineInitialize(&Engine))
+	if (!G3D::EngineInitialize(&Engine))
 		return -1;
 
 	if (!GameInitialize(&Game))
@@ -167,7 +167,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		GameUpdateAndRender(&Game, &Engine.Renderer, &Engine.DeltaClock);
 
 		//DT Tick
-		DeltaClockTick(&Engine.DeltaClock);
+		G3D::DeltaClockTick(&Engine.DeltaClock);
 
 #if _DEBUG
 		char Buffer[256];
@@ -176,12 +176,12 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 #endif
 
 		//DT Reset
-		DeltaClockReset(&Engine.DeltaClock);
+		G3D::DeltaClockReset(&Engine.DeltaClock);
 	}
 
 	//Shut everything down
 	GameShutdown(&Game);
-	EngineShutdown(&Engine);
+	G3D::EngineShutdown(&Engine);
 
 	return 0;
 }

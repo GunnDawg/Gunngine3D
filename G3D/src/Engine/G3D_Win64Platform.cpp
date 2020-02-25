@@ -180,8 +180,8 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	}
 
 	//Shut everything down
-	RendererShutdown(&Engine.Renderer);
 	GameShutdown(&Game);
+	EngineShutdown(&Engine);
 
 	return 0;
 }

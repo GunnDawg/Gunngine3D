@@ -20,3 +20,10 @@ WindowInitialize(window* Window)
 
 	return true;
 }
+
+internal void
+WindowShutdown(window* Window)
+{
+	UnregisterClass(Window->wc.lpszClassName, GetModuleHandle(0));
+	DestroyWindow(Window->window_handle);
+}

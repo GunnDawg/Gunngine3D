@@ -7,3 +7,4 @@ struct window
 };
 
 bool WindowInitialize(window* Window);
+void WindowShutdown(window* Window);

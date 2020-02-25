@@ -16,3 +16,4 @@ struct core_engine_data
 };
 
 bool EngineInitialize(core_engine_data* Engine);
+void EngineShutdown(core_engine_data* Engine);

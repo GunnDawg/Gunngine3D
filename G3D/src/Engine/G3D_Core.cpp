@@ -17,3 +17,10 @@ EngineInitialize(core_engine_data* Engine)
 
 	return true;
 }
+
+internal void
+EngineShutdown(core_engine_data* Engine)
+{
+	RendererShutdown(&Engine->Renderer);
+	WindowShutdown(&Engine->Window);
+}

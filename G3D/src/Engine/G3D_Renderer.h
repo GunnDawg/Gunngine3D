@@ -10,6 +10,7 @@
 
 namespace G3D
 {
+#ifdef _WIN64
 	struct Renderer
 	{
 		//Basic DirectX
@@ -26,18 +27,17 @@ namespace G3D
 		ID3D11Texture2D* DepthStencilBuffer;
 		ID3D11DepthStencilView* DepthStencilView;
 	};
-
-	#ifdef __APPLE__
+#elif __APPLE__
 	struct renderer
 	{
 		//Apple specific rendering data here
 	};
-	#elif __linux__
+#elif __linux__
 	struct renderer
 	{
 		//Linux specific rendering data here
 	};
-	#endif
+#endif
 
 	bool RendererInitialize(G3D::Renderer* Renderer, G3D::Window* Window);
 	//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic

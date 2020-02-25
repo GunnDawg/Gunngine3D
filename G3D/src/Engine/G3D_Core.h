@@ -10,11 +10,11 @@ namespace G3D
 {
 	struct Core_Engine_Data
 	{
-		G3D::Window Window;
-		G3D::Renderer Renderer;
-		G3D::Keyboard Keyboard;
-		G3D::Mouse Mouse;
-		G3D::Delta_Clock DeltaClock;
+		G3D::Window Window = {};
+		G3D::Renderer Renderer = {};
+		G3D::Keyboard Keyboard = {};
+		G3D::Mouse Mouse = {};
+		G3D::Delta_Clock DeltaClock = {};
 	};
 
 	bool EngineInitialize(G3D::Core_Engine_Data* Engine);

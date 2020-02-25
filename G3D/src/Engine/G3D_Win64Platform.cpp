@@ -161,13 +161,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	if (!hWnd)
 		return -1;
 
-	if (!DeltaClockInitialize(&Engine.DeltaClock))
-		return -1;
-
-	if (!RendererInitialize(&Engine.Renderer))
-		return -1;
-
-	if (!Engine.Mouse.Init())
+	if (!EngineInitialize(&Engine))
 		return -1;
 
 	if (!GameInitialize(&Game))

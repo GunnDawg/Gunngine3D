@@ -12,3 +12,5 @@ struct core_engine_data
 	mouse Mouse;
 	delta_clock DeltaClock;
 };
+
+bool EngineInitialize(core_engine_data* Engine);

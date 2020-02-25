@@ -4,7 +4,6 @@
 
 namespace G3D
 {
-
 	class Keyboard
 	{
 	public:

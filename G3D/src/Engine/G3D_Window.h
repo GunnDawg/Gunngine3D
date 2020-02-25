@@ -2,7 +2,6 @@
 
 namespace G3D
 {
-
 	struct Window
 	{
 		HWND window_handle;

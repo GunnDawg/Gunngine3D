@@ -6,10 +6,10 @@
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
+#endif
 
 namespace G3D
 {
-
 	struct Renderer
 	{
 		//Basic DirectX
@@ -26,17 +26,18 @@ namespace G3D
 		ID3D11Texture2D* DepthStencilBuffer;
 		ID3D11DepthStencilView* DepthStencilView;
 	};
-#elif __APPLE__
-struct renderer
-{
-	//Apple specific rendering data here
-};
-#elif __linux__
-struct renderer
-{
-	//Linux specific rendering data here
-};
-#endif
+
+	#ifdef __APPLE__
+	struct renderer
+	{
+		//Apple specific rendering data here
+	};
+	#elif __linux__
+	struct renderer
+	{
+		//Linux specific rendering data here
+	};
+	#endif
 
 	bool RendererInitialize(G3D::Renderer* Renderer, G3D::Window* Window);
 	//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic

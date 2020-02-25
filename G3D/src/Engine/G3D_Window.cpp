@@ -5,6 +5,14 @@ namespace G3D
 	internal bool
 	WindowInitialize(G3D::Window* Window)
 	{
+		#if _DEBUG
+				Settings::Display::Windowed = true;
+		#else
+				Settings::Display::Windowed = false;
+				Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
+				Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
+		#endif
+
 		Window->wc.cbSize = sizeof(WNDCLASSEX);
 		Window->wc.hCursor = LoadCursor(0, IDC_ARROW);
 		Window->wc.hInstance = GetModuleHandle(0);

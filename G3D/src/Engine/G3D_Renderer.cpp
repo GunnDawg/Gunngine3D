@@ -21,7 +21,7 @@ void SAFE_RELEASE(T& ptr)
 }
 
 internal bool
-RendererInitialize(renderer* Renderer)
+RendererInitialize(renderer* Renderer, window* Window)
 {
 	ASSERT(Renderer);
 	HRESULT Result = 0u;
@@ -89,7 +89,7 @@ RendererInitialize(renderer* Renderer)
 	ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
 	scd.BufferDesc = bufferDesc;
 	scd.BufferCount = 2u;
-	scd.OutputWindow = GetActiveWindow();
+	scd.OutputWindow = Window->window_handle;
 	scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	scd.Windowed = Settings::Display::Windowed;
 	scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;

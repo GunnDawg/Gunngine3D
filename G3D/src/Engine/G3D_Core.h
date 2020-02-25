@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/G3D_Windows.h"
+#include "Engine/G3D_Window.h"
 #include "Engine/G3D_Renderer.h"
 #include "Engine/G3D_Keyboard.h"
 #include "Engine/G3D_Mouse.h"
@@ -7,6 +8,7 @@
 
 struct core_engine_data
 {
+	window Window;
 	renderer Renderer;
 	keyboard Keyboard;
 	mouse Mouse;

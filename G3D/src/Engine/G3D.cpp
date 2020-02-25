@@ -9,6 +9,7 @@
 #endif
 
 #include "Engine/G3D_Core.cpp"
+#include "Engine/G3D_Window.cpp"
 #include "Engine/G3D_Renderer.cpp"
 #include "Engine/G3D_AdapterReader.cpp"
 #include "Engine/G3D_Keyboard.cpp"

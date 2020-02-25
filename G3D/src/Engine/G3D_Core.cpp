@@ -6,7 +6,10 @@ EngineInitialize(core_engine_data* Engine)
 	if (!DeltaClockInitialize(&Engine->DeltaClock))
 		return false;
 
-	if (!RendererInitialize(&Engine->Renderer))
+	if (!WindowInitialize(&Engine->Window))
+		return false;
+
+	if (!RendererInitialize(&Engine->Renderer, &Engine->Window))
 		return false;
 
 	if (!Engine->Mouse.Init())

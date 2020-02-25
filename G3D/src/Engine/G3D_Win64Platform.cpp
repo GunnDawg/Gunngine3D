@@ -134,8 +134,6 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 int CALLBACK
 WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmdLine, _In_ int cmdShow)
 {
-	WNDCLASSEX wc = {};
-	HWND hWnd = {};
 	local_persist game Game;
 
 #if _DEBUG
@@ -145,21 +143,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
 	Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 #endif
-
-	wc.cbSize = sizeof(WNDCLASSEX);
-	wc.hCursor = LoadCursor(0, IDC_ARROW);
-	wc.hInstance = instance;
-	wc.lpfnWndProc = WndProc;
-	wc.lpszClassName = "WindowClass";
-	wc.style = CS_VREDRAW | CS_HREDRAW | CS_OWNDC;
-	wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-
-	if (!RegisterClassEx(&wc))
-		return -1;
-
-	hWnd = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, instance, 0);
-	if (!hWnd)
-		return -1;
 
 	if (!EngineInitialize(&Engine))
 		return -1;

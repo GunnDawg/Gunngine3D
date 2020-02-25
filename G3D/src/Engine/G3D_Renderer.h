@@ -35,7 +35,7 @@ struct renderer
 };
 #endif
 
-bool RendererInitialize(renderer* Renderer);
+bool RendererInitialize(renderer* Renderer, window* Window);
 //@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
 //way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
 void RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color);

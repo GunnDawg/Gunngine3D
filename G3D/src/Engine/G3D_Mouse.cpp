@@ -15,7 +15,7 @@ bool mouse::Init()
 	if (Settings::Display::Windowed)
 		EnableCursor();
 	else
-		DisableCursor();
+		DisableCursor(&Engine.Window);
 
 	return true;
 }

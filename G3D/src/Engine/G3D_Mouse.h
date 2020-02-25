@@ -152,11 +152,11 @@ public:
 		UnlockCursor();
 	}
 
-	inline void DisableCursor()
+	inline void DisableCursor(window* Window)
 	{
 		CursorIsEnabled = false;
 		HideCursor();
-		LockCursor();
+		LockCursor(Window);
 	}
 
 	inline void HideCursor()
@@ -169,11 +169,11 @@ public:
 		while (::ShowCursor(TRUE) < 0);
 	}
 
-	inline void LockCursor()
+	inline void LockCursor(window* Window)
 	{
 		RECT rect;
-		GetClientRect(GetActiveWindow(), &rect);
-		MapWindowPoints(GetActiveWindow(), nullptr, reinterpret_cast<POINT*>(&rect), 2u);
+		GetClientRect(Window->window_handle, &rect);
+		MapWindowPoints(Window->window_handle, nullptr, reinterpret_cast<POINT*>(&rect), 2u);
 		ClipCursor(&rect);
 	}
 

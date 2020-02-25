@@ -10,7 +10,10 @@ struct game
 	bool IsRunning = false;
 };
 
+
+//@Refactor: Do we want to pass the game and engine data into these functions,
+//or keep passing individual modules of the engine? hmmmmmmmmmmm......
 bool GameInitialize(game* Game);
-void GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse, delta_clock* dt);
-void GameUpdateAndRender(game* Game, renderer* Renderer, delta_clock* dt);
+void GameHandleInput(game* Game, G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::Delta_Clock* dt);
+void GameUpdateAndRender(game* Game, G3D::Renderer* Renderer, G3D::Delta_Clock* dt);
 void GameShutdown(game* Game);

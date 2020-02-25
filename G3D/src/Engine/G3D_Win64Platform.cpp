@@ -1,7 +1,7 @@
 #include "Engine/G3D_Win64Platform.h"
 
 //@NOTE: Globals for now.
-global_variable core_engine_data Engine;
+global_variable G3D::Core_Engine_Data Engine;
 
 LRESULT CALLBACK
 WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)

@@ -12,7 +12,7 @@ GameInitialize(game* Game)
 }
 
 internal void
-GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse, delta_clock* dt)
+GameHandleInput(game* Game, G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::Delta_Clock* dt)
 {
 	ASSERT(Game);
 	//Keyboard Input
@@ -31,18 +31,18 @@ GameHandleInput(game* Game, keyboard* Keyboard, mouse* Mouse, delta_clock* dt)
 	const auto e = Mouse->Read();
 	//if (e.GetType() == G3D::Mouse::Event::Type::Move)
 	//if (e.GetType() == mouse::Event::Type::RAW_MOVE)
-	if (e.GetType() == mouse::Event::Type::LPress)
+	if (e.GetType() == G3D::Mouse::Event::Type::LPress)
 		OutputDebugStringA("L Mouse Pressed");
-	if (e.GetType() == mouse::Event::Type::RPress)
+	if (e.GetType() == G3D::Mouse::Event::Type::RPress)
 		OutputDebugStringA("R Mouse Pressed");
-	if (e.GetType() == mouse::Event::Type::WheelUp)
+	if (e.GetType() == G3D::Mouse::Event::Type::WheelUp)
 		OutputDebugStringA("Mouse Wheel Up");
-	if (e.GetType() == mouse::Event::Type::WheelDown)
+	if (e.GetType() == G3D::Mouse::Event::Type::WheelDown)
 		OutputDebugStringA("Mouse Wheel Down");
 }
 
 internal void
-GameUpdateAndRender(game* Game, renderer* Renderer, delta_clock* dt)
+GameUpdateAndRender(game* Game, G3D::Renderer* Renderer, G3D::Delta_Clock* dt)
 {
 	ASSERT(Game);
 	//Update

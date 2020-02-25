@@ -6,14 +6,17 @@
 #include "Engine/G3D_Mouse.h"
 #include "Engine/G3D_Timers.h"
 
-struct core_engine_data
+namespace G3D
 {
-	window Window;
-	renderer Renderer;
-	keyboard Keyboard;
-	mouse Mouse;
-	delta_clock DeltaClock;
-};
+	struct Core_Engine_Data
+	{
+		G3D::Window Window;
+		G3D::Renderer Renderer;
+		G3D::Keyboard Keyboard;
+		G3D::Mouse Mouse;
+		G3D::Delta_Clock DeltaClock;
+	};
 
-bool EngineInitialize(core_engine_data* Engine);
-void EngineShutdown(core_engine_data* Engine);
+	bool EngineInitialize(G3D::Core_Engine_Data* Engine);
+	void EngineShutdown(G3D::Core_Engine_Data* Engine);
+}

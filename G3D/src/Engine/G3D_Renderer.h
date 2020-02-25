@@ -7,22 +7,25 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 
-struct renderer
+namespace G3D
 {
-	//Basic DirectX
-	ID3D11Device* Device;
-	ID3D11DeviceContext* Context;
-	IDXGISwapChain* SwapChain;
-	ID3D11RenderTargetView* RenderTargetView;
 
-	//Rasterizer
-	ID3D11RasterizerState* RasterizerState;
+	struct Renderer
+	{
+		//Basic DirectX
+		ID3D11Device* Device;
+		ID3D11DeviceContext* Context;
+		IDXGISwapChain* SwapChain;
+		ID3D11RenderTargetView* RenderTargetView;
 
-	//Depth Stencil
-	ID3D11DepthStencilState* DepthStencilState;
-	ID3D11Texture2D* DepthStencilBuffer;
-	ID3D11DepthStencilView* DepthStencilView;
-};
+		//Rasterizer
+		ID3D11RasterizerState* RasterizerState;
+
+		//Depth Stencil
+		ID3D11DepthStencilState* DepthStencilState;
+		ID3D11Texture2D* DepthStencilBuffer;
+		ID3D11DepthStencilView* DepthStencilView;
+	};
 #elif __APPLE__
 struct renderer
 {
@@ -35,10 +38,11 @@ struct renderer
 };
 #endif
 
-bool RendererInitialize(renderer* Renderer, window* Window);
-//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
-//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
-void RendererClear(renderer* Renderer, DirectX::XMFLOAT4 color);
-void RendererClear(renderer* Renderer, float r, float g, float b, float a);
-void RendererPresent(renderer* Renderer);
-void RendererShutdown(renderer* Renderer);
+	bool RendererInitialize(G3D::Renderer* Renderer, G3D::Window* Window);
+	//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
+	//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
+	void RendererClear(G3D::Renderer* Renderer, DirectX::XMFLOAT4 color);
+	void RendererClear(G3D::Renderer* Renderer, float r, float g, float b, float a);
+	void RendererPresent(G3D::Renderer* Renderer);
+	void RendererShutdown(G3D::Renderer* Renderer);
+}

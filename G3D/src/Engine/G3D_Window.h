@@ -1,10 +1,14 @@
 #pragma once
 
-struct window
+namespace G3D
 {
-	HWND window_handle;
-	WNDCLASSEX wc;
-};
 
-bool WindowInitialize(window* Window);
-void WindowShutdown(window* Window);
+	struct Window
+	{
+		HWND window_handle;
+		WNDCLASSEX wc;
+	};
+
+	bool WindowInitialize(G3D::Window* Window);
+	void WindowShutdown(G3D::Window* Window);
+}

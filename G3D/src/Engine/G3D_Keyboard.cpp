@@ -1,26 +1,29 @@
 #include "G3D_Keyboard.h"
 
-keyboard::Event keyboard::ReadKey()
+namespace G3D
 {
-	if (keyBuffer.size() > 0u)
+	Keyboard::Event Keyboard::ReadKey()
 	{
-		keyboard::Event e = keyBuffer.front();
-		keyBuffer.pop();
-		return(e);
+		if (keyBuffer.size() > 0u)
+		{
+			Keyboard::Event e = keyBuffer.front();
+			keyBuffer.pop();
+			return(e);
+		}
+		else
+			return(Keyboard::Event());
 	}
-	else
-		return(keyboard::Event());
-}
 
-u16 keyboard::ReadChar()
-{
-	if (charBuffer.size() > 0u)
+	u16 Keyboard::ReadChar()
 	{
-		u16 charcode = charBuffer.front();
-		charBuffer.pop();
+		if (charBuffer.size() > 0u)
+		{
+			u16 charcode = charBuffer.front();
+			charBuffer.pop();
 
-		return(charcode);
+			return(charcode);
+		}
+		else
+			return(0);
 	}
-	else
-		return(0);
 }

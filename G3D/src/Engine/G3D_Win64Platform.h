@@ -4,5 +4,5 @@
 #include <memory>
 
 #if _DEBUG
-	#include <stdio.h>
+	
 #endif

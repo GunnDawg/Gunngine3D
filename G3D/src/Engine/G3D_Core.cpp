@@ -26,4 +26,15 @@ namespace G3D
 		G3D::RendererShutdown(&Engine->Renderer);
 		G3D::WindowShutdown(&Engine->Window);
 	}
+
+	//Debug Stuff
+	internal void
+	OutputPerformanceData(G3D::Core_Engine_Data* Engine)
+	{
+	#if _DEBUG
+		char Buffer[256];
+		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", Engine->DeltaClock.MSPerFrame, Engine->DeltaClock.FPS, Engine->DeltaClock.MCPF);
+		OutputDebugStringA(Buffer);
+	#endif
+	}
 }

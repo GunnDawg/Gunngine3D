@@ -17,6 +17,15 @@ namespace G3D
 		G3D::Delta_Clock DeltaClock = {};
 	};
 
+	struct Debug_Engine_Data
+	{
+
+	};
+
+	//Core Functionality
 	bool EngineInitialize(G3D::Core_Engine_Data* Engine);
 	void EngineShutdown(G3D::Core_Engine_Data* Engine);
+
+	//Debug Functionality
+	void OutputPerformanceData(G3D::Core_Engine_Data* Engine);
 }

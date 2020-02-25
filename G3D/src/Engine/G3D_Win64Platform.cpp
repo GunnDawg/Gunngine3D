@@ -136,14 +136,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 {
 	local_persist game Game;
 
-#if _DEBUG
-	Settings::Display::Windowed = true;
-#else
-	Settings::Display::Windowed = false;
-	Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
-	Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
-#endif
-
 	if (!G3D::EngineInitialize(&Engine))
 		return -1;
 
@@ -166,16 +158,8 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		GameHandleInput(&Game, &Engine.Keyboard, &Engine.Mouse, &Engine.DeltaClock);
 		GameUpdateAndRender(&Game, &Engine.Renderer, &Engine.DeltaClock);
 
-		//DT Tick
 		G3D::DeltaClockTick(&Engine.DeltaClock);
-
-#if _DEBUG
-		char Buffer[256];
-		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", Engine.DeltaClock.MSPerFrame, Engine.DeltaClock.FPS, Engine.DeltaClock.MCPF);
-		OutputDebugStringA(Buffer);
-#endif
-
-		//DT Reset
+		G3D::OutputPerformanceData(&Engine);
 		G3D::DeltaClockReset(&Engine.DeltaClock);
 	}
 

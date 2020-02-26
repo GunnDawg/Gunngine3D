@@ -142,6 +142,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	if (!GameInitialize(&Game))
 		return -1;
 
+	//Main Loop
 	MSG msg;
 	while (Game.IsRunning)
 	{
@@ -154,7 +155,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 			DispatchMessage(&msg);
 		}
 
-		//Main Loop
+		//Game Loop
 		GameHandleInput(&Game, &Engine.Keyboard, &Engine.Mouse, &Engine.DeltaClock);
 		GameUpdateAndRender(&Game, &Engine.Renderer, &Engine.DeltaClock);
 

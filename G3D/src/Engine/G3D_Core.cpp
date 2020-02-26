@@ -29,11 +29,11 @@ namespace G3D
 
 	//Debug Stuff
 	internal void
-	OutputPerformanceData(G3D::Core_Engine_Data* Engine)
+	OutputPerformanceData(G3D::Delta_Clock* Data)
 	{
 	#if _DEBUG
 		char Buffer[256];
-		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", Engine->DeltaClock.MSPerFrame, Engine->DeltaClock.FPS, Engine->DeltaClock.MCPF);
+		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", Data->MSPerFrame, Data->FPS, Data->MCPF);
 		OutputDebugStringA(Buffer);
 	#endif
 	}

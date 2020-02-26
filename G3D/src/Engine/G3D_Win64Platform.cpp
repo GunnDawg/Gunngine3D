@@ -159,7 +159,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		GameUpdateAndRender(&Game, &Engine.Renderer, &Engine.DeltaClock);
 
 		G3D::DeltaClockTick(&Engine.DeltaClock);
-		G3D::OutputPerformanceData(&Engine);
+		G3D::OutputPerformanceData(&Engine.DeltaClock);
 		G3D::DeltaClockReset(&Engine.DeltaClock);
 	}
 

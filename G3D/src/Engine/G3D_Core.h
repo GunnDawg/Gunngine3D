@@ -20,10 +20,10 @@ namespace G3D
 		//Core_Engine_Data object.
 		void OutputPerformanceData();
 
-		G3D::Window window = {};
-		G3D::Renderer renderer = {};
-		G3D::Keyboard keyboard = {};
-		G3D::Mouse mouse = {};
-		G3D::DeltaClock deltaClock = {};
+		G3D::Window Window = {};
+		G3D::Renderer Renderer = {};
+		G3D::Keyboard Keyboard = {};
+		G3D::Mouse Mouse = {};
+		G3D::DeltaClock DeltaClock = {};
 	};
 }

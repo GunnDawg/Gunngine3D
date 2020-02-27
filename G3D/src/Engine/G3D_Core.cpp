@@ -4,16 +4,16 @@ namespace G3D
 {
 	bool Engine::Initialize()
 	{
-		if (!deltaClock.Initialize())
+		if (!DeltaClock.Initialize())
 			return false;
 
-		if (!window.Initialize())
+		if (!Window.Initialize())
 			return false;
 
-		if (!renderer.Initialize(&window))
+		if (!Renderer.Initialize(&Window))
 			return false;
 
-		if (!mouse.Init(&window))
+		if (!Mouse.Init(&Window))
 			return false;
 
 		return true;
@@ -21,8 +21,8 @@ namespace G3D
 
 	void Engine::Shutdown()
 	{
-		renderer.Shutdown();
-		window.Shutdown();
+		Renderer.Shutdown();
+		Window.Shutdown();
 	}
 
 	//Debug Stuff
@@ -30,7 +30,7 @@ namespace G3D
 	{
 	#if _DEBUG
 		char Buffer[256];
-		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", deltaClock.MSPerFrame, deltaClock.FPS, deltaClock.MCPF);
+		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", DeltaClock.MSPerFrame, DeltaClock.FPS, DeltaClock.MCPF);
 		OutputDebugStringA(Buffer);
 	#endif
 	}

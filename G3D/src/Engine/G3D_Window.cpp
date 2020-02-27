@@ -6,13 +6,13 @@ namespace G3D
 	WindowInitialize(G3D::Window* Window)
 	{
 		#if _DEBUG
-				Settings::Display::Windowed = true;
-				Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
-				Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
+			Settings::Display::Windowed = true;
+			Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
+			Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 		#else
-				Settings::Display::Windowed = false;
-				Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
-				Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
+			Settings::Display::Windowed = false;
+			Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
+			Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 		#endif
 
 		Window->wc.cbSize = sizeof(WNDCLASSEX);

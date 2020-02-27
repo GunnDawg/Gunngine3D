@@ -2,37 +2,34 @@
 
 namespace G3D
 {
-	internal bool
-	DeltaClockInitialize(G3D::Delta_Clock* clock)
+	bool DeltaClock::Initialize()
 	{
-		if (!QueryPerformanceFrequency(&clock->PerfCountFrequencyResult))
+		if (!QueryPerformanceFrequency(&PerfCountFrequencyResult))
 			return false;
-		clock->PerfCountFrequency = clock->PerfCountFrequencyResult.QuadPart;
+		PerfCountFrequency = PerfCountFrequencyResult.QuadPart;
 
-		if (!QueryPerformanceCounter(&clock->LastCounter))
+		if (!QueryPerformanceCounter(&LastCounter))
 			return false;
-		clock->LastCycleCount = __rdtsc();
+		LastCycleCount = __rdtsc();
 
 		return true;
 	}
 
-	internal void
-	DeltaClockTick(G3D::Delta_Clock* clock)
+	void DeltaClock::Tick()
 	{
-		clock->EndCycleCount = __rdtsc();
-		QueryPerformanceCounter(&clock->EndCounter);
+		EndCycleCount = __rdtsc();
+		QueryPerformanceCounter(&EndCounter);
 
-		clock->CyclesElapsed = clock->EndCycleCount - clock->LastCycleCount;
-		clock->TimeElapsed = clock->EndCounter.QuadPart - clock->LastCounter.QuadPart;
-		clock->MSPerFrame = ((1000.0f * clock->TimeElapsed) / (float)clock->PerfCountFrequency);
-		clock->FPS = (float)clock->PerfCountFrequency / (float)clock->TimeElapsed;
-		clock->MCPF = (float)clock->CyclesElapsed / (1000.0f * 1000.0f);
+		CyclesElapsed = EndCycleCount - LastCycleCount;
+		TimeElapsed = EndCounter.QuadPart - LastCounter.QuadPart;
+		MSPerFrame = ((1000.0f * TimeElapsed) / (float)PerfCountFrequency);
+		FPS = (float)PerfCountFrequency / (float)TimeElapsed;
+		MCPF = (float)CyclesElapsed / (1000.0f * 1000.0f);
 	}
 
-	internal void
-	DeltaClockReset(G3D::Delta_Clock* clock)
+	void DeltaClock::Reset()
 	{
-		clock->LastCounter = clock->EndCounter;
-		clock->LastCycleCount = clock->EndCycleCount;
+		LastCounter = EndCounter;
+		LastCycleCount = EndCycleCount;
 	}
 }

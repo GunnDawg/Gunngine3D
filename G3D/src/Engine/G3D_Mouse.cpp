@@ -17,7 +17,7 @@ namespace G3D
 		if (Settings::Display::Windowed)
 			EnableCursor();
 		else
-			DisableCursor(&Engine.Window);
+			DisableCursor(&engine.window);
 
 		return true;
 	}

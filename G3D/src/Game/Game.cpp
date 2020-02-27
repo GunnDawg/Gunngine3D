@@ -1,23 +1,18 @@
 #include "Game/Game.h"
 #include "Engine/G3D_Assert.h"
 
-internal bool
-GameInitialize(game* Game)
+bool Game::Initialize()
 {
-	ASSERT(Game);
-
-	Game->IsRunning = true;
+	IsRunning = true;
 
 	return true;
 }
 
-internal void
-GameHandleInput(game* Game, G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::Delta_Clock* dt)
+void Game::HandleInput(G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::DeltaClock* dt)
 {
-	ASSERT(Game);
 	//Keyboard Input
 	if (Keyboard->KeyIsPressed(VK_ESCAPE))
-		Game->IsRunning = false;
+		IsRunning = false;
 #if 1
 	if (Keyboard->KeyIsPressed('D'))
 	{
@@ -41,20 +36,17 @@ GameHandleInput(game* Game, G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::Del
 		OutputDebugStringA("Mouse Wheel Down");
 }
 
-internal void
-GameUpdateAndRender(game* Game, G3D::Renderer* Renderer, G3D::Delta_Clock* dt)
+void Game::UpdateAndRender(G3D::Renderer* Renderer, G3D::DeltaClock* dt)
 {
-	ASSERT(Game);
 	//Update
 
 	//Render
-	RendererClear(Renderer, 0.0f, 0.0f, 0.0f, 1.0f);
+	Renderer->Clear(0.0f, 0.0f, 0.0f, 1.0f);
 
-	RendererPresent(Renderer);
+	Renderer->Present();
 }
 
-internal void
-GameShutdown(game* Game)
+void Game::Shutdown()
 {
-	ASSERT(Game);
+
 }

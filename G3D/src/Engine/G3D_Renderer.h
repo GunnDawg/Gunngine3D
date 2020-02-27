@@ -13,6 +13,14 @@ namespace G3D
 #ifdef _WIN64
 	struct Renderer
 	{
+		bool Initialize(G3D::Window* Window);
+		//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
+		//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
+		void Clear(DirectX::XMFLOAT4 color);
+		void Clear(float r, float g, float b, float a);
+		void Present();
+		void Shutdown();
+
 		//Basic DirectX
 		ID3D11Device* Device;
 		ID3D11DeviceContext* Context;
@@ -38,12 +46,4 @@ namespace G3D
 		//Linux specific rendering data here
 	};
 #endif
-
-	bool RendererInitialize(G3D::Renderer* Renderer, G3D::Window* Window);
-	//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
-	//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
-	void RendererClear(G3D::Renderer* Renderer, DirectX::XMFLOAT4 color);
-	void RendererClear(G3D::Renderer* Renderer, float r, float g, float b, float a);
-	void RendererPresent(G3D::Renderer* Renderer);
-	void RendererShutdown(G3D::Renderer* Renderer);
 }

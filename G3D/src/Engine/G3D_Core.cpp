@@ -2,38 +2,35 @@
 
 namespace G3D
 {
-	internal bool
-	EngineInitialize(G3D::Core_Engine_Data* Engine)
+	bool Engine::Initialize()
 	{
-		if (!G3D::DeltaClockInitialize(&Engine->DeltaClock))
+		if (!deltaClock.Initialize())
 			return false;
 
-		if (!G3D::WindowInitialize(&Engine->Window))
+		if (!window.Initialize())
 			return false;
 
-		if (!G3D::RendererInitialize(&Engine->Renderer, &Engine->Window))
+		if (!renderer.Initialize(&window))
 			return false;
 
-		if (!Engine->Mouse.Init())
+		if (!mouse.Init())
 			return false;
 
 		return true;
 	}
 
-	internal void
-	EngineShutdown(G3D::Core_Engine_Data* Engine)
+	void Engine::Shutdown()
 	{
-		G3D::RendererShutdown(&Engine->Renderer);
-		G3D::WindowShutdown(&Engine->Window);
+		renderer.Shutdown();
+		window.Shutdown();
 	}
 
 	//Debug Stuff
-	internal void
-	OutputPerformanceData(G3D::Delta_Clock* Data)
+	void Engine::OutputPerformanceData()
 	{
 	#if _DEBUG
 		char Buffer[256];
-		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", Data->MSPerFrame, Data->FPS, Data->MCPF);
+		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", deltaClock.MSPerFrame, deltaClock.FPS, deltaClock.MCPF);
 		OutputDebugStringA(Buffer);
 	#endif
 	}

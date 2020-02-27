@@ -2,8 +2,12 @@
 
 namespace G3D
 {
-	struct Delta_Clock
+	struct DeltaClock
 	{
+		bool Initialize();
+		void Tick();
+		void Reset();
+
 		LARGE_INTEGER PerfCountFrequencyResult;
 		INT64 PerfCountFrequency = 0;
 		LARGE_INTEGER LastCounter;
@@ -16,8 +20,4 @@ namespace G3D
 		float FPS = 0.0f;
 		float MCPF = 0.0f;
 	};
-
-	bool DeltaClockInitialize(G3D::Delta_Clock* clock);
-	void DeltaClockTick(G3D::Delta_Clock* clock);
-	void DeltaClockReset(G3D::Delta_Clock* clock);
 }

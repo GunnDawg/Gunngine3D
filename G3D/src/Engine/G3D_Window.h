@@ -4,10 +4,10 @@ namespace G3D
 {
 	struct Window
 	{
+		bool Initialize();
+		void Shutdown();
+
 		HWND window_handle;
 		WNDCLASSEX wc;
 	};
-
-	bool WindowInitialize(G3D::Window* Window);
-	void WindowShutdown(G3D::Window* Window);
 }

@@ -22,10 +22,8 @@ void SAFE_RELEASE(T& ptr)
 
 namespace G3D
 {
-	internal bool
-	RendererInitialize(G3D::Renderer* Renderer, G3D::Window* Window)
+	bool Renderer::Initialize(G3D::Window* Window)
 	{
-		ASSERT(Renderer);
 		HRESULT Result = 0u;
 
 		std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
@@ -42,9 +40,9 @@ namespace G3D
 			debugFlags,
 			0, 0,
 			D3D11_SDK_VERSION,
-			&Renderer->Device,
+			&Device,
 			&featureLevel,
-			&Renderer->Context
+			&Context
 		);
 		if (FAILED(Result))
 			return false;
@@ -54,14 +52,14 @@ namespace G3D
 
 		//Check for MSAA quality support
 		UINT m4xMsaaQuality = 0u;
-		Result = Renderer->Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4u, &m4xMsaaQuality);
+		Result = Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4u, &m4xMsaaQuality);
 		if (FAILED(Result))
 			return false;
 
 		ASSERT(m4xMsaaQuality > 0u);
 
 		IDXGIDevice* dxgiDevice = 0u;
-		Result = Renderer->Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice);
+		Result = Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice);
 		if (FAILED(Result))
 			return false;
 
@@ -111,7 +109,7 @@ namespace G3D
 			scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
 		//Create swap chain
-		Result = dxgiFactory->CreateSwapChain(Renderer->Device, &scd, &Renderer->SwapChain);
+		Result = dxgiFactory->CreateSwapChain(Device, &scd, &SwapChain);
 		if (FAILED(Result))
 			return false;
 
@@ -121,19 +119,19 @@ namespace G3D
 
 #if 1
 		if (!Settings::Display::Windowed)
-			Result = Renderer->SwapChain->SetFullscreenState(true, 0u);
+			Result = SwapChain->SetFullscreenState(true, 0u);
 		if (FAILED(Result))
 			return false;
 #endif
 
 		//Create our BackBuffer
 		ID3D11Texture2D* BackBuffer;
-		Result = Renderer->SwapChain->GetBuffer(0u, __uuidof(ID3D11Texture2D), (void**)&BackBuffer);
+		Result = SwapChain->GetBuffer(0u, __uuidof(ID3D11Texture2D), (void**)&BackBuffer);
 		if (FAILED(Result))
 			return false;
 
 		//Create our Render Target
-		Result = Renderer->Device->CreateRenderTargetView(BackBuffer, NULL, &Renderer->RenderTargetView);
+		Result = Device->CreateRenderTargetView(BackBuffer, NULL, &RenderTargetView);
 		if (FAILED(Result))
 			return false;
 
@@ -172,7 +170,7 @@ namespace G3D
 		depthStencilStateDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
 		depthStencilStateDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
-		Result = Renderer->Device->CreateTexture2D(&depthStencilDesc, 0u, &Renderer->DepthStencilBuffer);
+		Result = Device->CreateTexture2D(&depthStencilDesc, 0u, &DepthStencilBuffer);
 		if (FAILED(Result))
 			return false;
 
@@ -182,16 +180,16 @@ namespace G3D
 		DSVdesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS;
 		DSVdesc.Texture2D.MipSlice = 0u;
 
-		Result = Renderer->Device->CreateDepthStencilState(&depthStencilStateDesc, &Renderer->DepthStencilState);
+		Result = Device->CreateDepthStencilState(&depthStencilStateDesc, &DepthStencilState);
 		if (FAILED(Result))
 			return false;
 
-		Result = Renderer->Device->CreateDepthStencilView(Renderer->DepthStencilBuffer, &DSVdesc, &Renderer->DepthStencilView);
+		Result = Device->CreateDepthStencilView(DepthStencilBuffer, &DSVdesc, &DepthStencilView);
 		if (FAILED(Result))
 			return false;
 
-		Renderer->Context->OMSetRenderTargets(1u, &Renderer->RenderTargetView, Renderer->DepthStencilView);
-		Renderer->Context->OMSetDepthStencilState(Renderer->DepthStencilState, 1u);
+		Context->OMSetRenderTargets(1u, &RenderTargetView, DepthStencilView);
+		Context->OMSetDepthStencilState(DepthStencilState, 1u);
 
 		//Set Default Rasterizer State
 		D3D11_RASTERIZER_DESC RastDesc;
@@ -201,11 +199,11 @@ namespace G3D
 		RastDesc.MultisampleEnable = true;
 		RastDesc.AntialiasedLineEnable = true;
 
-		Result = Renderer->Device->CreateRasterizerState(&RastDesc, &Renderer->RasterizerState);
+		Result = Device->CreateRasterizerState(&RastDesc, &RasterizerState);
 		if (FAILED(Result))
 			return false;
 
-		Renderer->Context->RSSetState(Renderer->RasterizerState);
+		Context->RSSetState(RasterizerState);
 
 		//Create our viewport
 		D3D11_VIEWPORT viewport;
@@ -217,38 +215,30 @@ namespace G3D
 		viewport.MinDepth = 0.0f;
 		viewport.MaxDepth = 1.0f;
 
-		Renderer->Context->RSSetViewports(1u, &viewport);
+		Context->RSSetViewports(1u, &viewport);
 
 		return true;
 	}
 
-	internal void
-	RendererClear(G3D::Renderer* Renderer, DirectX::XMFLOAT4 color)
+	void Renderer::Clear(DirectX::XMFLOAT4 color)
 	{
-		ASSERT(Renderer);
 
 		local_persist const float clearColor[] = { color.x, color.y, color.z, color.w };
-		Renderer->Context->ClearRenderTargetView(Renderer->RenderTargetView, clearColor);
-		Renderer->Context->ClearDepthStencilView(Renderer->DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
+		Context->ClearRenderTargetView(RenderTargetView, clearColor);
+		Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
 	}
 
-	internal void
-	RendererClear(G3D::Renderer* Renderer, float r, float g, float b, float a)
+	void Renderer::Clear(float r, float g, float b, float a)
 	{
-		ASSERT(Renderer);
-
 		local_persist const float clearColor[] = { r, g, b, a };
-		Renderer->Context->ClearRenderTargetView(Renderer->RenderTargetView, clearColor);
-		Renderer->Context->ClearDepthStencilView(Renderer->DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
+		Context->ClearRenderTargetView(RenderTargetView, clearColor);
+		Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
 	}
 
-	internal void
-	RendererPresent(G3D::Renderer* Renderer)
+	void Renderer::Present()
 	{
-		ASSERT(Renderer);
-
 		HRESULT Result = 0;
-		Result = Renderer->SwapChain->Present(Settings::Display::VSync, 0u);
+		Result = SwapChain->Present(Settings::Display::VSync, 0u);
 		if (FAILED(Result))
 		{
 			//@NOTE This shouldn't actually fail, but maybe in the future recreate the renderer
@@ -256,20 +246,17 @@ namespace G3D
 		}
 	}
 
-	internal void
-	RendererShutdown(G3D::Renderer* Renderer)
+	void Renderer::Shutdown()
 	{
-		ASSERT(Renderer);
+		SwapChain->SetFullscreenState(false, 0u);
 
-		Renderer->SwapChain->SetFullscreenState(false, 0u);
-
-		SAFE_RELEASE(Renderer->Device);
-		SAFE_RELEASE(Renderer->Context);
-		SAFE_RELEASE(Renderer->SwapChain);
-		SAFE_RELEASE(Renderer->RenderTargetView);
-		SAFE_RELEASE(Renderer->RasterizerState);
-		SAFE_RELEASE(Renderer->DepthStencilState);
-		SAFE_RELEASE(Renderer->DepthStencilBuffer);
-		SAFE_RELEASE(Renderer->DepthStencilView);
+		SAFE_RELEASE(Device);
+		SAFE_RELEASE(Context);
+		SAFE_RELEASE(SwapChain);
+		SAFE_RELEASE(RenderTargetView);
+		SAFE_RELEASE(RasterizerState);
+		SAFE_RELEASE(DepthStencilState);
+		SAFE_RELEASE(DepthStencilBuffer);
+		SAFE_RELEASE(DepthStencilView);
 	}
 }

@@ -8,22 +8,22 @@
 
 namespace G3D
 {
-	struct Core_Engine_Data
+	struct Engine
 	{
-		G3D::Window Window = {};
-		G3D::Renderer Renderer = {};
-		G3D::Keyboard Keyboard = {};
-		G3D::Mouse Mouse = {};
-		G3D::Delta_Clock DeltaClock = {};
+		//Core Functionality
+		bool Initialize();
+		void Shutdown();
+
+		//Debug Functionality
+		//@NOTE: Only passing this a Delta_Clock for now, because it's the only data that's
+		//being used. If at some point we need more than the Delta_Clock, we'll pass the whole
+		//Core_Engine_Data object.
+		void OutputPerformanceData();
+
+		G3D::Window window = {};
+		G3D::Renderer renderer = {};
+		G3D::Keyboard keyboard = {};
+		G3D::Mouse mouse = {};
+		G3D::DeltaClock deltaClock = {};
 	};
-
-	//Core Functionality
-	bool EngineInitialize(G3D::Core_Engine_Data* Engine);
-	void EngineShutdown(G3D::Core_Engine_Data* Engine);
-
-	//Debug Functionality
-	//@NOTE: Only passing this a Delta_Clock for now, because it's the only data that's
-	//being used. If at some point we need more than the Delta_Clock, we'll pass the whole
-	//Core_Engine_Data object.
-	void OutputPerformanceData(G3D::Delta_Clock* Data);
 }

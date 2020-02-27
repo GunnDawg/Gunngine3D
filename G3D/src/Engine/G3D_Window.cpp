@@ -2,8 +2,7 @@
 
 namespace G3D
 {
-	internal bool
-	WindowInitialize(G3D::Window* Window)
+	bool Window::Initialize()
 	{
 		#if _DEBUG
 			Settings::Display::Windowed = true;
@@ -15,28 +14,27 @@ namespace G3D
 			Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 		#endif
 
-		Window->wc.cbSize = sizeof(WNDCLASSEX);
-		Window->wc.hCursor = LoadCursor(0, IDC_ARROW);
-		Window->wc.hInstance = GetModuleHandle(0);
-		Window->wc.lpfnWndProc = WndProc;
-		Window->wc.lpszClassName = "WindowClass";
-		Window->wc.style = CS_VREDRAW | CS_HREDRAW | CS_OWNDC;
-		Window->wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+		wc.cbSize = sizeof(WNDCLASSEX);
+		wc.hCursor = LoadCursor(0, IDC_ARROW);
+		wc.hInstance = GetModuleHandle(0);
+		wc.lpfnWndProc = WndProc;
+		wc.lpszClassName = "WindowClass";
+		wc.style = CS_VREDRAW | CS_HREDRAW | CS_OWNDC;
+		wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 
-		if (!RegisterClassEx(&Window->wc))
+		if (!RegisterClassEx(&wc))
 			return false;
 
-		Window->window_handle = CreateWindowEx(0, Window->wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, GetModuleHandle(0), 0);
-		if (!Window->window_handle)
+		window_handle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, GetModuleHandle(0), 0);
+		if (!window_handle)
 			return false;
 
 		return true;
 	}
 
-	internal void
-	WindowShutdown(G3D::Window* Window)
+	void Window::Shutdown()
 	{
-		UnregisterClass(Window->wc.lpszClassName, GetModuleHandle(0));
-		DestroyWindow(Window->window_handle);
+		UnregisterClass(wc.lpszClassName, GetModuleHandle(0));
+		DestroyWindow(window_handle);
 	}
 }

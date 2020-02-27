@@ -13,7 +13,7 @@ namespace G3D
 		if (!renderer.Initialize(&window))
 			return false;
 
-		if (!mouse.Init())
+		if (!mouse.Init(&window))
 			return false;
 
 		return true;

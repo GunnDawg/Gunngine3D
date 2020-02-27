@@ -62,7 +62,7 @@ namespace G3D
 		Mouse(const Mouse&) = delete;
 		Mouse& operator=(const Mouse&) = delete;
 
-		bool Init();
+		bool Init(G3D::Window* window);
 
 		inline std::pair<u16, u16> GetPos() const { return { x, y }; }
 		inline u16 GetPosY() const { return y; }

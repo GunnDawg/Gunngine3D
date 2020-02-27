@@ -1,7 +1,7 @@
 #include "Engine/G3D_Win64Platform.h"
 
 //@NOTE: Globals for now.
-global_variable G3D::Engine engine;
+global_variable G3D::Engine Engine;
 
 LRESULT CALLBACK
 WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -23,21 +23,21 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		case WM_KEYDOWN:
 		case WM_SYSKEYDOWN:
 		{
-			if (!(lParam & 0x40000000 || engine.keyboard.AutorepeatIsEnabled()))
+			if (!(lParam & 0x40000000 || Engine.keyboard.AutorepeatIsEnabled()))
 			{
-				engine.keyboard.OnKeyPressed(static_cast<u16>(wParam));
+				Engine.keyboard.OnKeyPressed(static_cast<u16>(wParam));
 			}
 		} break;
 
 		case WM_KEYUP:
 		case WM_SYSKEYUP:
 		{
-			engine.keyboard.OnKeyReleased(static_cast<u16>(wParam));
+			Engine.keyboard.OnKeyReleased(static_cast<u16>(wParam));
 		} break;
 
 		case WM_CHAR:
 		{
-			engine.keyboard.OnChar(static_cast<u16>(wParam));
+			Engine.keyboard.OnChar(static_cast<u16>(wParam));
 		} break;
 
 		//Mouse Messages
@@ -46,23 +46,23 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			POINTS pt = MAKEPOINTS(lParam);
 			if (pt.x >= 0 && pt.x < Settings::Display::Width && pt.y >= 0 && pt.y < Settings::Display::Height)
 			{
-				engine.mouse.OnMouseMove(pt.x, pt.y);
-				if (!engine.mouse.IsInWindow())
+				Engine.mouse.OnMouseMove(pt.x, pt.y);
+				if (!Engine.mouse.IsInWindow())
 				{
 					SetCapture(hwnd);
-					engine.mouse.OnMouseEnter();
+					Engine.mouse.OnMouseEnter();
 				}
 			}
 			else
 			{
 				if (wParam & (MK_LBUTTON | MK_RBUTTON))
 				{
-					engine.mouse.OnMouseMove(pt.x, pt.y);
+					Engine.mouse.OnMouseMove(pt.x, pt.y);
 				}
 				else
 				{
 					ReleaseCapture();
-					engine.mouse.OnMouseLeave();
+					Engine.mouse.OnMouseLeave();
 				}
 			}
 		} break;
@@ -79,7 +79,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 					RAWINPUT* raw = reinterpret_cast<RAWINPUT*>(rawData.get());
 					if (raw->header.dwType == RIM_TYPEMOUSE)
 					{
-						engine.mouse.OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
+						Engine.mouse.OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
 					}
 				}
 			}
@@ -90,25 +90,25 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		case WM_LBUTTONDOWN:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			engine.mouse.OnLeftPressed(pt.x, pt.y);
+			Engine.mouse.OnLeftPressed(pt.x, pt.y);
 		} break;
 
 		case WM_RBUTTONDOWN:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			engine.mouse.OnRightPressed(pt.x, pt.y);
+			Engine.mouse.OnRightPressed(pt.x, pt.y);
 		} break;
 
 		case WM_LBUTTONUP:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			engine.mouse.OnLeftReleased(pt.x, pt.y);
+			Engine.mouse.OnLeftReleased(pt.x, pt.y);
 		} break;
 
 		case WM_RBUTTONUP:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			engine.mouse.OnRightReleased(pt.x, pt.y);
+			Engine.mouse.OnRightReleased(pt.x, pt.y);
 		} break;
 
 		case WM_MOUSEWHEEL:
@@ -116,11 +116,11 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			const POINTS pt = MAKEPOINTS(lParam);
 			if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
 			{
-				engine.mouse.OnWheelUp(pt.x, pt.y);
+				Engine.mouse.OnWheelUp(pt.x, pt.y);
 			}
 			else if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
 			{
-				engine.mouse.OnWheelDown(pt.x, pt.y);
+				Engine.mouse.OnWheelDown(pt.x, pt.y);
 			}
 		} break;
 
@@ -136,7 +136,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 {
 	local_persist Game game;
 
-	if (!engine.Initialize())
+	if (!Engine.Initialize())
 		return -1;
 
 	if (!game.Initialize())
@@ -156,17 +156,17 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		}
 
 		//Game Loop
-		game.HandleInput(&engine.keyboard, &engine.mouse, &engine.deltaClock);
-		game.UpdateAndRender(&engine.renderer, &engine.deltaClock);
+		game.HandleInput(&Engine.keyboard, &Engine.mouse, &Engine.deltaClock);
+		game.UpdateAndRender(&Engine.renderer, &Engine.deltaClock);
 
-		engine.deltaClock.Tick();
-		engine.OutputPerformanceData();
-		engine.deltaClock.Reset();
+		Engine.deltaClock.Tick();
+		Engine.OutputPerformanceData();
+		Engine.deltaClock.Reset();
 	}
 
 	//Shut everything down
 	game.Shutdown();
-	engine.Shutdown();
+	Engine.Shutdown();
 
 	return 0;
 }

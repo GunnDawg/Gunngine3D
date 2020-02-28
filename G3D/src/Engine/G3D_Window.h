@@ -7,7 +7,7 @@ namespace G3D
 		bool Initialize();
 		void Shutdown();
 
-		HWND window_handle = {};
+		HWND WindowHandle = {};
 		WNDCLASSEX wc = {};
 	};
 }

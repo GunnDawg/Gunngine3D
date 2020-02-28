@@ -24,8 +24,8 @@ namespace G3D
 		if (!RegisterClassEx(&wc))
 			return false;
 
-		window_handle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, GetModuleHandle(0), 0);
-		if (!window_handle)
+		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, GetModuleHandle(0), 0);
+		if (!WindowHandle)
 			return false;
 
 		return true;
@@ -34,6 +34,6 @@ namespace G3D
 	void Window::Shutdown()
 	{
 		UnregisterClass(wc.lpszClassName, GetModuleHandle(0));
-		DestroyWindow(window_handle);
+		DestroyWindow(WindowHandle);
 	}
 }

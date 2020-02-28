@@ -2,7 +2,7 @@
 
 namespace G3D
 {
-	bool Mouse::Init(G3D::Window* window)
+	bool Mouse::Initialize()
 	{
 		RAWINPUTDEVICE rid;
 		ZeroMemory(&rid, sizeof(RAWINPUTDEVICE));
@@ -17,7 +17,7 @@ namespace G3D
 		if (Settings::Display::Windowed)
 			EnableCursor();
 		else
-			DisableCursor(window);
+			DisableCursor();
 
 		return true;
 	}

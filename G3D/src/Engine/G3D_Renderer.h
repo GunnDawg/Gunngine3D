@@ -13,7 +13,7 @@ namespace G3D
 #ifdef _WIN64
 	struct Renderer
 	{
-		bool Initialize(G3D::Window* Window);
+		bool Initialize();
 		//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
 		//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
 		void Clear(DirectX::XMFLOAT4 color);

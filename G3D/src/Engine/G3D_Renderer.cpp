@@ -22,7 +22,7 @@ void SAFE_RELEASE(T& ptr)
 
 namespace G3D
 {
-	bool Renderer::Initialize(G3D::Window* Window)
+	bool Renderer::Initialize()
 	{
 		HRESULT Result = 0u;
 
@@ -89,7 +89,7 @@ namespace G3D
 		ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
 		scd.BufferDesc = bufferDesc;
 		scd.BufferCount = 2u;
-		scd.OutputWindow = Window->window_handle;
+		scd.OutputWindow = GetActiveWindow();
 		scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		scd.Windowed = Settings::Display::Windowed;
 		scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;

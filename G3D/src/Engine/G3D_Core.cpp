@@ -10,10 +10,10 @@ namespace G3D
 		if (!Window.Initialize())
 			return false;
 
-		if (!Renderer.Initialize(&Window))
+		if (!Renderer.Initialize())
 			return false;
 
-		if (!Mouse.Init(&Window))
+		if (!Mouse.Initialize())
 			return false;
 
 		return true;

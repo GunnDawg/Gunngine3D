@@ -62,7 +62,7 @@ namespace G3D
 		Mouse(const Mouse&) = delete;
 		Mouse& operator=(const Mouse&) = delete;
 
-		bool Init(G3D::Window* window);
+		bool Initialize();
 
 		inline std::pair<u16, u16> GetPos() const { return { x, y }; }
 		inline u16 GetPosY() const { return y; }
@@ -154,11 +154,11 @@ namespace G3D
 			UnlockCursor();
 		}
 
-		inline void DisableCursor(G3D::Window* Window)
+		inline void DisableCursor()
 		{
 			CursorIsEnabled = false;
 			HideCursor();
-			LockCursor(Window);
+			LockCursor();
 		}
 
 		inline void HideCursor()
@@ -171,11 +171,11 @@ namespace G3D
 			while (::ShowCursor(TRUE) < 0);
 		}
 
-		inline void LockCursor(G3D::Window* Window)
+		inline void LockCursor()
 		{
 			RECT rect;
-			GetClientRect(Window->window_handle, &rect);
-			MapWindowPoints(Window->window_handle, nullptr, reinterpret_cast<POINT*>(&rect), 2u);
+			GetClientRect(GetActiveWindow(), &rect);
+			MapWindowPoints(GetActiveWindow(), nullptr, reinterpret_cast<POINT*>(&rect), 2u);
 			ClipCursor(&rect);
 		}
 

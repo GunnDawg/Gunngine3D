@@ -15,9 +15,6 @@ namespace G3D
 		void Shutdown();
 
 		//Debug Functionality
-		//@NOTE: Only passing this a Delta_Clock for now, because it's the only data that's
-		//being used. If at some point we need more than the Delta_Clock, we'll pass the whole
-		//Core_Engine_Data object.
 		void OutputPerformanceData();
 
 		G3D::Window Window = {};

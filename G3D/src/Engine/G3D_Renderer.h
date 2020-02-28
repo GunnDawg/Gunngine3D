@@ -36,12 +36,12 @@ namespace G3D
 		ID3D11DepthStencilView* DepthStencilView;
 	};
 #elif __APPLE__
-	struct renderer
+	struct Renderer
 	{
 		//Apple specific rendering data here
 	};
 #elif __linux__
-	struct renderer
+	struct Renderer
 	{
 		//Linux specific rendering data here
 	};

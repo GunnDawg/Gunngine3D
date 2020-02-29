@@ -97,16 +97,14 @@ namespace G3D
 		{
 			scd.SampleDesc.Count = 4u;
 			scd.SampleDesc.Quality = m4xMsaaQuality - 1u;
+			scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 		}
 		else
 		{
 			scd.SampleDesc.Count = 1u;
 			scd.SampleDesc.Quality = 0u;
-		}
-		if (Settings::Graphics::MSAA)
-			scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-		else
 			scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+		}
 
 		//Create swap chain
 		Result = dxgiFactory->CreateSwapChain(Device, &scd, &SwapChain);

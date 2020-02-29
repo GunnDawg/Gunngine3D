@@ -107,6 +107,10 @@
     <ClInclude Include="src\Engine\G3D_Renderer.h" />
     <ClInclude Include="src\Engine\G3D_Win64Platform.h" />
     <ClInclude Include="src\Engine\G3D_Windows.h" />
+    <ClInclude Include="src\Game\GameState.h" />
+    <ClInclude Include="src\Game\Scenes\Scene01.h" />
+    <ClInclude Include="src\Game\GameStateMachine.h" />
+    <ClInclude Include="src\Game\Scenes\Scene02.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

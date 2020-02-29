@@ -4,6 +4,8 @@
 #include <dxgi.h>
 #include <DirectXMath.h>
 
+#include "Game/GameSettings.h"
+
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 #endif
@@ -16,9 +18,31 @@ namespace G3D
 		bool Initialize();
 		//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
 		//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
-		void Clear(DirectX::XMFLOAT4 color);
-		void Clear(float r, float g, float b, float a);
-		void Present();
+		inline void Clear(DirectX::XMFLOAT4 color)
+		{
+			const float clearColor[] = { color.x, color.y, color.z, color.w };
+			Context->ClearRenderTargetView(RenderTargetView, clearColor);
+			Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
+		}
+
+		inline void Clear(float r, float g, float b, float a)
+		{
+			const float clearColor[] = { r, g, b, a };
+			Context->ClearRenderTargetView(RenderTargetView, clearColor);
+			Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
+		}
+
+		inline void Present()
+		{
+			HRESULT Result = 0;
+			Result = SwapChain->Present(Settings::Display::VSync, 0u);
+			if (FAILED(Result))
+			{
+				//@NOTE This shouldn't actually fail, but maybe in the future recreate the renderer
+				//if it does.
+			}
+		}
+
 		void Shutdown();
 
 		//Basic DirectX

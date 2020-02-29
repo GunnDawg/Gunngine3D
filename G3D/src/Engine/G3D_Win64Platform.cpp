@@ -160,7 +160,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		game.UpdateAndRender(&Engine.Renderer, &Engine.DeltaClock);
 
 		Engine.DeltaClock.Tick();
-		Engine.OutputPerformanceData();
+		//Engine.OutputPerformanceData();
 		Engine.DeltaClock.Reset();
 	}
 

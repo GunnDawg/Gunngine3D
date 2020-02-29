@@ -1,5 +1,6 @@
 #pragma once
 #include "Game/GameSettings.h"
+#include "Game/GameStateMachine.h"
 
 struct Game
 {
@@ -8,5 +9,6 @@ struct Game
 	void UpdateAndRender(G3D::Renderer* Renderer, G3D::DeltaClock* dt);
 	void Shutdown();
 
-	bool IsRunning = false;
+	inline static bool IsRunning = false;
+	inline static GameStateMachine GSM;
 };

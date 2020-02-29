@@ -218,31 +218,30 @@ namespace G3D
 		return true;
 	}
 
-	void Renderer::Clear(DirectX::XMFLOAT4 color)
-	{
+	//void Renderer::Clear(DirectX::XMFLOAT4 color)
+	//{
+	//	local_persist const float clearColor[] = { color.x, color.y, color.z, color.w };
+	//	Context->ClearRenderTargetView(RenderTargetView, clearColor);
+	//	Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
+	//}
 
-		local_persist const float clearColor[] = { color.x, color.y, color.z, color.w };
-		Context->ClearRenderTargetView(RenderTargetView, clearColor);
-		Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
-	}
+	//void Renderer::Clear(float r, float g, float b, float a)
+	//{
+	//	local_persist const float clearColor[] = { r, g, b, a };
+	//	Context->ClearRenderTargetView(RenderTargetView, clearColor);
+	//	Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
+	//}
 
-	void Renderer::Clear(float r, float g, float b, float a)
-	{
-		local_persist const float clearColor[] = { r, g, b, a };
-		Context->ClearRenderTargetView(RenderTargetView, clearColor);
-		Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
-	}
-
-	void Renderer::Present()
-	{
-		HRESULT Result = 0;
-		Result = SwapChain->Present(Settings::Display::VSync, 0u);
-		if (FAILED(Result))
-		{
-			//@NOTE This shouldn't actually fail, but maybe in the future recreate the renderer
-			//if it does.
-		}
-	}
+	//void Renderer::Present()
+	//{
+	//	HRESULT Result = 0;
+	//	Result = SwapChain->Present(Settings::Display::VSync, 0u);
+	//	if (FAILED(Result))
+	//	{
+	//		//@NOTE This shouldn't actually fail, but maybe in the future recreate the renderer
+	//		//if it does.
+	//	}
+	//}
 
 	void Renderer::Shutdown()
 	{

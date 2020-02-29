@@ -1,4 +1,5 @@
 #include "Scene02.h"
+#include "Engine/G3D_Core.h"
 #include "Game/Game.h"
 #include "Game/Scenes/Scene01.h"
 
@@ -14,12 +15,12 @@ void Scene02::On_exit()
 
 void Scene02::Handle_input()
 {
-	if (G3D::Engine::Keyboard.KeyIsPressed(VK_ESCAPE))
+	if (Engine::Keyboard.KeyIsPressed(VK_ESCAPE))
 	{
 		Game::IsRunning = false;
 	}
 
-	if (G3D::Engine::Keyboard.KeyIsPressed(VK_LEFT))
+	if (Engine::Keyboard.KeyIsPressed(VK_LEFT))
 	{
 		Game::GSM.Pop();
 
@@ -33,7 +34,7 @@ void Scene02::UpdateAndRender()
 	//Update
 
 	//Render
-	G3D::Engine::Renderer.Clear(1.0f, 0.0f, 0.0f, 1.0f);
+	Engine::Renderer.Clear(1.0f, 0.0f, 0.0f, 1.0f);
 
-	G3D::Engine::Renderer.Present();
+	Engine::Renderer.Present();
 }

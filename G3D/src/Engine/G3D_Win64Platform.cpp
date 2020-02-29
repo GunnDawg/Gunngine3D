@@ -20,21 +20,21 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		case WM_KEYDOWN:
 		case WM_SYSKEYDOWN:
 		{
-			if (!(lParam & 0x40000000 || G3D::Engine::Keyboard.AutorepeatIsEnabled()))
+			if (!(lParam & 0x40000000 || Engine::Keyboard.AutorepeatIsEnabled()))
 			{
-				G3D::Engine::Keyboard.OnKeyPressed(static_cast<u16>(wParam));
+				Engine::Keyboard.OnKeyPressed(static_cast<u16>(wParam));
 			}
 		} break;
 
 		case WM_KEYUP:
 		case WM_SYSKEYUP:
 		{
-			G3D::Engine::Keyboard.OnKeyReleased(static_cast<u16>(wParam));
+			Engine::Keyboard.OnKeyReleased(static_cast<u16>(wParam));
 		} break;
 
 		case WM_CHAR:
 		{
-			G3D::Engine::Keyboard.OnChar(static_cast<u16>(wParam));
+			Engine::Keyboard.OnChar(static_cast<u16>(wParam));
 		} break;
 
 		//Mouse Messages
@@ -43,23 +43,23 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			POINTS pt = MAKEPOINTS(lParam);
 			if (pt.x >= 0 && pt.x < Settings::Display::Width && pt.y >= 0 && pt.y < Settings::Display::Height)
 			{
-				G3D::Engine::Mouse.OnMouseMove(pt.x, pt.y);
-				if (!G3D::Engine::Mouse.IsInWindow())
+				Engine::Mouse.OnMouseMove(pt.x, pt.y);
+				if (!Engine::Mouse.IsInWindow())
 				{
 					SetCapture(hwnd);
-					G3D::Engine::Mouse.OnMouseEnter();
+					Engine::Mouse.OnMouseEnter();
 				}
 			}
 			else
 			{
 				if (wParam & (MK_LBUTTON | MK_RBUTTON))
 				{
-					G3D::Engine::Mouse.OnMouseMove(pt.x, pt.y);
+					Engine::Mouse.OnMouseMove(pt.x, pt.y);
 				}
 				else
 				{
 					ReleaseCapture();
-					G3D::Engine::Mouse.OnMouseLeave();
+					Engine::Mouse.OnMouseLeave();
 				}
 			}
 		} break;
@@ -76,7 +76,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 					RAWINPUT* raw = reinterpret_cast<RAWINPUT*>(rawData.get());
 					if (raw->header.dwType == RIM_TYPEMOUSE)
 					{
-						G3D::Engine::Mouse.OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
+						Engine::Mouse.OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
 					}
 				}
 			}
@@ -87,25 +87,25 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		case WM_LBUTTONDOWN:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			G3D::Engine::Mouse.OnLeftPressed(pt.x, pt.y);
+			Engine::Mouse.OnLeftPressed(pt.x, pt.y);
 		} break;
 
 		case WM_RBUTTONDOWN:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			G3D::Engine::Mouse.OnRightPressed(pt.x, pt.y);
+			Engine::Mouse.OnRightPressed(pt.x, pt.y);
 		} break;
 
 		case WM_LBUTTONUP:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			G3D::Engine::Mouse.OnLeftReleased(pt.x, pt.y);
+			Engine::Mouse.OnLeftReleased(pt.x, pt.y);
 		} break;
 
 		case WM_RBUTTONUP:
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
-			G3D::Engine::Mouse.OnRightReleased(pt.x, pt.y);
+			Engine::Mouse.OnRightReleased(pt.x, pt.y);
 		} break;
 
 		case WM_MOUSEWHEEL:
@@ -113,11 +113,11 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			const POINTS pt = MAKEPOINTS(lParam);
 			if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
 			{
-				G3D::Engine::Mouse.OnWheelUp(pt.x, pt.y);
+				Engine::Mouse.OnWheelUp(pt.x, pt.y);
 			}
 			else if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
 			{
-				G3D::Engine::Mouse.OnWheelDown(pt.x, pt.y);
+				Engine::Mouse.OnWheelDown(pt.x, pt.y);
 			}
 		} break;
 
@@ -131,7 +131,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 int CALLBACK
 WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmdLine, _In_ int cmdShow)
 {
-	if (!G3D::Engine::Initialize())
+	if (!Engine::Initialize())
 		return -1;
 
 	if (!Game::Initialize())
@@ -154,14 +154,14 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		Game::HandleInput();
 		Game::UpdateAndRender();
 
-		G3D::Engine::DeltaClock.Tick();
+		Engine::DeltaClock.Tick();
 		//Engine.OutputPerformanceData();
-		G3D::Engine::DeltaClock.Reset();
+		Engine::DeltaClock.Reset();
 	}
 
 	//Shut everything down
 	Game::Shutdown();
-	G3D::Engine::Shutdown();
+	Engine::Shutdown();
 
 	return 0;
 }

@@ -155,7 +155,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		Game::UpdateAndRender();
 
 		Engine::DeltaClock.Tick();
-		//Engine.OutputPerformanceData();
+		//Engine::OutputPerformanceData();
 		Engine::DeltaClock.Reset();
 	}
 

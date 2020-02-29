@@ -1,5 +1,4 @@
 #pragma once
-#include "Game/GameSettings.h"
 #include "Game/GameStateMachine.h"
 
 struct Game

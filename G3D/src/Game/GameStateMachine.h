@@ -1,9 +1,6 @@
 #pragma once
 #include "GameState.h"
-#include "Engine/G3D_Renderer.h"
-#include "Engine/G3D_Keyboard.h"
-#include "Engine/G3D_Mouse.h"
-#include "Engine/G3D_Timers.h"
+#include "Engine/G3D_Core.h"
 
 #include <vector>
 #include <memory>
@@ -28,19 +25,19 @@ public:
 		}
 	}
 
-	inline void HandleInput(G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::DeltaClock* dt)
+	inline void HandleInput()
 	{
 		if (!GameStates.empty())
 		{
-			GameStates.back()->Handle_input(Keyboard, Mouse, dt);
+			GameStates.back()->Handle_input();
 		}
 	}
 
-	inline void UpdateAndRender(G3D::Renderer* Renderer, G3D::DeltaClock* DeltaClock)
+	inline void UpdateAndRender()
 	{
 		if (!GameStates.empty())
 		{
-			GameStates.back()->UpdateAndRender(Renderer, DeltaClock);
+			GameStates.back()->UpdateAndRender();
 		}
 	}
 

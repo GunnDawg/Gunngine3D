@@ -11,16 +11,16 @@ namespace G3D
 	struct Engine
 	{
 		//Core Functionality
-		bool Initialize();
-		void Shutdown();
+		inline static bool Initialize();
+		inline static void Shutdown();
 
 		//Debug Functionality
-		void OutputPerformanceData();
+		inline static void OutputPerformanceData();
 
-		G3D::Window Window = {};
-		G3D::Renderer Renderer = {};
-		G3D::Keyboard Keyboard = {};
-		G3D::Mouse Mouse = {};
-		G3D::DeltaClock DeltaClock = {};
+		inline static G3D::Window Window = {};
+		inline static G3D::Renderer Renderer = {};
+		inline static G3D::Keyboard Keyboard = {};
+		inline static G3D::Mouse Mouse = {};
+		inline static G3D::DeltaClock DeltaClock = {};
 	};
 }

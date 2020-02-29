@@ -11,14 +11,14 @@ bool Game::Initialize()
 	return true;
 }
 
-void Game::HandleInput(G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::DeltaClock* dt)
+void Game::HandleInput()
 {
-	GSM.HandleInput(Keyboard, Mouse, dt);
+	GSM.HandleInput();
 }
 
-void Game::UpdateAndRender(G3D::Renderer* Renderer, G3D::DeltaClock* dt)
+void Game::UpdateAndRender()
 {
-	GSM.UpdateAndRender(Renderer, dt);
+	GSM.UpdateAndRender();
 }
 
 void Game::Shutdown()

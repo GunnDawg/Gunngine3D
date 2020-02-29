@@ -12,14 +12,14 @@ void Scene02::On_exit()
 	
 }
 
-void Scene02::Handle_input(G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::DeltaClock* dt)
+void Scene02::Handle_input()
 {
-	if (Keyboard->KeyIsPressed(VK_ESCAPE))
+	if (G3D::Engine::Keyboard.KeyIsPressed(VK_ESCAPE))
 	{
 		Game::IsRunning = false;
 	}
 
-	if (Keyboard->KeyIsPressed(VK_LEFT))
+	if (G3D::Engine::Keyboard.KeyIsPressed(VK_LEFT))
 	{
 		Game::GSM.Pop();
 
@@ -28,12 +28,12 @@ void Scene02::Handle_input(G3D::Keyboard* Keyboard, G3D::Mouse* Mouse, G3D::Delt
 	}
 }
 
-void Scene02::UpdateAndRender(G3D::Renderer* Renderer, G3D::DeltaClock* DeltaClock)
+void Scene02::UpdateAndRender()
 {
 	//Update
 
 	//Render
-	Renderer->Clear(1.0f, 0.0f, 0.0f, 1.0f);
+	G3D::Engine::Renderer.Clear(1.0f, 0.0f, 0.0f, 1.0f);
 
-	Renderer->Present();
+	G3D::Engine::Renderer.Present();
 }

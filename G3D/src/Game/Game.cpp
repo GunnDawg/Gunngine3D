@@ -1,5 +1,4 @@
 #include "Game/Game.h"
-#include "Engine/G3D_Assert.h"
 #include "Scenes/Scene01.h"
 
 bool Game::Initialize()

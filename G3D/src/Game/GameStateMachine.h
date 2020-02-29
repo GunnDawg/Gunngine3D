@@ -1,6 +1,9 @@
 #pragma once
 #include "GameState.h"
 #include "Engine/G3D_Renderer.h"
+#include "Engine/G3D_Keyboard.h"
+#include "Engine/G3D_Mouse.h"
+#include "Engine/G3D_Timers.h"
 
 #include <vector>
 #include <memory>

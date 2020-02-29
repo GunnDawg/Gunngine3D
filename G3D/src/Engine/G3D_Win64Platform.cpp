@@ -134,30 +134,28 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 int CALLBACK
 WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmdLine, _In_ int cmdShow)
 {
-	local_persist Game game;
-
 	if (!Engine.Initialize())
 		return -1;
 
-	if (!game.Initialize())
+	if (!Game::Initialize())
 		return -1;
 
 	//Main Loop
 	MSG msg;
-	while (game.IsRunning)
+	while (Game::IsRunning)
 	{
 		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
 			if (msg.message == WM_QUIT)
-				game.IsRunning = false;
+				Game::IsRunning = false;
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
 
 		//Game Loop
-		game.HandleInput(&Engine.Keyboard, &Engine.Mouse, &Engine.DeltaClock);
-		game.UpdateAndRender(&Engine.Renderer, &Engine.DeltaClock);
+		Game::HandleInput(&Engine.Keyboard, &Engine.Mouse, &Engine.DeltaClock);
+		Game::UpdateAndRender(&Engine.Renderer, &Engine.DeltaClock);
 
 		Engine.DeltaClock.Tick();
 		//Engine.OutputPerformanceData();
@@ -165,7 +163,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	}
 
 	//Shut everything down
-	game.Shutdown();
+	Game::Shutdown();
 	Engine.Shutdown();
 
 	return 0;

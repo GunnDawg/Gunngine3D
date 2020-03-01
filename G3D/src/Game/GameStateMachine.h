@@ -5,9 +5,8 @@
 #include <vector>
 #include <memory>
 
-class GameStateMachine
+struct GameStateMachine
 {
-public:
 	inline void Push(std::unique_ptr<GameState> states)
 	{
 		//@Speed I haven't tested it yet but I think emplace_back() is faster than push_back() here. Maybe run

@@ -10,12 +10,9 @@ namespace G3D
 		DXGI_ADAPTER_DESC Description = { 0 };
 	};
 
-	class AdapterReader
+	struct AdapterReader
 	{
-	public:
 		static std::vector<AdapterData> GetAdapters();
-
-	private:
 		inline static std::vector<AdapterData> Adapters;
 	};
 }

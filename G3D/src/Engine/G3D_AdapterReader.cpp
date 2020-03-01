@@ -2,6 +2,19 @@
 
 namespace G3D
 {
+	AdapterData::AdapterData(IDXGIAdapter* pAdapter)
+	{
+		Adapter = pAdapter;
+		HRESULT Result = 0;
+		Result = pAdapter->GetDesc(&Description);
+		if (FAILED(Result))
+		{
+			//(TODO): Error Logging.
+		}
+
+		SAFE_RELEASE(Adapter);
+	}
+
 	std::vector<AdapterData> AdapterReader::GetAdapters()
 	{
 		if (Adapters.size() > 0)
@@ -29,18 +42,5 @@ namespace G3D
 		SAFE_RELEASE(pAdapter);
 
 		return Adapters;
-	}
-
-	AdapterData::AdapterData(IDXGIAdapter* pAdapter)
-	{
-		Adapter = pAdapter;
-		HRESULT Result = 0;
-		Result = pAdapter->GetDesc(&Description);
-		if (FAILED(Result))
-		{
-			//(TODO): Error Logging.
-		}
-
-		SAFE_RELEASE(Adapter);
 	}
 }

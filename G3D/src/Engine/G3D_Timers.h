@@ -5,6 +5,7 @@ namespace G3D
 #ifdef _WIN64
 	struct DeltaClock
 	{
+		//@NOTE: Windows specific clock data here
 		bool Initialize();
 		void Tick();
 		void Reset();
@@ -24,12 +25,12 @@ namespace G3D
 #elif __APPLE__
 	struct DeltaClock
 	{
-
+		//@NOTE: Apple specific clock data here
 	};
 #elif __linux__
 	struct DeltaClock
 	{
-
+		//@NOTE: Linux specific clock data here
 	};
 #endif
 }

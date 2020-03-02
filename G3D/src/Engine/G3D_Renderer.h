@@ -16,6 +16,7 @@ namespace G3D
 #ifdef _WIN64
 	struct Renderer
 	{
+		//@NOTE: Windows specific rendering data here
 		bool Initialize();
 		//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
 		//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
@@ -65,12 +66,12 @@ namespace G3D
 #elif __APPLE__
 	struct Renderer
 	{
-		//Apple specific rendering data here
+		//@NOTE: Apple specific rendering data here
 	};
 #elif __linux__
 	struct Renderer
 	{
-		//Linux specific rendering data here
+		//@NOTE: Linux specific rendering data here
 	};
 #endif
 }

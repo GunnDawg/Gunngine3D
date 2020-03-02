@@ -2,6 +2,7 @@
 
 namespace G3D
 {
+#ifdef	_WIN64
 	struct Window
 	{
 		bool Initialize();
@@ -10,4 +11,15 @@ namespace G3D
 		HWND WindowHandle = {};
 		WNDCLASSEX wc = {};
 	};
+#elif __APPLE__
+	struct Window
+	{
+
+	};
+#elif __linux__
+	struct Window
+	{
+
+	};
+#endif
 }

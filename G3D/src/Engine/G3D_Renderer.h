@@ -37,7 +37,7 @@ namespace G3D
 
 		inline void Present()
 		{
-			HRESULT Result = 0;
+			local_persist HRESULT Result = 0;
 			Result = SwapChain->Present(Settings::Display::VSync, 0u);
 			if (FAILED(Result))
 			{

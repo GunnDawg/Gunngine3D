@@ -33,4 +33,7 @@ void Scene02::UpdateAndRender()
 	//Update
 
 	//Render
+	//@NOTE: Calling clear here is not entirely necessary. The game loop handles that. We're just doing it
+	//to make sure multiple scene support is working. But usually you wouldn't do this in every scene.
+	G3D::Core::Renderer.Clear(1.0f, 0.0f, 0.0f, 1.0f);
 }

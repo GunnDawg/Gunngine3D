@@ -6,6 +6,7 @@
 
 #include "Game/GameSettings.h"
 
+//@NOTE:Import Libraries for DX
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 #endif

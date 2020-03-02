@@ -131,7 +131,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 int CALLBACK
 WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmdLine, _In_ int cmdShow)
 {
-	if (!G3D::Core::Initialize())
+	if (G3D::Core::Initialize() != G3D_OK)
 		return -1;
 
 	if (!Game::Initialize())

@@ -1,4 +1,5 @@
 #pragma once
+#include <Engine/G3D_Windows.h>
 
 namespace G3D
 {

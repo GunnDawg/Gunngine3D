@@ -26,6 +26,8 @@ namespace G3D
 			Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
 		}
 
+		//@NOTE: This is more cross-platform, as almost all platforms will have some way to take in 4 float values
+		//and pack them into their own platform/renderer specific format.
 		inline void Clear(float r, float g, float b, float a)
 		{
 			const float clearColor[] = { r, g, b, a };

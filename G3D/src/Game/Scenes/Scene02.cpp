@@ -15,12 +15,12 @@ void Scene02::On_exit()
 
 void Scene02::Handle_input()
 {
-	if (Engine::Keyboard.KeyIsPressed(VK_ESCAPE))
+	if (G3D::Core::Keyboard.KeyIsPressed(VK_ESCAPE))
 	{
 		Game::IsRunning = false;
 	}
 
-	if (Engine::Keyboard.KeyIsPressed(VK_LEFT))
+	if (G3D::Core::Keyboard.KeyIsPressed(VK_LEFT))
 	{
 		Game::GSM.Pop();
 
@@ -34,7 +34,7 @@ void Scene02::UpdateAndRender()
 	//Update
 
 	//Render
-	Engine::Renderer.Clear(1.0f, 0.0f, 0.0f, 1.0f);
+	G3D::Core::Renderer.Clear(1.0f, 0.0f, 0.0f, 1.0f);
 
-	Engine::Renderer.Present();
+	G3D::Core::Renderer.Present();
 }

@@ -6,18 +6,21 @@
 #include "Engine/G3D_Mouse.h"
 #include "Engine/G3D_Timers.h"
 
-struct Engine
+namespace G3D
 {
-	//Core Functionality
-	inline static bool Initialize();
-	inline static void Shutdown();
+	struct Core
+	{
+		//Core Functionality
+		inline static bool Initialize();
+		inline static void Shutdown();
 
-	//Debug Functionality
-	inline static void OutputPerformanceData();
+		//Debug Functionality
+		inline static void OutputPerformanceData();
 
-	inline static G3D::Window Window = {};
-	inline static G3D::Renderer Renderer = {};
-	inline static G3D::Keyboard Keyboard = {};
-	inline static G3D::Mouse Mouse = {};
-	inline static G3D::DeltaClock DeltaClock = {};
-};
+		inline static G3D::Window Window = {};
+		inline static G3D::Renderer Renderer = {};
+		inline static G3D::Keyboard Keyboard = {};
+		inline static G3D::Mouse Mouse = {};
+		inline static G3D::DeltaClock DeltaClock = {};
+	};
+}

@@ -33,7 +33,7 @@ namespace G3D
 
 	void Window::Shutdown()
 	{
-		if (!&wc)
+		if (&wc)
 		{
 			UnregisterClass(wc.lpszClassName, GetModuleHandle(0));
 		}

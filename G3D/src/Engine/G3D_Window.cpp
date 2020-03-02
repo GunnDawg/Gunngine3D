@@ -37,6 +37,7 @@ namespace G3D
 		{
 			UnregisterClass(wc.lpszClassName, GetModuleHandle(0));
 		}
+
 		if (WindowHandle)
 		{
 			DestroyWindow(WindowHandle);

@@ -61,17 +61,29 @@ namespace G3D
 		IDXGIDevice* dxgiDevice = 0u;
 		Result = Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice);
 		if (FAILED(Result))
+		{
+			SAFE_RELEASE(dxgiDevice);
 			return false;
+		}
 
 		IDXGIAdapter* dxgiAdapter = 0u;
 		Result = dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&dxgiAdapter);
 		if (FAILED(Result))
+		{
+			SAFE_RELEASE(dxgiAdapter);
+			SAFE_RELEASE(dxgiDevice);
 			return false;
+		}
 
 		IDXGIFactory* dxgiFactory;
 		Result = dxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&dxgiFactory);
 		if (FAILED(Result))
+		{
+			SAFE_RELEASE(dxgiFactory);
+			SAFE_RELEASE(dxgiAdapter);
+			SAFE_RELEASE(dxgiDevice);
 			return false;
+		}
 
 		//Create our swap chain buffer description
 		DXGI_MODE_DESC bufferDesc;
@@ -109,11 +121,14 @@ namespace G3D
 		//Create swap chain
 		Result = dxgiFactory->CreateSwapChain(Device, &scd, &SwapChain);
 		if (FAILED(Result))
+		{
+			SAFE_RELEASE(dxgiFactory);
 			return false;
+		}
 
 		SAFE_RELEASE(dxgiFactory);
-		SAFE_RELEASE(dxgiDevice);
 		SAFE_RELEASE(dxgiAdapter);
+		SAFE_RELEASE(dxgiDevice);
 
 #if 1
 		if (!Settings::Display::Windowed)

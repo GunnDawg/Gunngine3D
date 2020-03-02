@@ -2,6 +2,7 @@
 
 namespace G3D
 {
+#ifdef _WIN64
 	struct DeltaClock
 	{
 		bool Initialize();
@@ -20,4 +21,15 @@ namespace G3D
 		float FPS = 0.0f;
 		float MCPF = 0.0f;
 	};
+#elif __APPLE__
+	struct DeltaClock
+	{
+
+	};
+#elif __linux__
+	struct DeltaClock
+	{
+
+	};
+#endif
 }

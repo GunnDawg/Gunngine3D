@@ -28,7 +28,7 @@ namespace G3D
 	//Debug Stuff
 	void Core::OutputPerformanceData()
 	{
-	#if _DEBUG
+	#if 0
 		char Buffer[256];
 		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", DeltaClock.MSPerFrame, DeltaClock.FPS, DeltaClock.MCPF);
 		OutputDebugStringA(Buffer);

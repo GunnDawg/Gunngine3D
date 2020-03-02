@@ -1,5 +1,4 @@
 #include "Scene02.h"
-#include "Engine/G3D_Core.h"
 #include "Game/Game.h"
 #include "Game/Scenes/Scene01.h"
 
@@ -34,7 +33,4 @@ void Scene02::UpdateAndRender()
 	//Update
 
 	//Render
-	G3D::Core::Renderer.Clear(1.0f, 0.0f, 0.0f, 1.0f);
-
-	G3D::Core::Renderer.Present();
 }

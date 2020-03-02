@@ -1,8 +1,4 @@
 #pragma once
-#include "Engine/G3D_Renderer.h"
-#include "Engine/G3D_Keyboard.h"
-#include "Engine/G3D_Mouse.h"
-#include "Engine/G3D_Timers.h"
 
 struct GameState
 {

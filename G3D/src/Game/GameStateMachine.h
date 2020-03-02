@@ -1,7 +1,5 @@
 #pragma once
 #include "GameState.h"
-#include "Engine/G3D_Core.h"
-
 #include <vector>
 #include <memory>
 

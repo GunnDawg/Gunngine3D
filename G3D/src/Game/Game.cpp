@@ -1,4 +1,4 @@
-#include "Game/Game.h"
+#include "Engine/G3D_Core.h"
 #include "Scenes/Scene01.h"
 
 bool Game::Initialize()
@@ -18,7 +18,10 @@ void Game::HandleInput()
 
 void Game::UpdateAndRender()
 {
+	G3D::Core::Renderer.Clear(0.0f, 0.0f, 0.0f, 1.0f);
 	GSM.UpdateAndRender();
+	G3D::Core::Renderer.Present();
+
 }
 
 void Game::Shutdown()

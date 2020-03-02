@@ -6,10 +6,12 @@ namespace G3D
 	{
 		if (!QueryPerformanceFrequency(&PerfCountFrequencyResult))
 			return false;
+
 		PerfCountFrequency = PerfCountFrequencyResult.QuadPart;
 
 		if (!QueryPerformanceCounter(&LastCounter))
 			return false;
+
 		LastCycleCount = __rdtsc();
 
 		return true;

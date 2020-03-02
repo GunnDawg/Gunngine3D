@@ -51,12 +51,16 @@ namespace G3D
 			return false;
 
 		//Check for MSAA quality support
-		UINT m4xMsaaQuality = 0u;
-		Result = Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4u, &m4xMsaaQuality);
-		if (FAILED(Result))
-			return false;
-
-		ASSERT(m4xMsaaQuality > 0u);
+		if (Settings::Graphics::MSAA)
+		{
+			UINT m4xMsaaQuality = 0u;
+			Result = Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4u, &Settings::Graphics::MSAAQuality);
+			if (FAILED(Result))
+			{
+				ASSERT(m4xMsaaQuality > 0u);
+				return false;
+			}
+		}
 
 		IDXGIDevice* dxgiDevice = 0u;
 		Result = Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice);
@@ -108,7 +112,7 @@ namespace G3D
 		if (Settings::Graphics::MSAA)
 		{
 			scd.SampleDesc.Count = 4u;
-			scd.SampleDesc.Quality = m4xMsaaQuality - 1u;
+			scd.SampleDesc.Quality = Settings::Graphics::MSAAQuality - 1u;
 			scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 		}
 		else

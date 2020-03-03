@@ -19,3 +19,6 @@ typedef int64_t i64;
 #define internal static
 #define local_persist static
 #define global_variable static
+
+#define G3D_OK 1
+#define G3D_ERROR 0

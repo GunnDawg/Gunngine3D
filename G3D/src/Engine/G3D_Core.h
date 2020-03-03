@@ -5,9 +5,6 @@
 #include "Engine/G3D_Mouse.h"
 #include "Engine/G3D_Timers.h"
 
-#define G3D_OK 1
-#define G3D_ERROR 0
-
 namespace G3D
 {
 	struct Core

@@ -22,13 +22,13 @@ namespace G3D
 		wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 
 		if (!RegisterClassEx(&wc))
-			return false;
+			return G3D_ERROR;
 
 		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, GetModuleHandle(0), 0);
 		if (!WindowHandle)
-			return false;
+			return G3D_ERROR;
 
-		return true;
+		return G3D_OK;
 	}
 
 	void Window::Shutdown()

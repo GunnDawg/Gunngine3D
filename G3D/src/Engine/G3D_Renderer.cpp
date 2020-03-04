@@ -28,7 +28,7 @@ namespace G3D
 
 		std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
 		if (adapters.size() < 1)
-			return false;
+			return G3D_ERROR;
 
 		//Create our Device
 		D3D_FEATURE_LEVEL featureLevel;
@@ -45,10 +45,10 @@ namespace G3D
 			&Context
 		);
 		if (FAILED(Result))
-			return false;
+			return G3D_ERROR;
 
 		if (featureLevel != D3D_FEATURE_LEVEL_11_0)
-			return false;
+			return G3D_ERROR;
 
 		//Check for MSAA quality support
 		if (Settings::Graphics::MSAA)
@@ -58,7 +58,7 @@ namespace G3D
 			if (FAILED(Result))
 			{
 				ASSERT(m4xMsaaQuality > 0u);
-				return false;
+				return G3D_ERROR;
 			}
 		}
 
@@ -67,7 +67,7 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			SAFE_RELEASE(dxgiDevice);
-			return false;
+			return G3D_ERROR;
 		}
 
 		IDXGIAdapter* dxgiAdapter = 0u;
@@ -76,7 +76,7 @@ namespace G3D
 		{
 			SAFE_RELEASE(dxgiAdapter);
 			SAFE_RELEASE(dxgiDevice);
-			return false;
+			return G3D_ERROR;
 		}
 
 		IDXGIFactory* dxgiFactory;
@@ -86,7 +86,7 @@ namespace G3D
 			SAFE_RELEASE(dxgiFactory);
 			SAFE_RELEASE(dxgiAdapter);
 			SAFE_RELEASE(dxgiDevice);
-			return false;
+			return G3D_ERROR;
 		}
 
 		//Create our swap chain buffer description
@@ -127,7 +127,7 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			SAFE_RELEASE(dxgiFactory);
-			return false;
+			return G3D_ERROR;
 		}
 
 		SAFE_RELEASE(dxgiFactory);
@@ -138,19 +138,19 @@ namespace G3D
 		if (!Settings::Display::Windowed)
 			Result = SwapChain->SetFullscreenState(true, 0u);
 		if (FAILED(Result))
-			return false;
+			return G3D_ERROR;
 #endif
 
 		//Create our BackBuffer
 		ID3D11Texture2D* BackBuffer;
 		Result = SwapChain->GetBuffer(0u, __uuidof(ID3D11Texture2D), (void**)&BackBuffer);
 		if (FAILED(Result))
-			return false;
+			return G3D_ERROR;
 
 		//Create our Render Target
 		Result = Device->CreateRenderTargetView(BackBuffer, NULL, &RenderTargetView);
 		if (FAILED(Result))
-			return false;
+			return G3D_ERROR;
 
 		SAFE_RELEASE(BackBuffer);
 
@@ -189,7 +189,7 @@ namespace G3D
 
 		Result = Device->CreateTexture2D(&depthStencilDesc, 0u, &DepthStencilBuffer);
 		if (FAILED(Result))
-			return false;
+			return G3D_ERROR;
 
 		D3D11_DEPTH_STENCIL_VIEW_DESC DSVdesc;
 		ZeroMemory(&DSVdesc, sizeof(D3D11_DEPTH_STENCIL_VIEW_DESC));
@@ -199,11 +199,11 @@ namespace G3D
 
 		Result = Device->CreateDepthStencilState(&depthStencilStateDesc, &DepthStencilState);
 		if (FAILED(Result))
-			return false;
+			return G3D_ERROR;
 
 		Result = Device->CreateDepthStencilView(DepthStencilBuffer, &DSVdesc, &DepthStencilView);
 		if (FAILED(Result))
-			return false;
+			return G3D_ERROR;
 
 		Context->OMSetRenderTargets(1u, &RenderTargetView, DepthStencilView);
 		Context->OMSetDepthStencilState(DepthStencilState, 1u);
@@ -218,7 +218,7 @@ namespace G3D
 
 		Result = Device->CreateRasterizerState(&RastDesc, &RasterizerState);
 		if (FAILED(Result))
-			return false;
+			return G3D_ERROR;
 
 		Context->RSSetState(RasterizerState);
 
@@ -234,7 +234,7 @@ namespace G3D
 
 		Context->RSSetViewports(1u, &viewport);
 
-		return true;
+		return G3D_OK;
 	}
 
 	void Renderer::Shutdown()

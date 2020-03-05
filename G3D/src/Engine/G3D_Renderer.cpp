@@ -79,7 +79,7 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
-		IDXGIFactory* dxgiFactory;
+		IDXGIFactory* dxgiFactory = 0u;
 		Result = dxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&dxgiFactory);
 		if (FAILED(Result))
 		{

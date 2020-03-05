@@ -4,7 +4,7 @@
 
 void Scene01::On_load()
 {
-	OutputDebugString("Loading S1\n");
+	OutputDebugString("S1 On_Load\n");
 }
 
 void Scene01::On_enter()
@@ -14,7 +14,7 @@ void Scene01::On_enter()
 
 void Scene01::On_exit()
 {
-
+	OutputDebugString("S1 On_Exit\n\n");
 }
 
 void Scene01::Handle_input()

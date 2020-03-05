@@ -4,17 +4,17 @@
 
 void Scene02::On_load()
 {
-
+	OutputDebugString("S2 On_Load\n");
 }
 
 void Scene02::On_enter()
 {
-
+	OutputDebugString("S2 On_Enter\n");
 }
 
 void Scene02::On_exit()
 {
-	
+	OutputDebugString("S2 On_Exit\n\n");
 }
 
 void Scene02::Handle_input()

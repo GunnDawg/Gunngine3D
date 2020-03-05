@@ -45,13 +45,13 @@ namespace G3D
 
 		//Key event stuff
 		Event ReadKey();
-		inline bool KeyIsPressed(u16 keycode) const { return(keyStates[keycode]); }
-		inline bool KeyIsEmpty() const { return(keyBuffer.empty()); }
+		inline bool KeyIsPressed(u16 keycode) const { return keyStates[keycode]; }
+		inline bool KeyIsEmpty() const { return keyBuffer.empty(); }
 		inline void FlushKey() { keyBuffer = std::queue<Event>(); }
 
 		//Char event stuff
 		u16 ReadChar();
-		inline bool CharIsEmpty() const { return(charBuffer.empty()); }
+		inline bool CharIsEmpty() const { return charBuffer.empty(); }
 		inline void FlushChar() { charBuffer = std::queue<u16>(); }
 		inline void Flush()
 		{

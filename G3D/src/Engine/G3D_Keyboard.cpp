@@ -8,10 +8,10 @@ namespace G3D
 		{
 			Keyboard::Event e = keyBuffer.front();
 			keyBuffer.pop();
-			return(e);
+			return e ;
 		}
 		else
-			return(Keyboard::Event());
+			return Keyboard::Event();
 	}
 
 	u16 Keyboard::ReadChar()
@@ -21,9 +21,9 @@ namespace G3D
 			u16 charcode = charBuffer.front();
 			charBuffer.pop();
 
-			return(charcode);
+			return charcode;
 		}
 		else
-			return(0);
+			return 0;
 	}
 }

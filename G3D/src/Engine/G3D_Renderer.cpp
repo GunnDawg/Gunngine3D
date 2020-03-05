@@ -53,13 +53,11 @@ namespace G3D
 		//Check for MSAA quality support
 		if (Settings::Graphics::MSAA)
 		{
-			UINT m4xMsaaQuality = 0u;
 			Result = Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4u, &Settings::Graphics::MSAAQuality);
 			if (FAILED(Result))
-			{
-				ASSERT(m4xMsaaQuality > 0u);
 				return G3D_ERROR;
-			}
+
+			ASSERT(&Settings::Graphics::MSAAQuality > 0u);
 		}
 
 		IDXGIDevice* dxgiDevice = 0u;

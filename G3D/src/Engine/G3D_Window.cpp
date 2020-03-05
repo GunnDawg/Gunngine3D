@@ -33,14 +33,15 @@ namespace G3D
 
 	void Window::Shutdown()
 	{
-		if (&wc)
-		{
-			UnregisterClass(wc.lpszClassName, GetModuleHandle(0));
-		}
-
 		if (WindowHandle)
 		{
+			//@NOTE: Could also error check this, but again, probably just a waste of time when all you want to do,
+			//is get out!
 			DestroyWindow(WindowHandle);
+			WindowHandle = 0;
 		}
+
+		//@NOTE: We could check this for errors, but I feel like that's just making things even slower...
+		UnregisterClass(wc.lpszClassName, wc.hInstance);
 	}
 }

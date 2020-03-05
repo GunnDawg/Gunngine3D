@@ -2,6 +2,11 @@
 #include "Game/Game.h"
 #include "Game/Scenes/Scene01.h"
 
+void Scene02::On_load()
+{
+
+}
+
 void Scene02::On_enter()
 {
 

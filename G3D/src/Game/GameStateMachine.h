@@ -10,6 +10,7 @@ struct GameStateMachine
 		//@Speed I haven't tested it yet but I think emplace_back() is faster than push_back() here. Maybe run
 		//a test later. Probably not a huge difference either way though.
 		GameStates.emplace_back(std::move(states));
+		GameStates.back()->On_load();
 		GameStates.back()->On_enter();
 	}
 

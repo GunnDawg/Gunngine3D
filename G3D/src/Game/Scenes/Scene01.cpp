@@ -2,9 +2,14 @@
 #include "Game/Game.h"
 #include "Game/Scenes/Scene02.h"
 
+void Scene01::On_load()
+{
+	OutputDebugString("Loading S1\n");
+}
+
 void Scene01::On_enter()
 {
-
+	OutputDebugString("S1 On_Enter\n");
 }
 
 void Scene01::On_exit()

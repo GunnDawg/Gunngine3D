@@ -12,14 +12,14 @@ namespace G3D
 		rid.hwndTarget = 0u;
 
 		if (RegisterRawInputDevices(&rid, 1, sizeof(rid)) == FALSE)
-			return false;
+			return G3D_ERROR;
 
 		if (Settings::Display::Windowed)
 			EnableCursor();
 		else
 			DisableCursor();
 
-		return true;
+		return G3D_OK;
 	}
 
 	Mouse::Event Mouse::Read()
@@ -31,7 +31,6 @@ namespace G3D
 			return e;
 		}
 		else
-
 		{
 			return Mouse::Event();
 		}

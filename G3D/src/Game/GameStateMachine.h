@@ -36,7 +36,7 @@ struct GameStateMachine
 	{
 		if (!GameStates.empty())
 		{
-			GameStates.back()->UpdateAndRender();
+			GameStates.back()->Update_and_render();
 		}
 	}
 

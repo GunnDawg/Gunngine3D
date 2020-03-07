@@ -35,7 +35,7 @@ void Scene02::Handle_input()
 	}
 }
 
-void Scene02::UpdateAndRender()
+void Scene02::Update_and_render()
 {
 	//Update
 

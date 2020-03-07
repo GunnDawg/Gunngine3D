@@ -6,5 +6,5 @@ struct GameState
 	virtual void On_enter() = 0;
 	virtual void On_exit() = 0;
 	virtual void Handle_input() = 0;
-	virtual void UpdateAndRender() = 0;
+	virtual void Update_and_render() = 0;
 };

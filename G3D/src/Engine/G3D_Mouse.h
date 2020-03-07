@@ -82,7 +82,6 @@ namespace G3D
 		inline void OnMouseLeave()
 		{
 			isInWindow = false;
-
 			buffer.push(Mouse::Event(Mouse::Event::Type::Leave, *this));
 			TrimBuffer();
 		}
@@ -90,7 +89,6 @@ namespace G3D
 		inline void OnMouseEnter()
 		{
 			isInWindow = true;
-
 			buffer.push(Mouse::Event(Mouse::Event::Type::Enter, *this));
 			TrimBuffer();
 		}
@@ -98,7 +96,6 @@ namespace G3D
 		inline void OnLeftPressed(u16 x, u16 y)
 		{
 			leftIsPressed = true;
-
 			buffer.push(Mouse::Event(Mouse::Event::Type::LPress, *this));
 			TrimBuffer();
 		}
@@ -106,7 +103,6 @@ namespace G3D
 		inline void OnLeftReleased(u16 x, u16 y)
 		{
 			leftIsPressed = false;
-
 			buffer.push(Mouse::Event(Mouse::Event::Type::LRelease, *this));
 			TrimBuffer();
 		}
@@ -114,7 +110,6 @@ namespace G3D
 		inline void OnRightPressed(u16 x, u16 y)
 		{
 			rightIsPressed = true;
-
 			buffer.push(Mouse::Event(Mouse::Event::Type::RPress, *this));
 			TrimBuffer();
 		}
@@ -122,7 +117,6 @@ namespace G3D
 		inline void OnRightReleased(u16 x, u16 y)
 		{
 			rightIsPressed = false;
-
 			buffer.push(Mouse::Event(Mouse::Event::Type::RRelease, *this));
 			TrimBuffer();
 		}

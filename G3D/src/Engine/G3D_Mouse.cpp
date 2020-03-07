@@ -11,7 +11,7 @@ namespace G3D
 		rid.dwFlags = 0u;
 		rid.hwndTarget = 0u;
 
-		if (RegisterRawInputDevices(&rid, 1, sizeof(rid)) == FALSE)
+		if (!RegisterRawInputDevices(&rid, 1, sizeof(rid)))
 			return G3D_ERROR;
 
 		if (Settings::Display::Windowed)

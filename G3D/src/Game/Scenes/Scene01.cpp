@@ -1,5 +1,4 @@
 #include "Scene01.h"
-#include "Game/Game.h"
 #include "Game/Scenes/Scene02.h"
 
 bool Scene01::On_load()

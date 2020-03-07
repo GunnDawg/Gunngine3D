@@ -24,9 +24,9 @@ namespace G3D
 
 		CyclesElapsed = EndCycleCount - LastCycleCount;
 		TimeElapsed = EndCounter.QuadPart - LastCounter.QuadPart;
-		MSPerFrame = ((1000.0f * TimeElapsed) / (float)PerfCountFrequency);
-		FPS = (float)PerfCountFrequency / (float)TimeElapsed;
-		MCPF = (float)CyclesElapsed / (1000.0f * 1000.0f);
+		MSPerFrame = ((1000.0f * TimeElapsed) / static_cast<float>(PerfCountFrequency));
+		FPS = static_cast<float>(PerfCountFrequency) / static_cast<float>(TimeElapsed);
+		MCPF = static_cast<float>(CyclesElapsed) / (1000.0f * 1000.0f);
 	}
 
 	void DeltaClock::Reset()

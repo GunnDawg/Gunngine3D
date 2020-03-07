@@ -1,4 +1,3 @@
-#include "Engine/G3D_Core.h"
 #include "Scenes/Scene01.h"
 
 bool Game::Initialize()

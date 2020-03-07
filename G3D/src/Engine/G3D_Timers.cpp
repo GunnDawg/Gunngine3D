@@ -5,16 +5,16 @@ namespace G3D
 	bool DeltaClock::Initialize()
 	{
 		if (!QueryPerformanceFrequency(&PerfCountFrequencyResult))
-			return false;
+			return G3D_ERROR;
 
 		PerfCountFrequency = PerfCountFrequencyResult.QuadPart;
 
 		if (!QueryPerformanceCounter(&LastCounter))
-			return false;
+			return G3D_ERROR;
 
 		LastCycleCount = __rdtsc();
 
-		return true;
+		return G3D_OK;
 	}
 
 	void DeltaClock::Tick()

@@ -2,9 +2,11 @@
 #include "Game/Game.h"
 #include "Game/Scenes/Scene02.h"
 
-void Scene01::On_load()
+bool Scene01::On_load()
 {
 	OutputDebugString("S1 On_Load\n");
+
+	return true;
 }
 
 void Scene01::On_enter()

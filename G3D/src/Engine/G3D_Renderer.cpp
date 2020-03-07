@@ -132,13 +132,6 @@ namespace G3D
 		SAFE_RELEASE(dxgiAdapter);
 		SAFE_RELEASE(dxgiDevice);
 
-#if 1
-		if (!Settings::Display::Windowed)
-			Result = SwapChain->SetFullscreenState(true, 0u);
-		if (FAILED(Result))
-			return G3D_ERROR;
-#endif
-
 		//Create our BackBuffer
 		ID3D11Texture2D* BackBuffer;
 		Result = SwapChain->GetBuffer(0u, __uuidof(ID3D11Texture2D), (void**)&BackBuffer);
@@ -231,6 +224,13 @@ namespace G3D
 		viewport.MaxDepth = 1.0f;
 
 		Context->RSSetViewports(1u, &viewport);
+
+		//Set fullscreen state
+		if (!Settings::Display::Windowed)
+			Result = SwapChain->SetFullscreenState(true, 0u);
+		if (FAILED(Result))
+			return G3D_ERROR;
+
 
 		return G3D_OK;
 	}

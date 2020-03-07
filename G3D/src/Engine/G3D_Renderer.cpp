@@ -204,8 +204,8 @@ namespace G3D
 		ZeroMemory(&RastDesc, sizeof(D3D11_RASTERIZER_DESC));
 		RastDesc.FillMode = D3D11_FILL_SOLID;
 		RastDesc.CullMode = D3D11_CULL_NONE;
-		RastDesc.MultisampleEnable = true;
-		RastDesc.AntialiasedLineEnable = true;
+		RastDesc.MultisampleEnable = Settings::Graphics::MSAA;
+		RastDesc.AntialiasedLineEnable = Settings::Graphics::MSAA;
 
 		Result = Device->CreateRasterizerState(&RastDesc, &RasterizerState);
 		if (FAILED(Result))

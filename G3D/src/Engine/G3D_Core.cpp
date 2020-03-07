@@ -4,16 +4,16 @@ namespace G3D
 {
 	bool Core::Initialize()
 	{
-		if (DeltaClock.Initialize() != G3D_OK)
+		if (!DeltaClock.Initialize())
 			return G3D_ERROR;
 
-		if (Window.Initialize() != G3D_OK)
+		if (!Window.Initialize())
 			return G3D_ERROR;
 
-		if (Renderer.Initialize() != G3D_OK)
+		if (!Renderer.Initialize())
 			return G3D_ERROR;
 
-		if (Mouse.Initialize() != G3D_OK)
+		if (!Mouse.Initialize())
 			return G3D_ERROR;
 
 		return G3D_OK;

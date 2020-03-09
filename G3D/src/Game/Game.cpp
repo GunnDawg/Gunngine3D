@@ -3,7 +3,11 @@
 bool Game::Initialize()
 {
 	std::unique_ptr<GameState> S1 = std::make_unique<Scene01>();
-	GSM.Push(std::move(S1));
+	if (!GSM.Push(std::move(S1)))
+	{
+		G3D::Core::Shutdown();
+		return false;
+	}
 
 	IsRunning = true;
 

@@ -5,7 +5,7 @@
 
 struct GameStateMachine
 {
-	inline void Push(std::unique_ptr<GameState> states)
+	inline bool Push(std::unique_ptr<GameState> states)
 	{
 		//@Speed I haven't tested it yet but I think emplace_back() is faster than push_back() here. Maybe run
 		//a test later. Probably not a huge difference either way though.
@@ -13,6 +13,13 @@ struct GameStateMachine
 		
 		if(GameStates.back()->On_load())
 			GameStates.back()->On_enter();
+		else
+		{
+			OutputDebugString("Error loading scene");
+			return false;
+		}
+
+		return true;
 	}
 
 	inline void Pop()

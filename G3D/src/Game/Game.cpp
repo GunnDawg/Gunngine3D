@@ -5,7 +5,7 @@ bool Game::Initialize()
 	std::unique_ptr<GameState> S1 = std::make_unique<Scene01>();
 	if (!GSM.Push(std::move(S1)))
 	{
-		OutputDebugString("Error loading scene01");
+		OutputDebugString("Error loading scene01\n");
 		return false;
 	}
 

@@ -11,15 +11,16 @@ struct GameStateMachine
 		//a test later. Probably not a huge difference either way though.
 		GameStates.emplace_back(std::move(states));
 		
-		if(GameStates.back()->On_load())
+		if (GameStates.back()->On_load())
+		{
 			GameStates.back()->On_enter();
+			return true;
+		}
 		else
 		{
 			G3D::Core::Shutdown();
 			return false;
 		}
-
-		return true;
 	}
 
 	inline void Pop()

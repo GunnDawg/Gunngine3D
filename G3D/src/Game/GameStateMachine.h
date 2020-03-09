@@ -7,7 +7,7 @@ struct GameStateMachine
 {
 	inline bool Push(std::unique_ptr<GameState> states)
 	{
-		//@Speed I haven't tested it yet but I think emplace_back() is faster than push_back() here. Maybe run
+		//@SPEED I haven't tested it yet but I think emplace_back() is faster than push_back() here. Maybe run
 		//a test later. Probably not a huge difference either way though.
 		GameStates.emplace_back(std::move(states));
 		
@@ -18,6 +18,8 @@ struct GameStateMachine
 		}
 		else
 		{
+			//@NOTE: For now we're just shutting everything down. But maybe in the future attempt a recovery of the previous
+			//state.
 			G3D::Core::Shutdown();
 			return false;
 		}

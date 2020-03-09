@@ -3,12 +3,14 @@
 #include <d3d11.h>
 #include <dxgi.h>
 #include <DirectXMath.h>
+#include <d3dcompiler.h>
 
 #include "Game/GameSettings.h"
 
 //@NOTE:Import Libraries for DX
-#pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "dxgi.lib")
+#pragma comment(lib, "D3D11.lib")
+#pragma comment(lib, "DXGI.lib")
+#pragma comment(lib, "D3DCompiler.lib")
 #endif
 
 namespace G3D

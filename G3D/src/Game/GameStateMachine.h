@@ -19,7 +19,7 @@ struct GameStateMachine
 		else
 		{
 			//@NOTE: For now we're just shutting everything down. But maybe in the future attempt a recovery of the previous
-			//state.
+			//state?
 			G3D::Core::Shutdown();
 			return false;
 		}

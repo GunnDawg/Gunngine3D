@@ -99,6 +99,7 @@
     <ClInclude Include="src\Engine\G3D_Assert.h" />
     <ClInclude Include="src\Engine\G3D_Core.h" />
     <ClInclude Include="src\Engine\G3D_Keyboard.h" />
+    <ClInclude Include="src\Engine\G3D_Mesh.h" />
     <ClInclude Include="src\Engine\G3D_Mouse.h" />
     <ClInclude Include="src\Engine\G3D_Timers.h" />
     <ClInclude Include="src\Engine\G3D_Window.h" />
@@ -111,6 +112,24 @@
     <ClInclude Include="src\Game\Scenes\Scene01.h" />
     <ClInclude Include="src\Game\GameStateMachine.h" />
     <ClInclude Include="src\Game\Scenes\Scene02.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="res\shaders\BasicPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="res\shaders\BasicVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

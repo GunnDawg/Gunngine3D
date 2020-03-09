@@ -8,4 +8,6 @@ struct Scene01 : public GameState
 	void On_exit() override;
 	void Handle_input() override;
 	void Update_and_render() override;
+
+	Mesh testMesh;
 };

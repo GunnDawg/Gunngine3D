@@ -39,4 +39,5 @@ void Scene01::Update_and_render()
 	//Update
 
 	//Render
+	testMesh.Draw();
 }

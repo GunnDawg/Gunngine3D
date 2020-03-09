@@ -15,7 +15,7 @@ struct GameStateMachine
 			GameStates.back()->On_enter();
 		else
 		{
-			OutputDebugString("Error loading scene");
+			G3D::Core::Shutdown();
 			return false;
 		}
 

@@ -5,7 +5,7 @@ bool Game::Initialize()
 	std::unique_ptr<GameState> S1 = std::make_unique<Scene01>();
 	if (!GSM.Push(std::move(S1)))
 	{
-		G3D::Core::Shutdown();
+		OutputDebugString("Error loading scene01");
 		return false;
 	}
 

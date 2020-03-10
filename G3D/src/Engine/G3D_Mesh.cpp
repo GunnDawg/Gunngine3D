@@ -32,37 +32,16 @@ void Mesh::Draw()
 		//@TODO: Error Checking.
 	}
 
-	const UINT stride = sizeof(BasicVertex);
-	const UINT offset = 0u;
-	G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &pVertexBuffer, &stride, &offset);
-
-	//Create Pixel Shader
-	ID3D11PixelShader* pPixelShader;
-	ID3DBlob* pBlob;
-	Result = D3DReadFileToBlob(L"BasicPixelShader.cso", &pBlob);
-	if (FAILED(Result))
-	{
-		//@TODO: Error Checking.
-	}
-
-	Result = G3D::Core::Renderer.Device->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pPixelShader);
-	if (FAILED(Result))
-	{
-		//@TODO: Error Checking.
-	}
-
-	//Bind Pixel Shader
-	G3D::Core::Renderer.Context->PSSetShader(pPixelShader, 0, 0);
-
 	//Create Vertex Shader
 	ID3D11VertexShader* pVertexShader;
-	Result = D3DReadFileToBlob(L"BasicVertexShader.cso", &pBlob);
+	ID3DBlob* pVertexBlob;
+	Result = D3DReadFileToBlob(L"BasicVertexShader.cso", &pVertexBlob);
 	if (FAILED(Result))
 	{
 		//@TODO: Error Checking.
 	}
 
-	Result = G3D::Core::Renderer.Device->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pVertexShader);
+	Result = G3D::Core::Renderer.Device->CreateVertexShader(pVertexBlob->GetBufferPointer(), pVertexBlob->GetBufferSize(), nullptr, &pVertexShader);
 	if (FAILED(Result))
 	{
 		//@TODO: Error Checking.
@@ -71,6 +50,28 @@ void Mesh::Draw()
 	//Bind vertex Shader
 	G3D::Core::Renderer.Context->VSSetShader(pVertexShader, 0, 0);
 
+	const UINT stride = sizeof(BasicVertex);
+	const UINT offset = 0u;
+	G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &pVertexBuffer, &stride, &offset);
+
+	//Create Pixel Shader
+	ID3D11PixelShader* pPixelShader;
+	ID3DBlob* pPixelBlob;
+	Result = D3DReadFileToBlob(L"BasicPixelShader.cso", &pPixelBlob);
+	if (FAILED(Result))
+	{
+		//@TODO: Error Checking.
+	}
+
+	Result = G3D::Core::Renderer.Device->CreatePixelShader(pPixelBlob->GetBufferPointer(), pPixelBlob->GetBufferSize(), nullptr, &pPixelShader);
+	if (FAILED(Result))
+	{
+		//@TODO: Error Checking.
+	}
+
+	//Bind Pixel Shader
+	G3D::Core::Renderer.Context->PSSetShader(pPixelShader, 0, 0);
+
 	//Create Input Layout
 	ID3D11InputLayout* pInputLayout;
 	ZeroMemory(&pInputLayout, sizeof(ID3D11InputLayout));
@@ -78,7 +79,8 @@ void Mesh::Draw()
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};
-	G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), pBlob->GetBufferPointer(), pBlob->GetBufferSize(), &pInputLayout);
+
+	G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), pVertexBlob->GetBufferPointer(), pVertexBlob->GetBufferSize(), &pInputLayout);
 
 	//Set Primitive Topology
 	G3D::Core::Renderer.Context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -90,5 +92,6 @@ void Mesh::Draw()
 	SAFE_RELEASE(pVertexShader);
 	SAFE_RELEASE(pPixelShader);
 	SAFE_RELEASE(pInputLayout);
-	SAFE_RELEASE(pBlob);
+	SAFE_RELEASE(pPixelBlob);
+	SAFE_RELEASE(pVertexBlob);
 }

@@ -35,7 +35,7 @@ void Mesh::Draw()
 	//Create Vertex Shader
 	ID3D11VertexShader* pVertexShader;
 	ID3DBlob* pVertexBlob;
-	Result = D3DReadFileToBlob(L"BasicVertexShader.cso", &pVertexBlob);
+	Result = D3DReadFileToBlob(L"res/shaders/BasicVertexShader.cso", &pVertexBlob);
 	if (FAILED(Result))
 	{
 		//@TODO: Error Checking.
@@ -57,7 +57,7 @@ void Mesh::Draw()
 	//Create Pixel Shader
 	ID3D11PixelShader* pPixelShader;
 	ID3DBlob* pPixelBlob;
-	Result = D3DReadFileToBlob(L"BasicPixelShader.cso", &pPixelBlob);
+	Result = D3DReadFileToBlob(L"res/shaders/BasicPixelShader.cso", &pPixelBlob);
 	if (FAILED(Result))
 	{
 		//@TODO: Error Checking.

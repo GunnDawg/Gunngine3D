@@ -107,17 +107,16 @@ namespace G3D
 		scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		scd.Windowed = Settings::Display::Windowed;
 		scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+		scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 		if (Settings::Graphics::MSAA)
 		{
 			scd.SampleDesc.Count = 4u;
 			scd.SampleDesc.Quality = Settings::Graphics::MSAAQuality - 1u;
-			scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 		}
 		else
 		{
 			scd.SampleDesc.Count = 1u;
-			scd.SampleDesc.Quality = 0u;
-			scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+			scd.SampleDesc.Quality = 0u;			
 		}
 
 		//Create swap chain

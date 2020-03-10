@@ -2,16 +2,11 @@
 
 struct BasicVertex
 {
-	float x;
-	float y;
-	float z;
+	DirectX::XMFLOAT3 position;
 };
 
 struct ColoredVertex
 {
-	float x;
-	float y;
-	float z;
-
+	DirectX::XMFLOAT3 position;
 	DirectX::XMFLOAT4 color;
 };

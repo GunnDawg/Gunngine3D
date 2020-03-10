@@ -1,10 +1,11 @@
 #include "Engine/G3D_Mesh.h"
+#include "Engine/G3D_Vertex.h"
 
 void Mesh::Draw()
 {
 	HRESULT Result = 0u;
 
-	const Vertex vertices[] =
+	const BasicVertex vertices[] =
 	{
 		{0.0f, 0.5f, 1.0f},
 		{0.5f, -0.5f, 1.0f},
@@ -19,7 +20,7 @@ void Mesh::Draw()
 	bd.CPUAccessFlags = 0u;
 	bd.MiscFlags = 0u;
 	bd.ByteWidth = sizeof(vertices);
-	bd.StructureByteStride = sizeof(Vertex);
+	bd.StructureByteStride = sizeof(BasicVertex);
 
 	D3D11_SUBRESOURCE_DATA srd;
 	ZeroMemory(&srd, sizeof(D3D11_SUBRESOURCE_DATA));
@@ -31,7 +32,7 @@ void Mesh::Draw()
 		//@TODO: Error Checking.
 	}
 
-	const UINT stride = sizeof(Vertex);
+	const UINT stride = sizeof(BasicVertex);
 	const UINT offset = 0u;
 	G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &pVertexBuffer, &stride, &offset);
 

@@ -5,6 +5,9 @@ bool Scene01::On_load()
 {
 	OutputDebugString("S1 On_Load\n");
 
+	if (!testMesh.Load())
+		return false;
+
 	return true;
 }
 
@@ -16,6 +19,7 @@ void Scene01::On_enter()
 void Scene01::On_exit()
 {
 	OutputDebugString("S1 On_Exit\n\n");
+	testMesh.Unload();
 }
 
 void Scene01::Handle_input()

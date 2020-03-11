@@ -1,18 +1,25 @@
 #include "Engine/G3D_Mesh.h"
 #include "Engine/G3D_Vertex.h"
 
-void Mesh::Draw()
+bool Mesh::Load()
 {
 	HRESULT Result = 0u;
 
 	const BasicVertex vertices[] =
 	{
-		{DirectX::XMFLOAT3( 0.0f,  0.5f, 1.0f)},
-		{DirectX::XMFLOAT3( 0.5f, -0.5f, 1.0f)},
-		{DirectX::XMFLOAT3(-0.5f, -0.5f, 1.0f)}
+		DirectX::XMFLOAT3(-0.5f, -0.5f, 1.0f),
+		DirectX::XMFLOAT3(-0.5f,  0.5f, 1.0f),
+		DirectX::XMFLOAT3( 0.5f,  0.5f, 1.0f),
+		DirectX::XMFLOAT3( 0.5f, -0.5f, 1.0f),
 	};
 
-	ID3D11Buffer* pVertexBuffer;
+	const u16 indices[] =
+	{
+		0, 1, 2,
+		2, 3, 0
+	};
+
+	//Create Vertex Buffer
 	D3D11_BUFFER_DESC bd;
 	ZeroMemory(&bd, sizeof(D3D11_BUFFER_DESC));
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
@@ -26,72 +33,98 @@ void Mesh::Draw()
 	ZeroMemory(&srd, sizeof(D3D11_SUBRESOURCE_DATA));
 	srd.pSysMem = vertices;
 
-	Result = G3D::Core::Renderer.Device->CreateBuffer(&bd, &srd, &pVertexBuffer);
+	Result = G3D::Core::Renderer.Device->CreateBuffer(&bd, &srd, &VertexBuffer);
 	if (FAILED(Result))
 	{
-		//@TODO: Error Checking.
+		//TODO: Error Checking.
+		return false;
+	}
+
+	//Create Index Buffer
+	D3D11_BUFFER_DESC ibd;
+	ZeroMemory(&bd, sizeof(D3D11_BUFFER_DESC));
+	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	ibd.Usage = D3D11_USAGE_DEFAULT;
+	ibd.CPUAccessFlags = 0u;
+	ibd.MiscFlags = 0u;
+	ibd.ByteWidth = sizeof(indices);
+	ibd.StructureByteStride = sizeof(BasicVertex);
+
+	D3D11_SUBRESOURCE_DATA isrd;
+	ZeroMemory(&isrd, sizeof(D3D11_SUBRESOURCE_DATA));
+	isrd.pSysMem = indices;
+
+	Result = G3D::Core::Renderer.Device->CreateBuffer(&ibd, &isrd, &IndexBuffer);
+	if (FAILED(Result))
+	{
+		//TODO: Error Checking.
+		return false;
 	}
 
 	//Create Vertex Shader
-	ID3D11VertexShader* pVertexShader;
-	ID3DBlob* pVertexBlob;
-	Result = D3DReadFileToBlob(L"res/shaders/BasicVertexShader.cso", &pVertexBlob);
+	Result = D3DReadFileToBlob(L"res/shaders/BasicVertexShader.cso", &VertexBlob);
 	if (FAILED(Result))
 	{
-		//@TODO: Error Checking.
+		//TODO: Error Checking.
+		return false;
 	}
 
-	Result = G3D::Core::Renderer.Device->CreateVertexShader(pVertexBlob->GetBufferPointer(), pVertexBlob->GetBufferSize(), nullptr, &pVertexShader);
+	Result = G3D::Core::Renderer.Device->CreateVertexShader(VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), nullptr, &VertexShader);
 	if (FAILED(Result))
 	{
-		//@TODO: Error Checking.
+		//TODO: Error Checking.
+		return false;
 	}
-
-	//Bind vertex Shader
-	G3D::Core::Renderer.Context->VSSetShader(pVertexShader, 0, 0);
-
-	const UINT stride = sizeof(BasicVertex);
-	const UINT offset = 0u;
-	G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &pVertexBuffer, &stride, &offset);
 
 	//Create Pixel Shader
-	ID3D11PixelShader* pPixelShader;
-	ID3DBlob* pPixelBlob;
-	Result = D3DReadFileToBlob(L"res/shaders/BasicPixelShader.cso", &pPixelBlob);
+	Result = D3DReadFileToBlob(L"res/shaders/BasicPixelShader.cso", &PixelBlob);
 	if (FAILED(Result))
 	{
-		//@TODO: Error Checking.
+		//TODO: Error Checking.
+		return false;
 	}
 
-	Result = G3D::Core::Renderer.Device->CreatePixelShader(pPixelBlob->GetBufferPointer(), pPixelBlob->GetBufferSize(), nullptr, &pPixelShader);
+	Result = G3D::Core::Renderer.Device->CreatePixelShader(PixelBlob->GetBufferPointer(), PixelBlob->GetBufferSize(), nullptr, &PixelShader);
 	if (FAILED(Result))
 	{
-		//@TODO: Error Checking.
+		//TODO: Error Checking.
+		return false;
 	}
-
-	//Bind Pixel Shader
-	G3D::Core::Renderer.Context->PSSetShader(pPixelShader, 0, 0);
 
 	//Create Input Layout
-	ID3D11InputLayout* pInputLayout;
-	ZeroMemory(&pInputLayout, sizeof(ID3D11InputLayout));
+	ZeroMemory(&InputLayout, sizeof(ID3D11InputLayout));
 	const D3D11_INPUT_ELEMENT_DESC ied[] =
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};
 
-	G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), pVertexBlob->GetBufferPointer(), pVertexBlob->GetBufferSize(), &pInputLayout);
+	G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), &InputLayout);
 
-	//Set Primitive Topology
+	return true;
+}
+
+void Mesh::Draw()
+{
+	const UINT stride = sizeof(BasicVertex);
+	const UINT offset = 0u;
+
+	G3D::Core::Renderer.Context->VSSetShader(VertexShader, 0, 0);
+	G3D::Core::Renderer.Context->PSSetShader(PixelShader, 0, 0);
+	G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &VertexBuffer, &stride, &offset);
+	G3D::Core::Renderer.Context->IASetIndexBuffer(IndexBuffer, DXGI_FORMAT_R16_UINT, 0u);
 	G3D::Core::Renderer.Context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	G3D::Core::Renderer.Context->IASetInputLayout(pInputLayout);
+	G3D::Core::Renderer.Context->IASetInputLayout(InputLayout);
 
-	G3D::Core::Renderer.Context->Draw(static_cast<UINT>(std::size(vertices)), 0u);
+	G3D::Core::Renderer.Context->DrawIndexed(6u, 0u, 0u);
+}
 
-	SAFE_RELEASE(pVertexBuffer);
-	SAFE_RELEASE(pVertexShader);
-	SAFE_RELEASE(pPixelShader);
-	SAFE_RELEASE(pInputLayout);
-	SAFE_RELEASE(pPixelBlob);
-	SAFE_RELEASE(pVertexBlob);
+void Mesh::Unload()
+{
+	SAFE_RELEASE(VertexBuffer);
+	SAFE_RELEASE(IndexBuffer);
+	SAFE_RELEASE(VertexShader);
+	SAFE_RELEASE(PixelShader);
+	SAFE_RELEASE(InputLayout);
+	SAFE_RELEASE(PixelBlob);
+	SAFE_RELEASE(VertexBlob);
 }

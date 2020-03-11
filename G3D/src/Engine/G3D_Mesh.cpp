@@ -19,6 +19,8 @@ bool Mesh::Load()
 		2, 3, 0
 	};
 
+	IndexCount = (UINT)std::size(indices);
+
 	//Create Vertex Buffer
 	D3D11_BUFFER_DESC bd;
 	ZeroMemory(&bd, sizeof(D3D11_BUFFER_DESC));
@@ -115,7 +117,7 @@ void Mesh::Draw()
 	G3D::Core::Renderer.Context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	G3D::Core::Renderer.Context->IASetInputLayout(InputLayout);
 
-	G3D::Core::Renderer.Context->DrawIndexed(6u, 0u, 0u);
+	G3D::Core::Renderer.Context->DrawIndexed(IndexCount, 0u, 0u);
 }
 
 void Mesh::Unload()
@@ -124,7 +126,7 @@ void Mesh::Unload()
 	SAFE_RELEASE(IndexBuffer);
 	SAFE_RELEASE(VertexShader);
 	SAFE_RELEASE(PixelShader);
-	SAFE_RELEASE(InputLayout);
 	SAFE_RELEASE(PixelBlob);
 	SAFE_RELEASE(VertexBlob);
+	SAFE_RELEASE(InputLayout);
 }

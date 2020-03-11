@@ -9,7 +9,7 @@ namespace G3D
 		Result = pAdapter->GetDesc(&Description);
 		if (FAILED(Result))
 		{
-			//@TODO: Error Logging.
+			//TODO: Error Logging.
 		}
 
 		SAFE_RELEASE(Adapter);
@@ -27,7 +27,7 @@ namespace G3D
 		Result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&pFactory);
 		if (FAILED(Result))
 		{
-			//@TODO: Error Logging.
+			//TODO: Error Logging.
 		}
 
 		IDXGIAdapter* pAdapter = 0;

@@ -107,8 +107,8 @@ bool Mesh::Load()
 
 void Mesh::Draw()
 {
-	const UINT stride = sizeof(BasicVertex);
-	const UINT offset = 0u;
+	local_persist const UINT stride = sizeof(BasicVertex);
+	local_persist const UINT offset = 0u;
 
 	G3D::Core::Renderer.Context->VSSetShader(VertexShader, 0u, 0u);
 	G3D::Core::Renderer.Context->PSSetShader(PixelShader, 0u, 0u);

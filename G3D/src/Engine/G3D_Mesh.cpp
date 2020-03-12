@@ -97,7 +97,7 @@ bool Mesh::Load()
 	ZeroMemory(&InputLayout, sizeof(ID3D11InputLayout));
 	const D3D11_INPUT_ELEMENT_DESC ied[] =
 	{
-		{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		{"POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 	};
 
 	G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), &InputLayout);
@@ -110,8 +110,8 @@ void Mesh::Draw()
 	const UINT stride = sizeof(BasicVertex);
 	const UINT offset = 0u;
 
-	G3D::Core::Renderer.Context->VSSetShader(VertexShader, 0, 0);
-	G3D::Core::Renderer.Context->PSSetShader(PixelShader, 0, 0);
+	G3D::Core::Renderer.Context->VSSetShader(VertexShader, 0u, 0u);
+	G3D::Core::Renderer.Context->PSSetShader(PixelShader, 0u, 0u);
 	G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &VertexBuffer, &stride, &offset);
 	G3D::Core::Renderer.Context->IASetIndexBuffer(IndexBuffer, DXGI_FORMAT_R16_UINT, 0u);
 	G3D::Core::Renderer.Context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);

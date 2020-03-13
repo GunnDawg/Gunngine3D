@@ -14,6 +14,7 @@
 #include "Engine/G3D_Window.cpp"
 #include "Engine/G3D_Renderer.cpp"
 #include "Engine/G3D_Mesh.cpp"
+#include "Engine/G3D_Shader.cpp"
 #include "Engine/G3D_AdapterReader.cpp"
 #include "Engine/G3D_Keyboard.cpp"
 #include "Engine/G3D_Mouse.cpp"

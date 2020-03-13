@@ -101,6 +101,7 @@
     <ClInclude Include="src\Engine\G3D_Keyboard.h" />
     <ClInclude Include="src\Engine\G3D_Mesh.h" />
     <ClInclude Include="src\Engine\G3D_Mouse.h" />
+    <ClInclude Include="src\Engine\G3D_Shader.h" />
     <ClInclude Include="src\Engine\G3D_Timers.h" />
     <ClInclude Include="src\Engine\G3D_Vertex.h" />
     <ClInclude Include="src\Engine\G3D_Window.h" />

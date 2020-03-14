@@ -1,5 +1,5 @@
 #pragma once
-//Target Windows 7 and later, we could target Windows Vista and later but I'm not actually sure how DX11 performs on Vista
+//@NOTE: Target Windows 7 and later, we could target Windows Vista and later but I'm not actually sure how DX11 performs on Vista
 //considering it launched without DX11 support, and was patched in later. Might be kind of finicky.
 #define WINVER 0x0601
 #define _WIN32_WINNT 0x0601

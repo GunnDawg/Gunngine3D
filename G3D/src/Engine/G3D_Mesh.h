@@ -1,8 +1,10 @@
 #pragma once
+#include "Engine/G3D_Shader.h"
 
 struct Mesh
 {
 	bool Load();
+	bool Load(const char* shaderName);
 	void Draw();
 	void Unload();
 
@@ -15,4 +17,6 @@ struct Mesh
 	ID3D11InputLayout* InputLayout;
 
 	UINT IndexCount;
+
+	Shader shader;
 };

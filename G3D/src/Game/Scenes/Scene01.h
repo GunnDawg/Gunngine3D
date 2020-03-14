@@ -9,5 +9,5 @@ struct Scene01 : public GameState
 	void Handle_input() override;
 	void Update_and_render() override;
 
-	Mesh testMesh;
+	G3D::Mesh testMesh;
 };

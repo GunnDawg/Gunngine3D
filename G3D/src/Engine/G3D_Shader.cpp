@@ -14,8 +14,6 @@ bool Shader::Load(const char* shadername)
 	Vss << ShaderFileExtension;
 
 	std::wstring StringStreamToWString = Vss.str();
-
-	//std::wstring wsShaderFile = std::wstring(StringStreamToWString.begin(), StringStreamToWString.end());
 	LPCWSTR WideStringVertexShaderFile = StringStreamToWString.c_str();
 
 	//Create Vertex Shader
@@ -40,8 +38,6 @@ bool Shader::Load(const char* shadername)
 	Pss << ShaderFileExtension;
 
 	StringStreamToWString = Pss.str();
-
-	//std::wstring wsShaderFile = std::wstring(StringStreamToWString.begin(), StringStreamToWString.end());
 	LPCWSTR WideStringPixelShaderFile = StringStreamToWString.c_str();
 
 	//Create Pixel Shader

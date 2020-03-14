@@ -63,36 +63,6 @@ bool Mesh::Load()
 		return false;
 	}
 
-	//Create Vertex Shader
-	Result = D3DReadFileToBlob(L"res/shaders/BasicVertexShader.cso", &VertexBlob);
-	if (FAILED(Result))
-	{
-		//TODO: Error Checking.
-		return false;
-	}
-
-	Result = G3D::Core::Renderer.Device->CreateVertexShader(VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), nullptr, &VertexShader);
-	if (FAILED(Result))
-	{
-		//TODO: Error Checking.
-		return false;
-	}
-
-	//Create Pixel Shader
-	Result = D3DReadFileToBlob(L"res/shaders/BasicPixelShader.cso", &PixelBlob);
-	if (FAILED(Result))
-	{
-		//TODO: Error Checking.
-		return false;
-	}
-
-	Result = G3D::Core::Renderer.Device->CreatePixelShader(PixelBlob->GetBufferPointer(), PixelBlob->GetBufferSize(), nullptr, &PixelShader);
-	if (FAILED(Result))
-	{
-		//TODO: Error Checking.
-		return false;
-	}
-
 	//Create Input Layout
 	ZeroMemory(&InputLayout, sizeof(ID3D11InputLayout));
 	const D3D11_INPUT_ELEMENT_DESC ied[] =
@@ -100,9 +70,9 @@ bool Mesh::Load()
 		{"POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 	};
 
-	G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), &InputLayout);
-
 	shader.Load();
+
+	G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), shader.VertexBlob->GetBufferPointer(), shader.VertexBlob->GetBufferSize(), &InputLayout);
 
 	return true;
 }
@@ -202,9 +172,5 @@ void Mesh::Unload()
 	shader.Unload();
 	SAFE_RELEASE(VertexBuffer);
 	SAFE_RELEASE(IndexBuffer);
-	SAFE_RELEASE(VertexShader);
-	SAFE_RELEASE(PixelShader);
-	SAFE_RELEASE(PixelBlob);
-	SAFE_RELEASE(VertexBlob);
 	SAFE_RELEASE(InputLayout);
 }

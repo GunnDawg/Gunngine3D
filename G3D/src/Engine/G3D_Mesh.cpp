@@ -146,7 +146,11 @@ bool Mesh::Load(const char* shaderName)
 		{"POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 	};
 
-	shader.Load(shaderName);
+	if (!shader.Load(shaderName))
+	{
+		//TODO: Error Checking.
+		return false;
+	}
 
 	G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), shader.VertexBlob->GetBufferPointer(), shader.VertexBlob->GetBufferSize(), &InputLayout);
 

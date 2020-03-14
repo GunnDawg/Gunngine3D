@@ -16,7 +16,7 @@ typedef int16_t i16;
 typedef int32_t i32;
 typedef int64_t i64;
 
-#define internal static
+#define internal_func static
 #define local_persist static
 #define global_variable static
 

@@ -184,4 +184,9 @@ namespace G3D
 		SAFE_RELEASE(IndexBuffer);
 		SAFE_RELEASE(InputLayout);
 	}
+
+	void Mesh::SwapShader(const char* shaderName)
+	{
+		Shader.Load(shaderName);
+	}
 }

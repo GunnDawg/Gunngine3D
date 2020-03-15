@@ -10,6 +10,8 @@ namespace G3D
 		void Draw();
 		void Unload();
 
+		void SwapShader(const char* shaderName);
+
 		ID3D11Buffer* VertexBuffer;
 		ID3D11Buffer* IndexBuffer;
 		ID3D11InputLayout* InputLayout;

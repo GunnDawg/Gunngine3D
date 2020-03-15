@@ -177,16 +177,16 @@ namespace G3D
 		G3D::Core::Renderer.Context->DrawIndexed(IndexCount, 0u, 0u);
 	}
 
+	void Mesh::SwapShader(const char* shaderName)
+	{
+		Shader.Load(shaderName);
+	}
+
 	void Mesh::Unload()
 	{
 		Shader.Unload();
 		SAFE_RELEASE(VertexBuffer);
 		SAFE_RELEASE(IndexBuffer);
 		SAFE_RELEASE(InputLayout);
-	}
-
-	void Mesh::SwapShader(const char* shaderName)
-	{
-		Shader.Load(shaderName);
 	}
 }

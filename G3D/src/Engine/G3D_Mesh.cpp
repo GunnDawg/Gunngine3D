@@ -179,6 +179,7 @@ namespace G3D
 
 	void Mesh::SwapShader(const char* shaderName)
 	{
+		Shader.Unload();
 		Shader.Load(shaderName);
 	}
 

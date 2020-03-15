@@ -40,7 +40,6 @@ void Scene01::Handle_input()
 
 	if (G3D::Core::Keyboard.KeyIsPressed('S'))
 	{
-		testMesh.Shader.Unload();
 		testMesh.SwapShader("Basic");
 	}
 }

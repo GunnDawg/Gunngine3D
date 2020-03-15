@@ -1,13 +1,14 @@
 #include "G3D_Shader.h"
 #include <sstream>
 
+constexpr const char* ShaderFilepath = "res/shaders/";
+constexpr const char* ShaderFileExtension = ".cso";
+
 namespace G3D
 {
 	bool Shader::Load(const char* shadername)
 	{
 		HRESULT Result = 0u;
-		local_persist const char* ShaderFilepath = "res/shaders/";
-		local_persist const char* ShaderFileExtension = ".cso";
 
 		std::wstringstream Vss;
 		Vss << ShaderFilepath;
@@ -63,8 +64,6 @@ namespace G3D
 	bool Shader::Load()
 	{
 		HRESULT Result = 0u;
-		local_persist const char* ShaderFilepath = "res/shaders/";
-		local_persist const char* ShaderFileExtension = ".cso";
 
 		std::wstringstream Vss;
 		Vss << ShaderFilepath;

@@ -35,13 +35,13 @@ namespace G3D
 	{
 		if (WindowHandle)
 		{
-			//@NOTE: Could also error check this, but again, probably just a waste of time when all you want to do,
-			//is get out!
+			//@NOTE: We could check this for errors, but I feel like that's just making things even slower...
 			DestroyWindow(WindowHandle);
 			WindowHandle = 0;
 		}
 
-		//@NOTE: We could check this for errors, but I feel like that's just making things even slower...
+		//@NOTE: Could also error check this, but again, probably just a waste of time when all you want to do,
+		//is get out!
 		UnregisterClass(wc.lpszClassName, wc.hInstance);
 	}
 }

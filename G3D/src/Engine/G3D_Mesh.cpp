@@ -11,8 +11,8 @@ namespace G3D
 		{
 			DirectX::XMFLOAT3(-0.5f, -0.5f, 1.0f),
 			DirectX::XMFLOAT3(-0.5f,  0.5f, 1.0f),
-			DirectX::XMFLOAT3(0.5f,  0.5f, 1.0f),
-			DirectX::XMFLOAT3(0.5f, -0.5f, 1.0f),
+			DirectX::XMFLOAT3( 0.5f,  0.5f, 1.0f),
+			DirectX::XMFLOAT3( 0.5f, -0.5f, 1.0f),
 		};
 
 		const u16 indices[] =
@@ -69,7 +69,8 @@ namespace G3D
 		ZeroMemory(&InputLayout, sizeof(ID3D11InputLayout));
 		const D3D11_INPUT_ELEMENT_DESC ied[] =
 		{
-			{"POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u}
+			{"POSITION", 0u, DXGI_FORMAT_R32G32B32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
+			{"TEXCOORD", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 		};
 
 		if (!Shader.Load())

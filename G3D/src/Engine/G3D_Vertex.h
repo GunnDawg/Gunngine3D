@@ -10,3 +10,9 @@ struct ColoredVertex
 	DirectX::XMFLOAT3 position;
 	DirectX::XMFLOAT4 color;
 };
+
+struct TexturedVertex
+{
+	DirectX::XMFLOAT3 position;
+	DirectX::XMFLOAT2 textureCoord;
+};

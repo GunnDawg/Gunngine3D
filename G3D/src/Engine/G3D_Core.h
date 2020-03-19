@@ -16,6 +16,7 @@ namespace G3D
 		//Debug Functionality
 		inline static void OutputPerformanceData();
 
+		//Core Engine Components
 		inline static G3D::Window Window = {};
 		inline static G3D::Renderer Renderer = {};
 		inline static G3D::Keyboard Keyboard = {};

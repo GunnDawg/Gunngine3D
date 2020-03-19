@@ -26,9 +26,10 @@ void Scene01::On_exit()
 void Scene01::Handle_input()
 {
 	if (G3D::Core::Keyboard.KeyIsPressed(VK_ESCAPE))
-	{
 		Game::IsRunning = false;
-	}
+
+	if (G3D::Core::Keyboard.KeyIsPressed('S'))
+		testMesh.SwapShader("Basic");
 
 	if (G3D::Core::Keyboard.KeyIsPressed(VK_RIGHT))
 	{
@@ -36,11 +37,6 @@ void Scene01::Handle_input()
 
 		std::unique_ptr<Scene02> S2 = std::make_unique<Scene02>();
 		Game::GSM.Push(std::move(S2));
-	}
-
-	if (G3D::Core::Keyboard.KeyIsPressed('S'))
-	{
-		testMesh.SwapShader("Basic");
 	}
 }
 

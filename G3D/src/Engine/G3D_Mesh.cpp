@@ -147,7 +147,6 @@ namespace G3D
 		}
 
 		//Create Input Layout
-		ZeroMemory(&InputLayout, sizeof(ID3D11InputLayout));
 		const D3D11_INPUT_ELEMENT_DESC ied[] =
 		{
 			{"POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u}

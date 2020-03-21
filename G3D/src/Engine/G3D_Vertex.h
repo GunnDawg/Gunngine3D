@@ -2,17 +2,17 @@
 
 struct BasicVertex
 {
-	DirectX::XMFLOAT3 position;
+	DirectX::XMFLOAT3 Position;
 };
 
 struct ColoredVertex
 {
-	DirectX::XMFLOAT3 position;
-	DirectX::XMFLOAT4 color;
+	DirectX::XMFLOAT3 Position;
+	DirectX::XMFLOAT4 Color;
 };
 
 struct TexturedVertex
 {
-	DirectX::XMFLOAT3 position;
-	DirectX::XMFLOAT2 textureCoord;
+	DirectX::XMFLOAT3 Position;
+	DirectX::XMFLOAT2 TextureCoord;
 };

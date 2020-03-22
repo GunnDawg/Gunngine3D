@@ -26,6 +26,8 @@ namespace G3D
 	}
 
 	//Debug Stuff
+	//@TEMPORARY: At some point we'll be displaying this information in the window itself,
+	//rather than printing it to the VS output window.
 	void Core::OutputPerformanceData()
 	{
 	#if 1

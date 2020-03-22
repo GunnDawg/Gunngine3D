@@ -23,12 +23,12 @@ namespace G3D
 		float DeltaTime = 0.0f;
 	};
 #elif __APPLE__
-	struct DeltaClock
+	struct PerformanceClock
 	{
 		//@NOTE: Apple specific clock data here
 	};
 #elif __linux__
-	struct DeltaClock
+	struct PerformanceClock
 	{
 		//@NOTE: Linux specific clock data here
 	};

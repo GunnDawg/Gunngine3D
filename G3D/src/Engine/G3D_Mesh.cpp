@@ -81,6 +81,8 @@ namespace G3D
 
 		G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), Shader.VertexBlob->GetBufferPointer(), Shader.VertexBlob->GetBufferSize(), &InputLayout);
 
+		IsUsingDefault = true;
+
 		return true;
 	}
 

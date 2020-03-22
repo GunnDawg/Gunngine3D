@@ -113,6 +113,8 @@ namespace G3D
 			return false;
 		}
 
+		IsUsingDefault = true;
+
 		return true;
 	}
 

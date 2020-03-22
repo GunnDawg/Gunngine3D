@@ -19,5 +19,7 @@ namespace G3D
 		UINT IndexCount;
 
 		G3D::Shader Shader;
+
+		bool IsUsingDefault = false;
 	};
 }

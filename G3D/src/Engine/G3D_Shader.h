@@ -15,5 +15,7 @@ namespace G3D
 		ID3D11PixelShader* PixelShader;
 		ID3DBlob* VertexBlob;
 		ID3DBlob* PixelBlob;
+
+		bool IsUsingDefault = false;
 	};
 }

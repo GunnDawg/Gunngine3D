@@ -21,6 +21,6 @@ namespace G3D
 		inline static G3D::Renderer Renderer = {};
 		inline static G3D::Keyboard Keyboard = {};
 		inline static G3D::Mouse Mouse = {};
-		inline static G3D::DeltaClock DeltaClock = {};
+		inline static G3D::PerformanceClock PerformanceClock = {};
 	};
 }

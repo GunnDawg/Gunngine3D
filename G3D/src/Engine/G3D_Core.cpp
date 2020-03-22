@@ -4,7 +4,7 @@ namespace G3D
 {
 	bool Core::Initialize()
 	{
-		if (!DeltaClock.Initialize())
+		if (!PerformanceClock.Initialize())
 			return G3D_ERROR;
 
 		if (!Window.Initialize())
@@ -28,9 +28,9 @@ namespace G3D
 	//Debug Stuff
 	void Core::OutputPerformanceData()
 	{
-	#if 0
+	#if 1
 		char Buffer[256];
-		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", DeltaClock.MSPerFrame, DeltaClock.FPS, DeltaClock.MCPF);
+		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", PerformanceClock.DeltaTime, PerformanceClock.FPS, PerformanceClock.MCPF);
 		OutputDebugStringA(Buffer);
 	#endif
 	}

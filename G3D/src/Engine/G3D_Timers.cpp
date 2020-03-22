@@ -2,7 +2,7 @@
 
 namespace G3D
 {
-	bool DeltaClock::Initialize()
+	bool PerformanceClock::Initialize()
 	{
 		if (!QueryPerformanceFrequency(&PerfCountFrequencyResult))
 			return G3D_ERROR;
@@ -17,7 +17,7 @@ namespace G3D
 		return G3D_OK;
 	}
 
-	void DeltaClock::Tick()
+	void PerformanceClock::Tick()
 	{
 		EndCycleCount = __rdtsc();
 		QueryPerformanceCounter(&EndCounter);
@@ -27,9 +27,10 @@ namespace G3D
 		MSPerFrame = ((1000.0f * TimeElapsed) / static_cast<float>(PerfCountFrequency));
 		FPS = static_cast<float>(PerfCountFrequency) / static_cast<float>(TimeElapsed);
 		MCPF = static_cast<float>(CyclesElapsed) / (1000.0f * 1000.0f);
+		DeltaTime = MSPerFrame;
 	}
 
-	void DeltaClock::Reset()
+	void PerformanceClock::Reset()
 	{
 		LastCounter = EndCounter;
 		LastCycleCount = EndCycleCount;

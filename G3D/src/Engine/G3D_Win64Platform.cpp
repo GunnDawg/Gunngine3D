@@ -136,7 +136,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		return -1;
 
 	//@NOTE: Initialize Game
-	if (!Game::Initialize())
+	if (Game::Initialize() != G3D_OK)
 		return -1;
 
 	MSG msg;

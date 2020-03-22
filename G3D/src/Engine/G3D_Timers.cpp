@@ -28,10 +28,7 @@ namespace G3D
 		FPS = static_cast<float>(PerfCountFrequency) / static_cast<float>(TimeElapsed);
 		MCPF = static_cast<float>(CyclesElapsed) / (1000.0f * 1000.0f);
 		DeltaTime = MSPerFrame;
-	}
 
-	void PerformanceClock::Reset()
-	{
 		LastCounter = EndCounter;
 		LastCycleCount = EndCycleCount;
 	}

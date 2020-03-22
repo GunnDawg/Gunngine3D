@@ -8,7 +8,6 @@ namespace G3D
 		//@NOTE: Windows specific clock data here
 		bool Initialize();
 		void Tick();
-		void Reset();
 
 		LARGE_INTEGER PerfCountFrequencyResult;
 		INT64 PerfCountFrequency = 0;

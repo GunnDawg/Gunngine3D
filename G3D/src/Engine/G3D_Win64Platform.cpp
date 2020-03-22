@@ -158,7 +158,6 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 
 		G3D::Core::PerformanceClock.Tick();
 		G3D::Core::OutputPerformanceData();
-		G3D::Core::PerformanceClock.Reset();
 	}
 
 	//@NOTE: Shut everything down

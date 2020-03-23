@@ -9,10 +9,10 @@ namespace G3D
 
 		const BasicVertex vertices[] =
 		{
-			DirectX::XMFLOAT3(-0.5f, -0.5f, 1.0f),
-			DirectX::XMFLOAT3(-0.5f,  0.5f, 1.0f),
-			DirectX::XMFLOAT3( 0.5f,  0.5f, 1.0f),
-			DirectX::XMFLOAT3( 0.5f, -0.5f, 1.0f),
+			BasicVertex(-0.5f, -0.5f, 1.0f),
+			BasicVertex(-0.5f,  0.5f, 1.0f),
+			BasicVertex(0.5f,  0.5f, 1.0f),
+			BasicVertex(0.5f, -0.5f, 1.0f)
 		};
 
 		const u16 indices[] =
@@ -92,10 +92,10 @@ namespace G3D
 
 		const BasicVertex vertices[] =
 		{
-			DirectX::XMFLOAT3(-0.5f, -0.5f, 1.0f),
-			DirectX::XMFLOAT3(-0.5f,  0.5f, 1.0f),
-			DirectX::XMFLOAT3(0.5f,  0.5f, 1.0f),
-			DirectX::XMFLOAT3(0.5f, -0.5f, 1.0f),
+			BasicVertex(-0.5f, -0.5f, 1.0f),
+			BasicVertex(-0.5f,  0.5f, 1.0f),
+			BasicVertex(0.5f,  0.5f, 1.0f),
+			BasicVertex(0.5f, -0.5f, 1.0f)
 		};
 
 		const u16 indices[] =

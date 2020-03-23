@@ -41,7 +41,7 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		//Create Index Buffer
@@ -62,7 +62,7 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		//Create Input Layout
@@ -76,14 +76,14 @@ namespace G3D
 		if (!Shader.Load())
 		{
 			Shader.Unload();
-			return false;
+			return G3D_ERROR;
 		}
 
 		G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), Shader.VertexBlob->GetBufferPointer(), Shader.VertexBlob->GetBufferSize(), &InputLayout);
 
 		IsUsingDefault = true;
 
-		return true;
+		return G3D_OK;
 	}
 
 	bool Mesh::Load(const char* shaderName)
@@ -124,7 +124,7 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		//Create Index Buffer
@@ -145,7 +145,7 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		//Create Input Layout
@@ -157,12 +157,12 @@ namespace G3D
 		if (!Shader.Load(shaderName))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), Shader.VertexBlob->GetBufferPointer(), Shader.VertexBlob->GetBufferSize(), &InputLayout);
 
-		return true;
+		return G3D_OK;
 	}
 
 	void Mesh::Draw()

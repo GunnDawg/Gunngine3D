@@ -24,14 +24,14 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		Result = G3D::Core::Renderer.Device->CreateVertexShader(VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), nullptr, &VertexShader);
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		std::wstringstream Pss;
@@ -48,17 +48,17 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		Result = G3D::Core::Renderer.Device->CreatePixelShader(PixelBlob->GetBufferPointer(), PixelBlob->GetBufferSize(), nullptr, &PixelShader);
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
-		return true;
+		return G3D_OK;
 	}
 
 	bool Shader::Load()
@@ -79,14 +79,14 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		Result = G3D::Core::Renderer.Device->CreateVertexShader(VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), nullptr, &VertexShader);
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		std::wstringstream Pss;
@@ -103,19 +103,19 @@ namespace G3D
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		Result = G3D::Core::Renderer.Device->CreatePixelShader(PixelBlob->GetBufferPointer(), PixelBlob->GetBufferSize(), nullptr, &PixelShader);
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
-			return false;
+			return G3D_ERROR;
 		}
 
 		IsUsingDefault = true;
 
-		return true;
+		return G3D_OK;
 	}
 
 	void Shader::Bind()

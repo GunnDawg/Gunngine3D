@@ -26,10 +26,10 @@ struct ColoredVertex
 struct TexturedVertex
 {
 	DirectX::XMFLOAT3 Position;
-	DirectX::XMFLOAT2 TextureCoord;
+	DirectX::XMFLOAT2 TextureCoords;
 
 	TexturedVertex(float x, float y, float z, float u, float v) :
-		Position(x, y, z), TextureCoord(u, v)
+		Position(x, y, z), TextureCoords(u, v)
 	{
 
 	}

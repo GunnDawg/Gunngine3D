@@ -10,8 +10,9 @@ namespace G3D
 	{
 		bool Load();
 		void Draw();
+		void Unload();
 
-		std::unique_ptr<DirectX::SpriteBatch> spriteBatch;
-		std::unique_ptr<DirectX::SpriteFont> spriteFont;
+		DirectX::SpriteBatch* spriteBatch;
+		DirectX::SpriteFont* spriteFont;
 	};
 }

@@ -24,6 +24,7 @@ void Scene01::On_exit()
 {
 	OutputDebugString("S1 On_Exit\n\n");
 	testMesh.Unload();
+	DebugFont.Unload();
 }
 
 void Scene01::Handle_input()

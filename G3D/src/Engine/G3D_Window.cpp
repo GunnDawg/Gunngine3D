@@ -13,6 +13,13 @@ namespace G3D
 		Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
 		Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 
+		RECT wr;
+		wr.left = 0u;
+		wr.top = 0u;
+		wr.right = wr.left + Settings::Display::Width;
+		wr.bottom = wr.top + Settings::Display::Height;
+		AdjustWindowRect(&wr, WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX, false);
+
 		wc.cbSize = sizeof(WNDCLASSEX);
 		wc.hCursor = LoadCursor(0, IDC_ARROW);
 		wc.hInstance = GetModuleHandle(0);
@@ -24,7 +31,7 @@ namespace G3D
 		if (!RegisterClassEx(&wc))
 			return G3D_ERROR;
 
-		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, Settings::Display::Width, Settings::Display::Height, 0, 0, GetModuleHandle(0), 0);
+		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, wr.left, wr.top, wr.right - wr.left, wr.bottom - wr.top, 0, 0, GetModuleHandle(0), 0);
 		if (!WindowHandle)
 			return G3D_ERROR;
 

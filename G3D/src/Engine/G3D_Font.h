@@ -8,7 +8,7 @@ namespace G3D
 {
 	struct Font
 	{
-		bool Initialize();
+		bool Load();
 		void Draw();
 
 		std::unique_ptr<DirectX::SpriteBatch> spriteBatch;

@@ -9,7 +9,7 @@ bool Scene01::On_load()
 	if (!testMesh.Load("Basic"))
 		return false;
 
-	if (!DebugFont.Initialize())
+	if (!DebugFont.Load())
 		return false;
 
 	return true;

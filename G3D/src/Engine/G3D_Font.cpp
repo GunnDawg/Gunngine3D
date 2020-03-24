@@ -13,7 +13,7 @@ namespace G3D
 	void Font::Draw()
 	{
 		char Buffer[256];
-		sprintf(Buffer, "Frame Time: %.04f\nFPS: %.04f\nMilicycles Per Frame: %.04f\nVSync: %i\nMSAA: %i\n", G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, Settings::Display::VSync, Settings::Graphics::MSAA);
+		sprintf(Buffer, "Frame Time: %.04f\nFPS: %.04f\nMillicycles Per Frame: %.04f\nVSync: %i\nMSAA: %i\n", G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, Settings::Display::VSync, Settings::Graphics::MSAA);
 
 		spriteBatch->Begin();
 			spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

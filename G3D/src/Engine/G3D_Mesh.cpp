@@ -40,7 +40,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&bd, &srd, &VertexBuffer);
 		if (FAILED(Result))
 		{
-			//TODO: Error Checking.
+			//TODO: Error Handling.
 			return G3D_ERROR;
 		}
 
@@ -61,7 +61,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&ibd, &isrd, &IndexBuffer);
 		if (FAILED(Result))
 		{
-			//TODO: Error Checking.
+			//TODO: Error Handling.
 			return G3D_ERROR;
 		}
 
@@ -90,12 +90,12 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
-		const ColoredVertex vertices[] =
+		const TexturedVertex vertices[] =
 		{
-			ColoredVertex(-0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-			ColoredVertex(-0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-			ColoredVertex( 0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-			ColoredVertex( 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f)
+			TexturedVertex(-0.5f, -0.5f, 1.0f, 0.0f, 1.0f),
+			TexturedVertex(-0.5f,  0.5f, 1.0f, 0.0f, 0.0f),
+			TexturedVertex( 0.5f,  0.5f, 1.0f, 1.0f, 0.0f),
+			TexturedVertex( 0.5f, -0.5f, 1.0f, 1.0f, 1.0f)
 		};
 
 		const u16 indices[] =
@@ -114,7 +114,7 @@ namespace G3D
 		bd.CPUAccessFlags = 0u;
 		bd.MiscFlags = 0u;
 		bd.ByteWidth = sizeof(vertices);
-		bd.StructureByteStride = sizeof(ColoredVertex);
+		bd.StructureByteStride = sizeof(TexturedVertex);
 
 		D3D11_SUBRESOURCE_DATA srd;
 		ZeroMemory(&srd, sizeof(D3D11_SUBRESOURCE_DATA));
@@ -123,7 +123,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&bd, &srd, &VertexBuffer);
 		if (FAILED(Result))
 		{
-			//TODO: Error Checking.
+			//TODO: Error Handling.
 			return G3D_ERROR;
 		}
 
@@ -135,7 +135,7 @@ namespace G3D
 		ibd.CPUAccessFlags = 0u;
 		ibd.MiscFlags = 0u;
 		ibd.ByteWidth = sizeof(indices);
-		ibd.StructureByteStride = sizeof(ColoredVertex);
+		ibd.StructureByteStride = sizeof(TexturedVertex);
 
 		D3D11_SUBRESOURCE_DATA isrd;
 		ZeroMemory(&isrd, sizeof(D3D11_SUBRESOURCE_DATA));
@@ -144,7 +144,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&ibd, &isrd, &IndexBuffer);
 		if (FAILED(Result))
 		{
-			//TODO: Error Checking.
+			//TODO: Error Handling.
 			return G3D_ERROR;
 		}
 
@@ -152,12 +152,18 @@ namespace G3D
 		const D3D11_INPUT_ELEMENT_DESC ied[] =
 		{
 			{"POSITION", 0u, DXGI_FORMAT_R32G32B32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
-			{"COLOR", 0u, DXGI_FORMAT_R32G32B32A32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
+			{"TEXCOORD", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 		};
 
 		if (!Shader.Load(shaderName))
 		{
-			//TODO: Error Checking.
+			//TODO: Error Handling.
+			return G3D_ERROR;
+		}
+
+		if (!Texture.Load())
+		{
+			//TODO: Error Handling.
 			return G3D_ERROR;
 		}
 
@@ -168,9 +174,10 @@ namespace G3D
 
 	void Mesh::Draw()
 	{
-		local_persist const UINT stride = sizeof(ColoredVertex);
+		local_persist const UINT stride = sizeof(TexturedVertex);
 		local_persist const UINT offset = 0u;
 
+		Texture.Bind();
 		Shader.Bind();
 		G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &VertexBuffer, &stride, &offset);
 		G3D::Core::Renderer.Context->IASetIndexBuffer(IndexBuffer, DXGI_FORMAT_R16_UINT, 0u);
@@ -189,6 +196,7 @@ namespace G3D
 	void Mesh::Unload()
 	{
 		Shader.Unload();
+		Texture.Unload();
 		SAFE_RELEASE(VertexBuffer);
 		SAFE_RELEASE(IndexBuffer);
 		SAFE_RELEASE(InputLayout);

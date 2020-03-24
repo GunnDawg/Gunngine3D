@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/G3D_Shader.h"
+#include "Engine/G3D_Texture.h"
 
 namespace G3D
 {
@@ -19,6 +20,7 @@ namespace G3D
 		UINT IndexCount;
 
 		G3D::Shader Shader;
+		G3D::Texture Texture;
 
 		bool IsUsingDefault = false;
 	};

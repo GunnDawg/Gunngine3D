@@ -57,8 +57,10 @@ namespace G3D
 			if (FAILED(Result))
 				return G3D_ERROR;
 
-			if(Settings::Graphics::MSAA)
-				ASSERT(&Settings::Graphics::MSAAQuality > 0u);
+			if (Settings::Graphics::MSAA)
+			{
+				ASSERT(Settings::Graphics::MSAAQuality > 0u);
+			}
 		}
 
 		IDXGIDevice* dxgiDevice = 0u;

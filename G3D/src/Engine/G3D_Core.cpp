@@ -30,7 +30,7 @@ namespace G3D
 	//rather than printing it to the VS output window.
 	void Core::OutputPerformanceData()
 	{
-	#if 1
+	#if 0
 		char Buffer[256];
 		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", PerformanceClock.DeltaTime, PerformanceClock.FPS, PerformanceClock.MCPF);
 		OutputDebugStringA(Buffer);

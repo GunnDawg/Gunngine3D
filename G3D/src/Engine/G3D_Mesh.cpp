@@ -7,12 +7,12 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
-		const BasicVertex vertices[] =
+		const ColoredVertex vertices[] =
 		{
-			BasicVertex(-0.5f, -0.5f, 1.0f),
-			BasicVertex(-0.5f,  0.5f, 1.0f),
-			BasicVertex(0.5f,  0.5f, 1.0f),
-			BasicVertex(0.5f, -0.5f, 1.0f)
+			ColoredVertex(-0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+			ColoredVertex(-0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+			ColoredVertex( 0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+			ColoredVertex( 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f)
 		};
 
 		const u16 indices[] =
@@ -70,7 +70,7 @@ namespace G3D
 		const D3D11_INPUT_ELEMENT_DESC ied[] =
 		{
 			{"POSITION", 0u, DXGI_FORMAT_R32G32B32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
-			{"TEXCOORD", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
+			{"COLOR", 0u, DXGI_FORMAT_R32G32B32A32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 		};
 
 		if (!Shader.Load())
@@ -90,12 +90,12 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
-		const BasicVertex vertices[] =
+		const ColoredVertex vertices[] =
 		{
-			BasicVertex(-0.5f, -0.5f, 1.0f),
-			BasicVertex(-0.5f,  0.5f, 1.0f),
-			BasicVertex(0.5f,  0.5f, 1.0f),
-			BasicVertex(0.5f, -0.5f, 1.0f)
+			ColoredVertex(-0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+			ColoredVertex(-0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+			ColoredVertex( 0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+			ColoredVertex( 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f)
 		};
 
 		const u16 indices[] =
@@ -151,7 +151,8 @@ namespace G3D
 		//Create Input Layout
 		const D3D11_INPUT_ELEMENT_DESC ied[] =
 		{
-			{"POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u}
+			{"POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
+			{"COLOR", 0u, DXGI_FORMAT_R32G32B32A32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 		};
 
 		if (!Shader.Load(shaderName))

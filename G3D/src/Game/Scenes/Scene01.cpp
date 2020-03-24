@@ -6,7 +6,7 @@ bool Scene01::On_load()
 	OutputDebugString("S1 On_Load\n");
 
 	//@INCOMPLETE: If this fails then we leak a ton of VRAM
-	if (!testMesh.Load("Default"))
+	if (!testMesh.Load("Basic"))
 		return false;
 
 	return true;

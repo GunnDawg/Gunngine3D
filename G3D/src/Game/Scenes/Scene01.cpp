@@ -9,6 +9,9 @@ bool Scene01::On_load()
 	if (!testMesh.Load("Basic"))
 		return false;
 
+	if (!DebugFont.Initialize())
+		return false;
+
 	return true;
 }
 
@@ -46,4 +49,5 @@ void Scene01::Update_and_render()
 
 	//Render
 	testMesh.Draw();
+	DebugFont.Draw();
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Game/GameState.h"
+#include "Engine/G3D_Font.h"
 
 struct Scene01 : public GameState
 {
@@ -10,4 +11,5 @@ struct Scene01 : public GameState
 	void Update_and_render() override;
 
 	G3D::Mesh testMesh;
+	G3D::Font DebugFont;
 };

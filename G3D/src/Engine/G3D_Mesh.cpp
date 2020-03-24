@@ -31,7 +31,7 @@ namespace G3D
 		bd.CPUAccessFlags = 0u;
 		bd.MiscFlags = 0u;
 		bd.ByteWidth = sizeof(vertices);
-		bd.StructureByteStride = sizeof(BasicVertex);
+		bd.StructureByteStride = sizeof(ColoredVertex);
 
 		D3D11_SUBRESOURCE_DATA srd;
 		ZeroMemory(&srd, sizeof(D3D11_SUBRESOURCE_DATA));
@@ -52,7 +52,7 @@ namespace G3D
 		ibd.CPUAccessFlags = 0u;
 		ibd.MiscFlags = 0u;
 		ibd.ByteWidth = sizeof(indices);
-		ibd.StructureByteStride = sizeof(BasicVertex);
+		ibd.StructureByteStride = sizeof(ColoredVertex);
 
 		D3D11_SUBRESOURCE_DATA isrd;
 		ZeroMemory(&isrd, sizeof(D3D11_SUBRESOURCE_DATA));
@@ -92,10 +92,10 @@ namespace G3D
 
 		const ColoredVertex vertices[] =
 		{
-			ColoredVertex(-0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-			ColoredVertex(-0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-			ColoredVertex( 0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-			ColoredVertex( 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f)
+			ColoredVertex(-0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+			ColoredVertex(-0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+			ColoredVertex( 0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+			ColoredVertex( 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f)
 		};
 
 		const u16 indices[] =
@@ -114,7 +114,7 @@ namespace G3D
 		bd.CPUAccessFlags = 0u;
 		bd.MiscFlags = 0u;
 		bd.ByteWidth = sizeof(vertices);
-		bd.StructureByteStride = sizeof(BasicVertex);
+		bd.StructureByteStride = sizeof(ColoredVertex);
 
 		D3D11_SUBRESOURCE_DATA srd;
 		ZeroMemory(&srd, sizeof(D3D11_SUBRESOURCE_DATA));
@@ -135,7 +135,7 @@ namespace G3D
 		ibd.CPUAccessFlags = 0u;
 		ibd.MiscFlags = 0u;
 		ibd.ByteWidth = sizeof(indices);
-		ibd.StructureByteStride = sizeof(BasicVertex);
+		ibd.StructureByteStride = sizeof(ColoredVertex);
 
 		D3D11_SUBRESOURCE_DATA isrd;
 		ZeroMemory(&isrd, sizeof(D3D11_SUBRESOURCE_DATA));
@@ -151,7 +151,7 @@ namespace G3D
 		//Create Input Layout
 		const D3D11_INPUT_ELEMENT_DESC ied[] =
 		{
-			{"POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
+			{"POSITION", 0u, DXGI_FORMAT_R32G32B32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
 			{"COLOR", 0u, DXGI_FORMAT_R32G32B32A32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 		};
 
@@ -168,7 +168,7 @@ namespace G3D
 
 	void Mesh::Draw()
 	{
-		local_persist const UINT stride = sizeof(BasicVertex);
+		local_persist const UINT stride = sizeof(ColoredVertex);
 		local_persist const UINT offset = 0u;
 
 		Shader.Bind();

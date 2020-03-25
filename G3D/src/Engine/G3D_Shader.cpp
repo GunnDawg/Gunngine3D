@@ -6,6 +6,11 @@ constexpr const char* ShaderFileExtension = ".cso";
 
 namespace G3D
 {
+	bool Shader::Load()
+	{
+		return Load("Default");
+	}
+
 	bool Shader::Load(const char* shadername)
 	{
 		HRESULT Result = 0u;
@@ -57,63 +62,6 @@ namespace G3D
 			//TODO: Error Checking.
 			return G3D_ERROR;
 		}
-
-		return G3D_OK;
-	}
-
-	bool Shader::Load()
-	{
-		HRESULT Result = 0u;
-
-		std::wstringstream Vss;
-		Vss << ShaderFilepath;
-		Vss << "Default";
-		Vss << "VertexShader";
-		Vss << ShaderFileExtension;
-
-		std::wstring StringStreamToWString = Vss.str();
-		LPCWSTR FinalVertexShaderFilepath = StringStreamToWString.c_str();
-
-		//Create Vertex Shader
-		Result = D3DReadFileToBlob(FinalVertexShaderFilepath, &VertexBlob);
-		if (FAILED(Result))
-		{
-			//TODO: Error Checking.
-			return G3D_ERROR;
-		}
-
-		Result = G3D::Core::Renderer.Device->CreateVertexShader(VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), nullptr, &VertexShader);
-		if (FAILED(Result))
-		{
-			//TODO: Error Checking.
-			return G3D_ERROR;
-		}
-
-		std::wstringstream Pss;
-		Pss << ShaderFilepath;
-		Pss << "Default";
-		Pss << "PixelShader";
-		Pss << ShaderFileExtension;
-
-		StringStreamToWString = Pss.str();
-		LPCWSTR FinalPixelShaderFilepath = StringStreamToWString.c_str();
-
-		//Create Pixel Shader
-		Result = D3DReadFileToBlob(FinalPixelShaderFilepath, &PixelBlob);
-		if (FAILED(Result))
-		{
-			//TODO: Error Checking.
-			return G3D_ERROR;
-		}
-
-		Result = G3D::Core::Renderer.Device->CreatePixelShader(PixelBlob->GetBufferPointer(), PixelBlob->GetBufferSize(), nullptr, &PixelShader);
-		if (FAILED(Result))
-		{
-			//TODO: Error Checking.
-			return G3D_ERROR;
-		}
-
-		IsUsingDefault = true;
 
 		return G3D_OK;
 	}

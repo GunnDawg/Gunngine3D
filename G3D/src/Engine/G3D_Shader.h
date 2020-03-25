@@ -6,8 +6,8 @@ namespace G3D
 {
 	struct Shader
 	{
-		bool Load(const char* shaderName);
 		bool Load();
+		bool Load(const char* shaderName);
 		void Bind();
 		void Unload();
 

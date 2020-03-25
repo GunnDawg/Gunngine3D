@@ -9,7 +9,7 @@ bool Scene01::On_load()
 	if (!testMesh.Load("WoodBox"))
 		return false;
 
-	if (!DebugFont.Load())
+	if (!DebugFont.Load("DebugFont"))
 		return false;
 
 	return true;

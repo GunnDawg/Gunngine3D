@@ -17,10 +17,10 @@ namespace G3D
 		Vss << ShaderFileExtension;
 
 		std::wstring StringStreamToWString = Vss.str();
-		LPCWSTR WideStringVertexShaderFile = StringStreamToWString.c_str();
+		LPCWSTR FinalVertexShaderFilepath = StringStreamToWString.c_str();
 
 		//Create Vertex Shader
-		Result = D3DReadFileToBlob(WideStringVertexShaderFile, &VertexBlob);
+		Result = D3DReadFileToBlob(FinalVertexShaderFilepath, &VertexBlob);
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.
@@ -41,10 +41,10 @@ namespace G3D
 		Pss << ShaderFileExtension;
 
 		StringStreamToWString = Pss.str();
-		LPCWSTR WideStringPixelShaderFile = StringStreamToWString.c_str();
+		LPCWSTR FinalPixelShaderFilepath = StringStreamToWString.c_str();
 
 		//Create Pixel Shader
-		Result = D3DReadFileToBlob(WideStringPixelShaderFile, &PixelBlob);
+		Result = D3DReadFileToBlob(FinalPixelShaderFilepath, &PixelBlob);
 		if (FAILED(Result))
 		{
 			//TODO: Error Checking.

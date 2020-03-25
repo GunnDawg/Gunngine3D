@@ -13,10 +13,10 @@ namespace G3D
 		ss << FontFileExtension;
 
 		std::wstring StringStreamToWString = ss.str();
-		LPCWSTR FinalFontFilePath = StringStreamToWString.c_str();
+		LPCWSTR FinalFontFilepath = StringStreamToWString.c_str();
 
 		spriteBatch = std::make_shared<DirectX::SpriteBatch>(G3D::Core::Renderer.Context);
-		spriteFont =  std::make_shared<DirectX::SpriteFont>(G3D::Core::Renderer.Device, FinalFontFilePath);
+		spriteFont =  std::make_shared<DirectX::SpriteFont>(G3D::Core::Renderer.Device, FinalFontFilepath);
 
 		return G3D_OK;
 	}

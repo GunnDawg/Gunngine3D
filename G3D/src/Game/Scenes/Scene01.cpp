@@ -6,7 +6,7 @@ bool Scene01::On_load()
 	OutputDebugString("S1 On_Load\n");
 
 	//@INCOMPLETE: If this fails then we leak a ton of VRAM
-	if (!testMesh.Load("WoodBox"))
+	if (!testMesh.Load("WoodBox", "WoodBox"))
 		return false;
 
 	if (!DebugFont.Load("DebugFont"))

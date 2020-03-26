@@ -1,10 +1,26 @@
 #include "G3D_Texture.h"
 
+constexpr const char* TextureFilePath = "res/textures/";
+constexpr const char* TextureFileExtension = ".png";
+
 namespace G3D
 {
 	bool Texture::Load()
 	{
+		return Load("Default");
+	}
+
+	bool Texture::Load(const char* TextureFilepath)
+	{
 		HRESULT Result = 0u;
+
+		std::wstringstream ss;
+		ss << TextureFilePath;
+		ss << TextureFilepath;
+		ss << TextureFileExtension;
+
+		std::wstring StringStreamToWString = ss.str();
+		LPCWSTR FinalTextureFilepath = StringStreamToWString.c_str();
 
 		D3D11_SAMPLER_DESC sd;
 		ZeroMemory(&sd, sizeof(D3D11_SAMPLER_DESC));
@@ -23,7 +39,7 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
-		Result = DirectX::CreateWICTextureFromFile(G3D::Core::Renderer.Device, L"res/textures/WoodBox.png", nullptr, &ShaderResourceView);
+		Result = DirectX::CreateWICTextureFromFile(G3D::Core::Renderer.Device, FinalTextureFilepath, nullptr, &ShaderResourceView);
 		if (FAILED(Result))
 		{
 			//TODO: Error Handling.

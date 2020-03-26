@@ -5,10 +5,10 @@ namespace G3D
 {
 	bool Mesh::Load()
 	{
-		return Load("Default");
+		return Load("Default", "Default");
 	}
 
-	bool Mesh::Load(const char* shaderName)
+	bool Mesh::Load(const char* TextureName, const char* ShaderName)
 	{
 		HRESULT Result = 0u;
 
@@ -77,13 +77,13 @@ namespace G3D
 			{"TEXCOORD", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 		};
 
-		if (!Shader.Load(shaderName))
+		if (!Shader.Load(ShaderName))
 		{
 			//TODO: Error Handling.
 			return G3D_ERROR;
 		}
 
-		if (!Texture.Load())
+		if (!Texture.Load(TextureName))
 		{
 			//TODO: Error Handling.
 			return G3D_ERROR;

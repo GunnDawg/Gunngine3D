@@ -1,4 +1,14 @@
-float4 main() : SV_TARGET
+struct PS_INPUT
 {
-    return float4(1.0f, 0.0f, 1.0f, 1.0f);
+    float4 inPosition : SV_POSITION;
+    float2 inTexCoord : TEXCOORD;
+};
+
+Texture2D objTexture : TEXTURE : register(t0);
+SamplerState objSampleState : SAMPLER : register(s0);
+
+float4 main(PS_INPUT input) : SV_TARGET
+{
+    float4 pixelColor = objTexture.Sample(objSampleState, input.inTexCoord);
+    return float4(pixelColor);
 }

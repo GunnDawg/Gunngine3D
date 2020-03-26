@@ -9,6 +9,7 @@ namespace G3D
 	struct Font
 	{
 		bool Load(const char* fontName);
+		bool Load();
 		void Draw();
 		void Unload();
 

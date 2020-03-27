@@ -9,7 +9,9 @@ bool Scene01::On_load()
 	if (!testMesh.Load("WoodBox", "WoodBox"))
 		return false;
 
-	if (!DebugFont.Load())
+	//@INCOMPLETE: We haven't actually implemented this load function fully. We still need to format the
+	//text passed to it on the Font side, which we're not doing.
+	if (!DebugFont.Load("Some Text"))
 		return false;
 
 	return true;

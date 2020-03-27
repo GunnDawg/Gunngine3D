@@ -5,13 +5,15 @@ constexpr const char* FontFileExtension = ".spritefont";
 
 namespace G3D
 {
-	bool Font::Load()
+	bool Font::Load(const char* textString)
 	{
-		return Load("Default");
+		return Load("Default", textString);
 	}
 
-	bool Font::Load(const char* fontName)
+	bool Font::Load(const char* fontName, const char* textString)
 	{
+		TextString = textString;
+
 		std::wstringstream ss;
 		ss << FontFilePath;
 		ss << fontName;

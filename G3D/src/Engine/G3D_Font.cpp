@@ -28,8 +28,31 @@ namespace G3D
 
 	void Font::Draw()
 	{
+		//@MOVE: All of this needs to be moved out into some debug structure so that this class
+		//is not specific to printing ONLY debug information. 
 		local_persist char Buffer[256];
-		sprintf(Buffer, "Frame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\nVSync: %i\nMSAA: %i\n", G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, Settings::Display::VSync, Settings::Graphics::MSAA);
+		local_persist const char* VSync;
+		local_persist const char* MSAA;
+		
+		if (Settings::Display::VSync)
+		{
+			 VSync = "On";
+		}
+		else
+		{
+			VSync = "Off";
+		}
+
+		if (Settings::Graphics::MSAA)
+		{
+			MSAA = "On";
+		}
+		else
+		{
+			MSAA = "Off";
+		}
+
+		sprintf(Buffer, "Frame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\nVSync: %s\nMSAA: %s\n", G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, VSync, MSAA);
 
 		spriteBatch->Begin();
 			spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

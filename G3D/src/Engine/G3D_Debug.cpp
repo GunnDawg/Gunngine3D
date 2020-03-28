@@ -8,6 +8,11 @@ namespace G3D
 		return G3D_OK;
 	}
 
+	void DebugData::Update()
+	{
+
+	}
+
 	void DebugData::Draw()
 	{
 		

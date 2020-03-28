@@ -7,6 +7,7 @@ namespace G3D
 	class DebugData
 	{
 		bool Load();
+		void Update();
 		void Draw();
 		void Unload();
 

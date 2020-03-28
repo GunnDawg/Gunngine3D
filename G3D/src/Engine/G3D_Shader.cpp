@@ -6,6 +6,7 @@ constexpr const char* ShaderFilepath = "res/shaders/Debug/";
 #else
 constexpr const char* ShaderFilepath = "res/shaders/Release/";
 #endif
+
 constexpr const char* ShaderFileExtension = ".cso";
 
 namespace G3D

@@ -1,5 +1,6 @@
 #include "Engine/G3D_Mesh.h"
 #include "Engine/G3D_Vertex.h"
+#include "Engine/G3D_ConstantBuffer.h"
 
 namespace G3D
 {
@@ -96,11 +97,40 @@ namespace G3D
 
 	void Mesh::Draw()
 	{
+		HRESULT Result = 0u;
+
+		float angle = 90.0f;
 		local_persist const UINT stride = sizeof(TexturedVertex);
 		local_persist const UINT offset = 0u;
+		local_persist ConstantBuffer cb =
+		{
+			{
+				std::cos(angle), std::sin(angle), 0.0f, 0.0f,
+				-std::sin(angle), std::cos(angle), 0.0f, 0.0f,
+				0.0f, 0.0f, 1.0f, 0.0f,
+				0.0f, 0.0f, 0.0f, 1.0f
+			}
+		};
+
+		D3D11_BUFFER_DESC cbd;
+		ZeroMemory(&cbd, sizeof(D3D11_BUFFER_DESC));
+		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		cbd.Usage = D3D11_USAGE_DYNAMIC;
+		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		cbd.MiscFlags = 0u;
+		cbd.ByteWidth = sizeof(cb);
+		cbd.StructureByteStride = 0u;
+		D3D11_SUBRESOURCE_DATA csd;
+		csd.pSysMem = &cb;
+		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, &csd, &mConstantBuffer);
+		if (FAILED(Result))
+		{
+			//TODO: Error Handling;
+		}
 
 		Texture.Bind();
 		Shader.Bind();
+		G3D::Core::Renderer.Context->VSSetConstantBuffers(0u, 1u, &mConstantBuffer);
 		G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &VertexBuffer, &stride, &offset);
 		G3D::Core::Renderer.Context->IASetIndexBuffer(IndexBuffer, DXGI_FORMAT_R16_UINT, 0u);
 		G3D::Core::Renderer.Context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -119,6 +149,7 @@ namespace G3D
 	{
 		Shader.Unload();
 		Texture.Unload();
+		SAFE_RELEASE(mConstantBuffer);
 		SAFE_RELEASE(VertexBuffer);
 		SAFE_RELEASE(IndexBuffer);
 		SAFE_RELEASE(InputLayout);

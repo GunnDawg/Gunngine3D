@@ -17,6 +17,7 @@
 #include "Engine/G3D_Mesh.cpp"
 #include "Engine/G3D_Shader.cpp"
 #include "Engine/G3D_Texture.cpp"
+#include "Engine/G3D_ConstantBuffer.cpp"
 #include "Engine/G3D_Font.cpp"
 #include "Engine/G3D_AdapterReader.cpp"
 #include "Engine/G3D_Keyboard.cpp"

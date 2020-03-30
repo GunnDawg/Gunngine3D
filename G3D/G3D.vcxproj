@@ -98,6 +98,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\Engine\G3D_ConstantBuffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Engine\G3D_Core.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -163,6 +167,7 @@
     <ClInclude Include="src\Engine\G3D.h" />
     <ClInclude Include="src\Engine\G3D_AdapterReader.h" />
     <ClInclude Include="src\Engine\G3D_Assert.h" />
+    <ClInclude Include="src\Engine\G3D_ConstantBuffer.h" />
     <ClInclude Include="src\Engine\G3D_Core.h" />
     <ClInclude Include="src\Engine\G3D_Debug.h" />
     <ClInclude Include="src\Engine\G3D_Font.h" />

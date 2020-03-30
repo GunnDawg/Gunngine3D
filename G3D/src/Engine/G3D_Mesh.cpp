@@ -95,21 +95,17 @@ namespace G3D
 		return G3D_OK;
 	}
 
-	void Mesh::Draw()
+	void Mesh::Update()
 	{
 		HRESULT Result = 0u;
 
-		float angle = 90.0f;
-		local_persist const UINT stride = sizeof(TexturedVertex);
-		local_persist const UINT offset = 0u;
-		local_persist ConstantBuffer cb =
+		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
+
+		const CameraConstantBuffer cb =
 		{
-			{
-				std::cos(angle), std::sin(angle), 0.0f, 0.0f,
-				-std::sin(angle), std::cos(angle), 0.0f, 0.0f,
-				0.0f, 0.0f, 1.0f, 0.0f,
-				0.0f, 0.0f, 0.0f, 1.0f
-			}
+			world,
+			Game::GameCamera.GetViewMatrix(),
+			Game::GameCamera.GetProjectionMatrix()
 		};
 
 		D3D11_BUFFER_DESC cbd;
@@ -127,6 +123,12 @@ namespace G3D
 		{
 			//TODO: Error Handling;
 		}
+	}
+
+	void Mesh::Draw()
+	{
+		local_persist const UINT stride = sizeof(TexturedVertex);
+		local_persist const UINT offset = 0u;
 
 		Texture.Bind();
 		Shader.Bind();

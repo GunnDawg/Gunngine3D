@@ -1,9 +1,8 @@
 #pragma once
 
-struct ConstantBuffer
+struct CameraConstantBuffer
 {
-	struct
-	{
-		float element[4][4];
-	} transformation;
+	DirectX::XMMATRIX worldMatrix;
+	DirectX::XMMATRIX viewMatrix;
+	DirectX::XMMATRIX projMatrix;
 };

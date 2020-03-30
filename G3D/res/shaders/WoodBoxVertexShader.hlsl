@@ -10,15 +10,19 @@ struct VS_OUTPUT
     float2 outTexCoord : TEXCOORD;
 };
 
-cbuffer CBuff
+cbuffer CameraBuffer : register(b0)
 {
-    matrix transform;
+    matrix worldMatrix;
+    matrix viewMatrix;
+    matrix projMatrix;
 };
 
 VS_OUTPUT main(VS_INPUT input)
 {
     VS_OUTPUT output;
-    output.outPosition = mul(input.inPosition, transform);
+    matrix camera = transpose(mul(projMatrix, mul(viewMatrix, worldMatrix)));
+    
+    output.outPosition = mul(input.inPosition, camera);
     output.outTexCoord = input.inTexCoord;
     
     return output;

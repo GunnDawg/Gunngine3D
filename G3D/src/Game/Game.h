@@ -1,5 +1,6 @@
 #pragma once
 #include "Game/GameStateMachine.h"
+#include "Engine/G3D_Camera.h"
 
 struct Game
 {
@@ -15,4 +16,5 @@ struct Game
 
 	inline static bool IsRunning = false;
 	inline static GameStateMachine GSM;
+	inline static G3D::Camera GameCamera;
 };

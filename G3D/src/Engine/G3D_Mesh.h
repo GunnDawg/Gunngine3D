@@ -8,6 +8,7 @@ namespace G3D
 	{
 		bool Load();
 		bool Load(const char* TextureName, const char* ShaderName);
+		void Update();
 		void Draw();
 		void Unload();
 

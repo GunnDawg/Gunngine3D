@@ -27,7 +27,6 @@ void Game::UpdateAndRender()
 	G3D::Core::Renderer.Clear(0.0f, 0.0f, 0.0f, 1.0f);
 	GSM.UpdateAndRender();
 	G3D::Core::Renderer.Present();
-
 }
 
 void Game::Shutdown()

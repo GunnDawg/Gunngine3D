@@ -139,6 +139,8 @@ namespace G3D
 		G3D::Core::Renderer.Context->IASetInputLayout(InputLayout);
 
 		G3D::Core::Renderer.Context->DrawIndexed(IndexCount, 0u, 0u);
+
+		SAFE_RELEASE(mConstantBuffer);
 	}
 
 	void Mesh::SwapShader(const char* shaderName)
@@ -151,7 +153,7 @@ namespace G3D
 	{
 		Shader.Unload();
 		Texture.Unload();
-		SAFE_RELEASE(mConstantBuffer);
+		//SAFE_RELEASE(mConstantBuffer);
 		SAFE_RELEASE(VertexBuffer);
 		SAFE_RELEASE(IndexBuffer);
 		SAFE_RELEASE(InputLayout);

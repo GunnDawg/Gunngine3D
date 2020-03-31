@@ -15,6 +15,7 @@ struct Game
 	inline static void Shutdown();
 
 	inline static bool IsRunning = false;
+	inline static bool IsPaused = false;
 	inline static GameStateMachine GSM;
 	inline static G3D::Camera GameCamera;
 };

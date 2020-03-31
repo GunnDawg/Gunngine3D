@@ -38,32 +38,35 @@ void Scene01::Handle_input()
 	if (G3D::Core::Keyboard.KeyIsPressed(VK_ESCAPE))
 		Game::IsRunning = false;
 
-	if (G3D::Core::Keyboard.KeyIsPressed('A'))
+	if (!Game::IsPaused)
 	{
-		Game::GameCamera.AdjustPosition(-MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime, 0.0f, 0.0f);
-	}
+		if (G3D::Core::Keyboard.KeyIsPressed('A'))
+		{
+			Game::GameCamera.AdjustPosition(-MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime, 0.0f, 0.0f);
+		}
 
-	if (G3D::Core::Keyboard.KeyIsPressed('D'))
-	{
-		Game::GameCamera.AdjustPosition(MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime, 0.0f, 0.0f);
-	}
+		if (G3D::Core::Keyboard.KeyIsPressed('D'))
+		{
+			Game::GameCamera.AdjustPosition(MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime, 0.0f, 0.0f);
+		}
 
-	if (G3D::Core::Keyboard.KeyIsPressed('W'))
-	{
-		Game::GameCamera.AdjustPosition(0.0f, 0.0f, MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
-	}
+		if (G3D::Core::Keyboard.KeyIsPressed('W'))
+		{
+			Game::GameCamera.AdjustPosition(0.0f, 0.0f, MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
+		}
 
-	if (G3D::Core::Keyboard.KeyIsPressed('S'))
-	{
-		Game::GameCamera.AdjustPosition(0.0f, 0.0f, -MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
-	}
+		if (G3D::Core::Keyboard.KeyIsPressed('S'))
+		{
+			Game::GameCamera.AdjustPosition(0.0f, 0.0f, -MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
+		}
 
-	if (G3D::Core::Keyboard.KeyIsPressed(VK_RIGHT))
-	{
-		Game::GSM.Pop();
+		if (G3D::Core::Keyboard.KeyIsPressed(VK_RIGHT))
+		{
+			Game::GSM.Pop();
 
-		std::unique_ptr<Scene02> S2 = std::make_unique<Scene02>();
-		Game::GSM.Push(std::move(S2));
+			std::unique_ptr<Scene02> S2 = std::make_unique<Scene02>();
+			Game::GSM.Push(std::move(S2));
+		}
 	}
 
 	const auto e = G3D::Core::Mouse.Read();

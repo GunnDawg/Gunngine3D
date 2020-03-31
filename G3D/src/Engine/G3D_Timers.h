@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 
 namespace G3D
 {
@@ -21,6 +22,20 @@ namespace G3D
 		float FPS = 0.0f;
 		float MCPF = 0.0f;
 		float DeltaTime = 0.0f;
+	};
+
+	class Timer
+	{
+	public:
+		Timer() noexcept;
+		float Mark() noexcept;
+		inline float Peek() const noexcept
+		{
+			return std::chrono::duration<float>(std::chrono::steady_clock::now() - last).count();
+		}
+
+	private:
+		std::chrono::steady_clock::time_point last;
 	};
 #elif __APPLE__
 	struct PerformanceClock

@@ -22,5 +22,6 @@ namespace G3D
 		inline static G3D::Keyboard Keyboard = {};
 		inline static G3D::Mouse Mouse = {};
 		inline static G3D::PerformanceClock PerformanceClock = {};
+		inline static G3D::Timer Timer = {};
 	};
 }

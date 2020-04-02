@@ -54,7 +54,7 @@ namespace G3D
 			MSAA = "Off";
 		}
 
-		sprintf(Buffer, "Frame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\nVSync: %s\nMSAA: %s\n", G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, VSync, MSAA);
+		sprintf(Buffer, "Frame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\nVSync: %s\nMSAA: %s", G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, VSync, MSAA);
 
 		spriteBatch->Begin();
 			spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
@@ -63,10 +63,7 @@ namespace G3D
 
 	void Font::Unload()
 	{
-		spriteBatch.reset();
 		spriteBatch = nullptr;
-
-		spriteFont.reset();
 		spriteFont = nullptr;
 	}
 }

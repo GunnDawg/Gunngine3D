@@ -20,7 +20,7 @@ bool Scene01::On_load()
 void Scene01::On_enter()
 {
 	OutputDebugString("S1 On_Enter\n");
-	Game::GameCamera.SetPosition(0.0f, 0.0f, 0.0f);
+	Game::GameCamera.SetPosition(0.0f, 0.0f, -2.0f);
 	Game::GameCamera.SetProjectionValues(90.0f, (static_cast<float>(Settings::Display::Width) / static_cast<float>(Settings::Display::Height)), 0.1f, 10.0f);
 }
 

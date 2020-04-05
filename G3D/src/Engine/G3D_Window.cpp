@@ -2,7 +2,7 @@
 
 namespace G3D
 {
-	bool Window::Initialize(HINSTANCE instance)
+	bool Window::Initialize(const HINSTANCE& instance)
 	{
 		#if _DEBUG
 			Settings::Display::Windowed = true;

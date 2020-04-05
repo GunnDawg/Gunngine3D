@@ -10,7 +10,7 @@ namespace G3D
 	struct Core
 	{
 		//Core Functionality
-		inline static bool Initialize(HINSTANCE instance);
+		inline static bool Initialize(const HINSTANCE& instance);
 		inline static void Shutdown();
 
 		//Debug Functionality

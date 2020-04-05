@@ -2,7 +2,7 @@
 
 namespace G3D
 {
-	bool Core::Initialize(HINSTANCE instance)
+	bool Core::Initialize(const HINSTANCE& instance)
 	{
 		if (!PerformanceClock.Initialize())
 			return G3D_ERROR;

@@ -2,12 +2,12 @@
 
 namespace G3D
 {
-	bool Core::Initialize()
+	bool Core::Initialize(HINSTANCE instance)
 	{
 		if (!PerformanceClock.Initialize())
 			return G3D_ERROR;
 
-		if (!Window.Initialize())
+		if (!Window.Initialize(instance))
 			return G3D_ERROR;
 
 		if (!Renderer.Initialize())

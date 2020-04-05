@@ -7,7 +7,7 @@ namespace G3D
 	struct Window
 	{
 		//@NOTE: Windows specific window data here
-		bool Initialize();
+		bool Initialize(HINSTANCE instance);
 		void Shutdown();
 
 		HWND WindowHandle = {};

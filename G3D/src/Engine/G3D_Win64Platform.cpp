@@ -132,7 +132,7 @@ int CALLBACK
 WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmdLine, _In_ int cmdShow)
 {
 	//@NOTE: Initialize Engine
-	if (G3D::Core::Initialize() != G3D_OK)
+	if (G3D::Core::Initialize(instance) != G3D_OK)
 		return -1;
 
 	//@NOTE: Initialize Game

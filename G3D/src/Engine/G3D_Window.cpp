@@ -2,7 +2,7 @@
 
 namespace G3D
 {
-	bool Window::Initialize()
+	bool Window::Initialize(HINSTANCE instance)
 	{
 		#if _DEBUG
 			Settings::Display::Windowed = true;
@@ -22,7 +22,7 @@ namespace G3D
 
 		wc.cbSize = sizeof(WNDCLASSEX);
 		wc.hCursor = LoadCursor(0, IDC_ARROW);
-		wc.hInstance = GetModuleHandle(0);
+		wc.hInstance = instance;
 		wc.lpfnWndProc = WndProc;
 		wc.lpszClassName = "WindowClass";
 		wc.style = CS_VREDRAW | CS_HREDRAW | CS_OWNDC;
@@ -31,7 +31,7 @@ namespace G3D
 		if (!RegisterClassEx(&wc))
 			return G3D_ERROR;
 
-		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, wr.left, wr.top, wr.right - wr.left, wr.bottom - wr.top, 0, 0, GetModuleHandle(0), 0);
+		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, wr.left, wr.top, wr.right - wr.left, wr.bottom - wr.top, 0, 0, instance, 0);
 		if (!WindowHandle)
 			return G3D_ERROR;
 

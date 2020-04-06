@@ -37,22 +37,14 @@ namespace G3D
 		local_persist const char* MSAA;
 		
 		if (Settings::Display::VSync)
-		{
-			 VSync = "On";
-		}
+			VSync = "On";
 		else
-		{
 			VSync = "Off";
-		}
 
 		if (Settings::Graphics::MSAA)
-		{
 			MSAA = "On";
-		}
 		else
-		{
 			MSAA = "Off";
-		}
 
 		sprintf(Buffer, "Frame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\nVSync: %s\nMSAA: %s", G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, VSync, MSAA);
 

@@ -133,11 +133,11 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 {
 	//@NOTE: Initialize Engine
 	if (G3D::Core::Initialize(instance) != G3D_OK)
-		return -1;
+		return 1;
 
 	//@NOTE: Initialize Game
 	if (Game::Initialize() != G3D_OK)
-		return -1;
+		return 1;
 
 	MSG msg;
 	while (Game::IsRunning)

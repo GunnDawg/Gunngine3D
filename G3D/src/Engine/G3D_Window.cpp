@@ -6,6 +6,8 @@ namespace G3D
 	{
 		#if _DEBUG
 			Settings::Display::Windowed = true;
+			Settings::Display::Width = 1600u;
+			Settings::Display::Height = 900u;
 		#else
 			Settings::Display::Windowed = false;
 			Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);

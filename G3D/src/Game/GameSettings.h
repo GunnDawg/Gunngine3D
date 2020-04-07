@@ -2,8 +2,8 @@
 
 namespace Settings::Display
 {
-	static u16 Width = 1600u;
-	static u16 Height = 900u;
+	static u16 Width = 0u;
+	static u16 Height = 0u;
 	static bool Windowed = true;
 	static bool VSync = true;
 }

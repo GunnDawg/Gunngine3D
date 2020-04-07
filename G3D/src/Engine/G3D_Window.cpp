@@ -8,10 +8,9 @@ namespace G3D
 			Settings::Display::Windowed = true;
 		#else
 			Settings::Display::Windowed = false;
+			Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
+			Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 		#endif
-
-		Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
-		Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 
 		RECT wr;
 		wr.left = 0u;

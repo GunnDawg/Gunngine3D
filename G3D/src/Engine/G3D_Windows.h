@@ -9,11 +9,11 @@
 
 //#define NOUSER
 //#define NOMSG
-//#define NOTEXTMETRIC
 //#define NOWINSTYLES
-//#define NOCOLOR
 //#define NOSYSMETRICS
 
+#define NOCOLOR
+#define NOTEXTMETRIC
 #define NOKEYSTATES
 #define NOVIRTUALKEYCODES
 #define NOMB

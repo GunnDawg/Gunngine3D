@@ -14,7 +14,6 @@ namespace G3D
 		Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 	#endif
 
-		RECT wr;
 		wr.left = 0u;
 		wr.top = 0u;
 		wr.right = wr.left + Settings::Display::Width;
@@ -33,17 +32,33 @@ namespace G3D
 			return G3D_ERROR;
 
 	#if _DEBUG
+		if (!CreateDebugWindow(instance))
+			return G3D_ERROR;
+	#else
+		if (!CreateWindow(instance))
+			return G3D_ERROR;
+	#endif
+
+		return G3D_OK;
+	}
+
+	bool Window::CreateWindow(const HINSTANCE& instance)
+	{
+		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D - Release Build", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, wr.left, wr.top, wr.right - wr.left, wr.bottom - wr.top, 0, 0, instance, 0);
+		if (!WindowHandle)
+			return G3D_ERROR;
+
+		return G3D_OK;
+	}
+
+	bool Window::CreateDebugWindow(const HINSTANCE& instance)
+	{
 		local_persist u16 centerX = (GetSystemMetrics(SM_CXSCREEN) - wr.right) / 2;
 		local_persist u16 centerY = (GetSystemMetrics(SM_CYSCREEN) - wr.bottom) / 2;
 
 		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D - Debug Build", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, centerX, centerY, wr.right - wr.left, wr.bottom - wr.top, 0, 0, instance, 0);
 		if (!WindowHandle)
 			return G3D_ERROR;
-	#else
-		WindowHandle = CreateWindowEx(0, wc.lpszClassName, "Gunngine3D - Release Build", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, wr.left, wr.top, wr.right - wr.left, wr.bottom - wr.top, 0, 0, instance, 0);
-		if (!WindowHandle)
-			return G3D_ERROR;
-	#endif
 
 		return G3D_OK;
 	}

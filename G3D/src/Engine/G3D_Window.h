@@ -1,6 +1,10 @@
 #pragma once
 #include <Engine/G3D_Windows.h>
 
+#ifdef CreateWindow
+#undef CreateWindow
+#endif
+
 namespace G3D
 {
 #ifdef	_WIN64
@@ -8,8 +12,11 @@ namespace G3D
 	{
 		//@NOTE: Windows specific window data here
 		bool Initialize(const HINSTANCE& instance);
+		bool CreateWindow(const HINSTANCE& instance);
+		bool CreateDebugWindow(const HINSTANCE& instance);
 		void Shutdown();
 
+		RECT wr;
 		HWND WindowHandle = {};
 		WNDCLASSEX wc = {};
 	};

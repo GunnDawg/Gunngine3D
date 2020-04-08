@@ -21,9 +21,9 @@ VS_OUTPUT main(VS_INPUT input)
 {
     VS_OUTPUT output;
     matrix camera = transpose(mul(projMatrix, mul(viewMatrix, worldMatrix)));
-    
+
     output.outPosition = mul(input.inPosition, camera);
     output.outTexCoord = input.inTexCoord;
-    
+
     return output;
 }

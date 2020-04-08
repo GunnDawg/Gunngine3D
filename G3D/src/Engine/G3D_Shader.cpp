@@ -29,6 +29,9 @@ namespace G3D
 		std::wstring StringStreamToWString = Vss.str();
 		LPCWSTR FinalVertexShaderFilepath = StringStreamToWString.c_str();
 
+		//TODO: Make this work so we can get rid of D3DReadFileToBlob()
+		//Result = D3DCompileFromFile(FinalVertexShaderFilepath, 0u, 0u, "main", "vs_5_0", D3D10_SHADER_ENABLE_STRICTNESS, 0u, 0u, &VertexBlob);
+
 		//Create Vertex Shader
 		Result = D3DReadFileToBlob(FinalVertexShaderFilepath, &VertexBlob);
 		if (FAILED(Result))

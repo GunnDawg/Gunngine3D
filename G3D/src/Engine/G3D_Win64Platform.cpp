@@ -52,7 +52,8 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			}
 			else
 			{
-				if (wParam & (MK_LBUTTON | MK_RBUTTON))
+				//@NOTE: 0x0001 is Left Mouse and 0x0002 is Right Mouse
+				if (wParam & (0x0001 | 0x0002))
 				{
 					G3D::Core::Mouse.OnMouseMove(pt.x, pt.y);
 				}

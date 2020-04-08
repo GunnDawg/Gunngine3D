@@ -8,14 +8,14 @@
 #define WIN32_LEAN_AND_MEAN
 
 //#define NOUSER
-//#define NOVIRTUALKEYCODES
 //#define NOMSG
 //#define NOTEXTMETRIC
 //#define NOWINSTYLES
 //#define NOCOLOR
-//#define NOKEYSTATES
 //#define NOSYSMETRICS
 
+#define NOKEYSTATES
+#define NOVIRTUALKEYCODES
 #define NOMB
 #define NOSHOWWINDOW
 #define NOGDICAPMASKS

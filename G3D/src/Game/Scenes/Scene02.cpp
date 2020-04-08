@@ -20,12 +20,12 @@ void Scene02::On_exit()
 
 void Scene02::Handle_input()
 {
-	if (G3D::Core::Keyboard.KeyIsPressed(VK_ESCAPE))
+	if (G3D::Core::Keyboard.KeyIsPressed(0x1B))
 	{
 		Game::IsRunning = false;
 	}
 
-	if (G3D::Core::Keyboard.KeyIsPressed(VK_LEFT))
+	if (G3D::Core::Keyboard.KeyIsPressed(0x25))
 	{
 		Game::GSM.Pop();
 

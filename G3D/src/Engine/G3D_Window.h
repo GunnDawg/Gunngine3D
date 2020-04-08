@@ -16,9 +16,9 @@ namespace G3D
 		bool CreateDebugWindow(const HINSTANCE& instance);
 		void Shutdown();
 
-		RECT wr;
+		RECT WindowRect;
 		HWND WindowHandle = {};
-		WNDCLASSEX wc = {};
+		WNDCLASSEX WindowClass = {};
 	};
 #elif __APPLE__
 	struct Window

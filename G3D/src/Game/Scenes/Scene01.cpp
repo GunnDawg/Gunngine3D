@@ -35,7 +35,7 @@ void Scene01::Handle_input()
 {
 	local_persist float MOVE_SPEED = 0.01f;
 
-	if (G3D::Core::Keyboard.KeyIsPressed(0x1B))
+	if (G3D::Core::Keyboard.KeyIsPressed(0x1B)) //Escape
 		Game::IsRunning = false;
 
 	if (!Game::IsPaused)
@@ -60,7 +60,7 @@ void Scene01::Handle_input()
 			Game::GameCamera.AdjustPosition(0.0f, 0.0f, -MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
-		if (G3D::Core::Keyboard.KeyIsPressed(0x27))
+		if (G3D::Core::Keyboard.KeyIsPressed(0x27)) //Right Arrow
 		{
 			Game::GSM.Pop();
 

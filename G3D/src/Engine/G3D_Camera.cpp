@@ -94,21 +94,22 @@ namespace G3D
 		DirectX::XMMATRIX camRotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(mRot.x, mRot.y, mRot.z);
 
 		//Calculate unit vector of cam target based off camera forward value transformed by cam rotation.
-		DirectX::XMVECTOR camDir = DirectX::XMVector3TransformCoord(DEFAULT_FORWARD_VECTOR, camRotationMatrix);
+		//DirectX::XMVECTOR camDir = DirectX::XMVector3TransformCoord(DEFAULT_FORWARD_VECTOR, camRotationMatrix);
 
 		//Adjust cam target to be offset by the cameras current position
-		//camTarget -= mPosVector;
+		DirectX::XMVECTOR camTarget = XMVector3TransformCoord(DEFAULT_FORWARD_VECTOR, camRotationMatrix);
+		camTarget -= mPosVector;
 
 		//Calculate up direction based on current rotation
 		DirectX::XMVECTOR upDir = DirectX::XMVector3TransformCoord(DEFAULT_UP_VECTOR, camRotationMatrix);
 
 		//Rebuild view matrix
-		mViewMatrix = DirectX::XMMatrixLookToLH(mPosVector, camDir, upDir);
+		mViewMatrix = DirectX::XMMatrixLookAtLH(mPosVector, camTarget, upDir);
 
 		DirectX::XMMATRIX vecRotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(0.0f, mRot.y, 0.0f);
-		//vec_forward = DirectX::XMVector3TransformCoord(DEFAULT_FORWARD_VECTOR, vecRotationMatrix);
-		//vec_backward = DirectX::XMVector3TransformCoord(DEFAULT_BACKWARD_VECTOR, vecRotationMatrix);
-		//vec_left = DirectX::XMVector3TransformCoord(DEFAULT_LEFT_VECTOR, vecRotationMatrix);
-		//vec_right = DirectX::XMVector3TransformCoord(DEFAULT_RIGHT_VECTOR, vecRotationMatrix);
+		vec_forward = DirectX::XMVector3TransformCoord(DEFAULT_FORWARD_VECTOR, vecRotationMatrix);
+		vec_backward = DirectX::XMVector3TransformCoord(DEFAULT_BACKWARD_VECTOR, vecRotationMatrix);
+		vec_left = DirectX::XMVector3TransformCoord(DEFAULT_LEFT_VECTOR, vecRotationMatrix);
+		vec_right = DirectX::XMVector3TransformCoord(DEFAULT_RIGHT_VECTOR, vecRotationMatrix);
 	}
 }

@@ -42,22 +42,22 @@ void Scene01::Handle_input()
 	{
 		if (G3D::Core::Keyboard.KeyIsPressed('A'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetLeftVector() * MOVE_SPEED);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetLeftVector() * MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('D'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * MOVE_SPEED);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('W'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetForwardVector() * MOVE_SPEED);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetForwardVector() * MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('S'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetBackVector() * MOVE_SPEED);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetBackVector() * MOVE_SPEED * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed(0x27)) //Right Arrow
@@ -72,7 +72,7 @@ void Scene01::Handle_input()
 	const auto e = G3D::Core::Mouse.Read();
 	if (e.GetType() == G3D::Mouse::Event::Type::RAW_MOVE)
 	{
-		Game::GameCamera.AdjustRotation((float)G3D::Core::Mouse.GetDeltaY() * Settings::Controls::MouseSensitivity, (float)G3D::Core::Mouse.GetDeltaX() * Settings::Controls::MouseSensitivity, 0.0f);
+		Game::GameCamera.AdjustRotation((float)G3D::Core::Mouse.GetDeltaY() * Settings::Controls::MouseSensitivity * G3D::Core::PerformanceClock.DeltaTime, (float)G3D::Core::Mouse.GetDeltaX() * Settings::Controls::MouseSensitivity * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
 	}
 }
 

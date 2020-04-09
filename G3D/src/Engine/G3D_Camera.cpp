@@ -98,7 +98,7 @@ namespace G3D
 
 		//Adjust cam target to be offset by the cameras current position
 		DirectX::XMVECTOR camTarget = XMVector3TransformCoord(DEFAULT_FORWARD_VECTOR, camRotationMatrix);
-		camTarget -= mPosVector;
+		camTarget += mPosVector;
 
 		//Calculate up direction based on current rotation
 		DirectX::XMVECTOR upDir = DirectX::XMVector3TransformCoord(DEFAULT_UP_VECTOR, camRotationMatrix);

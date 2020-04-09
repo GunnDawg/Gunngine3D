@@ -21,7 +21,7 @@ void Scene01::On_enter()
 {
 	OutputDebugString("S1 On_Enter\n");
 	Game::GameCamera.SetPosition(0.0f, 0.0f, -2.0f);
-	Game::GameCamera.SetProjectionValues(90.0f, (static_cast<float>(Settings::Display::Width) / static_cast<float>(Settings::Display::Height)), 0.1f, 10.0f);
+	Game::GameCamera.SetProjectionValues(90.0f, (static_cast<float>(Settings::Display::Width) / static_cast<float>(Settings::Display::Height)), 0.1f, 1000.0f);
 }
 
 void Scene01::On_exit()
@@ -90,6 +90,7 @@ void Scene01::Update_and_render()
 	testMesh.Update();
 
 	//Render
+	G3D::Core::Renderer.Clear(0.25f, 0.25f, 0.25f, 1.0f);
 	testMesh.Draw();
 	DebugFont.Draw();
 }

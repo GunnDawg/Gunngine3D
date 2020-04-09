@@ -88,6 +88,34 @@ namespace G3D
 		UpdateViewMatrix();
 	}
 
+	void Camera::SetLookAtPos(DirectX::XMFLOAT3 lookAtPos)
+	{
+		if (lookAtPos.x == mPos.x && lookAtPos.y == mPos.y && lookAtPos.z == mPos.z)
+			return;
+
+		lookAtPos.x = mPos.x - lookAtPos.x;
+		lookAtPos.y = mPos.y - lookAtPos.y;
+		lookAtPos.z = mPos.z - lookAtPos.z;
+
+		float pitch = 0.0f;
+		if (lookAtPos.y != 0.0f)
+		{
+			const float distance = sqrt(lookAtPos.x * lookAtPos.x + lookAtPos.z * lookAtPos.z);
+			pitch = atan(lookAtPos.y / distance);
+		}
+
+		float yaw = 0.0f;
+		if (lookAtPos.x != 0.0f)
+		{
+			yaw = atan(lookAtPos.x / lookAtPos.z);
+		}
+
+		if (lookAtPos.z > 0)
+			yaw += XM_PI;
+
+		SetRotation(pitch, yaw, 0.0f);
+	}
+
 	void Camera::UpdateViewMatrix()
 	{
 		//Calculate camera rotation matrix

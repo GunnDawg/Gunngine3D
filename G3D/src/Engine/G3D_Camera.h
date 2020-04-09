@@ -47,6 +47,7 @@ namespace G3D
 		void SetRotation(float x, float y, float z);
 		void AdjustRotation(const DirectX::XMVECTOR& rot);
 		void AdjustRotation(float x, float y, float z);
+		void SetLookAtPos(DirectX::XMFLOAT3 lookAtPos);
 
 		inline const DirectX::XMVECTOR& GetForwardVector() const
 		{

@@ -106,9 +106,7 @@ namespace G3D
 
 		float yaw = 0.0f;
 		if (lookAtPos.x != 0.0f)
-		{
 			yaw = atan(lookAtPos.x / lookAtPos.z);
-		}
 
 		if (lookAtPos.z > 0)
 			yaw += XM_PI;

@@ -58,7 +58,7 @@ void Scene01::Handle_input()
 			Game::GameCamera.AdjustPosition(Game::GameCamera.GetBackVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
-		if (G3D::Core::Keyboard.KeyIsPressed('Z'))
+		if (G3D::Core::Keyboard.KeyIsPressed(0x11)) //Left Control
 		{
 			Game::GameCamera.AdjustPosition(0.0f, -Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
 		}

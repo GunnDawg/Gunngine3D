@@ -21,5 +21,5 @@ namespace Settings::Graphics
 
 namespace Settings::Controls
 {
-	static float MouseSensitivity = 0.020f;
+	static float MouseSensitivity = 0.005f;
 }

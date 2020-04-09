@@ -90,7 +90,7 @@ void Scene01::Update_and_render()
 	testMesh.Update();
 
 	//Render
-	G3D::Core::Renderer.Clear(0.25f, 0.25f, 0.25f, 1.0f);
+	G3D::Core::Renderer.Clear(0.15f, 0.15f, 0.15f, 1.0f);
 	testMesh.Draw();
 	DebugFont.Draw();
 }

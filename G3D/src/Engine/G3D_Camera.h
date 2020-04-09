@@ -69,6 +69,11 @@ namespace G3D
 			return vec_right;
 		}
 
+		inline const float GetCameraSpeed() const
+		{
+			return CameraSpeed;
+		}
+
 	private:
 		void UpdateViewMatrix();
 		DirectX::XMVECTOR mPosVector;
@@ -88,5 +93,7 @@ namespace G3D
 		DirectX::XMVECTOR vec_left;
 		DirectX::XMVECTOR vec_right;
 		DirectX::XMVECTOR vec_backward;
+
+		const float CameraSpeed = 0.01f;
 	};
 }

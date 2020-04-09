@@ -93,9 +93,6 @@ namespace G3D
 		//Calculate camera rotation matrix
 		DirectX::XMMATRIX camRotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(mRot.x, mRot.y, mRot.z);
 
-		//Calculate unit vector of cam target based off camera forward value transformed by cam rotation.
-		//DirectX::XMVECTOR camDir = DirectX::XMVector3TransformCoord(DEFAULT_FORWARD_VECTOR, camRotationMatrix);
-
 		//Adjust cam target to be offset by the cameras current position
 		DirectX::XMVECTOR camTarget = XMVector3TransformCoord(DEFAULT_FORWARD_VECTOR, camRotationMatrix);
 		camTarget += mPosVector;

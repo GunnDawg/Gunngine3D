@@ -119,7 +119,7 @@ namespace G3D
 		else
 		{
 			scd.SampleDesc.Count = 1u;
-			scd.SampleDesc.Quality = 0u;			
+			scd.SampleDesc.Quality = 0u;
 		}
 
 		//Create swap chain

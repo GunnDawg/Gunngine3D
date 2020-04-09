@@ -100,7 +100,7 @@ namespace G3D
 		float pitch = 0.0f;
 		if (lookAtPos.y != 0.0f)
 		{
-			const float distance = sqrt(lookAtPos.x * lookAtPos.x + lookAtPos.z * lookAtPos.z);
+			const float distance = sqrt((double)lookAtPos.x * lookAtPos.x + (double)lookAtPos.z * lookAtPos.z);
 			pitch = atan(lookAtPos.y / distance);
 		}
 

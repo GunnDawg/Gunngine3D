@@ -36,6 +36,12 @@ namespace G3D
 		local_persist const char* VSync;
 		local_persist const char* MSAA;
 		local_persist const char* Build;
+		local_persist const char* Camera;
+
+		if (Settings::Camera::FreeRoam)
+			Camera = "Free-roaming";
+		else
+			Camera = "FPS";
 
 		if (Settings::Display::VSync)
 			VSync = "On";
@@ -53,7 +59,7 @@ namespace G3D
 			Build = "Release";
 		#endif
 
-		sprintf(Buffer, "Build: %s\nFrame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\n\nVideo Settings:\nVSync: %s\nMSAA: %s", Build, G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, VSync, MSAA);
+		sprintf(Buffer, "Build: %s\nFrame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\n\nCamera: %s\n\nVideo Settings:\nVSync: %s\nMSAA: %s", Build, G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, Camera, VSync, MSAA);
 
 		spriteBatch->Begin();
 			spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

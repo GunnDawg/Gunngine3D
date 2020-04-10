@@ -23,3 +23,8 @@ namespace Settings::Controls
 {
 	static float MouseSensitivity = 0.005f;
 }
+
+namespace Settings::Camera
+{
+	static bool FreeRoam = false;
+}

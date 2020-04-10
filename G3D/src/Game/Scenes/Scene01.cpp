@@ -39,34 +39,22 @@ void Scene01::Handle_input()
 	if (!Game::IsPaused)
 	{
 		if (G3D::Core::Keyboard.KeyIsPressed('A'))
-		{
 			Game::GameCamera.AdjustPosition(Game::GameCamera.GetLeftVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
-		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('D'))
-		{
 			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
-		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('W'))
-		{
 			Game::GameCamera.AdjustPosition(Game::GameCamera.GetForwardVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
-		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('S'))
-		{
 			Game::GameCamera.AdjustPosition(Game::GameCamera.GetBackVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
-		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed(0x11)) //Left Control
-		{
 			Game::GameCamera.AdjustPosition(0.0f, -Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
-		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed(0x20)) //Spacebar
-		{
 			Game::GameCamera.AdjustPosition(0.0f, Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
-		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed(0x27)) //Right Arrow
 		{

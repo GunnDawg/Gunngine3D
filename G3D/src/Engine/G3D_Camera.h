@@ -82,6 +82,7 @@ namespace G3D
 		DirectX::XMFLOAT3 mRot;
 		DirectX::XMMATRIX mViewMatrix;
 		DirectX::XMMATRIX mProjectionMatrix;
+		DirectX::XMMATRIX mVecRotationMatrix;
 
 		const DirectX::XMVECTOR DEFAULT_FORWARD_VECTOR = DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 		const DirectX::XMVECTOR DEFAULT_UP_VECTOR = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);

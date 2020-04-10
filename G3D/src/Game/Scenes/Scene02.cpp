@@ -11,6 +11,7 @@ bool Scene02::On_load()
 void Scene02::On_enter()
 {
 	OutputDebugString("S2 On_Enter\n");
+	Game::GameCamera.SetPosition(0.0f, 0.0f, -2.0f);
 }
 
 void Scene02::On_exit()

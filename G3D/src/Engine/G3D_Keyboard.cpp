@@ -2,7 +2,7 @@
 
 namespace G3D
 {
-	bool Keyboard::KeyIsPressed(unsigned char keycode) const noexcept
+	bool Keyboard::KeyIsPressed(u8 keycode) const noexcept
 	{
 		return keystates[keycode];
 	}
@@ -70,21 +70,21 @@ namespace G3D
 		return autorepeatEnabled;
 	}
 
-	void Keyboard::OnKeyPressed(unsigned char keycode) noexcept
+	void Keyboard::OnKeyPressed(u16 keycode) noexcept
 	{
 		keystates[keycode] = true;
 		keybuffer.push(Keyboard::Event(Keyboard::Event::Type::Press, keycode));
 		TrimBuffer(keybuffer);
 	}
 
-	void Keyboard::OnKeyReleased(unsigned char keycode) noexcept
+	void Keyboard::OnKeyReleased(u16 keycode) noexcept
 	{
 		keystates[keycode] = false;
 		keybuffer.push(Keyboard::Event(Keyboard::Event::Type::Release, keycode));
 		TrimBuffer(keybuffer);
 	}
 
-	void Keyboard::OnChar(char character) noexcept
+	void Keyboard::OnChar(i8 character) noexcept
 	{
 		charbuffer.push(character);
 		TrimBuffer(charbuffer);

@@ -21,7 +21,7 @@ namespace G3D
 			Type type;
 			unsigned char code;
 		public:
-			Event(Type type, unsigned char code) noexcept
+			Event(Type type, u8 code) noexcept
 				:
 				type(type),
 				code(code)
@@ -44,7 +44,7 @@ namespace G3D
 		Keyboard(const Keyboard&) = delete;
 		Keyboard& operator=(const Keyboard&) = delete;
 		// key event stuff
-		bool KeyIsPressed(unsigned char keycode) const noexcept;
+		bool KeyIsPressed(u8 keycode) const noexcept;
 		std::optional<Event> ReadKey() noexcept;
 		bool KeyIsEmpty() const noexcept;
 		void FlushKey() noexcept;
@@ -57,16 +57,16 @@ namespace G3D
 		void EnableAutorepeat() noexcept;
 		void DisableAutorepeat() noexcept;
 		bool AutorepeatIsEnabled() const noexcept;
-		void OnKeyPressed(unsigned char keycode) noexcept;
-		void OnKeyReleased(unsigned char keycode) noexcept;
-		void OnChar(char character) noexcept;
+		void OnKeyPressed(u16 keycode) noexcept;
+		void OnKeyReleased(u16 keycode) noexcept;
+		void OnChar(i8 character) noexcept;
 	private:
 		void ClearState() noexcept;
 		template<typename T>
 		static void TrimBuffer(std::queue<T>& buffer) noexcept;
 	private:
-		static constexpr unsigned int nKeys = 256u;
-		static constexpr unsigned int bufferSize = 16u;
+		static constexpr u16 nKeys = 256u;
+		static constexpr u16 bufferSize = 16u;
 		bool autorepeatEnabled = false;
 		std::bitset<nKeys> keystates;
 		std::queue<Event> keybuffer;

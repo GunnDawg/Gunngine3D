@@ -33,6 +33,14 @@ namespace G3D
 		LastCycleCount = EndCycleCount;
 	}
 
+	void PerformanceClock::Reset()
+	{
+		MSPerFrame = 0.0f;
+		FPS = 0.0f;
+		MCPF = 0.0f;
+		DeltaTime = 0.0f;
+	}
+
 	//TIMER STUFF
 	Timer::Timer() noexcept
 	{

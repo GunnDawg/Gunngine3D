@@ -14,10 +14,10 @@ namespace G3D
 		UpdateViewMatrix();
 	}
 
-	void Camera::SetProjectionValues(float fovDegrees, float aspectRatio, float nearZ, float farZ)
+	void Camera::Load()
 	{
-		float fovRadians = (fovDegrees / 360.0f) * DirectX::XM_2PI;
-		mProjectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
+		float fovRadians = (Settings::Camera::FOV / 360.0f) * DirectX::XM_2PI;
+		mProjectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, (static_cast<float>(Settings::Display::Width) / static_cast<float>(Settings::Display::Height)), 0.1f, Settings::Graphics::DrawDistance);
 	}
 
 	void Camera::SetPosition(const DirectX::XMVECTOR& pos)

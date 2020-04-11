@@ -7,7 +7,8 @@ namespace G3D
 	{
 	public:
 		Camera();
-		void SetProjectionValues(float fovDegrees, float aspectRatio, float nearZ, float farZ);
+
+		void Load();
 
 		inline const DirectX::XMMATRIX& GetViewMatrix() const
 		{

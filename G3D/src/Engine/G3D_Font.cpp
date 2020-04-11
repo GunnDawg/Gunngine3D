@@ -37,9 +37,11 @@ namespace G3D
 		local_persist const char* MSAA;
 		local_persist const char* Build;
 		local_persist const char* Camera;
-
 		local_persist float DrawDistance = Settings::Graphics::DrawDistance;
 		local_persist float FOV = Settings::Camera::FOV;
+
+
+		//@PERFORMANCE: How much of a performance cost are we incurring by declaring these every frame?
 		float DeltaTime = G3D::Core::PerformanceClock.DeltaTime;
 		float FPS = G3D::Core::PerformanceClock.FPS;
 		float MCPF = G3D::Core::PerformanceClock.MCPF;

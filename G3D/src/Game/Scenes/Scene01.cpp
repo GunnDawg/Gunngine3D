@@ -11,7 +11,7 @@ bool Scene01::On_load()
 
 	//@INCOMPLETE: We haven't actually implemented this load function fully. We still need to format the
 	//text passed to it on the Font side, which we're not doing.
-	if (!DebugFont.Load("Some Text"))
+	if (!DebugFont.Load("Debug", "Some Text"))
 		return false;
 
 	return true;

@@ -21,6 +21,46 @@ void Scene02::On_exit()
 
 void Scene02::Handle_input()
 {
+	while (const auto e = G3D::Core::Keyboard.ReadKey())
+	{
+		if (!e->IsPress())
+		{
+			continue;
+		}
+
+		switch (e->GetCode())
+		{
+			case 0x1B://Escape
+			{
+				Game::IsRunning = false;
+			} break;
+
+			case 'P':
+			{
+				if (Game::IsPaused)
+					Game::IsPaused = false;
+				else
+					Game::IsPaused = true;
+			} break;
+
+			case 'M':
+			{
+				if (Settings::Camera::FreeRoam)
+					Settings::Camera::FreeRoam = false;
+				else
+					Settings::Camera::FreeRoam = true;
+			} break;
+
+			case 0x25://Right Arrow
+			{
+				Game::GSM.Pop();
+
+				std::unique_ptr<Scene01> S1 = std::make_unique<Scene01>();
+				Game::GSM.Push(std::move(S1));
+			} break;
+		}
+	}
+
 	if (G3D::Core::Keyboard.KeyIsPressed(0x1B))
 	{
 		Game::IsRunning = false;
@@ -28,10 +68,7 @@ void Scene02::Handle_input()
 
 	if (G3D::Core::Keyboard.KeyIsPressed(0x25))
 	{
-		Game::GSM.Pop();
 
-		std::unique_ptr<Scene01> S1 = std::make_unique<Scene01>();
-		Game::GSM.Push(std::move(S1));
 	}
 }
 

@@ -7,7 +7,6 @@ namespace G3D
 {
 	class Keyboard
 	{
-		friend class Window;
 	public:
 		class Event
 		{

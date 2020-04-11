@@ -67,6 +67,8 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 		case WM_INPUT:
 		{
+			//@REFACTOR: If we're trying to keep as much of the game code separate from the engine code
+			//then this should probably be refactored out into such a way that only the game handles it.
 			if (!Game::IsPaused)
 			{
 				UINT dataSize = 0u;
@@ -100,6 +102,8 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			G3D::Core::Mouse.OnRightPressed(pt.x, pt.y);
 			//@NOTE: We only want to disable the cursor if the game is NOT paused, otherwise
 			//we want the cursor to always be enabled when pause state is active.
+			//@REFACTOR: If we're trying to keep as much of the game code separate from the engine code
+			//then this should probably be refactored out into such a way that only the game handles it.
 			if (!Game::IsPaused)
 			{
 				if (!G3D::Core::Mouse.IsCursorEnabled())

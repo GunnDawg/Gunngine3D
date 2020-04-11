@@ -53,7 +53,7 @@ namespace G3D
 		if (Game::IsPaused)
 			Status = "Paused";
 		else
-			Status = "Un-paused";
+			Status = "Playing";
 
 		if (Settings::Camera::FreeRoam)
 			Camera = "Free-roaming";

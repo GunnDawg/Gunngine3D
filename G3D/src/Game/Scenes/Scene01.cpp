@@ -47,6 +47,14 @@ void Scene01::Handle_input()
 				Game::IsRunning = false;
 			} break;
 
+			case 0x70://F1
+			{
+				if (ShowDebugData)
+					ShowDebugData = false;
+				else
+					ShowDebugData = true;
+			} break;
+
 			case 'P':
 			{
 				if (Game::IsPaused)
@@ -129,5 +137,9 @@ void Scene01::Update_and_render()
 	//Render
 	G3D::Core::Renderer.Clear(0.15f, 0.15f, 0.15f, 1.0f);
 	testMesh.Draw();
-	DebugFont.Draw();
+	if (ShowDebugData)
+	{
+		DebugFont.Draw();
+	}
+
 }

@@ -12,4 +12,6 @@ struct Scene01 : public GameState
 
 	G3D::Mesh testMesh;
 	G3D::Font DebugFont;
+
+	bool ShowDebugData = false;
 };

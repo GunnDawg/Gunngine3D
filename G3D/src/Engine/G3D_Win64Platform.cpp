@@ -67,17 +67,20 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 		case WM_INPUT:
 		{
-			UINT dataSize = 0u;
-			GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, 0u, &dataSize, sizeof(RAWINPUTHEADER));
-			if (dataSize > 0)
+			if (!Game::IsPaused)
 			{
-				std::unique_ptr<BYTE[]> rawData = std::make_unique<BYTE[]>(dataSize);
-				if (GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, rawData.get(), &dataSize, sizeof(RAWINPUTHEADER)) == dataSize)
+				UINT dataSize = 0u;
+				GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, 0u, &dataSize, sizeof(RAWINPUTHEADER));
+				if (dataSize > 0)
 				{
-					RAWINPUT* raw = reinterpret_cast<RAWINPUT*>(rawData.get());
-					if (raw->header.dwType == RIM_TYPEMOUSE)
+					std::unique_ptr<BYTE[]> rawData = std::make_unique<BYTE[]>(dataSize);
+					if (GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, rawData.get(), &dataSize, sizeof(RAWINPUTHEADER)) == dataSize)
 					{
-						G3D::Core::Mouse.OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
+						RAWINPUT* raw = reinterpret_cast<RAWINPUT*>(rawData.get());
+						if (raw->header.dwType == RIM_TYPEMOUSE)
+						{
+							G3D::Core::Mouse.OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
+						}
 					}
 				}
 			}

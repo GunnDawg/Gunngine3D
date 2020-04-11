@@ -14,10 +14,7 @@ namespace G3D
 		if (!RegisterRawInputDevices(&rid, 1, sizeof(rid)))
 			return G3D_ERROR;
 
-		if (Settings::Display::Windowed)
-			EnableCursor();
-		else
-			DisableCursor();
+		DisableCursor();
 
 		return G3D_OK;
 	}
@@ -47,10 +44,13 @@ namespace G3D
 
 	void Mouse::OnMouseMoveRaw(u16 newX, u16 newY)
 	{
-		dx = newX;
-		dy = newY;
+		if (RawMouseEnabled)
+		{
+			dx = newX;
+			dy = newY;
 
-		buffer.push(Mouse::Event(Mouse::Event::Type::RAW_MOVE, *this));
-		TrimBuffer();
+			buffer.push(Mouse::Event(Mouse::Event::Type::RAW_MOVE, *this));
+			TrimBuffer();
+		}
 	}
 }

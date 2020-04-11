@@ -95,6 +95,10 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
 			G3D::Core::Mouse.OnRightPressed(pt.x, pt.y);
+			if (!G3D::Core::Mouse.IsCursorEnabled())
+				G3D::Core::Mouse.EnableCursor();
+			else
+				G3D::Core::Mouse.DisableCursor();
 		} break;
 
 		case WM_LBUTTONUP:

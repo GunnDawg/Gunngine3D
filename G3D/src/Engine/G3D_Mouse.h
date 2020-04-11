@@ -144,6 +144,7 @@ namespace G3D
 		inline void EnableCursor()
 		{
 			CursorIsEnabled = true;
+			RawMouseEnabled = false;
 			ShowCursor();
 			UnlockCursor();
 		}
@@ -151,6 +152,7 @@ namespace G3D
 		inline void DisableCursor()
 		{
 			CursorIsEnabled = false;
+			RawMouseEnabled = true;
 			HideCursor();
 			LockCursor();
 		}
@@ -178,6 +180,11 @@ namespace G3D
 			ClipCursor(nullptr);
 		}
 
+		inline bool IsCursorEnabled()
+		{
+			return CursorIsEnabled;
+		}
+
 	private:
 		static constexpr u16 bufferSize = 16u;
 		u16 x = 0u;
@@ -188,6 +195,7 @@ namespace G3D
 		bool rightIsPressed = false;
 		bool isInWindow = false;
 		bool CursorIsEnabled = false;
+		bool RawMouseEnabled = true;
 		std::queue<Event> buffer;
 	};
 }

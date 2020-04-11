@@ -98,6 +98,8 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
 			const POINTS pt = MAKEPOINTS(lParam);
 			G3D::Core::Mouse.OnRightPressed(pt.x, pt.y);
+			//@NOTE: We only want to disable the cursor if the game is NOT paused, otherwise
+			//we want the cursor to always be enabled when pause state is active.
 			if (!Game::IsPaused)
 			{
 				if (!G3D::Core::Mouse.IsCursorEnabled())

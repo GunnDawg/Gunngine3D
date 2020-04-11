@@ -17,7 +17,7 @@ namespace Settings::Graphics
 {
 	static bool MSAA = true;
 	static UINT MSAAQuality = 0u;
-	static float DrawDistance = 1000.0f;
+	static float DrawDistance = 100.0f;
 }
 
 namespace Settings::Controls

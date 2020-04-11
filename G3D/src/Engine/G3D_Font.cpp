@@ -59,7 +59,7 @@ namespace G3D
 			Build = "Release";
 		#endif
 
-		sprintf(Buffer, "Build: %s\nFrame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\n\nCamera Settings:\nMode: %s\nFOV: %.02f\n\nVideo Settings:\nVSync: %s\nMSAA: %s", Build, G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, Camera, Settings::Camera::FOV, VSync, MSAA);
+		sprintf(Buffer, "Build: %s\nFrame Time: %.02fms\nFPS: %.02f\nMillicycles Per Frame: %.02f\n\nCamera Settings:\nMode: %s\nFOV: %.02f\n\nVideo Settings:\nVSync: %s\nMSAA: %s\nDraw Distance: %.02f", Build, G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, Camera, Settings::Camera::FOV, VSync, MSAA, Settings::Graphics::DrawDistance);
 
 		spriteBatch->Begin();
 			spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

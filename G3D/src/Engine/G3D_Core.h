@@ -13,9 +13,6 @@ namespace G3D
 		inline static bool Initialize(const HINSTANCE& instance);
 		inline static void Shutdown();
 
-		//Debug Functionality
-		inline static void OutputPerformanceData();
-
 		//Core Engine Components
 		inline static G3D::Window Window = {};
 		inline static G3D::Renderer Renderer = {};

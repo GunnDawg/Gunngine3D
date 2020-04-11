@@ -28,12 +28,4 @@ namespace G3D
 	//Debug Stuff
 	//@TEMPORARY: At some point we'll be displaying this information in the window itself,
 	//rather than printing it to the VS output window.
-	void Core::OutputPerformanceData()
-	{
-	#if 0
-		char Buffer[256];
-		sprintf(Buffer, "%.04f ms/f,  %.04f FPS, %.04f MC/f\n", PerformanceClock.DeltaTime, PerformanceClock.FPS, PerformanceClock.MCPF);
-		OutputDebugStringA(Buffer);
-	#endif
-	}
 }

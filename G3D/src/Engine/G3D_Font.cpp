@@ -32,7 +32,7 @@ namespace G3D
 	{
 		//@MOVE: All of this needs to be moved out into some debug structure so that this class
 		//is not specific to printing ONLY debug information.
-		local_persist char Buffer[256];
+		local_persist char Buffer[512];
 		local_persist const char* VSync;
 		local_persist const char* MSAA;
 		local_persist const char* Build;

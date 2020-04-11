@@ -50,9 +50,15 @@ void Scene01::Handle_input()
 			case 'P':
 			{
 				if (Game::IsPaused)
+				{
+					G3D::Core::Mouse.DisableCursor();
 					Game::IsPaused = false;
+				}
 				else
+				{
+					G3D::Core::Mouse.EnableCursor();
 					Game::IsPaused = true;
+				}
 			} break;
 
 			case 'M':

@@ -16,6 +16,7 @@ struct Game
 
 	inline static bool IsRunning = false;
 	inline static bool IsPaused = false;
+	inline static bool ShowDebugData = false;
 	inline static GameStateMachine GSM;
 	inline static G3D::Camera GameCamera;
 };

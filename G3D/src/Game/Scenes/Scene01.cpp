@@ -49,10 +49,10 @@ void Scene01::Handle_input()
 
 			case 0x70://F1
 			{
-				if (ShowDebugData)
-					ShowDebugData = false;
+				if (Game::ShowDebugData)
+					Game::ShowDebugData = false;
 				else
-					ShowDebugData = true;
+					Game::ShowDebugData = true;
 			} break;
 
 			case 'P':
@@ -137,9 +137,5 @@ void Scene01::Update_and_render()
 	//Render
 	G3D::Core::Renderer.Clear(0.15f, 0.15f, 0.15f, 1.0f);
 	testMesh.Draw();
-	if (ShowDebugData)
-	{
-		DebugFont.Draw();
-	}
-
+	DebugFont.Draw();
 }

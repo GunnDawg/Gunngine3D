@@ -75,6 +75,21 @@ namespace G3D
 			return CameraSpeed;
 		}
 
+		inline const float GetCameraPosX() const
+		{
+			return mPos.x;
+		}
+
+		inline const float GetCameraPosY() const
+		{
+			return mPos.y;
+		}
+
+		inline const float GetCameraPosZ() const
+		{
+			return mPos.z;
+		}
+
 	private:
 		void UpdateViewMatrix();
 		DirectX::XMVECTOR mPosVector;

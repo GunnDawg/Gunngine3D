@@ -49,9 +49,9 @@ namespace G3D
 			float DeltaTime = G3D::Core::PerformanceClock.DeltaTime;
 			float FPS = G3D::Core::PerformanceClock.FPS;
 			float MCPF = G3D::Core::PerformanceClock.MCPF;
-			float CameraX = Game::GameCamera.GetCameraPosX();
-			float CameraY = Game::GameCamera.GetCameraPosY();
-			float CameraZ = Game::GameCamera.GetCameraPosZ();
+			float CameraX = Game::GameCamera.GetCameraPos().x;
+			float CameraY = Game::GameCamera.GetCameraPos().y;
+			float CameraZ = Game::GameCamera.GetCameraPos().z;
 
 			if (Game::IsPaused)
 				Status = "Paused";

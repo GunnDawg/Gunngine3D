@@ -88,7 +88,7 @@ namespace G3D
 		}
 		else
 		{
-			local_persist char Buffer[512];
+			local_persist char Buffer[32];
 			sprintf(Buffer, "Press 'F1' to show debug data");
 
 			spriteBatch->Begin();

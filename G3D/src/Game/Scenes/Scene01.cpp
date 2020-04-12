@@ -72,7 +72,10 @@ void Scene01::Handle_input()
 			case 'M':
 			{
 				if (Settings::Camera::FreeRoam)
+				{
 					Settings::Camera::FreeRoam = false;
+					Game::GameCamera.SetPosition(Game::GameCamera.GetCameraPos().x, 0.0f, Game::GameCamera.GetCameraPos().z);
+				}
 				else
 					Settings::Camera::FreeRoam = true;
 			} break;

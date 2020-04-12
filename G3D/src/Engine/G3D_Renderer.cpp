@@ -233,7 +233,6 @@ namespace G3D
 		if (FAILED(Result))
 			return G3D_ERROR;
 
-
 		return G3D_OK;
 	}
 

@@ -79,7 +79,7 @@ namespace G3D
 				Build = "Release";
 			#endif
 
-			sprintf(Buffer, "'F1' to hide debug data\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU Millicycles Per Frame: %.02f\n\nCamera Settings:\n  Mode: %s\n  FOV: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f\n\nVideo Settings:\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f", Build, Version, Status, DeltaTime, FPS, MCPF, Camera, FOV, CameraX, CameraY, CameraZ, VSync, MSAA, DrawDistance);
+			sprintf(Buffer, "'F1' Hide Information\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU Millicycles Per Frame: %.02f\n\nCamera Settings:\n  Mode: %s\n  FOV: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f\n\nVideo Settings:\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f", Build, Version, Status, DeltaTime, FPS, MCPF, Camera, FOV, CameraX, CameraY, CameraZ, VSync, MSAA, DrawDistance);
 			//sprintf(Buffer, "Build: %s\nVersion: 0.0.0.1\n\nPerformance Information:\n  Frame Time: %.02fms\n  FPS: %.02f\n  Millicycles Per Frame: %.02f\n\nCamera Settings:\n  Mode: %s\n  FOV: %.02f\n\  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f\n\nVideo Settings:\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f", Build, G3D::Core::PerformanceClock.DeltaTime, G3D::Core::PerformanceClock.FPS, G3D::Core::PerformanceClock.MCPF, Camera, Settings::Camera::FOV, Game::GameCamera.GetCameraPosX(), Game::GameCamera.GetCameraPosY(), Game::GameCamera.GetCameraPosZ(), VSync, MSAA, Settings::Graphics::DrawDistance);
 
 			spriteBatch->Begin();
@@ -89,7 +89,7 @@ namespace G3D
 		else
 		{
 			local_persist char Buffer[32];
-			sprintf(Buffer, "'F1' to show debug data");
+			sprintf(Buffer, "'F1' Show Information");
 
 			spriteBatch->Begin();
 				spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

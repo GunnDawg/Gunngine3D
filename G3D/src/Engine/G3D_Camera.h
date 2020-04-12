@@ -25,7 +25,7 @@ namespace G3D
 			return mPosVector;
 		}
 
-		inline const DirectX::XMFLOAT3& GetPositionFloat3() const
+		inline const DirectX::XMFLOAT3& GetCameraPos() const
 		{
 			return mPos;
 		}
@@ -39,16 +39,6 @@ namespace G3D
 		{
 			return mRot;
 		}
-
-		void SetPosition(const DirectX::XMVECTOR& pos);
-		void SetPosition(float x, float y, float z);
-		void AdjustPosition(const DirectX::XMVECTOR& pos);
-		void AdjustPosition(float x, float y, float z);
-		void SetRotation(const DirectX::XMVECTOR& rot);
-		void SetRotation(float x, float y, float z);
-		void AdjustRotation(const DirectX::XMVECTOR& rot);
-		void AdjustRotation(float x, float y, float z);
-		void SetLookAtPos(DirectX::XMFLOAT3 lookAtPos);
 
 		inline const DirectX::XMVECTOR& GetForwardVector() const
 		{
@@ -75,11 +65,15 @@ namespace G3D
 			return CameraSpeed;
 		}
 
-
-		inline const DirectX::XMFLOAT3 GetCameraPos() const
-		{
-			return mPos;
-		}
+		void SetPosition(const DirectX::XMVECTOR& pos);
+		void SetPosition(float x, float y, float z);
+		void AdjustPosition(const DirectX::XMVECTOR& pos);
+		void AdjustPosition(float x, float y, float z);
+		void SetRotation(const DirectX::XMVECTOR& rot);
+		void SetRotation(float x, float y, float z);
+		void AdjustRotation(const DirectX::XMVECTOR& rot);
+		void AdjustRotation(float x, float y, float z);
+		void SetLookAtPos(DirectX::XMFLOAT3 lookAtPos);
 
 	private:
 		void UpdateViewMatrix();

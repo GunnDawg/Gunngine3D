@@ -7,7 +7,7 @@ namespace G3D
 	struct Mesh
 	{
 		bool Load();
-		bool Load(const char* TextureName, const char* ShaderName, float x, float y, float z);
+		bool Load(const char* TextureName, const char* ShaderName, DirectX::XMFLOAT3 Position);
 		void Update();
 		void Draw();
 		void Unload();

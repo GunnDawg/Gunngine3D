@@ -6,10 +6,10 @@ namespace G3D
 {
 	bool Mesh::Load()
 	{
-		return Load("Default", "Default", 0.0f, 0.0f, 0.0f);
+		return Load("Default", "Default", DirectX::XMFLOAT3{ 0.0f, 0.0f, 0.0f });
 	}
 
-	bool Mesh::Load(const char* TextureName, const char* ShaderName, float x, float y, float z)
+	bool Mesh::Load(const char* TextureName, const char* ShaderName, DirectX::XMFLOAT3 Position)
 	{
 		HRESULT Result = 0u;
 
@@ -103,7 +103,7 @@ namespace G3D
 
 		G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), Shader.VertexBlob->GetBufferPointer(), Shader.VertexBlob->GetBufferSize(), &InputLayout);
 
-		worldPos = DirectX::XMMatrixTranslation(x, y, z);
+		worldPos = DirectX::XMMatrixTranslation(Position.x, Position.y, Position.z);
 
 		return G3D_OK;
 	}

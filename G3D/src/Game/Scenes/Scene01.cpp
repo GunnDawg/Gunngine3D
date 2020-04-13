@@ -6,7 +6,79 @@ bool Scene01::On_load()
 	OutputDebugString("S1 On_Load\n");
 
 	//@INCOMPLETE: If this fails then we leak a ton of VRAM
-	if (!testMesh.Load("WoodBox", "WoodBox"))
+	if (!testMesh.Load("WoodBox", "WoodBox", -25.0f, 0.0f, 0.0f))
+		return false;
+
+	if (!testMesh2.Load("WoodBox", "WoodBox", -20.0f, 0.0f, 0.0f))
+		return false;
+
+	if (!testMesh3.Load("WoodBox", "WoodBox", -15.0f, 0.0f, 0.0f))
+		return false;
+
+	if (!testMesh4.Load("WoodBox", "WoodBox", -10.0f, 0.0f, 0.0f))
+		return false;
+
+	if (!testMesh5.Load("WoodBox", "WoodBox", -5.0f, 0.0f, 0.0f))
+		return false;
+
+	if (!testMesh6.Load("WoodBox", "WoodBox", -25.0f, -5.0f, 0.0f))
+		return false;
+
+	if (!testMesh7.Load("WoodBox", "WoodBox", -20.0f, -5.0f, 0.0f))
+		return false;
+
+	if (!testMesh8.Load("WoodBox", "WoodBox", -15.0f, -5.0f, 0.0f))
+		return false;
+
+	if (!testMesh9.Load("WoodBox", "WoodBox", -10.0f, -5.0f, 0.0f))
+		return false;
+
+	if (!testMesh10.Load("WoodBox", "WoodBox", -5.0f, -5.0f, 0.0f))
+		return false;
+
+	if (!testMesh11.Load("WoodBox", "WoodBox", -25.0f, -10.0f, 0.0f))
+		return false;
+
+	if (!testMesh12.Load("WoodBox", "WoodBox", -20.0f, -10.0f, 0.0f))
+		return false;
+
+	if (!testMesh13.Load("WoodBox", "WoodBox", -15.0f, -10.0f, 0.0f))
+		return false;
+
+	if (!testMesh14.Load("WoodBox", "WoodBox", -10.0f, -10.0f, 0.0f))
+		return false;
+
+	if (!testMesh15.Load("WoodBox", "WoodBox", -5.0f, -10.0f, 0.0f))
+		return false;
+
+	if (!testMesh16.Load("WoodBox", "WoodBox", -25.0f, -15.0f, 0.0f))
+		return false;
+
+	if (!testMesh17.Load("WoodBox", "WoodBox", -20.0f, -15.0f, 0.0f))
+		return false;
+
+	if (!testMesh18.Load("WoodBox", "WoodBox", -15.0f, -15.0f, 0.0f))
+		return false;
+
+	if (!testMesh19.Load("WoodBox", "WoodBox", -10.0f, -15.0f, 0.0f))
+		return false;
+
+	if (!testMesh20.Load("WoodBox", "WoodBox", -5.0f, -15.0f, 0.0f))
+		return false;
+
+	if (!testMesh21.Load("WoodBox", "WoodBox", -25.0f, -20.0f, 0.0f))
+		return false;
+
+	if (!testMesh22.Load("WoodBox", "WoodBox", -20.0f, -20.0f, 0.0f))
+		return false;
+
+	if (!testMesh23.Load("WoodBox", "WoodBox", -15.0f, -20.0f, 0.0f))
+		return false;
+
+	if (!testMesh24.Load("WoodBox", "WoodBox", -10.0f, -20.0f, 0.0f))
+		return false;
+
+	if (!testMesh25.Load("WoodBox", "WoodBox", -5.0f, -20.0f, 0.0f))
 		return false;
 
 	//@INCOMPLETE: We haven't actually implemented this load function fully. We still need to format the
@@ -21,7 +93,7 @@ void Scene01::On_enter()
 {
 	OutputDebugString("S1 On_Enter\n");
 	Game::GameCamera.Load();
-	Game::GameCamera.SetPosition(0.0f, 0.0f, -2.0f);
+	Game::GameCamera.SetPosition(-15.0f, -10.0f, -15.0f);
 }
 
 void Scene01::On_exit()
@@ -136,9 +208,59 @@ void Scene01::Update_and_render()
 {
 	//Update
 	testMesh.Update();
+	testMesh2.Update();
+	testMesh3.Update();
+	testMesh4.Update();
+	testMesh5.Update();
+	testMesh6.Update();
+	testMesh7.Update();
+	testMesh8.Update();
+	testMesh9.Update();
+	testMesh10.Update();
+	testMesh11.Update();
+	testMesh12.Update();
+	testMesh13.Update();
+	testMesh14.Update();
+	testMesh15.Update();
+	testMesh16.Update();
+	testMesh17.Update();
+	testMesh18.Update();
+	testMesh19.Update();
+	testMesh20.Update();
+	testMesh21.Update();
+	testMesh22.Update();
+	testMesh23.Update();
+	testMesh24.Update();
+	testMesh25.Update();
 
 	//Render
 	G3D::Core::Renderer.Clear(0.15f, 0.15f, 0.15f, 1.0f);
+
 	testMesh.Draw();
+	testMesh2.Draw();
+	testMesh3.Draw();
+	testMesh4.Draw();
+	testMesh5.Draw();
+	testMesh6.Draw();
+	testMesh7.Draw();
+	testMesh8.Draw();
+	testMesh9.Draw();
+	testMesh10.Draw();
+	testMesh11.Draw();
+	testMesh12.Draw();
+	testMesh13.Draw();
+	testMesh14.Draw();
+	testMesh15.Draw();
+	testMesh16.Draw();
+	testMesh17.Draw();
+	testMesh18.Draw();
+	testMesh19.Draw();
+	testMesh20.Draw();
+	testMesh21.Draw();
+	testMesh22.Draw();
+	testMesh23.Draw();
+	testMesh24.Draw();
+	testMesh25.Draw();
+
 	DebugFont.Draw();
 }

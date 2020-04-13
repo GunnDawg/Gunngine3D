@@ -7,7 +7,7 @@ namespace G3D
 	struct Mesh
 	{
 		bool Load();
-		bool Load(const char* TextureName, const char* ShaderName);
+		bool Load(const char* TextureName, const char* ShaderName, float x, float y, float z);
 		void Update();
 		void Draw();
 		void Unload();
@@ -25,5 +25,7 @@ namespace G3D
 		G3D::Texture Texture;
 
 		bool IsUsingDefault = false;
+
+		DirectX::XMMATRIX worldPos;
 	};
 }

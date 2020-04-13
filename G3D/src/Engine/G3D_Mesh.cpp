@@ -6,10 +6,10 @@ namespace G3D
 {
 	bool Mesh::Load()
 	{
-		return Load("Default", "Default");
+		return Load("Default", "Default", 0.0f, 0.0f, 0.0f);
 	}
 
-	bool Mesh::Load(const char* TextureName, const char* ShaderName)
+	bool Mesh::Load(const char* TextureName, const char* ShaderName, float x, float y, float z)
 	{
 		HRESULT Result = 0u;
 
@@ -103,6 +103,8 @@ namespace G3D
 
 		G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), Shader.VertexBlob->GetBufferPointer(), Shader.VertexBlob->GetBufferSize(), &InputLayout);
 
+		worldPos = DirectX::XMMatrixTranslation(x, y, z);
+
 		return G3D_OK;
 	}
 
@@ -110,11 +112,11 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
-		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
+		//DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
 
 		const CameraConstantBuffer cb =
 		{
-			world,
+			worldPos,
 			Game::GameCamera.GetViewMatrix(),
 			Game::GameCamera.GetProjectionMatrix()
 		};

@@ -93,7 +93,7 @@ void Scene01::On_enter()
 {
 	OutputDebugString("S1 On_Enter\n");
 	Game::GameCamera.Load();
-	Game::GameCamera.SetPosition(0.0f, 10.0f, -15.0f);
+	Game::GameCamera.SetPosition(0.0f, 10.0f, -12.0f);
 }
 
 void Scene01::On_exit()

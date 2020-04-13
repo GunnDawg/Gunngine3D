@@ -30,6 +30,13 @@ namespace G3D
 
 	void Font::Draw()
 	{
+		local_persist char TitleBuffer[24];
+		sprintf(TitleBuffer, "Gunngine3D");
+
+		spriteBatch->Begin();
+			spriteFont->DrawString(spriteBatch.get(), TitleBuffer, DirectX::XMFLOAT2((Settings::Display::Width / 2) - 55, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
+		spriteBatch->End();
+
 		if (Game::ShowDebugData)
 		{
 			//@MOVE: All of this needs to be moved out into some debug structure so that this class

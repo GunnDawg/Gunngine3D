@@ -131,15 +131,15 @@ void Scene01::Handle_input()
 
 			case 'P':
 			{
-				if (Game::pauseState == PauseState::PAUSED)
+				if (Game::Pause == PAUSED)
 				{
 					G3D::Core::Mouse.DisableCursor();
-					Game::pauseState = PauseState::UNPAUSED;
+					Game::Pause = UNPAUSED;
 				}
 				else
 				{
 					G3D::Core::Mouse.EnableCursor();
-					Game::pauseState = PauseState::PAUSED;
+					Game::Pause = PAUSED;
 				}
 			} break;
 
@@ -165,7 +165,7 @@ void Scene01::Handle_input()
 		}
 	}
 
-	if (Game::pauseState == PauseState::UNPAUSED)
+	if (Game::Pause == UNPAUSED)
 	{
 		if (G3D::Core::Keyboard.KeyIsPressed('W'))
 		{

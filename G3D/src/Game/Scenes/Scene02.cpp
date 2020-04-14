@@ -37,15 +37,15 @@ void Scene02::Handle_input()
 
 			case 'P':
 			{
-				if (Game::pauseState == PauseState::PAUSED)
+				if (Game::Pause == PAUSED)
 				{
 					G3D::Core::Mouse.DisableCursor();
-					Game::pauseState = PauseState::UNPAUSED;
+					Game::Pause = UNPAUSED;
 				}
 				else
 				{
 					G3D::Core::Mouse.EnableCursor();
-					Game::pauseState = PauseState::PAUSED;
+					Game::Pause = PAUSED;
 				}
 			} break;
 

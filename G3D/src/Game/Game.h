@@ -19,6 +19,6 @@ struct Game
 	inline static GameStateMachine GSM;
 	inline static G3D::Camera GameCamera;
 	inline static bool IsRunning = false;
-	inline static PauseState pauseState = PauseState::UNPAUSED;
+	inline static PauseState Pause = UNPAUSED;
 	inline static bool ShowDebugData = false;
 };

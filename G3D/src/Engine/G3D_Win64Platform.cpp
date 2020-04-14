@@ -69,7 +69,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
 			//@REFACTOR: If we're trying to keep as much of the game code separate from the engine code
 			//then this should probably be refactored out into such a way that only the game handles it.
-			if (!Game::IsPaused)
+			if (Game::pauseState != PauseState::PAUSED)
 			{
 				UINT dataSize = 0u;
 				GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, 0u, &dataSize, sizeof(RAWINPUTHEADER));
@@ -104,7 +104,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			//we want the cursor to always be enabled when pause state is active.
 			//@REFACTOR: If we're trying to keep as much of the game code separate from the engine code
 			//then this should probably be refactored out into such a way that only the game handles it.
-			if (!Game::IsPaused)
+			if (Game::pauseState != PauseState::PAUSED)
 			{
 				if (!G3D::Core::Mouse.IsCursorEnabled())
 					G3D::Core::Mouse.EnableCursor();
@@ -173,7 +173,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		Game::HandleInput();
 		Game::UpdateAndRender();
 
-		if (!Game::IsPaused)
+		if (Game::pauseState != PauseState::PAUSED)
 		{
 			G3D::Core::PerformanceClock.Tick();
 		}

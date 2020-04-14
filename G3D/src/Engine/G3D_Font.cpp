@@ -60,7 +60,7 @@ namespace G3D
 			float CameraY = Game::GameCamera.GetCameraPos().y;
 			float CameraZ = Game::GameCamera.GetCameraPos().z;
 
-			if (Game::IsPaused)
+			if (Game::pauseState == PauseState::PAUSED)
 				Status = "Paused";
 			else
 				Status = "Playing";

@@ -2,6 +2,8 @@
 #include "Game/GameStateMachine.h"
 #include "Engine/G3D_Camera.h"
 
+enum PauseState { PAUSED, UNPAUSED };
+
 struct Game
 {
 	inline static bool Initialize();
@@ -17,6 +19,6 @@ struct Game
 	inline static GameStateMachine GSM;
 	inline static G3D::Camera GameCamera;
 	inline static bool IsRunning = false;
-	inline static bool IsPaused = false;
+	inline static PauseState pauseState = PauseState::UNPAUSED;
 	inline static bool ShowDebugData = false;
 };

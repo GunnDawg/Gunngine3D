@@ -187,14 +187,17 @@ void Scene01::Handle_input()
 			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
-		if (G3D::Core::Keyboard.KeyIsPressed(0x11))//Left Control
+		if (Settings::Camera::FreeRoam)
 		{
-			Game::GameCamera.AdjustPosition(0.0f, -Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
-		}
+			if (G3D::Core::Keyboard.KeyIsPressed(0x11))//Left Control
+			{
+				Game::GameCamera.AdjustPosition(0.0f, -Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
+			}
 
-		if (G3D::Core::Keyboard.KeyIsPressed(0x20))//Spacebar
-		{
-			Game::GameCamera.AdjustPosition(0.0f, Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
+			if (G3D::Core::Keyboard.KeyIsPressed(0x20))//Spacebar
+			{
+				Game::GameCamera.AdjustPosition(0.0f, Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
+			}
 		}
 
 		auto e = G3D::Core::Mouse.Read();

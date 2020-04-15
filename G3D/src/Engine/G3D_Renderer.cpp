@@ -136,7 +136,7 @@ namespace G3D
 
 		//Create our BackBuffer
 		ID3D11Texture2D* BackBuffer;
-		Result = SwapChain->GetBuffer(0u, __uuidof(ID3D11Texture2D), (void**)&BackBuffer);
+		Result = SwapChain->GetBuffer(0u, __uuidof(ID3D11Resource), (void**)&BackBuffer);
 		if (FAILED(Result))
 			return G3D_ERROR;
 
@@ -149,7 +149,6 @@ namespace G3D
 
 		//Create our depth stencil state
 		CD3D11_TEXTURE2D_DESC depthStencilDesc = CD3D11_TEXTURE2D_DESC();
-		ZeroMemory(&depthStencilDesc, sizeof(D3D11_TEXTURE2D_DESC));
 		depthStencilDesc.Width = Settings::Display::Width;
 		depthStencilDesc.Height = Settings::Display::Height;
 		depthStencilDesc.MipLevels = 1u;
@@ -161,7 +160,6 @@ namespace G3D
 		depthStencilDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 
 		CD3D11_DEPTH_STENCIL_DESC depthStencilStateDesc = CD3D11_DEPTH_STENCIL_DESC();
-		ZeroMemory(&depthStencilStateDesc, sizeof(D3D11_DEPTH_STENCIL_DESC));
 		depthStencilStateDesc.DepthEnable = TRUE;
 		depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		depthStencilStateDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
@@ -185,7 +183,6 @@ namespace G3D
 			return G3D_ERROR;
 
 		CD3D11_DEPTH_STENCIL_VIEW_DESC DSVdesc = CD3D11_DEPTH_STENCIL_VIEW_DESC();
-		ZeroMemory(&DSVdesc, sizeof(D3D11_DEPTH_STENCIL_VIEW_DESC));
 		DSVdesc.Format = DXGI_FORMAT_D32_FLOAT;
 		DSVdesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS;
 		DSVdesc.Texture2D.MipSlice = 0u;
@@ -203,7 +200,6 @@ namespace G3D
 
 		//Set Default Rasterizer State
 		CD3D11_RASTERIZER_DESC RastDesc = CD3D11_RASTERIZER_DESC();
-		ZeroMemory(&RastDesc, sizeof(D3D11_RASTERIZER_DESC));
 		RastDesc.FillMode = D3D11_FILL_SOLID;
 		RastDesc.CullMode = D3D11_CULL_NONE;
 		RastDesc.MultisampleEnable = Settings::Graphics::MSAA;
@@ -217,7 +213,6 @@ namespace G3D
 
 		//Create our viewport
 		CD3D11_VIEWPORT viewport = CD3D11_VIEWPORT();
-		ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));
 		viewport.Width = Settings::Display::Width;
 		viewport.Height = Settings::Display::Height;
 		viewport.TopLeftX = 0u;

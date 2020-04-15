@@ -141,14 +141,14 @@ namespace G3D
 			return G3D_ERROR;
 
 		//Create our Render Target
-		Result = Device->CreateRenderTargetView(BackBuffer, NULL, &RenderTargetView);
+		Result = Device->CreateRenderTargetView(BackBuffer, 0u, &RenderTargetView);
 		if (FAILED(Result))
 			return G3D_ERROR;
 
 		SAFE_RELEASE(BackBuffer);
 
 		//Create our depth stencil state
-		D3D11_TEXTURE2D_DESC depthStencilDesc;
+		CD3D11_TEXTURE2D_DESC depthStencilDesc;
 		ZeroMemory(&depthStencilDesc, sizeof(D3D11_TEXTURE2D_DESC));
 		depthStencilDesc.Width = Settings::Display::Width;
 		depthStencilDesc.Height = Settings::Display::Height;
@@ -160,7 +160,7 @@ namespace G3D
 		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
 		depthStencilDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 
-		D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc;
+		CD3D11_DEPTH_STENCIL_DESC depthStencilStateDesc;
 		ZeroMemory(&depthStencilStateDesc, sizeof(D3D11_DEPTH_STENCIL_DESC));
 		depthStencilStateDesc.DepthEnable = TRUE;
 		depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
@@ -184,7 +184,7 @@ namespace G3D
 		if (FAILED(Result))
 			return G3D_ERROR;
 
-		D3D11_DEPTH_STENCIL_VIEW_DESC DSVdesc;
+		CD3D11_DEPTH_STENCIL_VIEW_DESC DSVdesc;
 		ZeroMemory(&DSVdesc, sizeof(D3D11_DEPTH_STENCIL_VIEW_DESC));
 		DSVdesc.Format = DXGI_FORMAT_D32_FLOAT;
 		DSVdesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS;
@@ -194,7 +194,7 @@ namespace G3D
 		if (FAILED(Result))
 			return G3D_ERROR;
 
-		Result = Device->CreateDepthStencilView(DepthStencilBuffer, &DSVdesc, &DepthStencilView);
+		Result = Device->CreateDepthStencilView(DepthStencilBuffer, 0u, &DepthStencilView);
 		if (FAILED(Result))
 			return G3D_ERROR;
 
@@ -202,7 +202,7 @@ namespace G3D
 		Context->OMSetDepthStencilState(DepthStencilState, 1u);
 
 		//Set Default Rasterizer State
-		D3D11_RASTERIZER_DESC RastDesc;
+		CD3D11_RASTERIZER_DESC RastDesc;
 		ZeroMemory(&RastDesc, sizeof(D3D11_RASTERIZER_DESC));
 		RastDesc.FillMode = D3D11_FILL_SOLID;
 		RastDesc.CullMode = D3D11_CULL_NONE;
@@ -216,7 +216,7 @@ namespace G3D
 		Context->RSSetState(RasterizerState);
 
 		//Create our viewport
-		D3D11_VIEWPORT viewport;
+		CD3D11_VIEWPORT viewport;
 		ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));
 		viewport.Width = Settings::Display::Width;
 		viewport.Height = Settings::Display::Height;

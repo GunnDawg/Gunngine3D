@@ -208,6 +208,8 @@ void Scene01::Handle_input()
 
 void Scene01::Update_and_render()
 {
+	G3D::Core::Renderer.Context->OMSetDepthStencilState(nullptr, 1u);
+
 	//Update
 	for (size_t i = 0; i < Boxes.size(); ++i)
 		Boxes[i].Update();

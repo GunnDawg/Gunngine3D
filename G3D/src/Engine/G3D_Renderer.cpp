@@ -235,6 +235,7 @@ namespace G3D
 	void Renderer::ResetStatesPerFrame()
 	{
 		Context->OMSetDepthStencilState(DepthStencilState, 1u);
+		Context->RSSetState(RasterizerState);
 	}
 
 	void Renderer::Shutdown()

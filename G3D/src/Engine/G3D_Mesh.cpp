@@ -112,8 +112,6 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
-		//DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
-
 		const CameraConstantBuffer cb =
 		{
 			worldPos,

@@ -24,7 +24,7 @@ void Game::UpdateAndRender()
 	//@NOTE: This is the only place we should be calling Renderer->Clear() and Present(). It makes no sense for
 	//each scene to be making that round trip call to the renderer when it can be done _once_ here. Unless we get into
 	//some weird batch rendering or cacheing that needs to be done else where, and changes this later.
-	G3D::Core::Renderer.Clear(0.0f, 0.0f, 0.0f, 1.0f);
+	G3D::Core::Renderer.Clear(0.15f, 0.15f, 0.15f, 1.0f);
 	GSM.UpdateAndRender();
 	G3D::Core::Renderer.Present();
 }

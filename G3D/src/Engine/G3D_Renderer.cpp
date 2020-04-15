@@ -25,6 +25,7 @@ namespace G3D
 	bool Renderer::Initialize()
 	{
 		HRESULT Result = 0u;
+		CD3D11_DEFAULT def;
 
 		std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
 		if (adapters.size() < 1)
@@ -148,7 +149,7 @@ namespace G3D
 		SAFE_RELEASE(BackBuffer);
 
 		//Create our depth stencil state
-		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
+		CD3D11_TEXTURE2D_DESC depthStencilDesc = {};
 		depthStencilDesc.Width = Settings::Display::Width;
 		depthStencilDesc.Height = Settings::Display::Height;
 		depthStencilDesc.MipLevels = 1u;
@@ -159,7 +160,7 @@ namespace G3D
 		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
 		depthStencilDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 
-		D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc = {};
+		CD3D11_DEPTH_STENCIL_DESC depthStencilStateDesc(def); //= {};
 		depthStencilStateDesc.DepthEnable = TRUE;
 		depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		depthStencilStateDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
@@ -196,7 +197,7 @@ namespace G3D
 			return G3D_ERROR;
 
 		Context->OMSetRenderTargets(1u, &RenderTargetView, DepthStencilView);
-		Context->OMSetDepthStencilState(DepthStencilState, 1u);
+		//Context->OMSetDepthStencilState(DepthStencilState, 1u);
 
 		//Set Default Rasterizer State
 		D3D11_RASTERIZER_DESC RastDesc = {};

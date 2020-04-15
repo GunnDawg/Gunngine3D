@@ -197,7 +197,7 @@ namespace G3D
 			return G3D_ERROR;
 
 		Context->OMSetRenderTargets(1u, &RenderTargetView, DepthStencilView);
-		//Context->OMSetDepthStencilState(DepthStencilState, 1u);
+		Context->OMSetDepthStencilState(DepthStencilState, 1u);
 
 		//Set Default Rasterizer State
 		D3D11_RASTERIZER_DESC RastDesc = {};
@@ -230,6 +230,11 @@ namespace G3D
 			return G3D_ERROR;
 
 		return G3D_OK;
+	}
+
+	void Renderer::ResetStatesPerFrame()
+	{
+		Context->OMSetDepthStencilState(DepthStencilState, 1u);
 	}
 
 	void Renderer::Shutdown()

@@ -21,10 +21,13 @@ namespace G3D
 	{
 		//@NOTE: Windows specific rendering data here
 		bool Initialize();
+		void ResetStatesPerFrame();
 		//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
 		//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
 		inline void Clear(DirectX::XMFLOAT4 color)
 		{
+			ResetStatesPerFrame();
+
 			const float clearColor[] = { color.x, color.y, color.z, color.w };
 			Context->ClearRenderTargetView(RenderTargetView, clearColor);
 			Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);
@@ -34,6 +37,8 @@ namespace G3D
 		//and pack them into their own platform/renderer specific format.
 		inline void Clear(float r, float g, float b, float a)
 		{
+			ResetStatesPerFrame();
+
 			const float clearColor[] = { r, g, b, a };
 			Context->ClearRenderTargetView(RenderTargetView, clearColor);
 			Context->ClearDepthStencilView(DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0u);

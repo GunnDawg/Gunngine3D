@@ -208,16 +208,11 @@ void Scene01::Handle_input()
 
 void Scene01::Update_and_render()
 {
-	//@TEMP: This is only a band-aid to fix the depth buffer until we figure out what is wrong with the
-	//depth buffer that I created. This simply sets it back to the default state.
-	G3D::Core::Renderer.Context->OMSetDepthStencilState(nullptr, 1u);
-
 	//Update
 	for (size_t i = 0; i < Boxes.size(); ++i)
 		Boxes[i].Update();
 
 	//Render
-	G3D::Core::Renderer.Clear(0.15f, 0.15f, 0.15f, 1.0f);
 	for (size_t i = 0; i < Boxes.size(); ++i)
 		Boxes[i].Draw();
 

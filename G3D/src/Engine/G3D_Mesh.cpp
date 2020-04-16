@@ -112,9 +112,10 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
-		WVP = DirectX::XMMatrixTranspose(
+		WVP = DirectX::XMMatrixTranspose
+		(
 			worldPos *
-			Game::GameCamera.GetViewMatrix()*
+			Game::GameCamera.GetViewMatrix() *
 			Game::GameCamera.GetProjectionMatrix()
 		);
 

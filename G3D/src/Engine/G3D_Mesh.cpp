@@ -16,16 +16,27 @@ namespace G3D
 		const TexturedVertex vertices[] =
 		{
 			//Back Face
-			TexturedVertex(-0.5f, -0.5f, -0.5f, 0.0f, 1.0f),
-			TexturedVertex( 0.5f, -0.5f, -0.5f, 0.0f, 0.0f),
-			TexturedVertex(-0.5f,  0.5f, -0.5f, 1.0f, 0.0f),
-			TexturedVertex( 0.5f,  0.5f, -0.5f, 1.0f, 1.0f),
+			//TexturedVertex(-0.5f, -0.5f, -0.5f, 0.0f, 1.0f),
+			//TexturedVertex( 0.5f, -0.5f, -0.5f, 0.0f, 0.0f),
+			//TexturedVertex(-0.5f,  0.5f, -0.5f, 1.0f, 0.0f),
+			//TexturedVertex( 0.5f,  0.5f, -0.5f, 1.0f, 1.0f),
+
+			////Front Face
+			//TexturedVertex(-0.5f, -0.5f, 0.5f, 0.0f, 1.0f),
+			//TexturedVertex( 0.5f, -0.5f, 0.5f, 0.0f, 0.0f),
+			//TexturedVertex(-0.5f,  0.5f, 0.5f, 1.0f, 0.0f),
+			//TexturedVertex( 0.5f,  0.5f, 0.5f, 1.0f, 1.0f)
+
+			TexturedVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
+			TexturedVertex( 1.0f, -1.0f, -1.0f, 0.0f, 0.0f),
+			TexturedVertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f),
+			TexturedVertex( 1.0f,  1.0f, -1.0f, 1.0f, 1.0f),
 
 			//Front Face
-			TexturedVertex(-0.5f, -0.5f, 0.5f, 0.0f, 1.0f),
-			TexturedVertex( 0.5f, -0.5f, 0.5f, 0.0f, 0.0f),
-			TexturedVertex(-0.5f,  0.5f, 0.5f, 1.0f, 0.0f),
-			TexturedVertex( 0.5f,  0.5f, 0.5f, 1.0f, 1.0f)
+			TexturedVertex(-1.0f, -1.0f, 1.0f, 0.0f, 1.0f),
+			TexturedVertex( 1.0f, -1.0f, 1.0f, 0.0f, 0.0f),
+			TexturedVertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f),
+			TexturedVertex( 1.0f,  1.0f, 1.0f, 1.0f, 1.0f)
 		};
 
 		const u16 indices[] =

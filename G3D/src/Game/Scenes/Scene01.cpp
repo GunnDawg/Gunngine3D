@@ -148,7 +148,7 @@ void Scene01::Handle_input()
 				if (Settings::Camera::FreeRoam)
 				{
 					Settings::Camera::FreeRoam = false;
-					Game::GameCamera.SetPosition(Game::GameCamera.GetCameraPos().x, 0.0f, Game::GameCamera.GetCameraPos().z);
+					Game::GameCamera.SetPosition(Game::GameCamera.GetCameraPos().x, 1.81f, Game::GameCamera.GetCameraPos().z);
 				}
 				else
 					Settings::Camera::FreeRoam = true;

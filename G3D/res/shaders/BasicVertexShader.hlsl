@@ -15,6 +15,6 @@ VS_OUTPUT main(VS_INPUT input)
     VS_OUTPUT output;
     output.outPosition = float4(input.inPosition, 1.0f);
     output.outColor = input.inColor;
-    
+
     return output;
 }

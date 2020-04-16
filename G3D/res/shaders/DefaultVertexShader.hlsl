@@ -12,18 +12,15 @@ struct VS_OUTPUT
 
 cbuffer CameraBuffer : register(b0)
 {
-    matrix worldMatrix;
-    matrix viewMatrix;
-    matrix projMatrix;
+    matrix WVP;
 };
 
 VS_OUTPUT main(VS_INPUT input)
 {
     VS_OUTPUT output;
-    matrix camera = transpose(mul(projMatrix, mul(viewMatrix, worldMatrix)));
-    
-    output.outPosition = mul(input.inPosition, camera);
+
+    output.outPosition = mul(input.inPosition, WVP);
     output.outTexCoord = input.inTexCoord;
-    
+
     return output;
 }

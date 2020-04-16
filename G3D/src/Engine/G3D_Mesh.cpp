@@ -112,11 +112,10 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
+		WVP = DirectX::XMMatrixTranspose(worldPos * Game::GameCamera.GetViewMatrix() * Game::GameCamera.GetProjectionMatrix());
 		const CameraConstantBuffer cb =
 		{
-			worldPos,
-			Game::GameCamera.GetViewMatrix(),
-			Game::GameCamera.GetProjectionMatrix()
+			WVP
 		};
 
 		D3D11_BUFFER_DESC cbd;

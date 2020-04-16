@@ -147,7 +147,7 @@ namespace G3D
 			//@TODO: Error Handling
 		}
 
-		CopyMemory(mappedResource.pData, &cb, sizeof(CameraConstantBuffer));
+		CopyMemory(mappedResource.pData, &cb, sizeof(cb));
 		G3D::Core::Renderer.Context->Unmap(mConstantBuffer, 0u);
 	}
 

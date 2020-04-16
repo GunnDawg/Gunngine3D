@@ -1,6 +1,6 @@
 #include "Engine/G3D_Mesh.h"
 #include "Engine/G3D_Vertex.h"
-#include "Engine/G3D_ConstantBuffer.h"
+#include "Engine/G3D_ConstantBufferTypes.h"
 
 namespace G3D
 {

@@ -1,6 +1,6 @@
 #include "Engine/G3D_Mesh.h"
 #include "Engine/G3D_Vertex.h"
-#include "Engine/G3D_ConstantBuffer.h"
+#include "Engine/G3D_ConstantBufferTypes.h"
 
 namespace G3D
 {
@@ -105,6 +105,22 @@ namespace G3D
 
 		worldPos = DirectX::XMMatrixTranslation(Position.x, Position.y, Position.z);
 
+		D3D11_BUFFER_DESC cbd;
+		ZeroMemory(&cbd, sizeof(D3D11_BUFFER_DESC));
+		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		cbd.Usage = D3D11_USAGE_DYNAMIC;
+		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		cbd.MiscFlags = 0u;
+		cbd.ByteWidth = sizeof(CameraConstantBuffer);
+		cbd.StructureByteStride = 0u;
+
+		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, nullptr, &mConstantBuffer);
+		if (FAILED(Result))
+		{
+			//TODO: Error Handling;
+			return G3D_ERROR;
+		}
+
 		return G3D_OK;
 	}
 
@@ -124,21 +140,15 @@ namespace G3D
 			WVP
 		};
 
-		D3D11_BUFFER_DESC cbd;
-		ZeroMemory(&cbd, sizeof(D3D11_BUFFER_DESC));
-		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-		cbd.Usage = D3D11_USAGE_DYNAMIC;
-		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-		cbd.MiscFlags = 0u;
-		cbd.ByteWidth = sizeof(cb);
-		cbd.StructureByteStride = 0u;
-		D3D11_SUBRESOURCE_DATA csd;
-		csd.pSysMem = &cb;
-		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, &csd, &mConstantBuffer);
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		Result = G3D::Core::Renderer.Context->Map(mConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling;
+			//@TODO: Error Handling
 		}
+
+		CopyMemory(mappedResource.pData, &cb, sizeof(CameraConstantBuffer));
+		G3D::Core::Renderer.Context->Unmap(mConstantBuffer, 0u);
 	}
 
 	void Mesh::Draw()
@@ -155,8 +165,6 @@ namespace G3D
 		G3D::Core::Renderer.Context->IASetInputLayout(InputLayout);
 
 		G3D::Core::Renderer.Context->DrawIndexed(IndexCount, 0u, 0u);
-
-		SAFE_RELEASE(mConstantBuffer);
 	}
 
 	void Mesh::SwapShader(const char* shaderName)
@@ -169,7 +177,7 @@ namespace G3D
 	{
 		Shader.Unload();
 		Texture.Unload();
-		//SAFE_RELEASE(mConstantBuffer);
+		SAFE_RELEASE(mConstantBuffer);
 		SAFE_RELEASE(VertexBuffer);
 		SAFE_RELEASE(IndexBuffer);
 		SAFE_RELEASE(InputLayout);

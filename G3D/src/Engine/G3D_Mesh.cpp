@@ -141,12 +141,8 @@ namespace G3D
 		};
 
 		D3D11_MAPPED_SUBRESOURCE mappedResource;
-		Result = G3D::Core::Renderer.Context->Map(mConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
-		if (FAILED(Result))
-		{
-			//@TODO: Error Handling
-		}
 
+		G3D::Core::Renderer.Context->Map(mConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
 		CopyMemory(mappedResource.pData, &cb, sizeof(cb));
 		G3D::Core::Renderer.Context->Unmap(mConstantBuffer, 0u);
 	}

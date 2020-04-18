@@ -15,7 +15,7 @@ namespace G3D
 
 		const TexturedVertex vertices[] =
 		{
-			//Back Face
+			////Back Face
 			//TexturedVertex(-0.5f, -0.5f, -0.5f, 0.0f, 1.0f),
 			//TexturedVertex( 0.5f, -0.5f, -0.5f, 0.0f, 0.0f),
 			//TexturedVertex(-0.5f,  0.5f, -0.5f, 1.0f, 0.0f),
@@ -27,6 +27,7 @@ namespace G3D
 			//TexturedVertex(-0.5f,  0.5f, 0.5f, 1.0f, 0.0f),
 			//TexturedVertex( 0.5f,  0.5f, 0.5f, 1.0f, 1.0f)
 
+			//Back Face
 			TexturedVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
 			TexturedVertex( 1.0f, -1.0f, -1.0f, 0.0f, 0.0f),
 			TexturedVertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f),

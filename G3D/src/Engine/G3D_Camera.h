@@ -60,11 +60,6 @@ namespace G3D
 			return vec_right;
 		}
 
-		inline const float GetCameraSpeed() const
-		{
-			return CameraSpeed;
-		}
-
 		void SetPosition(const DirectX::XMVECTOR& pos);
 		void SetPosition(float x, float y, float z);
 		void AdjustPosition(const DirectX::XMVECTOR& pos);
@@ -95,7 +90,5 @@ namespace G3D
 		DirectX::XMVECTOR vec_left;
 		DirectX::XMVECTOR vec_right;
 		DirectX::XMVECTOR vec_backward;
-
-		const float CameraSpeed = 0.01f;
 	};
 }

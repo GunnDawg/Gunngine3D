@@ -29,4 +29,5 @@ namespace Settings::Camera
 {
 	static bool FreeRoam = true;
 	static float FOV = 90.0f;
+	static float CameraSpeed = 0.02f;
 }

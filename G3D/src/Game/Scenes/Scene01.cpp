@@ -4,6 +4,8 @@
 bool Scene01::On_load()
 {
 	OutputDebugString("S1 On_Load\n");
+	Game::GameCamera.Load();
+	Game::GameCamera.SetPosition(0.0f, 10.0f, -24.0f);
 
 	//@INCOMPLETE: If this fails then we leak a ton of VRAM
 	if (!Boxes[0].Load("WoodBox", "WoodBox", { -10.0f, 0.0f, 0.0f }))
@@ -92,8 +94,6 @@ bool Scene01::On_load()
 void Scene01::On_enter()
 {
 	OutputDebugString("S1 On_Enter\n");
-	Game::GameCamera.Load();
-	Game::GameCamera.SetPosition(0.0f, 10.0f, -12.0f);
 }
 
 void Scene01::On_exit()
@@ -169,34 +169,34 @@ void Scene01::Handle_input()
 	{
 		if (G3D::Core::Keyboard.KeyIsPressed('W'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetForwardVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetForwardVector() * Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('A'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetLeftVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetLeftVector() * Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('S'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetBackVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetBackVector() * Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('D'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (Settings::Camera::FreeRoam)
 		{
 			if (G3D::Core::Keyboard.KeyIsPressed(0x11))//Left Control
 			{
-				Game::GameCamera.AdjustPosition(0.0f, -Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
+				Game::GameCamera.AdjustPosition(0.0f, -Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
 			}
 
 			if (G3D::Core::Keyboard.KeyIsPressed(0x20))//Spacebar
 			{
-				Game::GameCamera.AdjustPosition(0.0f, Game::GameCamera.GetCameraSpeed() * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
+				Game::GameCamera.AdjustPosition(0.0f, Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
 			}
 		}
 

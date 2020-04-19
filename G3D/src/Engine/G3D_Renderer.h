@@ -21,7 +21,11 @@ namespace G3D
 	{
 		//@NOTE: Windows specific rendering data here
 		bool Initialize();
-		void ResetStatesPerFrame();
+		inline void ResetStatesPerFrame()
+		{
+			Context->OMSetDepthStencilState(DepthStencilState, 1u);
+			Context->RSSetState(RasterizerState);
+		}
 		//@NOTE: This is a DirectX specific solution because of passing a DirectX matrix. The more platform agnostic
 		//way of doing it imo, is to just pass the r, g, b, a, as float values, or implement our own matrix types.
 		inline void Clear(DirectX::XMFLOAT4 color)

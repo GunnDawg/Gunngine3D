@@ -232,12 +232,6 @@ namespace G3D
 		return G3D_OK;
 	}
 
-	void Renderer::ResetStatesPerFrame()
-	{
-		Context->OMSetDepthStencilState(DepthStencilState, 1u);
-		Context->RSSetState(RasterizerState);
-	}
-
 	void Renderer::Shutdown()
 	{
 		SwapChain->SetFullscreenState(false, 0u);

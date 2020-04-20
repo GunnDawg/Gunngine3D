@@ -23,6 +23,7 @@ namespace G3D
 		local_persist float nearZ = 0.1f;
 		local_persist float farZ = Settings::Graphics::DrawDistance;
 
+		//@NOTE: This is a vertical FoV rather than horizontal FoV
 		mProjectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
 	}
 

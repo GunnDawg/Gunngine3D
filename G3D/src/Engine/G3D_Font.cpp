@@ -54,7 +54,6 @@ namespace G3D
 			local_persist float DrawDistance = Settings::Graphics::DrawDistance;
 			local_persist float FOV = Settings::Camera::FOV;
 
-
 			//@PERFORMANCE: How much of a performance cost are we incurring by declaring these every frame?
 			float DeltaTime = G3D::Core::PerformanceClock.DeltaTime;
 			float FPS = G3D::Core::PerformanceClock.FPS;

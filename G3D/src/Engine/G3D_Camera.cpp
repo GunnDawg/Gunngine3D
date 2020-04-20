@@ -18,7 +18,7 @@ namespace G3D
 	{
 		//@NOTE: We may need to remove the 'local_persist' / 'static' specifier from these values if we ever want to re-load
 		//the camera or window in the future.
-		local_persist float fovRadians = (Settings::Camera::FOV / 360.0f) * DirectX::XM_2PI;
+		local_persist float fovRadians = DirectX::XMConvertToRadians(Settings::Camera::FOV);
 		local_persist float aspectRatio = (static_cast<float>(Settings::Display::Width) / static_cast<float>(Settings::Display::Height));
 		local_persist float nearZ = 0.1f;
 		local_persist float farZ = Settings::Graphics::DrawDistance;

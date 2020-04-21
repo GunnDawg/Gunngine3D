@@ -4,8 +4,7 @@
 bool Scene01::On_load()
 {
 	OutputDebugString("S1 On_Load\n");
-	Game::GameCamera.Load();
-	Game::GameCamera.SetPosition(0.0f, 10.0f, -24.0f);
+	Game::GameCamera.Load(0.0f, 10.0f, -24.0f);
 
 	//@INCOMPLETE: If this fails then we leak a ton of VRAM
 	if (!Boxes[0].Load("WoodBox", "WoodBox", { -10.0f, 0.0f, 0.0f }))

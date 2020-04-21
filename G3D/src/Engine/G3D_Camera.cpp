@@ -25,6 +25,23 @@ namespace G3D
 
 		//@NOTE: This is a vertical FoV rather than horizontal FoV
 		mProjectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
+
+		Game::GameCamera.SetPosition(0.0f, 0.0f, 0.0f);
+	}
+
+	void Camera::Load(float x, float y, float z)
+	{
+		//@NOTE: We may need to remove the 'local_persist' / 'static' specifier from these values if we ever want to re-load
+		//the camera or window in the future.
+		local_persist float fovRadians = DirectX::XMConvertToRadians(Settings::Camera::FOV);
+		local_persist float aspectRatio = (static_cast<float>(Settings::Display::Width) / static_cast<float>(Settings::Display::Height));
+		local_persist float nearZ = 0.1f;
+		local_persist float farZ = Settings::Graphics::DrawDistance;
+
+		//@NOTE: This is a vertical FoV rather than horizontal FoV
+		mProjectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
+
+		Game::GameCamera.SetPosition(x, y, z);
 	}
 
 	void Camera::SetPosition(const DirectX::XMVECTOR& pos)

@@ -9,6 +9,7 @@ namespace G3D
 		Camera();
 
 		void Load();
+		void Load(float x, float y, float z);
 
 		inline const DirectX::XMMATRIX& GetViewMatrix() const
 		{

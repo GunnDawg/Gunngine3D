@@ -26,7 +26,7 @@ namespace G3D
 		//@NOTE: This is a vertical FoV rather than horizontal FoV
 		mProjectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
 
-		Game::GameCamera.SetPosition(0.0f, 0.0f, 0.0f);
+		SetPosition(0.0f, 0.0f, 0.0f);
 	}
 
 	void Camera::Load(float x, float y, float z)
@@ -41,7 +41,7 @@ namespace G3D
 		//@NOTE: This is a vertical FoV rather than horizontal FoV
 		mProjectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
 
-		Game::GameCamera.SetPosition(x, y, z);
+		SetPosition(x, y, z);
 	}
 
 	void Camera::SetPosition(const DirectX::XMVECTOR& pos)

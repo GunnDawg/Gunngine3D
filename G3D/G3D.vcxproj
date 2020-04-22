@@ -168,6 +168,7 @@
     <ClInclude Include="src\Engine\G3D_AdapterReader.h" />
     <ClInclude Include="src\Engine\G3D_Assert.h" />
     <ClInclude Include="src\Engine\G3D_Camera.h" />
+    <ClInclude Include="src\Engine\G3D_ConstantBuffer.h" />
     <ClInclude Include="src\Engine\G3D_ConstantBufferTypes.h" />
     <ClInclude Include="src\Engine\G3D_Core.h" />
     <ClInclude Include="src\Engine\G3D_Debug.h" />

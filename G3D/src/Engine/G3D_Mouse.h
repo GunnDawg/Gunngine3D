@@ -67,9 +67,9 @@ namespace G3D
 		inline std::pair<u16, u16> GetPos() const { return { x, y }; }
 		inline u16 GetPosY() const { return y; }
 		inline u16 GetPosX() const { return x; }
-		inline std::pair<i16, i16> GetDelta() const { return { dx, dy }; }
-		inline i16 GetDeltaX() const { return dx; }
-		inline i16 GetDeltaY() const { return dy; }
+		inline std::pair<s16, s16> GetDelta() const { return { dx, dy }; }
+		inline s16 GetDeltaX() const { return dx; }
+		inline s16 GetDeltaY() const { return dy; }
 		inline bool IsInWindow() const { return isInWindow; }
 		inline bool LeftIsPressed() const { return leftIsPressed; }
 		inline bool RightIsPressed() const { return rightIsPressed; }
@@ -189,8 +189,8 @@ namespace G3D
 		static constexpr u16 bufferSize = 16u;
 		u16 x = 0u;
 		u16 y = 0u;
-		i16 dx = 0u;
-		i16 dy = 0u;
+		s16 dx = 0u;
+		s16 dy = 0u;
 		bool leftIsPressed = false;
 		bool rightIsPressed = false;
 		bool isInWindow = false;

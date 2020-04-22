@@ -84,7 +84,7 @@ namespace G3D
 		TrimBuffer(keybuffer);
 	}
 
-	void Keyboard::OnChar(i8 character) noexcept
+	void Keyboard::OnChar(s8 character) noexcept
 	{
 		charbuffer.push(character);
 		TrimBuffer(charbuffer);

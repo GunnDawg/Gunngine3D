@@ -58,7 +58,7 @@ namespace G3D
 		bool AutorepeatIsEnabled() const noexcept;
 		void OnKeyPressed(u16 keycode) noexcept;
 		void OnKeyReleased(u16 keycode) noexcept;
-		void OnChar(i8 character) noexcept;
+		void OnChar(s8 character) noexcept;
 	private:
 		void ClearState() noexcept;
 		template<typename T>

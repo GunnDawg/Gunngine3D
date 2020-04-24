@@ -173,10 +173,7 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 		Game::HandleInput();
 		Game::UpdateAndRender();
 
-		if (Game::Pause != PAUSED)
-		{
-			G3D::Core::PerformanceClock.Tick();
-		}
+		G3D::Core::PerformanceClock.Tick();
 	}
 
 	//@NOTE: Shut everything down

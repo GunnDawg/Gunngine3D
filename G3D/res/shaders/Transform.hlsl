@@ -1,4 +1,4 @@
-cbuffer CameraBuffer : register(b0)
+cbuffer TransformBuffer : register(b0)
 {
     matrix WVP;
 };

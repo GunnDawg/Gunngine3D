@@ -127,7 +127,7 @@ namespace G3D
 	void Mesh::Update()
 	{
 		HRESULT Result = 0u;
-
+		local_persist DirectX::XMMATRIX WVP;
 		WVP = DirectX::XMMatrixTranspose
 		(
 			worldPos *

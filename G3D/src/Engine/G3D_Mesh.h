@@ -27,6 +27,5 @@ namespace G3D
 		bool IsUsingDefault = false;
 
 		DirectX::XMMATRIX worldPos;
-		DirectX::XMMATRIX WVP;
 	};
 }

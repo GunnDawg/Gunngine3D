@@ -73,13 +73,6 @@ namespace G3D
 
 	private:
 		void UpdateViewMatrix();
-		DirectX::XMVECTOR mPosVector;
-		DirectX::XMVECTOR mRotVector;
-		DirectX::XMFLOAT3 mPos;
-		DirectX::XMFLOAT3 mRot;
-		DirectX::XMMATRIX mViewMatrix;
-		DirectX::XMMATRIX mProjectionMatrix;
-		DirectX::XMMATRIX mVecRotationMatrix;
 
 		const DirectX::XMVECTOR DEFAULT_FORWARD_VECTOR = DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 		const DirectX::XMVECTOR DEFAULT_UP_VECTOR = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
@@ -91,5 +84,14 @@ namespace G3D
 		DirectX::XMVECTOR vec_left;
 		DirectX::XMVECTOR vec_right;
 		DirectX::XMVECTOR vec_backward;
+		DirectX::XMVECTOR mPosVector;
+		DirectX::XMVECTOR mRotVector;
+
+		DirectX::XMFLOAT3 mPos;
+		DirectX::XMFLOAT3 mRot;
+
+		DirectX::XMMATRIX mViewMatrix;
+		DirectX::XMMATRIX mProjectionMatrix;
+		DirectX::XMMATRIX mVecRotationMatrix;
 	};
 }

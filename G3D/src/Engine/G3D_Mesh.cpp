@@ -111,7 +111,7 @@ namespace G3D
 		cbd.Usage = D3D11_USAGE_DYNAMIC;
 		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		cbd.MiscFlags = 0u;
-		cbd.ByteWidth = sizeof(CameraConstantBuffer);
+		cbd.ByteWidth = sizeof(TransformConstantBuffer);
 		cbd.StructureByteStride = 0u;
 
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, nullptr, &mConstantBuffer);
@@ -139,7 +139,7 @@ namespace G3D
 			Game::GameCamera.GetProjectionMatrix()
 		);
 
-		const CameraConstantBuffer cb =
+		const TransformConstantBuffer cb =
 		{
 			WVP
 		};

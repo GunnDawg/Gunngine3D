@@ -1,6 +1,6 @@
 #pragma once
 
-struct CameraConstantBuffer
+struct TransformConstantBuffer
 {
 	DirectX::XMMATRIX worldMatrix;
 	DirectX::XMMATRIX viewMatrix;

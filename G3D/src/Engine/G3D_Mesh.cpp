@@ -103,8 +103,10 @@ namespace G3D
 
 		G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), Shader.VertexBlob->GetBufferPointer(), Shader.VertexBlob->GetBufferSize(), &InputLayout);
 
+		//Set position in world space
 		worldPos = DirectX::XMMatrixTranslation(Position.x, Position.y, Position.z);
 
+		//Create our world space transform constant buffer
 		D3D11_BUFFER_DESC cbd;
 		ZeroMemory(&cbd, sizeof(D3D11_BUFFER_DESC));
 		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;

@@ -95,7 +95,7 @@ namespace G3D
 				Build = "Release";
 			#endif
 
-			sprintf(Buffer, "'F1' Hide Information\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n\nInput Settings:\n Input type: %s\n Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Status, DeltaTime, FPS, MCPF, Width, Height, VSync, MSAA, DrawDistance, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
+			sprintf(Buffer, "'F1' Hide Information\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n\nInput Settings:\n  Device: %s\n  Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Status, DeltaTime, FPS, MCPF, Width, Height, VSync, MSAA, DrawDistance, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
 
 			spriteBatch->Begin();
 				spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

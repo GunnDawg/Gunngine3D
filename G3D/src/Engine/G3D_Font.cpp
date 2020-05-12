@@ -52,7 +52,7 @@ namespace G3D
 			local_persist const char* InputType;
 			local_persist const char* Camera;
 			local_persist const float CSpeed = Settings::Camera::CameraSpeed * 100.0f;
-			local_persist const float cSens = Settings::Controls::MouseSensitivity * 100000.0f;
+			local_persist const float cSens = Settings::Controls::MouseSensitivity * 1000.0f;
 			local_persist float DrawDistance = Settings::Graphics::DrawDistance;
 			local_persist float FOV = Settings::Camera::FOV;
 

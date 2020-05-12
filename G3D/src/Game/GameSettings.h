@@ -7,7 +7,7 @@ namespace Settings
 		static u16 Width = 0u;
 		static u16 Height = 0u;
 		static bool Windowed = true;
-		static bool VSync = true;
+		static bool VSync = false;
 	}
 
 	namespace Audio
@@ -25,8 +25,8 @@ namespace Settings
 	namespace Controls
 	{
 		static bool IsUsingGamepad = false;
-		//static float MouseSensitivity = 0.005f;
-		static float MouseSensitivity = 0.0005f;
+		static float MouseSensitivity = 0.005f;
+		//static float MouseSensitivity = 0.0005f;
 
 	}
 

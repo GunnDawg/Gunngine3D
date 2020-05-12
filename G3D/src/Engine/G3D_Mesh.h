@@ -16,7 +16,8 @@ namespace G3D
 
 		ID3D11Buffer* VertexBuffer;
 		ID3D11Buffer* IndexBuffer;
-		ID3D11Buffer* mConstantBuffer;
+		ID3D11Buffer* mTransformConstantBuffer;
+		ID3D11Buffer* mLightConstantBuffer;
 		ID3D11InputLayout* InputLayout;
 
 		UINT IndexCount;

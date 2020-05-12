@@ -113,10 +113,27 @@ namespace G3D
 		cbd.Usage = D3D11_USAGE_DYNAMIC;
 		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		cbd.MiscFlags = 0u;
-		cbd.ByteWidth = sizeof(TransformConstantBuffer);
+		cbd.ByteWidth = sizeof(CB_VS_TransformConstantBuffer);
 		cbd.StructureByteStride = 0u;
 
-		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, nullptr, &mConstantBuffer);
+		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, nullptr, &mTransformConstantBuffer);
+		if (FAILED(Result))
+		{
+			//TODO: Error Handling;
+			return G3D_ERROR;
+		}
+
+		//Create our ambient light constant buffer
+		D3D11_BUFFER_DESC cbd2;
+		ZeroMemory(&cbd2, sizeof(D3D11_BUFFER_DESC));
+		cbd2.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		cbd2.Usage = D3D11_USAGE_DYNAMIC;
+		cbd2.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		cbd2.MiscFlags = 0u;
+		cbd2.ByteWidth = sizeof(CB_PS_AmbientLight);
+		cbd2.StructureByteStride = 0u;
+
+		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd2, nullptr, &mLightConstantBuffer);
 		if (FAILED(Result))
 		{
 			//TODO: Error Handling;
@@ -141,16 +158,38 @@ namespace G3D
 			Game::GameCamera.GetProjectionMatrix()
 		);
 
-		const TransformConstantBuffer cb =
+		const CB_VS_TransformConstantBuffer cb =
 		{
 			WVP
 		};
 
-		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		local_persist DirectX::XMFLOAT3 LightColor = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);
+		local_persist float LightStrength = 1.0f;
+		const CB_PS_AmbientLight alcb =
+		{
+			LightColor,
+			LightStrength
+		};
 
-		G3D::Core::Renderer.Context->Map(mConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
+		//Update our transform buffer data
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		Result = G3D::Core::Renderer.Context->Map(mTransformConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
+		if (FAILED(Result))
+		{
+			//TODO: Error Handling
+		}
 		CopyMemory(mappedResource.pData, &cb, sizeof(cb));
-		G3D::Core::Renderer.Context->Unmap(mConstantBuffer, 0u);
+		G3D::Core::Renderer.Context->Unmap(mTransformConstantBuffer, 0u);
+
+		//Update our ambient light buffer data
+		D3D11_MAPPED_SUBRESOURCE mappedResource2;
+		Result = G3D::Core::Renderer.Context->Map(mLightConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource2);
+		if (FAILED(Result))
+		{
+			//TODO: Error Handling.
+		}
+		CopyMemory(mappedResource2.pData, &alcb, sizeof(alcb));
+		G3D::Core::Renderer.Context->Unmap(mLightConstantBuffer, 0u);
 	}
 
 	void Mesh::Draw()
@@ -160,7 +199,8 @@ namespace G3D
 
 		Texture.Bind();
 		Shader.Bind();
-		G3D::Core::Renderer.Context->VSSetConstantBuffers(0u, 1u, &mConstantBuffer);
+		G3D::Core::Renderer.Context->VSSetConstantBuffers(0u, 1u, &mTransformConstantBuffer);
+		G3D::Core::Renderer.Context->PSSetConstantBuffers(0u, 1u, &mLightConstantBuffer);
 		G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &VertexBuffer, &stride, &offset);
 		G3D::Core::Renderer.Context->IASetIndexBuffer(IndexBuffer, DXGI_FORMAT_R16_UINT, 0u);
 		G3D::Core::Renderer.Context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -179,7 +219,8 @@ namespace G3D
 	{
 		Shader.Unload();
 		Texture.Unload();
-		SAFE_RELEASE(mConstantBuffer);
+		SAFE_RELEASE(mTransformConstantBuffer);
+		SAFE_RELEASE(mLightConstantBuffer);
 		SAFE_RELEASE(VertexBuffer);
 		SAFE_RELEASE(IndexBuffer);
 		SAFE_RELEASE(InputLayout);

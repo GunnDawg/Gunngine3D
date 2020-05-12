@@ -1,4 +1,4 @@
-cbuffer TransformBuffer : register(b0)
+cbuffer TransformBuffer
 {
     matrix WVP;
 };

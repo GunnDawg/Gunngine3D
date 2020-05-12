@@ -28,11 +28,20 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
+		if (!DebugFont.Load("Debug", "Some Text"))
+			return G3D_ERROR;
+
 		return G3D_OK;
+	}
+
+	void Core::ShowDebugInformation()
+	{
+		DebugFont.Draw();
 	}
 
 	void Core::Shutdown()
 	{
+		DebugFont.Unload();
 		Renderer.Shutdown();
 		Window.Shutdown();
 	}

@@ -22,6 +22,4 @@ struct Game
 	inline static bool IsRunning = false;
 	inline static PauseState Pause = UNPAUSED;
 	inline static bool ShowDebugData = false;
-
-	inline static G3D::Font DebugFont;
 };

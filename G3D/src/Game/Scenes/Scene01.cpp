@@ -123,10 +123,10 @@ void Scene01::Handle_input()
 
 			case 0x70://F1
 			{
-				if (Game::ShowDebugData)
-					Game::ShowDebugData = false;
+				if (Settings::General::DevMode)
+					Settings::General::DevMode = false;
 				else
-					Game::ShowDebugData = true;
+					Settings::General::DevMode = true;
 			} break;
 
 			case 'P':

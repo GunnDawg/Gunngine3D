@@ -2,6 +2,11 @@
 
 namespace Settings
 {
+	namespace General
+	{
+		static bool DevMode = false;
+	}
+
 	namespace Display
 	{
 		static u16 Width = 0u;

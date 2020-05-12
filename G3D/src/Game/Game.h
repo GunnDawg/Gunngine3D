@@ -21,5 +21,4 @@ struct Game
 	inline static G3D::Camera GameCamera;
 	inline static bool IsRunning = false;
 	inline static PauseState Pause = UNPAUSED;
-	inline static bool ShowDebugData = false;
 };

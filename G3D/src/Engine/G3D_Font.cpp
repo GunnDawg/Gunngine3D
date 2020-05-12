@@ -37,7 +37,7 @@ namespace G3D
 			spriteFont->DrawString(spriteBatch.get(), TitleBuffer, DirectX::XMFLOAT2((Settings::Display::Width / 2) - 55, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
 		spriteBatch->End();
 
-		if (Game::ShowDebugData)
+		if (Settings::General::DevMode)
 		{
 			//@MOVE: All of this needs to be moved out into some debug structure so that this class
 			//is not specific to printing ONLY debug information.

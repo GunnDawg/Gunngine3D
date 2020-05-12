@@ -161,6 +161,14 @@ void Scene01::Handle_input()
 				Game::GSM.Push(std::move(S2));
 			} break;
 
+			case 'V':
+			{
+				if (Settings::Display::VSync)
+					Settings::Display::VSync = false;
+				else
+					Settings::Display::VSync = true;
+			} break;
+
 		}
 	}
 

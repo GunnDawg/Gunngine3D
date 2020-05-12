@@ -163,6 +163,9 @@ namespace G3D
 			WVP
 		};
 
+		//TODO: Build some sort of adjustable interface out of this.
+		//TODO: These light values need to be abstracted out into some sort of light class
+		//that has it's own interface.
 		local_persist DirectX::XMFLOAT3 LightColor = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);
 		local_persist float LightStrength = 1.0f;
 		const CB_PS_AmbientLight alcb =

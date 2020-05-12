@@ -13,5 +13,4 @@ struct Scene01 : public GameState
 	void Update_and_render() override;
 
 	std::array<G3D::Mesh, 25> Boxes;
-	G3D::Font DebugFont;
 };

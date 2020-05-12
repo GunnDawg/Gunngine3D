@@ -82,11 +82,6 @@ bool Scene01::On_load()
 	if (!Boxes[24].Load("brickwall/base", "WoodBox", { 10.0f, 20.0f, 0.0f }))
 		return false;
 
-	//@INCOMPLETE: We haven't actually implemented this load function fully. We still need to format the
-	//text passed to it on the Font side, which we're not doing.
-	if (!DebugFont.Load("Debug", "Some Text"))
-		return false;
-
 	return true;
 }
 
@@ -100,8 +95,6 @@ void Scene01::On_exit()
 	OutputDebugString("S1 On_Exit\n\n");
 	for (size_t i = 0; i < Boxes.size(); ++i)
 		Boxes[i].Unload();
-
-	DebugFont.Unload();
 }
 
 void Scene01::Handle_input()
@@ -224,6 +217,4 @@ void Scene01::Update_and_render()
 	//Render
 	for (size_t i = 0; i < Boxes.size(); ++i)
 		Boxes[i].Draw();
-
-	DebugFont.Draw();
 }

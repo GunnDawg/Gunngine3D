@@ -9,6 +9,9 @@ bool Game::Initialize()
 		return false;
 	}
 
+	if (!DebugFont.Load("Debug", "Some Text"))
+		return false;
+
 	IsRunning = true;
 
 	return true;
@@ -26,10 +29,12 @@ void Game::UpdateAndRender()
 	//some weird batch rendering or cacheing that needs to be done else where, and changes this later.
 	G3D::Core::Renderer.Clear(0.15f, 0.15f, 0.15f, 1.0f);
 	GSM.UpdateAndRender();
+	DebugFont.Draw();
 	G3D::Core::Renderer.Present();
 }
 
 void Game::Shutdown()
 {
+	DebugFont.Unload();
 	GSM.UnloadAll();
 }

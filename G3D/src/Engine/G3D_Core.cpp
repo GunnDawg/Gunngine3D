@@ -36,8 +36,4 @@ namespace G3D
 		Renderer.Shutdown();
 		Window.Shutdown();
 	}
-
-	//Debug Stuff
-	//@TEMPORARY: At some point we'll be displaying this information in the window itself,
-	//rather than printing it to the VS output window.
 }

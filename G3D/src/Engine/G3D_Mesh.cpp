@@ -53,6 +53,7 @@ namespace G3D
 
 		const u16 indices[] =
 		{
+			// Front Face
 			0, 1, 2,
 			0, 2, 3,
 

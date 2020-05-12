@@ -7,79 +7,79 @@ bool Scene01::On_load()
 	Game::GameCamera.Load(0.0f, 10.0f, -24.0f);
 
 	//@INCOMPLETE: If this fails then we leak a ton of VRAM
-	if (!Boxes[0].Load("WoodBox", "WoodBox", { -10.0f, 0.0f, 0.0f }))
+	if (!Boxes[0].Load("brickwall/base", "WoodBox", { -10.0f, 0.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[1].Load("WoodBox", "WoodBox", { -5.0f, 0.0f, 0.0f }))
+	if (!Boxes[1].Load("brickwall/base", "WoodBox", { -5.0f, 0.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[2].Load("WoodBox", "WoodBox", { 0.0f, 0.0f, 0.0f }))
+	if (!Boxes[2].Load("brickwall/base", "WoodBox", { 0.0f, 0.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[3].Load("WoodBox", "WoodBox", { 5.0f, 0.0f, 0.0f }))
+	if (!Boxes[3].Load("brickwall/base", "WoodBox", { 5.0f, 0.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[4].Load("WoodBox", "WoodBox", { 10.0f, 0.0f, 0.0f }))
+	if (!Boxes[4].Load("brickwall/base", "WoodBox", { 10.0f, 0.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[5].Load("WoodBox", "WoodBox", { -10.0f, 5.0f, 0.0f }))
+	if (!Boxes[5].Load("brickwall/base", "WoodBox", { -10.0f, 5.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[6].Load("WoodBox", "WoodBox", { -5.0f, 5.0f, 0.0f }))
+	if (!Boxes[6].Load("brickwall/base", "WoodBox", { -5.0f, 5.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[7].Load("WoodBox", "WoodBox", { 0.0f, 5.0f, 0.0f }))
+	if (!Boxes[7].Load("brickwall/base", "WoodBox", { 0.0f, 5.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[8].Load("WoodBox", "WoodBox", { 5.0f, 5.0f, 0.0f }))
+	if (!Boxes[8].Load("brickwall/base", "WoodBox", { 5.0f, 5.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[9].Load("WoodBox", "WoodBox", { 10.0f, 5.0f, 0.0f }))
+	if (!Boxes[9].Load("brickwall/base", "WoodBox", { 10.0f, 5.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[10].Load("WoodBox", "WoodBox", { -10.0f, 10.0f, 0.0f }))
+	if (!Boxes[10].Load("brickwall/base", "WoodBox", { -10.0f, 10.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[11].Load("WoodBox", "WoodBox", { -5.0f, 10.0f, 0.0f }))
+	if (!Boxes[11].Load("brickwall/base", "WoodBox", { -5.0f, 10.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[12].Load("WoodBox", "WoodBox", { 0.0f, 10.0f, 0.0f }))
+	if (!Boxes[12].Load("brickwall/base", "WoodBox", { 0.0f, 10.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[13].Load("WoodBox", "WoodBox", { 5.0f, 10.0f, 0.0f }))
+	if (!Boxes[13].Load("brickwall/base", "WoodBox", { 5.0f, 10.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[14].Load("WoodBox", "WoodBox", { 10.0f, 10.0f, 0.0f }))
+	if (!Boxes[14].Load("brickwall/base", "WoodBox", { 10.0f, 10.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[15].Load("WoodBox", "WoodBox", { -10.0f, 15.0f, 0.0f }))
+	if (!Boxes[15].Load("brickwall/base", "WoodBox", { -10.0f, 15.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[16].Load("WoodBox", "WoodBox", { -5.0f, 15.0f, 0.0f }))
+	if (!Boxes[16].Load("brickwall/base", "WoodBox", { -5.0f, 15.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[17].Load("WoodBox", "WoodBox", { 0.0f, 15.0f, 0.0f }))
+	if (!Boxes[17].Load("brickwall/base", "WoodBox", { 0.0f, 15.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[18].Load("WoodBox", "WoodBox", { 5.0f, 15.0f, 0.0f }))
+	if (!Boxes[18].Load("brickwall/base", "WoodBox", { 5.0f, 15.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[19].Load("WoodBox", "WoodBox", { 10.0f, 15.0f, 0.0f }))
+	if (!Boxes[19].Load("brickwall/base", "WoodBox", { 10.0f, 15.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[20].Load("WoodBox", "WoodBox", { -10.0f, 20.0f, 0.0f }))
+	if (!Boxes[20].Load("brickwall/base", "WoodBox", { -10.0f, 20.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[21].Load("WoodBox", "WoodBox", { -5.0f, 20.0f, 0.0f }))
+	if (!Boxes[21].Load("brickwall/base", "WoodBox", { -5.0f, 20.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[22].Load("WoodBox", "WoodBox", { 0.0f, 20.0f, 0.0f }))
+	if (!Boxes[22].Load("brickwall/base", "WoodBox", { 0.0f, 20.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[23].Load("WoodBox", "WoodBox", { 5.0f, 20.0f, 0.0f }))
+	if (!Boxes[23].Load("brickwall/base", "WoodBox", { 5.0f, 20.0f, 0.0f }))
 		return false;
 
-	if (!Boxes[24].Load("WoodBox", "WoodBox", { 10.0f, 20.0f, 0.0f }))
+	if (!Boxes[24].Load("brickwall/base", "WoodBox", { 10.0f, 20.0f, 0.0f }))
 		return false;
 
 	//@INCOMPLETE: We haven't actually implemented this load function fully. We still need to format the

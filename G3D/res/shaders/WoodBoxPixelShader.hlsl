@@ -4,9 +4,11 @@ struct PS_INPUT
 {
     float4 inPosition : SV_POSITION;
     float2 inTexCoord : TEXCOORD;
+    float3 inNormal : NORMAL;
 };
 
 Texture2D objTexture : TEXTURE;
+Texture2D nmap : TEXTURE;
 SamplerState objSampleState : SAMPLER;
 
 float4 main(PS_INPUT input) : SV_TARGET

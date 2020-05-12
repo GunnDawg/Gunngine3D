@@ -16,26 +16,77 @@ namespace G3D
 		const TexturedVertex vertices[] =
 		{
 			//Back Face
-			TexturedVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
-			TexturedVertex( 1.0f, -1.0f, -1.0f, 0.0f, 0.0f),
-			TexturedVertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f),
-			TexturedVertex( 1.0f,  1.0f, -1.0f, 1.0f, 1.0f),
+			//TexturedVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
+			//TexturedVertex( 1.0f, -1.0f, -1.0f, 0.0f, 0.0f),
+			//TexturedVertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f),
+			//TexturedVertex( 1.0f,  1.0f, -1.0f, 1.0f, 1.0f),
 
-			//Front Face
-			TexturedVertex(-1.0f, -1.0f, 1.0f, 0.0f, 1.0f),
-			TexturedVertex( 1.0f, -1.0f, 1.0f, 0.0f, 0.0f),
-			TexturedVertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f),
-			TexturedVertex( 1.0f,  1.0f, 1.0f, 1.0f, 1.0f)
+			////Front Face
+			//TexturedVertex(-1.0f, -1.0f, 1.0f, 0.0f, 1.0f),
+			//TexturedVertex( 1.0f, -1.0f, 1.0f, 0.0f, 0.0f),
+			//TexturedVertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f),
+			//TexturedVertex( 1.0f,  1.0f, 1.0f, 1.0f, 1.0f)
+
+		TexturedVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f,-1.0f, -1.0f, -1.0f),
+		TexturedVertex(-1.0f,  1.0f, -1.0f, 0.0f, 0.0f,-1.0f,  1.0f, -1.0f),
+		TexturedVertex(1.0f,  1.0f, -1.0f, 1.0f, 0.0f, 1.0f,  1.0f, -1.0f),
+		TexturedVertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f),
+
+		// Back Face
+		TexturedVertex(-1.0f, -1.0f, 1.0f, 1.0f, 1.0f,-1.0f, -1.0f, 1.0f),
+		TexturedVertex(1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, -1.0f, 1.0f),
+		TexturedVertex(1.0f,  1.0f, 1.0f, 0.0f, 0.0f, 1.0f,  1.0f, 1.0f),
+		TexturedVertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f,-1.0f,  1.0f, 1.0f),
+
+		// Top Face
+		TexturedVertex(-1.0f, 1.0f, -1.0f, 0.0f, 1.0f,-1.0f, 1.0f, -1.0f),
+		TexturedVertex(-1.0f, 1.0f,  1.0f, 0.0f, 0.0f,-1.0f, 1.0f,  1.0f),
+		TexturedVertex(1.0f, 1.0f,  1.0f, 1.0f, 0.0f, 1.0f, 1.0f,  1.0f),
+		TexturedVertex(1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f),
+
+		// Bottom Face
+		TexturedVertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f,-1.0f, -1.0f, -1.0f),
+		TexturedVertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f),
+		TexturedVertex(1.0f, -1.0f,  1.0f, 0.0f, 0.0f, 1.0f, -1.0f,  1.0f),
+		TexturedVertex(-1.0f, -1.0f,  1.0f, 1.0f, 0.0f,-1.0f, -1.0f,  1.0f),
+
+		// Left Face
+		TexturedVertex(-1.0f, -1.0f,  1.0f, 0.0f, 1.0f,-1.0f, -1.0f,  1.0f),
+		TexturedVertex(-1.0f,  1.0f,  1.0f, 0.0f, 0.0f,-1.0f,  1.0f,  1.0f),
+		TexturedVertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f,-1.0f,  1.0f, -1.0f),
+		TexturedVertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f,-1.0f, -1.0f, -1.0f),
+
+		// Right Face
+		TexturedVertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f),
+		TexturedVertex(1.0f,  1.0f, -1.0f, 0.0f, 0.0f, 1.0f,  1.0f, -1.0f),
+		TexturedVertex(1.0f,  1.0f,  1.0f, 1.0f, 0.0f, 1.0f,  1.0f,  1.0f),
+		TexturedVertex(1.0f, -1.0f,  1.0f, 1.0f, 1.0f, 1.0f, -1.0f,  1.0f),
 		};
 
 		const u16 indices[] =
 		{
-			0,2,1, 2,3,1,
-			1,3,5, 3,7,5,
-			2,6,3, 3,6,7,
-			4,5,7, 4,7,6,
-			0,4,2, 2,4,6,
-			0,1,4, 1,5,4
+		0,  1,  2,
+		0,  2,  3,
+
+		// Back Face
+		4,  5,  6,
+		4,  6,  7,
+
+		// Top Face
+		8,  9, 10,
+		8, 10, 11,
+
+		// Bottom Face
+		12, 13, 14,
+		12, 14, 15,
+
+		// Left Face
+		16, 17, 18,
+		16, 18, 19,
+
+		// Right Face
+		20, 21, 22,
+		20, 22, 23
 		};
 
 		IndexCount = (UINT)std::size(indices);
@@ -86,7 +137,8 @@ namespace G3D
 		const D3D11_INPUT_ELEMENT_DESC ied[] =
 		{
 			{"POSITION", 0u, DXGI_FORMAT_R32G32B32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
-			{"TEXCOORD", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
+			{"TEXCOORD", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u},
+			{"NORMAL", 0u, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0u}
 		};
 
 		if (!Shader.Load(ShaderName))

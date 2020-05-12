@@ -120,6 +120,14 @@ void Scene01::Handle_input()
 				Game::IsRunning = false;
 			} break;
 
+			case 'V':
+			{
+				if (Settings::Display::VSync)
+					Settings::Display::VSync = false;
+				else
+					Settings::Display::VSync = true;
+			} break;
+
 			case 0x70://F1
 			{
 				if (Game::ShowDebugData)
@@ -160,15 +168,6 @@ void Scene01::Handle_input()
 				std::unique_ptr<Scene02> S2 = std::make_unique<Scene02>();
 				Game::GSM.Push(std::move(S2));
 			} break;
-
-			case 'V':
-			{
-				if (Settings::Display::VSync)
-					Settings::Display::VSync = false;
-				else
-					Settings::Display::VSync = true;
-			} break;
-
 		}
 	}
 

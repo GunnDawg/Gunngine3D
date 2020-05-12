@@ -16,7 +16,7 @@
 #define NOTEXTMETRIC
 #define NOKEYSTATES
 #define NOVIRTUALKEYCODES
-#define NOMB
+//#define NOMB
 #define NOSHOWWINDOW
 #define NOGDICAPMASKS
 #define NOMENUS

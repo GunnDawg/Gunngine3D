@@ -15,78 +15,66 @@ namespace G3D
 
 		const TexturedVertex vertices[] =
 		{
-			//Back Face
-			//TexturedVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
-			//TexturedVertex( 1.0f, -1.0f, -1.0f, 0.0f, 0.0f),
-			//TexturedVertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f),
-			//TexturedVertex( 1.0f,  1.0f, -1.0f, 1.0f, 1.0f),
+			TexturedVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f,-1.0f, -1.0f, -1.0f),
+			TexturedVertex(-1.0f,  1.0f, -1.0f, 0.0f, 0.0f,-1.0f,  1.0f, -1.0f),
+			TexturedVertex(1.0f,  1.0f, -1.0f, 1.0f, 0.0f, 1.0f,  1.0f, -1.0f),
+			TexturedVertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f),
 
-			////Front Face
-			//TexturedVertex(-1.0f, -1.0f, 1.0f, 0.0f, 1.0f),
-			//TexturedVertex( 1.0f, -1.0f, 1.0f, 0.0f, 0.0f),
-			//TexturedVertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f),
-			//TexturedVertex( 1.0f,  1.0f, 1.0f, 1.0f, 1.0f)
+			// Back Face
+			TexturedVertex(-1.0f, -1.0f, 1.0f, 1.0f, 1.0f,-1.0f, -1.0f, 1.0f),
+			TexturedVertex(1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, -1.0f, 1.0f),
+			TexturedVertex(1.0f,  1.0f, 1.0f, 0.0f, 0.0f, 1.0f,  1.0f, 1.0f),
+			TexturedVertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f,-1.0f,  1.0f, 1.0f),
 
-		TexturedVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f,-1.0f, -1.0f, -1.0f),
-		TexturedVertex(-1.0f,  1.0f, -1.0f, 0.0f, 0.0f,-1.0f,  1.0f, -1.0f),
-		TexturedVertex(1.0f,  1.0f, -1.0f, 1.0f, 0.0f, 1.0f,  1.0f, -1.0f),
-		TexturedVertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f),
+			// Top Face
+			TexturedVertex(-1.0f, 1.0f, -1.0f, 0.0f, 1.0f,-1.0f, 1.0f, -1.0f),
+			TexturedVertex(-1.0f, 1.0f,  1.0f, 0.0f, 0.0f,-1.0f, 1.0f,  1.0f),
+			TexturedVertex(1.0f, 1.0f,  1.0f, 1.0f, 0.0f, 1.0f, 1.0f,  1.0f),
+			TexturedVertex(1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f),
 
-		// Back Face
-		TexturedVertex(-1.0f, -1.0f, 1.0f, 1.0f, 1.0f,-1.0f, -1.0f, 1.0f),
-		TexturedVertex(1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, -1.0f, 1.0f),
-		TexturedVertex(1.0f,  1.0f, 1.0f, 0.0f, 0.0f, 1.0f,  1.0f, 1.0f),
-		TexturedVertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f,-1.0f,  1.0f, 1.0f),
+			// Bottom Face
+			TexturedVertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f,-1.0f, -1.0f, -1.0f),
+			TexturedVertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f),
+			TexturedVertex(1.0f, -1.0f,  1.0f, 0.0f, 0.0f, 1.0f, -1.0f,  1.0f),
+			TexturedVertex(-1.0f, -1.0f,  1.0f, 1.0f, 0.0f,-1.0f, -1.0f,  1.0f),
 
-		// Top Face
-		TexturedVertex(-1.0f, 1.0f, -1.0f, 0.0f, 1.0f,-1.0f, 1.0f, -1.0f),
-		TexturedVertex(-1.0f, 1.0f,  1.0f, 0.0f, 0.0f,-1.0f, 1.0f,  1.0f),
-		TexturedVertex(1.0f, 1.0f,  1.0f, 1.0f, 0.0f, 1.0f, 1.0f,  1.0f),
-		TexturedVertex(1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f),
+			// Left Face
+			TexturedVertex(-1.0f, -1.0f,  1.0f, 0.0f, 1.0f,-1.0f, -1.0f,  1.0f),
+			TexturedVertex(-1.0f,  1.0f,  1.0f, 0.0f, 0.0f,-1.0f,  1.0f,  1.0f),
+			TexturedVertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f,-1.0f,  1.0f, -1.0f),
+			TexturedVertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f,-1.0f, -1.0f, -1.0f),
 
-		// Bottom Face
-		TexturedVertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f,-1.0f, -1.0f, -1.0f),
-		TexturedVertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f),
-		TexturedVertex(1.0f, -1.0f,  1.0f, 0.0f, 0.0f, 1.0f, -1.0f,  1.0f),
-		TexturedVertex(-1.0f, -1.0f,  1.0f, 1.0f, 0.0f,-1.0f, -1.0f,  1.0f),
-
-		// Left Face
-		TexturedVertex(-1.0f, -1.0f,  1.0f, 0.0f, 1.0f,-1.0f, -1.0f,  1.0f),
-		TexturedVertex(-1.0f,  1.0f,  1.0f, 0.0f, 0.0f,-1.0f,  1.0f,  1.0f),
-		TexturedVertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f,-1.0f,  1.0f, -1.0f),
-		TexturedVertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f,-1.0f, -1.0f, -1.0f),
-
-		// Right Face
-		TexturedVertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f),
-		TexturedVertex(1.0f,  1.0f, -1.0f, 0.0f, 0.0f, 1.0f,  1.0f, -1.0f),
-		TexturedVertex(1.0f,  1.0f,  1.0f, 1.0f, 0.0f, 1.0f,  1.0f,  1.0f),
-		TexturedVertex(1.0f, -1.0f,  1.0f, 1.0f, 1.0f, 1.0f, -1.0f,  1.0f),
+			// Right Face
+			TexturedVertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f),
+			TexturedVertex(1.0f,  1.0f, -1.0f, 0.0f, 0.0f, 1.0f,  1.0f, -1.0f),
+			TexturedVertex(1.0f,  1.0f,  1.0f, 1.0f, 0.0f, 1.0f,  1.0f,  1.0f),
+			TexturedVertex(1.0f, -1.0f,  1.0f, 1.0f, 1.0f, 1.0f, -1.0f,  1.0f)
 		};
 
 		const u16 indices[] =
 		{
-		0,  1,  2,
-		0,  2,  3,
+			0, 1, 2,
+			0, 2, 3,
 
-		// Back Face
-		4,  5,  6,
-		4,  6,  7,
+			// Back Face
+			4, 5, 6,
+			4, 6, 7,
 
-		// Top Face
-		8,  9, 10,
-		8, 10, 11,
+			// Top Face
+			8, 9, 10,
+			8, 10, 11,
 
-		// Bottom Face
-		12, 13, 14,
-		12, 14, 15,
+			// Bottom Face
+			12, 13, 14,
+			12, 14, 15,
 
-		// Left Face
-		16, 17, 18,
-		16, 18, 19,
+			// Left Face
+			16, 17, 18,
+			16, 18, 19,
 
-		// Right Face
-		20, 21, 22,
-		20, 22, 23
+			// Right Face
+			20, 21, 22,
+			20, 22, 23
 		};
 
 		IndexCount = (UINT)std::size(indices);

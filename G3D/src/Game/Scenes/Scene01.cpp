@@ -118,12 +118,14 @@ void Scene01::Handle_input()
 
 			case 0x28://Down Arrow
 			{
-				Game::AmbientLight.DecreaseStrength(0.1f);
+				if(Game::AmbientLight.AmbientLightStrength >= 0.1f)
+					Game::AmbientLight.DecreaseStrength(0.1f);
 			} break;
 
 			case 0x26://Up Arrow
 			{
-				Game::AmbientLight.IncreaseStrength(0.1f);
+				if(Game::AmbientLight.AmbientLightStrength <= 0.99f)
+					Game::AmbientLight.IncreaseStrength(0.1f);
 			} break;
 
 			case 'V':

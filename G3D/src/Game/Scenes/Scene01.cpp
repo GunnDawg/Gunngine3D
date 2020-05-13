@@ -136,7 +136,7 @@ void Scene01::Handle_input()
 					Settings::Display::VSync = true;
 			} break;
 
-			case 0x74://F12
+			case 0x74://F5
 			{
 				if (!Settings::General::DevMode)
 				{
@@ -149,6 +149,10 @@ void Scene01::Handle_input()
 						Settings::General::ShowingBasic = false;
 						Settings::General::ShowingLights = false;
 
+						Settings::General::DevMode = false;
+					}
+					else
+					{
 						Settings::General::DevMode = false;
 					}
 				}

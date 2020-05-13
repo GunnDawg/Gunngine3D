@@ -41,6 +41,7 @@ namespace G3D
 		{
 			//@MOVE: All of this needs to be moved out into some debug structure so that this class
 			//is not specific to printing ONLY debug information.
+			//@NOTE: These are static
 			local_persist char Buffer[512];
 			local_persist const char* Build;
 			local_persist const char* Version = "0.0.0.1";
@@ -56,13 +57,22 @@ namespace G3D
 			local_persist float DrawDistance = Settings::Graphics::DrawDistance;
 			local_persist float FOV = Settings::Camera::FOV;
 
-			//@PERFORMANCE: How much of a performance cost are we incurring by declaring these every frame?
-			float DeltaTime = G3D::Core::PerformanceClock.DeltaTime;
-			float FPS = G3D::Core::PerformanceClock.FPS;
-			float MCPF = G3D::Core::PerformanceClock.MCPF;
-			float CameraX = Game::GameCamera.GetCameraPos().x;
-			float CameraY = Game::GameCamera.GetCameraPos().y;
-			float CameraZ = Game::GameCamera.GetCameraPos().z;
+			//@NOTE: These get updated every frame
+			local_persist float DeltaTime;
+			local_persist float FPS;
+			local_persist float MCPF;
+			local_persist float CameraX;
+			local_persist float CameraY;
+			local_persist float CameraZ;
+
+			//@PERFORMANCE: How much  of a performance cost is it to assign these per-frame data
+			//every frame?
+			DeltaTime = G3D::Core::PerformanceClock.DeltaTime;
+			FPS = G3D::Core::PerformanceClock.FPS;
+			MCPF = G3D::Core::PerformanceClock.MCPF;
+			CameraX = Game::GameCamera.GetCameraPos().x;
+			CameraY = Game::GameCamera.GetCameraPos().y;
+			CameraZ = Game::GameCamera.GetCameraPos().z;
 
 			if (Game::Pause == PAUSED)
 				Status = "Paused";

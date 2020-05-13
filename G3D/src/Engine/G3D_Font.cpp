@@ -58,6 +58,7 @@ namespace G3D
 			local_persist float FOV = Settings::Camera::FOV;
 
 			//@NOTE: These get updated every frame
+			local_persist s32 Clock;
 			local_persist float DeltaTime;
 			local_persist float FPS;
 			local_persist float MCPF;
@@ -67,6 +68,7 @@ namespace G3D
 
 			//@PERFORMANCE: How much  of a performance cost is it to assign these per-frame data
 			//every frame?
+			Clock = static_cast<int>(G3D::Core::Timer.Peek());
 			DeltaTime = G3D::Core::PerformanceClock.DeltaTime;
 			FPS = G3D::Core::PerformanceClock.FPS;
 			MCPF = G3D::Core::PerformanceClock.MCPF;
@@ -105,7 +107,7 @@ namespace G3D
 				Build = "Release";
 			#endif
 
-			sprintf(Buffer, "'F1' Hide Information\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n\nInput Settings:\n  Device: %s\n  Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Status, DeltaTime, FPS, MCPF, Width, Height, VSync, MSAA, DrawDistance, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
+			sprintf(Buffer, "'F1' Hide Information\n\nBuild: %s\nVersion: %s\nRuntime Clock: %is\n\nPerformance Information:\n  Status: %s\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n\nInput Settings:\n  Device: %s\n  Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Clock, Status, DeltaTime, FPS, MCPF, Width, Height, VSync, MSAA, DrawDistance, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
 
 			spriteBatch->Begin();
 				spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

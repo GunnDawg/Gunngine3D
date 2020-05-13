@@ -14,6 +14,7 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
+		//Parse Texture filepath/filename
 		std::wstringstream ss;
 		ss << TextureFilePath;
 		ss << TextureFilepath;
@@ -32,6 +33,7 @@ namespace G3D
 		sd.MinLOD = 0u;
 		sd.MaxLOD = D3D11_FLOAT32_MAX;
 
+		//Create Sampler State
 		Result = G3D::Core::Renderer.Device->CreateSamplerState(&sd, &SamplerState);
 		if (FAILED(Result))
 		{
@@ -39,6 +41,7 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
+		//Create Texture from file
 		Result = DirectX::CreateWICTextureFromFile(G3D::Core::Renderer.Device, FinalTextureFilepath, nullptr, &ShaderResourceView);
 		if (FAILED(Result))
 		{
@@ -51,6 +54,7 @@ namespace G3D
 
 	void Texture::Bind()
 	{
+		//Create our texture sampler state and set our pixel shader resource view
 		G3D::Core::Renderer.Context->PSSetSamplers(0u, 1u, &SamplerState);
 		G3D::Core::Renderer.Context->PSSetShaderResources(0u, 1u, &ShaderResourceView);
 	}

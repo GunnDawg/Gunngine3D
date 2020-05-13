@@ -20,6 +20,7 @@ namespace G3D
 	{
 		HRESULT Result = 0u;
 
+		//Parse Vertex Shader
 		std::wstringstream Vss;
 		Vss << ShaderFilepath;
 		Vss << shadername;
@@ -29,10 +30,7 @@ namespace G3D
 		std::wstring StringStreamToWString = Vss.str();
 		LPCWSTR FinalVertexShaderFilepath = StringStreamToWString.c_str();
 
-		//TODO: Make this work so we can get rid of D3DReadFileToBlob()
-		//Result = D3DCompileFromFile(FinalVertexShaderFilepath, 0u, 0u, "main", "vs_5_0", D3D10_SHADER_ENABLE_STRICTNESS, 0u, 0u, &VertexBlob);
-
-		//Create Vertex Shader
+		//Read Vertex shader file to blob
 		Result = D3DReadFileToBlob(FinalVertexShaderFilepath, &VertexBlob);
 		if (FAILED(Result))
 		{
@@ -40,6 +38,7 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
+		//Create Verstx Shader
 		Result = G3D::Core::Renderer.Device->CreateVertexShader(VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), nullptr, &VertexShader);
 		if (FAILED(Result))
 		{
@@ -47,6 +46,7 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
+		//Parse Pixel Shader
 		std::wstringstream Pss;
 		Pss << ShaderFilepath;
 		Pss << shadername;
@@ -56,7 +56,7 @@ namespace G3D
 		StringStreamToWString = Pss.str();
 		LPCWSTR FinalPixelShaderFilepath = StringStreamToWString.c_str();
 
-		//Create Pixel Shader
+		//Read Pixel shader file to blob
 		Result = D3DReadFileToBlob(FinalPixelShaderFilepath, &PixelBlob);
 		if (FAILED(Result))
 		{
@@ -64,6 +64,7 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
+		//Create Pixel Shader
 		Result = G3D::Core::Renderer.Device->CreatePixelShader(PixelBlob->GetBufferPointer(), PixelBlob->GetBufferSize(), nullptr, &PixelShader);
 		if (FAILED(Result))
 		{
@@ -76,6 +77,7 @@ namespace G3D
 
 	void Shader::Bind()
 	{
+		//Set both vertex and pixel shaders to be the active shaders being used.
 		G3D::Core::Renderer.Context->VSSetShader(VertexShader, 0u, 0u);
 		G3D::Core::Renderer.Context->PSSetShader(PixelShader, 0u, 0u);
 	}

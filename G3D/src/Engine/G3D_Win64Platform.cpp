@@ -16,7 +16,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			PostQuitMessage(0);
 		} break;
 
-		//@NOTE: Keyboard Messages
+		//Keyboard Messages
 		case WM_KEYDOWN:
 		case WM_SYSKEYDOWN:
 		{
@@ -37,7 +37,7 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			G3D::Core::Keyboard.OnChar(static_cast<u16>(wParam));
 		} break;
 
-		//@NOTE: Mouse Messages
+		//Mouse Messages
 		case WM_MOUSEMOVE:
 		{
 			POINTS pt = MAKEPOINTS(lParam);
@@ -148,18 +148,18 @@ WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 int CALLBACK
 WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmdLine, _In_ int cmdShow)
 {
-	//@NOTE: Initialize Engine
+	//Initialize Engine
 	if (G3D::Core::Initialize(instance) != G3D_OK)
 		return -1;
 
-	//@NOTE: Initialize Game
+	//Initialize Game
 	if (Game::Initialize() != G3D_OK)
 		return -1;
 
 	MSG msg;
 	while (Game::IsRunning)
 	{
-		//@NOTE: Windows message loop
+		//Windows message loop
 		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
 			if (msg.message == WM_QUIT)
@@ -169,14 +169,14 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 			DispatchMessage(&msg);
 		}
 
-		//@NOTE: Game Loop
+		//Game Loop
 		Game::HandleInput();
 		Game::UpdateAndRender();
 
 		G3D::Core::PerformanceClock.Tick();
 	}
 
-	//@NOTE: Shut everything down
+	//Shut everything down
 	Game::Shutdown();
 	G3D::Core::Shutdown();
 

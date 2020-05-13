@@ -29,7 +29,10 @@ namespace G3D
 		}
 
 		if (!DebugFont.Load("Debug", "Some Text"))
+		{
+			MessageBox(nullptr, "Error loading debug font panel", "Game Startup Error", MB_OK);
 			return G3D_ERROR;
+		}
 
 		return G3D_OK;
 	}

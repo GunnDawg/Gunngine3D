@@ -12,7 +12,10 @@ namespace G3D
 		rid.hwndTarget = 0u;
 
 		if (!RegisterRawInputDevices(&rid, 1, sizeof(rid)))
+		{
+			MessageBox(nullptr, "Error registering RAW input device. Most likely a mouse", "RAW Input Startup Error", MB_OK);
 			return G3D_ERROR;
+		}
 
 		DisableCursor();
 

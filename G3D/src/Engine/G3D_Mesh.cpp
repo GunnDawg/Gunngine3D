@@ -98,7 +98,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&bd, &srd, &VertexBuffer);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling.
+			MessageBox(nullptr, "Error creating vertex buffer", "Mesh load error", MB_OK);
 			return G3D_ERROR;
 		}
 
@@ -119,7 +119,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&ibd, &isrd, &IndexBuffer);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling.
+			MessageBox(nullptr, "Error creating index buffer", "Mesh load error", MB_OK);
 			return G3D_ERROR;
 		}
 
@@ -132,16 +132,11 @@ namespace G3D
 		};
 
 		if (!Shader.Load(ShaderName))
-		{
-			//TODO: Error Handling.
+
 			return G3D_ERROR;
-		}
 
 		if (!Texture.Load(TextureName))
-		{
-			//TODO: Error Handling.
 			return G3D_ERROR;
-		}
 
 		G3D::Core::Renderer.Device->CreateInputLayout(ied, (UINT)std::size(ied), Shader.VertexBlob->GetBufferPointer(), Shader.VertexBlob->GetBufferSize(), &InputLayout);
 
@@ -161,7 +156,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, nullptr, &mTransformConstantBuffer);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling;
+			MessageBox(nullptr, "Error creating transform constant buffer", "Mesh load error", MB_OK);
 			return G3D_ERROR;
 		}
 
@@ -178,7 +173,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd2, nullptr, &mLightConstantBuffer);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling;
+			MessageBox(nullptr, "Error creating ambient light constant buffer", "Mesh load error", MB_OK);
 			return G3D_ERROR;
 		}
 
@@ -221,7 +216,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Context->Map(mTransformConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling
+			MessageBox(nullptr, "Error mapping subresource to transform constant buffer", "Mesh update error", MB_OK);
 		}
 		CopyMemory(mappedResource.pData, &cb, sizeof(cb));
 		G3D::Core::Renderer.Context->Unmap(mTransformConstantBuffer, 0u);
@@ -233,7 +228,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Context->Map(mLightConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling.
+			MessageBox(nullptr, "Error mapping subresource to ambient light constant buffer", "Mesh update error", MB_OK);
 		}
 		CopyMemory(mappedResource.pData, &alcb, sizeof(alcb));
 		G3D::Core::Renderer.Context->Unmap(mLightConstantBuffer, 0u);

@@ -35,14 +35,14 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateSamplerState(&sd, &SamplerState);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling.
+			MessageBox(nullptr, "Error creating sampler state", "Sampler State Error", MB_OK);
 			return G3D_ERROR;
 		}
 
 		Result = DirectX::CreateWICTextureFromFile(G3D::Core::Renderer.Device, FinalTextureFilepath, nullptr, &ShaderResourceView);
 		if (FAILED(Result))
 		{
-			//TODO: Error Handling.
+			MessageBox(nullptr, "Error reading texture from file", "Texture file read error", MB_OK);
 			return G3D_ERROR;
 		}
 

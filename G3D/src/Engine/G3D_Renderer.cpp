@@ -3,6 +3,7 @@
 #include "Engine/G3D_AdapterReader.h"
 
 #include <vector>
+#include <sstream>
 
 #ifdef _DEBUG
 UINT debugFlags = D3D11_CREATE_DEVICE_DEBUG;
@@ -27,9 +28,24 @@ namespace G3D
 		HRESULT Result = 0u;
 		CD3D11_DEFAULT def;
 
+		//Checking to make sure at least _one_ graphics card/device is available.
 		std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
 		if (adapters.size() < 1)
+		{
+			MessageBox(nullptr, "No video card devices found", "Missing GPU requirements", MB_OK);
 			return G3D_ERROR;
+		}
+
+		//Checking GPU size in bytes (1GB) for those that are only showing 1 GPU, which likely
+		//means they're using the Microsoft Basic Rendering driver, which is a no-go for this.
+		if (adapters.size() == 1)
+		{
+			if (adapters[0].Description.DedicatedVideoMemory < 100000000)
+			{
+				MessageBox(nullptr, "System needs at least 1GB of dedicated video memory", "Missing GPU requirements", MB_OK);
+				return G3D_ERROR;
+			}
+		}
 
 		//Create our Device
 		D3D_FEATURE_LEVEL featureLevel;
@@ -46,17 +62,26 @@ namespace G3D
 			&Context
 		);
 		if (FAILED(Result))
+		{
+			MessageBox(nullptr, "Error creating D3D11Device", "DirectX Startup Error", MB_OK);
 			return G3D_ERROR;
+		}
 
 		if (featureLevel != D3D_FEATURE_LEVEL_11_0)
+		{
+			MessageBox(nullptr, "DirectX 11 feature level requirements not met. Check your installed version of DirectX", "Missing DirectX feature level", MB_OK);
 			return G3D_ERROR;
+		}
 
 		//Check for MSAA quality support
 		if (Settings::Graphics::MSAA)
 		{
 			Result = Device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4u, &Settings::Graphics::MSAAQuality);
 			if (FAILED(Result))
+			{
+				MessageBox(nullptr, "Error querying graphics device for available multisample quality levels", "MSAA Error", MB_OK);
 				return G3D_ERROR;
+			}
 
 			ASSERT(Settings::Graphics::MSAAQuality > 0u);
 		}
@@ -124,6 +149,8 @@ namespace G3D
 		Result = dxgiFactory->CreateSwapChain(Device, &scd, &SwapChain);
 		if (FAILED(Result))
 		{
+			MessageBox(nullptr, "Error creating DirectX 11 swap chain", "DirectX Startup Error", MB_OK);
+
 			SAFE_RELEASE(dxgiFactory);
 			return G3D_ERROR;
 		}
@@ -187,11 +214,17 @@ namespace G3D
 
 		Result = Device->CreateDepthStencilState(&depthStencilStateDesc, &DepthStencilState);
 		if (FAILED(Result))
+		{
+			MessageBox(nullptr, "Error creating depth stencil state.", "Depth Stencil Error", MB_OK);
 			return G3D_ERROR;
+		}
 
 		Result = Device->CreateDepthStencilView(DepthStencilBuffer, 0u, &DepthStencilView);
 		if (FAILED(Result))
+		{
+			MessageBox(nullptr, "Error creating depth stencil view.", "Depth Stencil View Error", MB_OK);
 			return G3D_ERROR;
+		}
 
 		Context->OMSetRenderTargets(1u, &RenderTargetView, DepthStencilView);
 		Context->OMSetDepthStencilState(DepthStencilState, 1u);
@@ -205,7 +238,10 @@ namespace G3D
 
 		Result = Device->CreateRasterizerState(&RastDesc, &RasterizerState);
 		if (FAILED(Result))
+		{
+			MessageBox(nullptr, "Error creating rasterizer state.", "Rasterizer State Creation Error", MB_OK);
 			return G3D_ERROR;
+		}
 
 		Context->RSSetState(RasterizerState);
 

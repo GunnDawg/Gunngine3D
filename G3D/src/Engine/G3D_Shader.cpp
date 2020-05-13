@@ -36,14 +36,14 @@ namespace G3D
 		Result = D3DReadFileToBlob(FinalVertexShaderFilepath, &VertexBlob);
 		if (FAILED(Result))
 		{
-			//TODO: Error Checking.
+			MessageBox(nullptr, "Error reading vertex shader file data to blob", "Vertex shader to blob error", MB_OK);
 			return G3D_ERROR;
 		}
 
 		Result = G3D::Core::Renderer.Device->CreateVertexShader(VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), nullptr, &VertexShader);
 		if (FAILED(Result))
 		{
-			//TODO: Error Checking.
+			MessageBox(nullptr, "Error creating vertex shader", "Vertex shader error", MB_OK);
 			return G3D_ERROR;
 		}
 
@@ -60,14 +60,14 @@ namespace G3D
 		Result = D3DReadFileToBlob(FinalPixelShaderFilepath, &PixelBlob);
 		if (FAILED(Result))
 		{
-			//TODO: Error Checking.
+			MessageBox(nullptr, "Error reading pixel shader file data to blob", "Pixel shader to blob error", MB_OK);
 			return G3D_ERROR;
 		}
 
 		Result = G3D::Core::Renderer.Device->CreatePixelShader(PixelBlob->GetBufferPointer(), PixelBlob->GetBufferSize(), nullptr, &PixelShader);
 		if (FAILED(Result))
 		{
-			//TODO: Error Checking.
+			MessageBox(nullptr, "Error creating pixel shader", "Pixel shader error", MB_OK);
 			return G3D_ERROR;
 		}
 

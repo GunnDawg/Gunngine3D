@@ -139,9 +139,51 @@ void Scene01::Handle_input()
 			case 0x70://F1
 			{
 				if (Settings::General::DevMode)
-					Settings::General::DevMode = false;
-				else
-					Settings::General::DevMode = true;
+				{
+					if (Settings::General::ShowingBasic)
+					{
+						Settings::General::ShowingBasic = false;
+					}
+					else if (Settings::General::ShowingLights)
+					{
+						break;
+					}
+					else
+					{
+						Settings::General::ShowingBasic = true;
+						Settings::General::ShowingLights = false;
+					}
+				}
+				else if(!Settings::General::ShowingLights)
+				{
+					Settings::General::ShowingBasic = false;
+					Settings::General::ShowingLights = false;
+				}
+			} break;
+
+			case 0x71://F2
+			{
+				if (Settings::General::DevMode)
+				{
+					if (Settings::General::ShowingLights)
+					{
+						Settings::General::ShowingLights = false;
+					}
+					else if (Settings::General::ShowingBasic)
+					{
+						break;
+					}
+					else
+					{
+						Settings::General::ShowingLights = true;
+						Settings::General::ShowingBasic = false;
+					}
+				}
+				else if(!Settings::General::ShowingBasic)
+				{
+					Settings::General::ShowingBasic = false;
+					Settings::General::ShowingLights = false;
+				}
 			} break;
 
 			case 'P':

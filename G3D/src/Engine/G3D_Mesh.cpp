@@ -132,7 +132,6 @@ namespace G3D
 		};
 
 		if (!Shader.Load(ShaderName))
-
 			return G3D_ERROR;
 
 		if (!Texture.Load(TextureName))

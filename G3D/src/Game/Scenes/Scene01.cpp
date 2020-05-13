@@ -136,6 +136,24 @@ void Scene01::Handle_input()
 					Settings::Display::VSync = true;
 			} break;
 
+			case 0x74://F12
+			{
+				if (!Settings::General::DevMode)
+				{
+					Settings::General::DevMode = true;
+				}
+				else
+				{
+					if (Settings::General::ShowingBasic || Settings::General::ShowingLights)
+					{
+						Settings::General::ShowingBasic = false;
+						Settings::General::ShowingLights = false;
+
+						Settings::General::DevMode = false;
+					}
+				}
+			} break;
+
 			case 0x70://F1
 			{
 				if (Settings::General::DevMode)

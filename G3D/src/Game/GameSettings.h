@@ -32,7 +32,6 @@ namespace Settings
 		static bool IsUsingGamepad = false;
 		static float MouseSensitivity = 0.005f;
 		//static float MouseSensitivity = 0.0005f;
-
 	}
 
 	namespace Camera

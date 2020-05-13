@@ -120,6 +120,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\Engine\G3D_Light.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Engine\G3D_Mesh.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -176,6 +180,7 @@
     <ClInclude Include="src\Engine\G3D_Debug.h" />
     <ClInclude Include="src\Engine\G3D_Font.h" />
     <ClInclude Include="src\Engine\G3D_Keyboard.h" />
+    <ClInclude Include="src\Engine\G3D_Light.h" />
     <ClInclude Include="src\Engine\G3D_Mesh.h" />
     <ClInclude Include="src\Engine\G3D_Mouse.h" />
     <ClInclude Include="src\Engine\G3D_Shader.h" />

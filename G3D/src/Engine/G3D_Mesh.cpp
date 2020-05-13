@@ -179,10 +179,9 @@ namespace G3D
 		return G3D_OK;
 	}
 
-	void Mesh::Update()
+	void Mesh::Update(const AmbientLight& aLight)
 	{
 		HRESULT Result = 0u;
-		//
 
 		//@NOTE: We're no longer storing WVP matrix, but instead creating it as a static object in the update function.
 		//Nothing else seems to need access to it, so why store it, especially when it's values change every frame
@@ -201,8 +200,8 @@ namespace G3D
 
 		const CB_PS_AmbientLight alcb =
 		{
-			G3D::Core::AmbientLightColor,
-			G3D::Core::AmbientLightStrength
+			aLight.AmbientLightColor,
+			aLight.AmbientLightStrength
 		};
 
 		//Update our transform buffer data

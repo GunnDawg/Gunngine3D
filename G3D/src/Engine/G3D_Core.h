@@ -25,10 +25,5 @@ namespace G3D
 		inline static G3D::Mouse Mouse = {};
 		inline static G3D::PerformanceClock PerformanceClock = {};
 		inline static G3D::Timer Timer = {};
-
-		//@TEMP: These light values need to be abstracted out into some sort of light class and kept
-		//per scene.
-		inline static DirectX::XMFLOAT3 AmbientLightColor = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);
-		inline static float AmbientLightStrength = 0.8f;
 	};
 }

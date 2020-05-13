@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/G3D_Shader.h"
 #include "Engine/G3D_Texture.h"
+#include "Engine/G3D_Light.h"
 
 namespace G3D
 {
@@ -8,7 +9,7 @@ namespace G3D
 	{
 		bool Load();
 		bool Load(const char* TextureName, const char* ShaderName, DirectX::XMFLOAT3 Position);
-		void Update();
+		void Update(const AmbientLight& aLight);
 		void Draw();
 		void Unload();
 

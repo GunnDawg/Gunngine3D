@@ -6,6 +6,9 @@ bool Scene01::On_load()
 	OutputDebugString("S1 On_Load\n");
 	Game::GameCamera.Load(0.0f, 10.0f, -24.0f);
 
+	Game::AmbientLight.SetLightColor(1.0f, 1.0f, 1.0f);
+	Game::AmbientLight.SetLightStrength(0.8f);
+
 	//@INCOMPLETE: If this fails then we leak a ton of VRAM
 	if (!Boxes[0].Load("brickwall/base", "WoodBox", { -10.0f, 0.0f, 0.0f }))
 		return false;
@@ -115,12 +118,12 @@ void Scene01::Handle_input()
 
 			case 0x28://Down Arrow
 			{
-				G3D::Core::AmbientLightStrength -= 0.1f;
+				Game::AmbientLight.DecreaseStrength(0.1f);
 			} break;
 
 			case 0x26://Up Arrow
 			{
-				G3D::Core::AmbientLightStrength += 0.1f;
+				Game::AmbientLight.IncreaseStrength(0.1f);
 			} break;
 
 			case 'V':
@@ -222,7 +225,7 @@ void Scene01::Update_and_render()
 {
 	//Update
 	for (size_t i = 0; i < Boxes.size(); ++i)
-		Boxes[i].Update();
+		Boxes[i].Update(Game::AmbientLight);
 
 	//Render
 	for (size_t i = 0; i < Boxes.size(); ++i)

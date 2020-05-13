@@ -1,6 +1,7 @@
 #pragma once
 #include "Game/GameStateMachine.h"
 #include "Engine/G3D_Camera.h"
+#include "Engine/G3D_Light.h"
 #include "Engine/G3D_Font.h"
 
 enum PauseState { PAUSED, UNPAUSED };
@@ -19,6 +20,7 @@ struct Game
 
 	inline static GameStateMachine GSM;
 	inline static G3D::Camera GameCamera;
+	inline static G3D::AmbientLight AmbientLight;
 	inline static bool IsRunning = false;
 	inline static PauseState Pause = UNPAUSED;
 };

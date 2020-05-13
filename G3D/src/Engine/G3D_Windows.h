@@ -11,12 +11,12 @@
 //#define NOMSG
 //#define NOWINSTYLES
 //#define NOSYSMETRICS
+//#define NOMB
 
 #define NOCOLOR
 #define NOTEXTMETRIC
 #define NOKEYSTATES
 #define NOVIRTUALKEYCODES
-//#define NOMB
 #define NOSHOWWINDOW
 #define NOGDICAPMASKS
 #define NOMENUS

@@ -113,6 +113,16 @@ void Scene01::Handle_input()
 				Game::IsRunning = false;
 			} break;
 
+			case 0x28://Down Arrow
+			{
+				G3D::Core::AmbientLightStrength -= 0.1f;
+			} break;
+
+			case 0x26://Up Arrow
+			{
+				G3D::Core::AmbientLightStrength += 0.1f;
+			} break;
+
 			case 'V':
 			{
 				if (Settings::Display::VSync)

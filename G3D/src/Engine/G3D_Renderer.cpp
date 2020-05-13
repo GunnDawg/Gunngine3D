@@ -32,7 +32,7 @@ namespace G3D
 		std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
 		if (adapters.size() < 1)
 		{
-			MessageBox(nullptr, "No video card devices found", "Missing GPU requirements", MB_OK);
+			MessageBox(nullptr, "No video card devices found", "Missing GPU Requirements", MB_OK);
 			return G3D_ERROR;
 		}
 
@@ -42,7 +42,7 @@ namespace G3D
 		{
 			if (adapters[0].Description.DedicatedVideoMemory < 100000000)
 			{
-				MessageBox(nullptr, "System needs at least 1GB of dedicated video memory", "Missing GPU requirements", MB_OK);
+				MessageBox(nullptr, "System needs at least 1GB of dedicated video memory", "Missing GPU Requirements", MB_OK);
 				return G3D_ERROR;
 			}
 		}

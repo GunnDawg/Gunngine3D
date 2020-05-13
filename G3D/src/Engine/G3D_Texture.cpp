@@ -45,7 +45,7 @@ namespace G3D
 		Result = DirectX::CreateWICTextureFromFile(G3D::Core::Renderer.Device, FinalTextureFilepath, nullptr, &ShaderResourceView);
 		if (FAILED(Result))
 		{
-			MessageBox(nullptr, "Error reading texture from file", "Texture file read error", MB_OK);
+			MessageBox(nullptr, "Error reading texture from file", "Texture File Read Error", MB_OK);
 			return G3D_ERROR;
 		}
 

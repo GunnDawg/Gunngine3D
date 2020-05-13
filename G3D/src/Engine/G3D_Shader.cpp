@@ -42,7 +42,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreateVertexShader(VertexBlob->GetBufferPointer(), VertexBlob->GetBufferSize(), nullptr, &VertexShader);
 		if (FAILED(Result))
 		{
-			MessageBox(nullptr, "Error creating vertex shader", "Vertex shader error", MB_OK);
+			MessageBox(nullptr, "Error creating vertex shader", "Vertex Shader Error", MB_OK);
 			return G3D_ERROR;
 		}
 
@@ -68,7 +68,7 @@ namespace G3D
 		Result = G3D::Core::Renderer.Device->CreatePixelShader(PixelBlob->GetBufferPointer(), PixelBlob->GetBufferSize(), nullptr, &PixelShader);
 		if (FAILED(Result))
 		{
-			MessageBox(nullptr, "Error creating pixel shader", "Pixel shader error", MB_OK);
+			MessageBox(nullptr, "Error creating pixel shader", "Pixel Shader Error", MB_OK);
 			return G3D_ERROR;
 		}
 

@@ -9,7 +9,7 @@ namespace G3D
 		Result = pAdapter->GetDesc(&Description);
 		if (FAILED(Result))
 		{
-			MessageBox(nullptr, "Error getting video adapter description", "Device read error", MB_OK);
+			MessageBox(nullptr, "Error getting video adapter description", "Device Read Error", MB_OK);
 		}
 
 		SAFE_RELEASE(Adapter);
@@ -27,7 +27,7 @@ namespace G3D
 		Result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&pFactory);
 		if (FAILED(Result))
 		{
-			MessageBox(nullptr, "Error creating DirectX DXGIFactory object", "DirectX error", MB_OK);
+			MessageBox(nullptr, "Error creating DirectX DXGIFactory object", "DirectX Error", MB_OK);
 		}
 
 		IDXGIAdapter* pAdapter = 0;

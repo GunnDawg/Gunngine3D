@@ -38,7 +38,7 @@ namespace G3D
 			}
 		}
 
-		DirectX::XMFLOAT3 AmbientLightColor = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);
+		DirectX::XMFLOAT3 AmbientLightColor;
 		float AmbientLightStrength = 0.8f;
 	};
 

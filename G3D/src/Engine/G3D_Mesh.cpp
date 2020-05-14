@@ -186,6 +186,12 @@ namespace G3D
 		//@NOTE: We're no longer storing WVP matrix, but instead creating it as a static object in the update function.
 		//Nothing else seems to need access to it, so why store it, especially when it's values change every frame
 		local_persist DirectX::XMMATRIX WVP;
+		local_persist DirectX::XMFLOAT3 Color;
+		local_persist float Strength;
+
+		Color = AmbientLightSource.AmbientLightColor;
+		Strength = AmbientLightSource.AmbientLightStrength;
+
 		WVP = DirectX::XMMatrixTranspose
 		(
 			worldPos *
@@ -200,8 +206,8 @@ namespace G3D
 
 		const CB_PS_AmbientLight alcb =
 		{
-			AmbientLightSource.AmbientLightColor,
-			AmbientLightSource.AmbientLightStrength
+			Color,
+			Strength
 		};
 
 		//Update our transform buffer data

@@ -70,7 +70,7 @@ namespace G3D
 
 				//@PERFORMANCE: How much  of a performance cost is it to assign these per-frame data
 				//every frame?
-				Clock = static_cast<int>(G3D::Core::Timer.Peek());
+				Clock = static_cast<int>(G3D::Core::Wallclock.Peek());
 				DeltaTime = G3D::Core::PerformanceClock.DeltaTime;
 				FPS = G3D::Core::PerformanceClock.FPS;
 				MCPF = G3D::Core::PerformanceClock.MCPF;

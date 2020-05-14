@@ -109,7 +109,7 @@ namespace G3D
 					Build = "Release";
 				#endif
 
-				sprintf(Buffer, "'F1' Hide System Information\n'F2' Show Lighting Information\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Runtime Clock: %is\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n\nInput Settings:\n  Device: %s\n  Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Status, Clock, DeltaTime, FPS, MCPF, Width, Height, VSync, MSAA, DrawDistance, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
+				sprintf(Buffer, "'F1' Hide System Information\n'F2' Show Lighting Information\n\n'Q' Quit\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Runtime Clock: %is\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n\nInput Settings:\n  Device: %s\n  Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Status, Clock, DeltaTime, FPS, MCPF, Width, Height, VSync, MSAA, DrawDistance, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
 
 				spriteBatch->Begin();
 				spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
@@ -126,7 +126,7 @@ namespace G3D
 				b = Game::AmbientLight.AmbientLightColor.z;
 				AmbientStr = Game::AmbientLight.AmbientLightStrength;
 
-				sprintf(Buffer, "'F1' Show System Information\n'F2' Hide Lighting Information\n\nAmbient Light:\n  Strength: %.02f\n  Color:\n   R: %.02f\n   G: %.02f\n   B: %.02f", AmbientStr, r, g, b);
+				sprintf(Buffer, "'F1' Show System Information\n'F2' Hide Lighting Information\n\n'Q' Quit\n\nAmbient Light:\n  Strength: %.02f\n  Color:\n   R: %.02f\n   G: %.02f\n   B: %.02f", AmbientStr, r, g, b);
 
 				spriteBatch->Begin();
 					spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

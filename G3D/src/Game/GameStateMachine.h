@@ -47,7 +47,8 @@ struct GameStateMachine
 		if (!GameStates.empty())
 		{
 			GameStates.back()->Update_and_render();
-			G3D::Core::ShowDebugInformation();
+			if(Settings::General::GlobalTextOverlayEnabled)
+				G3D::Core::ShowDebugInformation();
 		}
 	}
 

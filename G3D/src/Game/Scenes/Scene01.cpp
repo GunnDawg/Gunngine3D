@@ -112,7 +112,22 @@ void Scene01::Handle_input()
 		{
 			case 0x1B://Escape
 			{
-				Game::IsRunning = false;
+				if (!Settings::General::DevMode)
+				{
+					Settings::General::DevMode = true;
+				}
+				else
+				{
+					if (Settings::General::ShowingBasic || Settings::General::ShowingLights)
+					{
+						Settings::General::ShowingBasic = false;
+						Settings::General::ShowingLights = false;
+					}
+					else
+					{
+						Settings::General::DevMode = false;
+					}
+				}
 			} break;
 
 			case 0x28://Down Arrow
@@ -133,26 +148,9 @@ void Scene01::Handle_input()
 					Settings::Display::VSync = true;
 			} break;
 
-			case 0x7A://F11
+			case 'Q':
 			{
-				if (!Settings::General::DevMode)
-				{
-					Settings::General::DevMode = true;
-				}
-				else
-				{
-					if (Settings::General::ShowingBasic || Settings::General::ShowingLights)
-					{
-						Settings::General::ShowingBasic = false;
-						Settings::General::ShowingLights = false;
-
-						Settings::General::DevMode = false;
-					}
-					else
-					{
-						Settings::General::DevMode = false;
-					}
-				}
+				Game::IsRunning = false;
 			} break;
 
 			case 0x70://F1

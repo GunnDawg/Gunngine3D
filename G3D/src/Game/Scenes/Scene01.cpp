@@ -163,7 +163,8 @@ void Scene01::Handle_input()
 					}
 					else if (Settings::General::ShowingLights)
 					{
-						break;
+						Settings::General::ShowingBasic = true;
+						Settings::General::ShowingLights = false;
 					}
 					else
 					{
@@ -188,7 +189,8 @@ void Scene01::Handle_input()
 					}
 					else if (Settings::General::ShowingBasic)
 					{
-						break;
+						Settings::General::ShowingBasic = false;
+						Settings::General::ShowingLights = true;
 					}
 					else
 					{

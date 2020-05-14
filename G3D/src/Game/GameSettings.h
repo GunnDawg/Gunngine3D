@@ -2,12 +2,17 @@
 
 namespace Settings
 {
-	namespace General
+	namespace Dev
 	{
 		static bool DevMode = false;
 		static bool ShowingBasic = false;
 		static bool ShowingLights = false;
 		static bool GlobalTextOverlayEnabled = true;
+	}
+
+	namespace General
+	{
+
 	}
 
 	namespace Display

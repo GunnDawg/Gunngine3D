@@ -112,22 +112,22 @@ void Scene01::Handle_input()
 		{
 			case 0x1B://Escape
 			{
-				if (Settings::General::GlobalTextOverlayEnabled)
+				if (Settings::Dev::GlobalTextOverlayEnabled)
 				{
-					if (!Settings::General::DevMode)
+					if (!Settings::Dev::DevMode)
 					{
-						Settings::General::DevMode = true;
+						Settings::Dev::DevMode = true;
 					}
 					else
 					{
-						if (Settings::General::ShowingBasic || Settings::General::ShowingLights)
+						if (Settings::Dev::ShowingBasic || Settings::Dev::ShowingLights)
 						{
-							Settings::General::ShowingBasic = false;
-							Settings::General::ShowingLights = false;
+							Settings::Dev::ShowingBasic = false;
+							Settings::Dev::ShowingLights = false;
 						}
 						else
 						{
-							Settings::General::DevMode = false;
+							Settings::Dev::DevMode = false;
 						}
 					}
 				}
@@ -158,66 +158,66 @@ void Scene01::Handle_input()
 
 			case 0xC0://~ Key
 			{
-				if (Settings::General::GlobalTextOverlayEnabled)
-					Settings::General::GlobalTextOverlayEnabled = false;
+				if (Settings::Dev::GlobalTextOverlayEnabled)
+					Settings::Dev::GlobalTextOverlayEnabled = false;
 				else
-					Settings::General::GlobalTextOverlayEnabled = true;
+					Settings::Dev::GlobalTextOverlayEnabled = true;
 			} break;
 
 			case 0x70://F1
 			{
-				if (Settings::General::GlobalTextOverlayEnabled)
+				if (Settings::Dev::GlobalTextOverlayEnabled)
 				{
-					if (Settings::General::DevMode)
+					if (Settings::Dev::DevMode)
 					{
-						if (Settings::General::ShowingBasic)
+						if (Settings::Dev::ShowingBasic)
 						{
-							Settings::General::ShowingBasic = false;
+							Settings::Dev::ShowingBasic = false;
 						}
-						else if (Settings::General::ShowingLights)
+						else if (Settings::Dev::ShowingLights)
 						{
-							Settings::General::ShowingBasic = true;
-							Settings::General::ShowingLights = false;
+							Settings::Dev::ShowingBasic = true;
+							Settings::Dev::ShowingLights = false;
 						}
 						else
 						{
-							Settings::General::ShowingBasic = true;
-							Settings::General::ShowingLights = false;
+							Settings::Dev::ShowingBasic = true;
+							Settings::Dev::ShowingLights = false;
 						}
 					}
-					else if (!Settings::General::ShowingLights)
+					else if (!Settings::Dev::ShowingLights)
 					{
-						Settings::General::ShowingBasic = false;
-						Settings::General::ShowingLights = false;
+						Settings::Dev::ShowingBasic = false;
+						Settings::Dev::ShowingLights = false;
 					}
 				}
 			} break;
 
 			case 0x71://F2
 			{
-				if (Settings::General::GlobalTextOverlayEnabled)
+				if (Settings::Dev::GlobalTextOverlayEnabled)
 				{
-					if (Settings::General::DevMode)
+					if (Settings::Dev::DevMode)
 					{
-						if (Settings::General::ShowingLights)
+						if (Settings::Dev::ShowingLights)
 						{
-							Settings::General::ShowingLights = false;
+							Settings::Dev::ShowingLights = false;
 						}
-						else if (Settings::General::ShowingBasic)
+						else if (Settings::Dev::ShowingBasic)
 						{
-							Settings::General::ShowingBasic = false;
-							Settings::General::ShowingLights = true;
+							Settings::Dev::ShowingBasic = false;
+							Settings::Dev::ShowingLights = true;
 						}
 						else
 						{
-							Settings::General::ShowingLights = true;
-							Settings::General::ShowingBasic = false;
+							Settings::Dev::ShowingLights = true;
+							Settings::Dev::ShowingBasic = false;
 						}
 					}
-					else if (!Settings::General::ShowingBasic)
+					else if (!Settings::Dev::ShowingBasic)
 					{
-						Settings::General::ShowingBasic = false;
-						Settings::General::ShowingLights = false;
+						Settings::Dev::ShowingBasic = false;
+						Settings::Dev::ShowingLights = false;
 					}
 				}
 			} break;

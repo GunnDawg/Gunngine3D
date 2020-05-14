@@ -1,17 +1,17 @@
 #pragma once
 #ifdef _WIN64
-#include <d3d11.h>
-#include <dxgi.h>
-#include <DirectXMath.h>
-#include <d3dcompiler.h>
+	#include <d3d11.h>
+	#include <dxgi.h>
+	#include <DirectXMath.h>
+	#include <d3dcompiler.h>
 
-#include "Game/GameSettings.h"
+	#include "Game/GameSettings.h"
 
-//@NOTE:Import Libraries for DX
-#pragma comment(lib, "D3D11.lib")
-#pragma comment(lib, "DXGI.lib")
-#pragma comment(lib, "D3DCompiler.lib")
-#pragma comment(lib, "DirectXTK.lib")
+	//@NOTE:Import Libraries for DX
+	#pragma comment(lib, "D3D11.lib")
+	#pragma comment(lib, "DXGI.lib")
+	#pragma comment(lib, "D3DCompiler.lib")
+	#pragma comment(lib, "DirectXTK.lib")
 #endif
 
 namespace G3D

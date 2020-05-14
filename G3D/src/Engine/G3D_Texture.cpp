@@ -1,7 +1,7 @@
 #include "G3D_Texture.h"
 
 constexpr const char* TextureFilePath = "res/textures/";
-constexpr const char* TextureFileExtension = ".png";
+constexpr const char* TextureFileExtension = ".dds";
 
 namespace G3D
 {

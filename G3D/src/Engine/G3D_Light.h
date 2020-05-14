@@ -26,9 +26,9 @@ namespace G3D
 		inline void IncreaseStrength(float val)
 		{
 			AmbientLightStrength += val;
-			if (AmbientLightStrength > 1.0f)
+			if (AmbientLightStrength > 2.0f)
 			{
-				AmbientLightStrength = 1.0f;
+				AmbientLightStrength = 2.0f;
 			}
 		}
 

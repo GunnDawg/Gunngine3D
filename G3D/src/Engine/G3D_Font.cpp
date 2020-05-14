@@ -130,7 +130,7 @@ namespace G3D
 			else
 			{
 				local_persist char Buffer[512];
-				sprintf(Buffer, "F1 Show System Information\nF2 Show Lighting Information\n\nF12 Close Debug Menu");
+				sprintf(Buffer, "F1 Show System Information\nF2 Show Lighting Information\n\nF11 Close Debug Menu");
 
 				spriteBatch->Begin();
 					spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
@@ -140,7 +140,7 @@ namespace G3D
 		else
 		{
 			local_persist char Buffer[128];
-			sprintf(Buffer, "F12 Debug Menu");
+			sprintf(Buffer, "F11 Debug Menu");
 
 			spriteBatch->Begin();
 				spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

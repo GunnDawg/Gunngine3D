@@ -136,7 +136,7 @@ void Scene01::Handle_input()
 					Settings::Display::VSync = true;
 			} break;
 
-			case 0x7B://F12
+			case 0x7A://F11
 			{
 				if (!Settings::General::DevMode)
 				{

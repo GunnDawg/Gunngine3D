@@ -60,7 +60,7 @@ namespace G3D
 				local_persist float FOV = Settings::Camera::FOV;
 
 				//@NOTE: These get updated every frame
-				local_persist s32 Clock;
+				local_persist u32 Clock;
 				local_persist float DeltaTime;
 				local_persist float FPS;
 				local_persist float MCPF;

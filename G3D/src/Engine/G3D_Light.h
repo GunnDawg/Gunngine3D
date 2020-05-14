@@ -17,11 +17,19 @@ namespace G3D
 		inline void DecreaseStrength(float val)
 		{
 			AmbientLightStrength -= val;
+			if (AmbientLightStrength < 0.0f)
+			{
+				AmbientLightStrength = 0.0f;
+			}
 		}
 
 		inline void IncreaseStrength(float val)
 		{
 			AmbientLightStrength += val;
+			if (AmbientLightStrength > 1.0f)
+			{
+				AmbientLightStrength = 1.0f;
+			}
 		}
 
 		DirectX::XMFLOAT3 AmbientLightColor = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);

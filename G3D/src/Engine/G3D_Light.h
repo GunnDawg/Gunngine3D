@@ -4,6 +4,12 @@ namespace G3D
 {
 	struct AmbientLight
 	{
+		inline void Load()
+		{
+			SetLightColor(1.0f, 1.0f, 1.0f);
+			SetLightStrength(1.0f);
+		}
+
 		inline void Load(float r, float g, float b, float str)
 		{
 			SetLightColor(r, g, b);

@@ -9,7 +9,7 @@ namespace G3D
 	{
 		bool Load();
 		bool Load(const char* TextureName, const char* ShaderName, DirectX::XMFLOAT3 Position);
-		void Update(const AmbientLight& aLight);
+		void Update(const AmbientLight& AmbientLightSource);
 		void Draw();
 		void Unload();
 

@@ -179,7 +179,7 @@ namespace G3D
 		return G3D_OK;
 	}
 
-	void Mesh::Update(const AmbientLight& aLight)
+	void Mesh::Update(const AmbientLight& AmbientLightSource)
 	{
 		HRESULT Result = 0u;
 
@@ -193,15 +193,15 @@ namespace G3D
 			Game::GameCamera.GetProjectionMatrix()
 		);
 
-		const CB_VS_TransformConstantBuffer cb =
+		const CB_VS_TransformConstantBuffer tcb =
 		{
 			WVP
 		};
 
 		const CB_PS_AmbientLight alcb =
 		{
-			aLight.AmbientLightColor,
-			aLight.AmbientLightStrength
+			AmbientLightSource.AmbientLightColor,
+			AmbientLightSource.AmbientLightStrength
 		};
 
 		//Update our transform buffer data
@@ -211,7 +211,7 @@ namespace G3D
 		{
 			MessageBox(nullptr, "Error mapping subresource to transform constant buffer", "Mesh Update Error", MB_OK);
 		}
-		CopyMemory(mappedResource.pData, &cb, sizeof(cb));
+		CopyMemory(mappedResource.pData, &tcb, sizeof(CB_VS_TransformConstantBuffer));
 		G3D::Core::Renderer.Context->Unmap(mTransformConstantBuffer, 0u);
 
 		//Update our ambient light buffer data

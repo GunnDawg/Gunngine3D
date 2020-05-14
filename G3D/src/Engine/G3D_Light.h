@@ -39,25 +39,30 @@ namespace G3D
 	struct SpotLight
 	{
 
+		DirectX::XMMATRIX worldPos;
 	};
 
 	struct PointLight
 	{
 
+		DirectX::XMMATRIX worldPos;
 	};
 
 	struct AreaLight
 	{
 
+		DirectX::XMMATRIX worldPos;
 	};
 
 	struct VolumeLight
 	{
 
+		DirectX::XMMATRIX worldPos;
 	};
 
 	struct DirectionalLight
 	{
 
+		DirectX::XMMATRIX worldPos;
 	};
 }

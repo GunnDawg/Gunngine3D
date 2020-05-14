@@ -118,10 +118,15 @@ namespace G3D
 			else if (Settings::General::ShowingLights)
 			{
 				char Buffer[512];
+				local_persist float r, g, b;
 				local_persist float AmbientStr;
+
+				r = Game::AmbientLight.AmbientLightColor.x;
+				g = Game::AmbientLight.AmbientLightColor.y;
+				b = Game::AmbientLight.AmbientLightColor.z;
 				AmbientStr = Game::AmbientLight.AmbientLightStrength;
 
-				sprintf(Buffer, "F2 Hide Lighting Information\n\nStrength: %.02f", AmbientStr);
+				sprintf(Buffer, "F2 Hide Lighting Information\n\nAmbient Light:\n  Strength: %.02f\n  Color:\n   R: %.02f\n   G: %.02f\n   B: %.02f", AmbientStr, r, g, b);
 
 				spriteBatch->Begin();
 					spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

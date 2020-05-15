@@ -1,5 +1,6 @@
 #pragma once
 #include "Game/GameStateMachine.h"
+#include "Game/Player.h"
 #include "Engine/G3D_Camera.h"
 #include "Engine/G3D_Light.h"
 #include "Engine/G3D_Font.h"
@@ -18,6 +19,7 @@ struct Game
 	inline static void UpdateAndRender();
 	inline static void Shutdown();
 
+	inline static Player player;
 	inline static GameStateMachine GSM;
 	inline static G3D::Camera GameCamera;
 	inline static G3D::AmbientLight AmbientLight;

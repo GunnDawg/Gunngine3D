@@ -27,5 +27,6 @@
 
 //Game Stuff
 #include "Game/Game.cpp"
+#include "Game/Player.cpp"
 #include "Game/Scenes/Scene01.cpp"
 #include "Game/Scenes/Scene02.cpp"

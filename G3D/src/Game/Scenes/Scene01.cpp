@@ -247,6 +247,23 @@ void Scene01::Handle_input()
 					Settings::Camera::FreeRoam = true;
 			} break;
 
+			case 'C':
+			{
+				if (!Settings::Camera::FreeRoam)
+				{
+					if (!Game::player.isCrouched)
+					{
+						Game::GameCamera.AdjustPosition(0.0f, -1.0f, 0.0f);
+						Game::player.isCrouched = true;
+					}
+					else
+					{
+						Game::GameCamera.AdjustPosition(0.0f, 1.0f, 0.0f);
+						Game::player.isCrouched = false;
+					}
+				}
+			} break;
+
 			case 0x27://Right Arrow
 			{
 				Game::GSM.Pop();

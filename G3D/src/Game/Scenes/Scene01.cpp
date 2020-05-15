@@ -247,6 +247,7 @@ void Scene01::Handle_input()
 					Settings::Camera::FreeRoam = true;
 			} break;
 
+			//@INCOMPLETE: This is being done for a crouch effect, but it's still not right/complete.
 			case 'C':
 			{
 				if (!Settings::Camera::FreeRoam)

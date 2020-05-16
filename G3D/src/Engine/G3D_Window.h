@@ -14,11 +14,16 @@ namespace G3D
 		bool Initialize(const HINSTANCE& instance);
 		bool CreateWindow(const HINSTANCE& instance);
 		bool CreateDebugWindow(const HINSTANCE& instance);
+		void RunWindowsMessageLoop();
 		void Shutdown();
 
 		RECT WindowRect;
 		HWND WindowHandle = {};
 		WNDCLASSEX WindowClass = {};
+		MSG Msg;
+
+		DWORD ex_style = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
+		DWORD styles = WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX;
 	};
 #elif __APPLE__
 	struct Window

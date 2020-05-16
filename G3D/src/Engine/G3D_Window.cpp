@@ -19,9 +19,6 @@ namespace G3D
 		WindowRect.right = WindowRect.left + Settings::Display::Width;
 		WindowRect.bottom = WindowRect.top + Settings::Display::Height;
 
-		DWORD ex_style = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
-		DWORD styles = WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX;
-
 		AdjustWindowRectEx(&WindowRect, styles, false, ex_style);
 
 		WindowClass.cbSize = sizeof(WNDCLASSEX);
@@ -48,9 +45,11 @@ namespace G3D
 
 	bool Window::CreateWindow(const HINSTANCE& instance)
 	{
-		WindowHandle = CreateWindowEx(0, WindowClass.lpszClassName, "Gunngine3D - Release Build", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, WindowRect.left, WindowRect.top, WindowRect.right - WindowRect.left, WindowRect.bottom - WindowRect.top, 0, 0, instance, 0);
+		WindowHandle = CreateWindowEx(0, WindowClass.lpszClassName, "Gunngine3D - Release Build", styles, WindowRect.left, WindowRect.top, WindowRect.right - WindowRect.left, WindowRect.bottom - WindowRect.top, 0, 0, instance, 0);
 		if (!WindowHandle)
 			return G3D_ERROR;
+
+		ShowWindow(WindowHandle, true);
 
 		return G3D_OK;
 	}
@@ -60,11 +59,25 @@ namespace G3D
 		local_persist u16 centerX = (GetSystemMetrics(SM_CXSCREEN) - WindowRect.right) / 2;
 		local_persist u16 centerY = (GetSystemMetrics(SM_CYSCREEN) - WindowRect.bottom) / 2;
 
-		WindowHandle = CreateWindowEx(0, WindowClass.lpszClassName, "Gunngine3D - Debug Build", WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE, centerX, centerY, WindowRect.right - WindowRect.left, WindowRect.bottom - WindowRect.top, 0, 0, instance, 0);
+		WindowHandle = CreateWindowEx(0, WindowClass.lpszClassName, "Gunngine3D - Debug Build", styles, centerX, centerY, WindowRect.right - WindowRect.left, WindowRect.bottom - WindowRect.top, 0, 0, instance, 0);
 		if (!WindowHandle)
 			return G3D_ERROR;
 
+		ShowWindow(WindowHandle, true);
+
 		return G3D_OK;
+	}
+
+	void Window::RunWindowsMessageLoop()
+	{
+		while (PeekMessage(&Msg, 0, 0, 0, PM_REMOVE))
+		{
+			if (Msg.message == WM_QUIT)
+				G3D::Core::AppIsRunning = false;
+
+			TranslateMessage(&Msg);
+			DispatchMessage(&Msg);
+		}
 	}
 
 	void Window::Shutdown()

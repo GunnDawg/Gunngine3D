@@ -25,5 +25,7 @@ namespace G3D
 		inline static G3D::Mouse Mouse = {};
 		inline static G3D::PerformanceClock PerformanceClock = {};
 		inline static G3D::Timer Wallclock = {};
+
+		inline static bool AppIsRunning = false;
 	};
 }

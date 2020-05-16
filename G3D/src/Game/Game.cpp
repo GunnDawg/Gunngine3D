@@ -9,7 +9,7 @@ bool Game::Initialize()
 		return false;
 	}
 
-	IsRunning = true;
+	G3D::Core::AppIsRunning = true;
 
 	return true;
 }

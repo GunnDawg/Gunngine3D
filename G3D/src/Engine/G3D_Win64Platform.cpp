@@ -156,23 +156,16 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ LPSTR cmd
 	if (Game::Initialize() != G3D_OK)
 		return -1;
 
-	MSG msg;
-	while (Game::IsRunning)
+	while (G3D::Core::AppIsRunning)
 	{
 		//Windows message loop
-		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
-		{
-			if (msg.message == WM_QUIT)
-				Game::IsRunning = false;
-
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
+		G3D::Core::Window.RunWindowsMessageLoop();
 
 		//Game Loop
 		Game::HandleInput();
 		Game::UpdateAndRender();
 
+		//Update our performance clock data
 		G3D::Core::PerformanceClock.Tick();
 	}
 

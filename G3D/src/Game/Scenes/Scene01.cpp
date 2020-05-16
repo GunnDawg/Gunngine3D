@@ -153,7 +153,7 @@ void Scene01::Handle_input()
 
 			case 'Q':
 			{
-				Game::IsRunning = false;
+				G3D::Core::AppIsRunning = false;
 			} break;
 
 			case 0xC0://~ Key

@@ -32,7 +32,7 @@ void Scene02::Handle_input()
 		{
 			case 0x1B://Escape
 			{
-				Game::IsRunning = false;
+				G3D::Core::AppIsRunning = false;
 			} break;
 
 			case 'P':
@@ -69,7 +69,7 @@ void Scene02::Handle_input()
 
 	if (G3D::Core::Keyboard.KeyIsPressed(0x1B))
 	{
-		Game::IsRunning = false;
+		G3D::Core::AppIsRunning = false;
 	}
 
 	if (G3D::Core::Keyboard.KeyIsPressed(0x25))

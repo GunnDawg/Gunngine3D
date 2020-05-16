@@ -50,6 +50,8 @@ namespace G3D
 			return G3D_ERROR;
 
 		ShowWindow(WindowHandle, true);
+		SetForegroundWindow(WindowHandle);
+		SetFocus(WindowHandle);
 
 		return G3D_OK;
 	}
@@ -64,6 +66,8 @@ namespace G3D
 			return G3D_ERROR;
 
 		ShowWindow(WindowHandle, true);
+		SetForegroundWindow(WindowHandle);
+		SetFocus(WindowHandle);
 
 		return G3D_OK;
 	}

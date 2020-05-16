@@ -18,7 +18,11 @@ namespace G3D
 		WindowRect.top = 0u;
 		WindowRect.right = WindowRect.left + Settings::Display::Width;
 		WindowRect.bottom = WindowRect.top + Settings::Display::Height;
-		AdjustWindowRect(&WindowRect, WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX, false);
+
+		DWORD ex_style = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
+		DWORD styles = WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX;
+
+		AdjustWindowRectEx(&WindowRect, styles, false, ex_style);
 
 		WindowClass.cbSize = sizeof(WNDCLASSEX);
 		WindowClass.hCursor = LoadCursor(0, IDC_ARROW);

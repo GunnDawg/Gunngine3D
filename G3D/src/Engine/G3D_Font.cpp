@@ -117,7 +117,7 @@ namespace G3D
 			}
 			else if (Settings::Dev::ShowingLights)
 			{
-				char Buffer[512];
+				local_persist char Buffer[512];
 				local_persist float r, g, b;
 				local_persist float AmbientStr;
 

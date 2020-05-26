@@ -313,6 +313,9 @@ void Scene01::Handle_input()
 		auto e = G3D::Core::Mouse.Read();
 		while (e.GetType() == G3D::Mouse::Event::Type::RAW_MOVE)
 		{
+			if (e.GetType() == G3D::Mouse::Event::Type::Invalid)
+				break;
+
 			Game::GameCamera.AdjustRotation((float)G3D::Core::Mouse.GetDeltaY() * Settings::Controls::MouseSensitivity, (float)G3D::Core::Mouse.GetDeltaX() * Settings::Controls::MouseSensitivity, 0.0f);
 			e = G3D::Core::Mouse.Read();
 		}

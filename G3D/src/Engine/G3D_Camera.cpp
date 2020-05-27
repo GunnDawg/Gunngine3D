@@ -16,10 +16,10 @@ namespace G3D
 
 	void Camera::Load()
 	{
-		Load(0.0f, 0.0f, 0.0f);
+		Load(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 	}
 
-	void Camera::Load(float x, float y, float z)
+	void Camera::Load(float x, float y, float z, float rX, float rY, float rZ)
 	{
 		//@NOTE: We may need to remove the 'local_persist' / 'static' specifier from these values if we ever want to re-load
 		//the camera or window in the future.
@@ -32,6 +32,7 @@ namespace G3D
 		mProjectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
 
 		SetPosition(x, y, z);
+		SetRotation(rX, rY, rZ);
 	}
 
 	void Camera::SetPosition(const DirectX::XMVECTOR& pos)

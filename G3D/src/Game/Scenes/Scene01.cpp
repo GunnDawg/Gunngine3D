@@ -5,7 +5,7 @@ bool Scene01::On_load()
 {
 	OutputDebugString("S1 On_Load\n");
 
-	Game::GameCamera.Load(0.0f, 10.0f, -24.0f);
+	Game::GameCamera.Load(0.0f, 10.0f, -24.0f, 0.0f, 0.0f, 0.0f);
 	Game::AmbientLight.Load(1.0f, 1.0f, 1.0f, 0.8f);
 	Game::player.Load();
 

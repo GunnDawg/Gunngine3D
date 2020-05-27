@@ -7,6 +7,7 @@ bool Scene01::On_load()
 
 	Game::GameCamera.Load(0.0f, 10.0f, -24.0f);
 	Game::AmbientLight.Load(1.0f, 1.0f, 1.0f, 0.8f);
+	Game::player.Load();
 
 	//@INCOMPLETE: If this fails then we leak a ton of VRAM
 	if (!Boxes[0].Load("brickwall/base", "WoodBox", { -10.0f, 0.0f, 0.0f }))
@@ -277,36 +278,45 @@ void Scene01::Handle_input()
 
 	if (Game::Pause == UNPAUSED)
 	{
+		if (G3D::Core::Keyboard.KeyIsPressed(0x10))//Left Shift
+		{
+			Game::player.isRunning = true;
+		}
+		else
+		{
+			Game::player.isRunning = false;
+		}
+
 		if (G3D::Core::Keyboard.KeyIsPressed('W'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetForwardVector() * Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetForwardVector() * Game::player.MoveSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('A'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetLeftVector() * Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetLeftVector() * Game::player.MoveSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('S'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetBackVector() * Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetBackVector() * Game::player.MoveSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (G3D::Core::Keyboard.KeyIsPressed('D'))
 		{
-			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime);
+			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * Game::player.MoveSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
 		if (Settings::Camera::FreeRoam)
 		{
 			if (G3D::Core::Keyboard.KeyIsPressed(0x11))//Left Control
 			{
-				Game::GameCamera.AdjustPosition(0.0f, -Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
+				Game::GameCamera.AdjustPosition(0.0f, -Game::player.MoveSpeed * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
 			}
 
 			if (G3D::Core::Keyboard.KeyIsPressed(0x20))//Spacebar
 			{
-				Game::GameCamera.AdjustPosition(0.0f, Settings::Camera::CameraSpeed * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
+				Game::GameCamera.AdjustPosition(0.0f, Game::player.MoveSpeed * G3D::Core::PerformanceClock.DeltaTime, 0.0f);
 			}
 		}
 
@@ -325,6 +335,8 @@ void Scene01::Handle_input()
 void Scene01::Update_and_render()
 {
 	//Update
+	Game::player.Update();
+
 	for (size_t i = 0; i < Boxes.size(); ++i)
 		Boxes[i].Update(Game::AmbientLight);
 

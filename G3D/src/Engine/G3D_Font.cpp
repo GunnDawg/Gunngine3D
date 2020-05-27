@@ -121,10 +121,10 @@ namespace G3D
 				local_persist float r, g, b;
 				local_persist float AmbientStr;
 
-				r = Game::AmbientLight.AmbientLightColor.x;
-				g = Game::AmbientLight.AmbientLightColor.y;
-				b = Game::AmbientLight.AmbientLightColor.z;
-				AmbientStr = Game::AmbientLight.AmbientLightStrength;
+				r = Game::AmbientLight.Color.x;
+				g = Game::AmbientLight.Color.y;
+				b = Game::AmbientLight.Color.z;
+				AmbientStr = Game::AmbientLight.Strength;
 
 				sprintf(Buffer, "'F1' Show System Information\n'F2' Hide Lighting Information\n\n'Esc' Back\n'~' Disable Overlay\n'Q' Quit\n\nAmbient Light:\n  Strength: %.02f\n  Color:\n   R: %.02f\n   G: %.02f\n   B: %.02f", AmbientStr, r, g, b);
 

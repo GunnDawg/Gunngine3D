@@ -189,8 +189,8 @@ namespace G3D
 		local_persist DirectX::XMFLOAT3 Color;
 		local_persist float Strength;
 
-		Color = AmbientLightSource.AmbientLightColor;
-		Strength = AmbientLightSource.AmbientLightStrength;
+		Color = AmbientLightSource.Color;
+		Strength = AmbientLightSource.Strength;
 
 		WVP = DirectX::XMMatrixTranspose
 		(

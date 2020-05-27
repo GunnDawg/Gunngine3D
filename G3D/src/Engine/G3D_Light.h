@@ -6,46 +6,46 @@ namespace G3D
 	{
 		inline void Load()
 		{
-			SetLightColor(1.0f, 1.0f, 1.0f);
-			SetLightStrength(1.0f);
+			SetColor(1.0f, 1.0f, 1.0f);
+			SetStrength(1.0f);
 		}
 
 		inline void Load(float r, float g, float b, float str)
 		{
-			SetLightColor(r, g, b);
-			SetLightStrength(str);
+			SetColor(r, g, b);
+			SetStrength(str);
 		}
 
-		inline void SetLightColor(float r, float g, float b)
+		inline void SetColor(float r, float g, float b)
 		{
-			AmbientLightColor = DirectX::XMFLOAT3(r, g, b);
+			Color = DirectX::XMFLOAT3(r, g, b);
 		}
 
-		inline void SetLightStrength(float str)
+		inline void SetStrength(float str)
 		{
-			AmbientLightStrength = str;
+			Strength = str;
 		}
 
 		inline void DecreaseStrength(float val)
 		{
-			AmbientLightStrength -= val;
-			if (AmbientLightStrength < 0.0f)
+			Strength -= val;
+			if (Strength < 0.0f)
 			{
-				AmbientLightStrength = 0.0f;
+				Strength = 0.0f;
 			}
 		}
 
 		inline void IncreaseStrength(float val)
 		{
-			AmbientLightStrength += val;
-			if (AmbientLightStrength > 2.0f)
+			Strength += val;
+			if (Strength > 2.0f)
 			{
-				AmbientLightStrength = 2.0f;
+				Strength = 2.0f;
 			}
 		}
 
-		DirectX::XMFLOAT3 AmbientLightColor;
-		float AmbientLightStrength = 0.8f;
+		DirectX::XMFLOAT3 Color;
+		float Strength = 0.8f;
 	};
 
 	struct SpotLight

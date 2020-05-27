@@ -221,9 +221,6 @@ namespace G3D
 		G3D::Core::Renderer.Context->Unmap(mTransformConstantBuffer, 0u);
 
 		//Update our ambient light buffer data
-		//@NOTE: I don't know if we actually have to ZeroMemory() here because I think Map() will clean
-		//the data anyways, maybe remove this later.
-		ZeroMemory(&mappedResource, sizeof(D3D11_MAPPED_SUBRESOURCE));
 		Result = G3D::Core::Renderer.Context->Map(mLightConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
 		if (FAILED(Result))
 		{

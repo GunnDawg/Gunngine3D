@@ -56,8 +56,10 @@ namespace G3D
 
 	struct PointLight
 	{
-
 		DirectX::XMMATRIX worldPos;
+
+		DirectX::XMFLOAT3 lightColor;
+		DirectX::XMFLOAT3 lightPos;
 	};
 
 	struct AreaLight
@@ -76,5 +78,8 @@ namespace G3D
 	{
 
 		DirectX::XMMATRIX worldPos;
+
+		DirectX::XMFLOAT3 lightColor;
+		DirectX::XMFLOAT3 lightDir;
 	};
 }

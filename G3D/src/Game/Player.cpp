@@ -8,7 +8,11 @@ void Player::Load()
 void Player::Update()
 {
 	if (isRunning)
+	{
 		MoveSpeed = Settings::Camera::CameraSpeed * 1.33f;
+	}
 	else
+	{
 		MoveSpeed = Settings::Camera::CameraSpeed;
+	}
 }

@@ -57,7 +57,7 @@ void Scene02::Handle_input()
 					Settings::Camera::FreeRoam = true;
 			} break;
 
-			case 0x25://Right Arrow
+			case 0x25://Left Arrow
 			{
 				Game::GSM.Pop();
 
@@ -65,16 +65,6 @@ void Scene02::Handle_input()
 				Game::GSM.Push(std::move(S1));
 			} break;
 		}
-	}
-
-	if (G3D::Core::Keyboard.KeyIsPressed(0x1B))
-	{
-		G3D::Core::AppIsRunning = false;
-	}
-
-	if (G3D::Core::Keyboard.KeyIsPressed(0x25))
-	{
-
 	}
 }
 

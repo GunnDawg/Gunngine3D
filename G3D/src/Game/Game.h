@@ -21,9 +21,9 @@ struct Game
 	inline static void UpdateAndRender();
 	inline static void Shutdown();
 
-	inline static Player player;
-	inline static GameStateMachine GSM;
 	inline static G3D::Camera GameCamera;
 	inline static G3D::AmbientLight AmbientLight;
+	inline static Player player;
+	inline static GameStateMachine GSM;
 	inline static PauseState Pause = UNPAUSED;
 };

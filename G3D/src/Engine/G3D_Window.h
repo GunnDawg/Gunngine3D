@@ -17,10 +17,10 @@ namespace G3D
 		void RunWindowsMessageLoop();
 		void Shutdown();
 
-		RECT WindowRect;
+		RECT WindowRect = {};
 		HWND WindowHandle = {};
 		WNDCLASSEX WindowClass = {};
-		MSG Msg;
+		MSG Msg = {};
 
 		DWORD ex_style = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
 		DWORD styles = WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX;

@@ -13,8 +13,8 @@ namespace G3D
 		void Draw();
 		void Unload();
 
-		std::shared_ptr<DirectX::SpriteBatch> spriteBatch;
-		std::shared_ptr<DirectX::SpriteFont> spriteFont;
+		std::unique_ptr<DirectX::SpriteBatch> spriteBatch;
+		std::unique_ptr<DirectX::SpriteFont> spriteFont;
 
 		const char* TextString;
 	};

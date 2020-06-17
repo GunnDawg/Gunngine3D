@@ -21,6 +21,8 @@ namespace G3D
 	{
 		//@NOTE: Windows specific rendering data here
 		bool Initialize();
+		//@TEMP: Do we really need/want to reset these states every frame/call to Clear()?
+		//Is there a better way?
 		inline void ResetStatesPerFrame()
 		{
 			Context->OMSetDepthStencilState(DepthStencilState, 1u);

@@ -22,11 +22,15 @@ namespace G3D
 		//@NOTE: Windows specific rendering data here
 		bool Initialize();
 		//@TEMP: Do we really need/want to reset these states every frame/call to Clear()?
-		//Is there a better way?
+		//The font rendering code in DirectXTK is the ONLY thing that is messing with our
+		//depth stencil state and rasterizer state. So in the future look for an alternative to
+		//font rendering, I guess.
 		inline void ResetStatesPerFrame()
 		{
 			Context->OMSetDepthStencilState(DepthStencilState, 1u);
-			Context->RSSetState(RasterizerState);
+
+			//@NOTE: Do we actually need to re-set the Rasterizer State here?
+			//Context->RSSetState(RasterizerState);
 		}
 
 		inline void Clear(float r, float g, float b, float a)

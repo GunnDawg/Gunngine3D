@@ -144,7 +144,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Engine\G3D_Timers.cpp">
+    <ClCompile Include="src\Engine\G3D_Timer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -189,7 +189,7 @@
     <ClInclude Include="src\Engine\G3D_Mouse.h" />
     <ClInclude Include="src\Engine\G3D_Shader.h" />
     <ClInclude Include="src\Engine\G3D_Texture.h" />
-    <ClInclude Include="src\Engine\G3D_Timers.h" />
+    <ClInclude Include="src\Engine\G3D_Timer.h" />
     <ClInclude Include="src\Engine\G3D_Vertex.h" />
     <ClInclude Include="src\Engine\G3D_Window.h" />
     <ClInclude Include="src\Game\Game.h" />

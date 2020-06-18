@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine/G3D_Font.h"
-#include "Engine/G3D_Timers.h"
+#include "Engine/G3D_Timer.h"
 
 namespace G3D
 {

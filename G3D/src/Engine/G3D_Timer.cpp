@@ -1,4 +1,4 @@
-#include "G3D_Timers.h"
+#include "G3D_Timer.h"
 
 namespace G3D
 {

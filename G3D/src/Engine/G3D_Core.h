@@ -3,7 +3,7 @@
 #include "Engine/G3D_Renderer.h"
 #include "Engine/G3D_Keyboard.h"
 #include "Engine/G3D_Mouse.h"
-#include "Engine/G3D_Timers.h"
+#include "Engine/G3D_Timer.h"
 #include "Engine/G3D_Font.h"
 
 namespace G3D

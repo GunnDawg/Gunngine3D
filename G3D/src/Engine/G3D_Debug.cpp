@@ -15,7 +15,7 @@ namespace G3D
 
 	void DebugData::Draw()
 	{
-		
+
 	}
 
 	void DebugData::Unload()

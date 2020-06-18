@@ -67,7 +67,7 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
-		if (featureLevel != D3D_FEATURE_LEVEL_11_0)
+		if (featureLevel < D3D_FEATURE_LEVEL_11_0)
 		{
 			MessageBox(nullptr, "DirectX 11 feature level requirements not met. Check your installed version of DirectX", "Missing DirectX feature level", MB_OK);
 			return G3D_ERROR;

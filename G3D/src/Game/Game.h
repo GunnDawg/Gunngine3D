@@ -2,7 +2,6 @@
 
 #include "Engine/G3D_Camera.h"
 #include "Engine/G3D_Light.h"
-#include "Engine/G3D_Font.h"
 
 #include "Game/GameStateMachine.h"
 #include "Game/Player.h"

@@ -2,7 +2,7 @@
 #include <Engine/G3D_Windows.h>
 
 #ifdef CreateWindow
-#undef CreateWindow
+	#undef CreateWindow
 #endif
 
 namespace G3D

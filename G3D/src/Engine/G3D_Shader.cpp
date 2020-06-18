@@ -2,9 +2,9 @@
 #include <sstream>
 
 #ifdef _DEBUG
-constexpr const char* ShaderFilepath = "res/shaders/Debug/";
+	constexpr const char* ShaderFilepath = "res/shaders/Debug/";
 #else
-constexpr const char* ShaderFilepath = "res/shaders/Release/";
+	constexpr const char* ShaderFilepath = "res/shaders/Release/";
 #endif
 
 constexpr const char* ShaderFileExtension = ".cso";

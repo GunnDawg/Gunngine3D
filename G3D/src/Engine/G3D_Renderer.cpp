@@ -6,9 +6,9 @@
 #include <sstream>
 
 #ifdef _DEBUG
-UINT debugFlags = D3D11_CREATE_DEVICE_DEBUG;
+	UINT debugFlags = D3D11_CREATE_DEVICE_DEBUG;
 #else
-UINT debugFlags = 0u;
+	UINT debugFlags = 0u;
 #endif
 
 template<typename T>
@@ -29,7 +29,7 @@ namespace G3D
 		CD3D11_DEFAULT def;
 
 		//Checking to make sure at least _one_ graphics card/device is available.
-		std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
+		local_persist std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
 		if (adapters.size() < 1)
 		{
 			MessageBox(nullptr, "No video card devices found", "Missing GPU Requirements", MB_OK);
@@ -87,6 +87,7 @@ namespace G3D
 		}
 
 		IDXGIDevice* dxgiDevice = 0u;
+		dxgiDevice = nullptr;
 		Result = Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice);
 		if (FAILED(Result))
 		{
@@ -95,6 +96,7 @@ namespace G3D
 		}
 
 		IDXGIAdapter* dxgiAdapter = 0u;
+		dxgiAdapter = nullptr;
 		Result = dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&dxgiAdapter);
 		if (FAILED(Result))
 		{
@@ -104,6 +106,7 @@ namespace G3D
 		}
 
 		IDXGIFactory* dxgiFactory = 0u;
+		dxgiFactory = nullptr;
 		Result = dxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&dxgiFactory);
 		if (FAILED(Result))
 		{
@@ -160,7 +163,8 @@ namespace G3D
 		SAFE_RELEASE(dxgiDevice);
 
 		//Create our BackBuffer
-		ID3D11Texture2D* BackBuffer;
+		ID3D11Texture2D* BackBuffer = 0u;
+		BackBuffer = nullptr;
 		Result = SwapChain->GetBuffer(0u, __uuidof(ID3D11Resource), (void**)&BackBuffer);
 		if (FAILED(Result))
 			return G3D_ERROR;

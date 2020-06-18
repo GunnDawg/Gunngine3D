@@ -2,11 +2,11 @@
 
 //Platform Stuff
 #ifdef _WIN64
-#include "Engine/G3D_Win64Platform.cpp"
+	#include "Engine/G3D_Win64Platform.cpp"
 #elif __APPLE__
-#include "Engine/G3D_ApplePlatform.cpp"
+	#include "Engine/G3D_ApplePlatform.cpp"
 #elif __linux__
-#include "Engine/G3D_LinuxPlatform.cpp"
+	#include "Engine/G3D_LinuxPlatform.cpp"
 #endif
 
 //Engine Stuff

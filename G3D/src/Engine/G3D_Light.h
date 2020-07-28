@@ -48,6 +48,15 @@ namespace G3D
 		float Strength = 0.8f;
 	};
 
+	struct DirectionalLight
+	{
+
+		DirectX::XMMATRIX worldPos;
+
+		DirectX::XMFLOAT3 lightColor;
+		DirectX::XMFLOAT3 lightDir;
+	};
+
 	struct SpotLight
 	{
 
@@ -72,14 +81,5 @@ namespace G3D
 	{
 
 		DirectX::XMMATRIX worldPos;
-	};
-
-	struct DirectionalLight
-	{
-
-		DirectX::XMMATRIX worldPos;
-
-		DirectX::XMFLOAT3 lightColor;
-		DirectX::XMFLOAT3 lightDir;
 	};
 }

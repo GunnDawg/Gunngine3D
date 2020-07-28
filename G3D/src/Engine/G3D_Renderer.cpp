@@ -135,7 +135,7 @@ namespace G3D
 		scd.OutputWindow = GetActiveWindow();
 		scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		scd.Windowed = Settings::Display::Windowed;
-		scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+		scd.Flags = 0u;
 		scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 		if (Settings::Graphics::MSAA)
 		{

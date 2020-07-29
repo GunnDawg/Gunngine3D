@@ -30,7 +30,7 @@ namespace G3D
 
 		//Checking to make sure at least _one_ graphics card/device is available.
 		local_persist std::vector<AdapterData> adapters = AdapterReader::GetAdapters();
-		if (adapters.size() < 1)
+		if (adapters.size() == 0)
 		{
 			MessageBox(nullptr, "No video card devices found", "Missing GPU Requirements", MB_OK);
 			return G3D_ERROR;
@@ -38,6 +38,23 @@ namespace G3D
 
 		//Checking GPU size in bytes (1GB) for those that are only showing 1 GPU, which likely
 		//means they're using the Microsoft Basic Rendering driver, which is a no-go for this.
+		//@INCOMPLETE: I'm not sure why this method of checking all of the available GPU's minus the default MS rendering
+		//device, for a GPU with atleast 1GB of memory would make the D3D Context be NULL when font creation happens.
+		//if (adapters.size() >= 1)
+		//{
+		//	for (size_t i = 0; i < adapters.size() - 1; ++i)
+		//	{
+		//		if (adapters[i].Description.DedicatedVideoMemory > 100000000)
+		//		{
+		//			return G3D_OK;
+		//		}
+		//		else
+		//		{
+		//			MessageBox(nullptr, "System needs at least 1GB of dedicated video memory", "Missing GPU Memory Requirements", MB_OK);
+		//			return G3D_ERROR;
+		//		}
+		//	}
+		//}
 		if (adapters.size() == 1)
 		{
 			if (adapters[0].Description.DedicatedVideoMemory < 100000000)

@@ -49,9 +49,7 @@ namespace G3D
 		if (!WindowHandle)
 			return G3D_ERROR;
 
-		ShowWindow(WindowHandle, true);
-		SetForegroundWindow(WindowHandle);
-		SetFocus(WindowHandle);
+		Finalizewindow();
 
 		return G3D_OK;
 	}
@@ -65,11 +63,16 @@ namespace G3D
 		if (!WindowHandle)
 			return G3D_ERROR;
 
+		Finalizewindow();
+
+		return G3D_OK;
+	}
+
+	void Window::Finalizewindow()
+	{
 		ShowWindow(WindowHandle, true);
 		SetForegroundWindow(WindowHandle);
 		SetFocus(WindowHandle);
-
-		return G3D_OK;
 	}
 
 	void Window::RunWindowsMessageLoop()

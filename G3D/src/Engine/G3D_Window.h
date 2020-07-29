@@ -24,6 +24,9 @@ namespace G3D
 
 		DWORD ex_style = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
 		DWORD styles = WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX;
+
+	private:
+		void Finalizewindow();
 	};
 #elif __APPLE__
 	struct Window

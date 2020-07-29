@@ -19,7 +19,7 @@ namespace G3D
 #else
 		if (!Window.Initialize())
 		{
-			MessageBox(nullptr, "Error initializing game window. Please restart.", "Game Startup Error", MB_OK);
+			//ERROR HANDLING.
 			return G3D_ERROR;
 		}
 #endif

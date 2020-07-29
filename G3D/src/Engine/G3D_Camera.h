@@ -65,6 +65,7 @@ namespace G3D
 		void SetPosition(float x, float y, float z);
 		void AdjustPosition(const DirectX::XMVECTOR& pos);
 		void AdjustPosition(float x, float y, float z);
+		void ResetLastLoadPosition();
 		void SetRotation(const DirectX::XMVECTOR& rot);
 		void SetRotation(float x, float y, float z);
 		void AdjustRotation(const DirectX::XMVECTOR& rot);
@@ -87,7 +88,14 @@ namespace G3D
 		DirectX::XMVECTOR mPosVector;
 		DirectX::XMVECTOR mRotVector;
 
+		s32 defaultX = 0u;
+		s32 defaultY = 0u;
+		s32 defaultZ = 0u;
 		DirectX::XMFLOAT3 mPos;
+
+		u8 defaultRotX = 0u;
+		u8 defaultRotY = 0u;
+		u8 defaultRotZ = 0u;
 		DirectX::XMFLOAT3 mRot;
 
 		DirectX::XMMATRIX mViewMatrix;

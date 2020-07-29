@@ -21,6 +21,13 @@ namespace G3D
 
 	void Camera::Load(float x, float y, float z, float rX, float rY, float rZ)
 	{
+		defaultX = x;
+		defaultY = y;
+		defaultZ = z;
+		defaultRotX = rX;
+		defaultRotY = rY;
+		defaultRotZ = rZ;
+
 		//@NOTE: We may need to remove the 'local_persist' / 'static' specifier from these values if we ever want to re-load
 		//the camera or window in the future.
 		local_persist float fovRadians = DirectX::XMConvertToRadians(Settings::Camera::FOV);
@@ -67,6 +74,12 @@ namespace G3D
 		mPosVector = DirectX::XMLoadFloat3(&mPos);
 
 		UpdateViewMatrix();
+	}
+
+	void Camera::ResetLastLoadPosition()
+	{
+		SetPosition(defaultX, defaultY, defaultZ);
+		SetRotation(defaultRotX, defaultRotY, defaultRotZ);
 	}
 
 	void Camera::SetRotation(const DirectX::XMVECTOR& rot)

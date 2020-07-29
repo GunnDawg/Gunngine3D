@@ -23,7 +23,8 @@ void Game::UpdateAndRender()
 {
 	//@NOTE: This is the only place we should be calling Renderer->Clear() and Present(). It makes no sense for
 	//each scene to be making that round trip call to the renderer when it can be done _once_ here. Unless we get into
-	//some weird batch rendering or cacheing that needs to be done else where, and changes this later.
+	//some weird batch rendering or cacheing that needs to be done else where, and changes this later, or for whatever
+	//reason want to change the _background_ color of a scene.
 	G3D::Core::Renderer.Clear(0.15f, 0.15f, 0.15f, 1.0f);
 	GSM.UpdateAndRender();
 	G3D::Core::Renderer.Present();

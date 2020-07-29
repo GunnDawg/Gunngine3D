@@ -29,12 +29,17 @@ namespace G3D
 	struct Window
 	{
 		//@NOTE: Apple specific window data here
+		bool Initialize();
+		bool CreateWindow();
+		void Shutdown();
 	};
 #elif __linux__
 	struct Window
 	{
 		//@NOTE: Linux specific window data here
-
+		bool Initialize();
+		bool CreateWindow();
+		void Shutdown();
 	};
 #endif
 }

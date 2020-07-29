@@ -73,11 +73,15 @@ namespace G3D
 	struct Renderer
 	{
 		//@NOTE: Apple specific rendering data here
+		bool Initialize();
+		void Shutdown();
 	};
 #elif __linux__
 	struct Renderer
 	{
 		//@NOTE: Linux specific rendering data here
+		bool Initialize();
+		void Shutdown();
 	};
 #endif
 }

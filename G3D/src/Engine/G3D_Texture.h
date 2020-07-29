@@ -6,7 +6,7 @@ namespace G3D
 	struct Texture
 	{
 		bool Load();
-		bool Load(const char* TextureFilepath);
+		bool Load(const char* TextureFileName);
 		void Bind();
 		void Unload();
 

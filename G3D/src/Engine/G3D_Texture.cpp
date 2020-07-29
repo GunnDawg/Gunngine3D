@@ -10,14 +10,14 @@ namespace G3D
 		return Load("Default");
 	}
 
-	bool Texture::Load(const char* TextureFilepath)
+	bool Texture::Load(const char* TextureFileName)
 	{
 		HRESULT Result = 0u;
 
 		//Parse Texture filepath/filename
 		std::wstringstream ss;
 		ss << TextureFilePath;
-		ss << TextureFilepath;
+		ss << TextureFileName;
 		ss << TextureFileExtension;
 
 		std::wstring StringStreamToWString = ss.str();

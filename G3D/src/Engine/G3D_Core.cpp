@@ -10,11 +10,19 @@ namespace G3D
 			return G3D_ERROR;
 		}
 
+#ifdef _WIN64
 		if (!Window.Initialize(instance))
 		{
 			MessageBox(nullptr, "Error initializing game window. Please restart.", "Game Startup Error", MB_OK);
 			return G3D_ERROR;
 		}
+#else
+		if (!Window.Initialize())
+		{
+			MessageBox(nullptr, "Error initializing game window. Please restart.", "Game Startup Error", MB_OK);
+			return G3D_ERROR;
+		}
+#endif
 
 		if (!Renderer.Initialize())
 		{

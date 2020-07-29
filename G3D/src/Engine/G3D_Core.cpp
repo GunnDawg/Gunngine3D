@@ -19,7 +19,7 @@ namespace G3D
 #else
 		if (!Window.Initialize())
 		{
-			//ERROR HANDLING.
+			//TODO: Error Handling.
 			return G3D_ERROR;
 		}
 #endif

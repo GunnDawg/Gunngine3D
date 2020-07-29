@@ -1,8 +1,11 @@
 #pragma once
 #if 1
-	#pragma warning(disable:6011)
+	//Conversion Warnings that we'll fix at some point
 	#pragma warning(disable:4244)
-	#pragma warning(disable:26812)
+
+	//May use in the future if they come back. Forgot right now what they were exactly.
+	//#pragma warning(disable:6011)
+	//#pragma warning(disable:26812)
 #endif
 
 #include <stdint.h>

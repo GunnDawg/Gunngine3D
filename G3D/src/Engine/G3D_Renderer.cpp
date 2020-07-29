@@ -55,9 +55,9 @@ namespace G3D
 		//		}
 		//	}
 		//}
-		if (adapters.size() == 1)
+		if (adapters.size() >= 1)
 		{
-			if (adapters[0].Description.DedicatedVideoMemory < 100000000)
+			if (adapters[0].Description.DedicatedVideoMemory < 1000000000)
 			{
 				MessageBox(nullptr, "System needs at least 1GB of dedicated video memory", "Missing GPU Requirements", MB_OK);
 				return G3D_ERROR;

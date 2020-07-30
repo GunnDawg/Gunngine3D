@@ -26,7 +26,7 @@ namespace G3D
 		DWORD styles = WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX;
 
 	private:
-		void Finalizewindow();
+		void FinalizeWindow();
 	};
 #elif __APPLE__
 	struct Window

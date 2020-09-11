@@ -113,7 +113,7 @@ void Scene01::Handle_input()
 		{
 			case 0x1B://Escape
 			{
-				if (Settings::Dev::GlobalTextOverlayEnabled)
+				if (Settings::Dev::DebugOverlay)
 				{
 					if (!Settings::Dev::DevMode)
 					{
@@ -159,15 +159,15 @@ void Scene01::Handle_input()
 
 			case 0xC0://~ Key
 			{
-				if (Settings::Dev::GlobalTextOverlayEnabled)
-					Settings::Dev::GlobalTextOverlayEnabled = false;
+				if (Settings::Dev::DebugOverlay)
+					Settings::Dev::DebugOverlay = false;
 				else
-					Settings::Dev::GlobalTextOverlayEnabled = true;
+					Settings::Dev::DebugOverlay = true;
 			} break;
 
 			case 0x70://F1
 			{
-				if (Settings::Dev::GlobalTextOverlayEnabled)
+				if (Settings::Dev::DebugOverlay)
 				{
 					if (Settings::Dev::DevMode)
 					{
@@ -196,7 +196,7 @@ void Scene01::Handle_input()
 
 			case 0x71://F2
 			{
-				if (Settings::Dev::GlobalTextOverlayEnabled)
+				if (Settings::Dev::DebugOverlay)
 				{
 					if (Settings::Dev::DevMode)
 					{

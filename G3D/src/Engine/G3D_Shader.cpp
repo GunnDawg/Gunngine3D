@@ -24,7 +24,7 @@ namespace G3D
 		std::wstringstream Vss;
 		Vss << ShaderFilepath;
 		Vss << shadername;
-		Vss << "VertexShader";
+		Vss << "Vertex";
 		Vss << ShaderFileExtension;
 
 		std::wstring StringStreamToWString = Vss.str();
@@ -50,7 +50,7 @@ namespace G3D
 		std::wstringstream Pss;
 		Pss << ShaderFilepath;
 		Pss << shadername;
-		Pss << "PixelShader";
+		Pss << "Pixel";
 		Pss << ShaderFileExtension;
 
 		StringStreamToWString = Pss.str();

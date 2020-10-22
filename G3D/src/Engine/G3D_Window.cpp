@@ -4,19 +4,22 @@ namespace G3D
 {
 	bool Window::Initialize(const HINSTANCE& instance)
 	{
-	#if _DEBUG
-		Settings::Display::Windowed = true;
-	#else
-		Settings::Display::Windowed = false;
-	#endif
+		#if _DEBUG
+			Settings::Display::Windowed = true;
+		#else
+			Settings::Display::Windowed = false;
+		#endif
 
 		Settings::Display::Width = GetSystemMetrics(SM_CXSCREEN);
 		Settings::Display::Height = GetSystemMetrics(SM_CYSCREEN);
 
+		WindowWidth = Settings::Display::Width;
+		WindowHeight = Settings::Display::Height;
+
 		WindowRect.left = 0u;
 		WindowRect.top = 0u;
-		WindowRect.right = WindowRect.left + Settings::Display::Width;
-		WindowRect.bottom = WindowRect.top + Settings::Display::Height;
+		WindowRect.right = WindowRect.left + WindowWidth;;
+		WindowRect.bottom = WindowRect.top + WindowHeight;
 
 		AdjustWindowRectEx(&WindowRect, styles, false, ex_style);
 
@@ -31,13 +34,13 @@ namespace G3D
 		if (!RegisterClassEx(&WindowClass))
 			return G3D_ERROR;
 
-	#if _DEBUG
-		if (!CreateDebugWindow(instance))
-			return G3D_ERROR;
-	#else
-		if (!CreateWindow(instance))
-			return G3D_ERROR;
-	#endif
+		#if _DEBUG
+			if (!CreateDebugWindow(instance))
+				return G3D_ERROR;
+		#else
+			if (!CreateWindow(instance))
+				return G3D_ERROR;
+		#endif
 
 		return G3D_OK;
 	}

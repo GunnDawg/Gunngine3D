@@ -48,8 +48,6 @@ namespace G3D
 				local_persist const char* Build;
 				local_persist const char* Version = "0.0.0.1";
 				local_persist const char* Status;
-				local_persist u16 Width = Settings::Display::Width;
-				local_persist u16 Height = Settings::Display::Height;
 				local_persist const char* VSync;
 				local_persist const char* MSAA;
 				local_persist const char* InputType;
@@ -61,6 +59,16 @@ namespace G3D
 				local_persist float FOV = Settings::Camera::FOV;
 
 				//@NOTE: These get updated every frame
+				#if _DEBUG
+					//@BUG: I don't know why these cannot be static in debug mode. For some reason the resolution width data in the debug
+					//data panel goes bananas if these are static during runtime, though it works fine in Release.
+					u16 ScreenWidth = G3D::Core::Window.WindowWidth;
+					u16 ScreenHeight = G3D::Core::Window.WindowHeight;
+				#else
+					local_persist u16 ScreenWidth = G3D::Core::Window.WindowWidth;
+					local_persist u16 ScreenHeight = G3D::Core::Window.WindowHeight;
+				#endif
+
 				local_persist u32 Clock;
 				local_persist float DeltaTime;
 				local_persist float FPS;
@@ -105,18 +113,14 @@ namespace G3D
 					MSAA = "Off";
 
 				#if _DEBUG
+					Build = "Debug";
 					ShaderVersion = "Debug";
 				#else
+					Build = "Release";
 					ShaderVersion = "Release";
 				#endif
 
-				#if _DEBUG
-					Build = "Debug";
-				#else
-					Build = "Release";
-				#endif
-
-				sprintf(Buffer, "'F1' Hide System Information\n'F2' Show Lighting Information\n\n'Esc' Back\n'~' Disable Overlay\n'Q' Quit\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Runtime Clock: %is\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n  Shader Version: %s\n\nInput Settings:\n  Device: %s\n  Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Status, Clock, DeltaTime, FPS, MCPF, Width, Height, VSync, MSAA, DrawDistance, ShaderVersion, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
+				sprintf(Buffer, "'F1' Hide System Information\n'F2' Show Lighting Information\n\n'Esc' Back\n'~' Disable Overlay\n'Q' Quit\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Runtime Clock: %is\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n  Shader Version: %s\n\nInput Settings:\n  Device: %s\n  Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Status, Clock, DeltaTime, FPS, MCPF, ScreenWidth, ScreenHeight, VSync, MSAA, DrawDistance, ShaderVersion, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
 
 				spriteBatch->Begin();
 				spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));

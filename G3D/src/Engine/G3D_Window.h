@@ -21,6 +21,8 @@ namespace G3D
 		HWND WindowHandle = {};
 		WNDCLASSEX WindowClass = {};
 		MSG Msg = {};
+		u16 WindowWidth;
+		u16 WindowHeight;
 
 		DWORD ex_style = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
 		DWORD styles = WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX;

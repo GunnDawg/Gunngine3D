@@ -9,8 +9,6 @@
 	constexpr const char* ShaderFileExtension = ".cso";
 #endif
 
-//constexpr const char* ShaderFileExtension = ".cso";
-
 namespace G3D
 {
 	bool Shader::Load()

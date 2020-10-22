@@ -3,11 +3,13 @@
 
 #ifdef _DEBUG
 	constexpr const char* ShaderFilepath = "res/shaders/Debug/";
+	constexpr const char* ShaderFileExtension = ".dcso";
 #else
 	constexpr const char* ShaderFilepath = "res/shaders/Release/";
+	constexpr const char* ShaderFileExtension = ".cso";
 #endif
 
-constexpr const char* ShaderFileExtension = ".cso";
+//constexpr const char* ShaderFileExtension = ".cso";
 
 namespace G3D
 {

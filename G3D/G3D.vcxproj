@@ -148,7 +148,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Engine\G3D_Win64Platform.cpp">
+    <ClCompile Include="src\Engine\G3D_Win32Platform.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -195,7 +195,7 @@
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Game\GameSettings.h" />
     <ClInclude Include="src\Engine\G3D_Renderer.h" />
-    <ClInclude Include="src\Engine\G3D_Win64Platform.h" />
+    <ClInclude Include="src\Engine\G3D_Win32Platform.h" />
     <ClInclude Include="src\Engine\G3D_Windows.h" />
     <ClInclude Include="src\Game\GameState.h" />
     <ClInclude Include="src\Game\Player.h" />

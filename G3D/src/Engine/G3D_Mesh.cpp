@@ -152,7 +152,7 @@ namespace G3D
 		cbd.ByteWidth = sizeof(CB_VS_TransformConstantBuffer);
 		cbd.StructureByteStride = 0u;
 
-		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, nullptr, &mTransformConstantBuffer);
+		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd, nullptr, &TransformConstantBuffer);
 		if (FAILED(Result))
 		{
 			MessageBox(nullptr, "Error creating transform constant buffer", "Mesh Load Error", MB_OK);
@@ -169,7 +169,7 @@ namespace G3D
 		cbd2.ByteWidth = sizeof(CB_PS_AmbientLight);
 		cbd2.StructureByteStride = 0u;
 
-		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd2, nullptr, &mLightConstantBuffer);
+		Result = G3D::Core::Renderer.Device->CreateBuffer(&cbd2, nullptr, &LightConstantBuffer);
 		if (FAILED(Result))
 		{
 			MessageBox(nullptr, "Error creating ambient light constant buffer", "Mesh Load Error", MB_OK);
@@ -212,22 +212,22 @@ namespace G3D
 
 		//Update our transform buffer data
 		D3D11_MAPPED_SUBRESOURCE mappedResource;
-		Result = G3D::Core::Renderer.Context->Map(mTransformConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
+		Result = G3D::Core::Renderer.Context->Map(TransformConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
 		if (FAILED(Result))
 		{
 			MessageBox(nullptr, "Error mapping subresource to transform constant buffer", "Mesh Update Error", MB_OK);
 		}
 		CopyMemory(mappedResource.pData, &tcb, sizeof(CB_VS_TransformConstantBuffer));
-		G3D::Core::Renderer.Context->Unmap(mTransformConstantBuffer, 0u);
+		G3D::Core::Renderer.Context->Unmap(TransformConstantBuffer, 0u);
 
 		//Update our ambient light buffer data
-		Result = G3D::Core::Renderer.Context->Map(mLightConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
+		Result = G3D::Core::Renderer.Context->Map(LightConstantBuffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &mappedResource);
 		if (FAILED(Result))
 		{
 			MessageBox(nullptr, "Error mapping subresource to ambient light constant buffer", "Mesh Update Error", MB_OK);
 		}
 		CopyMemory(mappedResource.pData, &alcb, sizeof(alcb));
-		G3D::Core::Renderer.Context->Unmap(mLightConstantBuffer, 0u);
+		G3D::Core::Renderer.Context->Unmap(LightConstantBuffer, 0u);
 	}
 
 	void Mesh::Draw()
@@ -237,8 +237,8 @@ namespace G3D
 
 		Texture.Bind();
 		Shader.Bind();
-		G3D::Core::Renderer.Context->VSSetConstantBuffers(0u, 1u, &mTransformConstantBuffer);
-		G3D::Core::Renderer.Context->PSSetConstantBuffers(0u, 1u, &mLightConstantBuffer);
+		G3D::Core::Renderer.Context->VSSetConstantBuffers(0u, 1u, &TransformConstantBuffer);
+		G3D::Core::Renderer.Context->PSSetConstantBuffers(0u, 1u, &LightConstantBuffer);
 		G3D::Core::Renderer.Context->IASetVertexBuffers(0u, 1u, &VertexBuffer, &stride, &offset);
 		G3D::Core::Renderer.Context->IASetIndexBuffer(IndexBuffer, DXGI_FORMAT_R16_UINT, 0u);
 		G3D::Core::Renderer.Context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -257,8 +257,8 @@ namespace G3D
 	{
 		Shader.Unload();
 		Texture.Unload();
-		SAFE_RELEASE(mTransformConstantBuffer);
-		SAFE_RELEASE(mLightConstantBuffer);
+		SAFE_RELEASE(TransformConstantBuffer);
+		SAFE_RELEASE(LightConstantBuffer);
 		SAFE_RELEASE(VertexBuffer);
 		SAFE_RELEASE(IndexBuffer);
 		SAFE_RELEASE(InputLayout);

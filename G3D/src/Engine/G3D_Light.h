@@ -4,16 +4,15 @@ namespace G3D
 {
 	struct AmbientLight
 	{
-		inline void Load()
+	public:
+		AmbientLight()
 		{
-			SetColor(1.0f, 1.0f, 1.0f);
-			SetStrength(1.0f);
+			Load();
 		}
 
-		inline void Load(float r, float g, float b, float str)
+		AmbientLight(float r, float g, float b, float str)
 		{
-			SetColor(r, g, b);
-			SetStrength(str);
+			Load(r, g, b, str);
 		}
 
 		inline void SetColor(float r, float g, float b)
@@ -46,6 +45,19 @@ namespace G3D
 
 		DirectX::XMFLOAT3 Color;
 		float Strength = 0.8f;
+
+	private:
+		inline void Load()
+		{
+			SetColor(1.0f, 1.0f, 1.0f);
+			SetStrength(1.0f);
+		}
+
+		inline void Load(float r, float g, float b, float str)
+		{
+			SetColor(r, g, b);
+			SetStrength(str);
+		}
 	};
 
 	struct DirectionalLight

@@ -21,7 +21,7 @@ struct Game
 	inline static void Shutdown();
 
 	inline static G3D::Camera GameCamera;
-	inline static G3D::AmbientLight AmbientLight;
+	inline static G3D::AmbientLight AmbientLight = G3D::AmbientLight(1.0f, 1.0f, 1.0f, 0.8f);
 	inline static Player player;
 	inline static GameStateMachine GSM;
 	inline static PauseState Pause = UNPAUSED;

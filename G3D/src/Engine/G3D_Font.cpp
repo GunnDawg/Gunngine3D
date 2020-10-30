@@ -30,7 +30,7 @@ namespace G3D
 
 	void Font::Draw()
 	{
-		local_persist char TitleBuffer[24];
+		local_persist char TitleBuffer[32];
 		sprintf(TitleBuffer, "Gunngine3D");
 
 		spriteBatch->Begin();
@@ -44,7 +44,7 @@ namespace G3D
 				//@MOVE: All of this needs to be moved out into some debug structure so that this class
 				//is not specific to printing ONLY debug information.
 				//@NOTE: These are static
-				local_persist char Buffer[512];
+				local_persist char Buffer[1024];
 				local_persist const char* Build;
 				local_persist const char* Version = "0.0.0.1";
 				local_persist const char* Status;
@@ -123,12 +123,12 @@ namespace G3D
 				sprintf(Buffer, "'F1' Hide System Information\n'F2' Show Lighting Information\n\n'Esc' Back\n'~' Disable Overlay\n'Q' Quit\n\nBuild: %s\nVersion: %s\n\nPerformance Information:\n  Status: %s\n  Runtime Clock: %is\n  Frame Time: %.02fms\n  FPS: %.02f\n  CPU MCPF: %.02f\n\nVideo Settings:\n  Resolution: %ix%i\n  VSync: %s\n  MSAA: %s\n  Draw Distance: %.02f\n  Shader Version: %s\n\nInput Settings:\n  Device: %s\n  Look Sens: %.02f\n\nCamera Settings:\n  Mode: %s\n  vFOV: %.02f\n  Speed: %.02f\n  Position:\n   X: %.02f\n   Y: %.02f\n   Z: %0.2f", Build, Version, Status, Clock, DeltaTime, FPS, MCPF, ScreenWidth, ScreenHeight, VSync, MSAA, DrawDistance, ShaderVersion, InputType, cSens, Camera, FOV, CSpeed, CameraX, CameraY, CameraZ);
 
 				spriteBatch->Begin();
-				spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
+					spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
 				spriteBatch->End();
 			}
 			else if (Settings::Dev::ShowingLights)
 			{
-				local_persist char Buffer[512];
+				local_persist char Buffer[256];
 				local_persist float r, g, b;
 				local_persist float AmbientStr;
 
@@ -145,7 +145,7 @@ namespace G3D
 			}
 			else
 			{
-				local_persist char Buffer[512];
+				local_persist char Buffer[128];
 				sprintf(Buffer, "'F1' Show System Information\n'F2' Show Lighting Information\n\n'Esc' Close Debug Menu\n'~' Disable Overlay\n'Q' Quit");
 
 				spriteBatch->Begin();

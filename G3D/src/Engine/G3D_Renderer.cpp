@@ -63,6 +63,10 @@ namespace G3D
 				return G3D_ERROR;
 			}
 		}
+		else
+		{
+			return G3D_ERROR;
+		}
 
 		//Create our Device
 		D3D_FEATURE_LEVEL featureLevel;

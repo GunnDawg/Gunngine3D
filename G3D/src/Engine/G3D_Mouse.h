@@ -157,6 +157,12 @@ namespace G3D
 			LockCursor();
 		}
 
+		inline bool IsCursorEnabled()
+		{
+			return CursorIsEnabled;
+		}
+
+	private:
 		inline void HideCursor()
 		{
 			while (::ShowCursor(FALSE) >= 0);
@@ -180,12 +186,6 @@ namespace G3D
 			ClipCursor(nullptr);
 		}
 
-		inline bool IsCursorEnabled()
-		{
-			return CursorIsEnabled;
-		}
-
-	private:
 		static constexpr u16 bufferSize = 16u;
 		u16 x = 0u;
 		u16 y = 0u;

@@ -166,12 +166,7 @@ namespace G3D
 
 	void Font::Unload()
 	{
-		spriteBatch.release();
-		if(spriteBatch)
-			spriteBatch = nullptr;
-
-		spriteFont.release();
-		if(spriteFont)
-			spriteFont = nullptr;
+		spriteBatch = nullptr;
+		spriteFont = nullptr;
 	}
 }

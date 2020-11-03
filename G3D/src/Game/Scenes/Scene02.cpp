@@ -51,10 +51,10 @@ void Scene02::Handle_input()
 
 			case 'M':
 			{
-				if (Settings::Camera::FreeRoam)
-					Settings::Camera::FreeRoam = false;
+				if (Settings::Camera::Type == Settings::Camera::CameraType::FreeRoam)
+					Settings::Camera::Type = Settings::Camera::CameraType::FPS;
 				else
-					Settings::Camera::FreeRoam = true;
+					Settings::Camera::Type = Settings::Camera::CameraType::FreeRoam;
 			} break;
 
 			case 0x25://Left Arrow

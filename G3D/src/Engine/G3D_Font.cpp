@@ -97,7 +97,7 @@ namespace G3D
 				else
 					InputType = "Keyboard";
 
-				if (Settings::Camera::FreeRoam)
+				if (Settings::Camera::Type == Settings::Camera::CameraType::FreeRoam)
 					Camera = "Free";
 				else
 					Camera = "FPS";

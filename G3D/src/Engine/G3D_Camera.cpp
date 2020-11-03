@@ -157,12 +157,12 @@ namespace G3D
 		//Rebuild view matrix
 		mViewMatrix = DirectX::XMMatrixLookAtLH(mPosVector, camTarget, upDir);
 
-		if (Settings::Camera::FreeRoam)
+		if (Settings::Camera::Type == Settings::Camera::CameraType::FreeRoam)
 		{
 			//@NOTE Use this for a more free-roam style camera.
 			mVecRotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(mRot.x, mRot.y, 0.0f);
 		}
-		else
+		else if (Settings::Camera::Type == Settings::Camera::CameraType::FPS)
 		{
 			//@NOTE: Use this for a more FPS style camera.
 			mVecRotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(0.0f, mRot.y, 0.0f);

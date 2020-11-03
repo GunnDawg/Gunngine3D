@@ -237,19 +237,19 @@ void Scene01::Handle_input()
 
 			case 'M':
 			{
-				if (Settings::Camera::FreeRoam)
+				if (Settings::Camera::Type == Settings::Camera::CameraType::FreeRoam)
 				{
-					Settings::Camera::FreeRoam = false;
+					Settings::Camera::Type = Settings::Camera::CameraType::FPS;
 					Game::GameCamera.SetPosition(Game::GameCamera.GetCameraPos().x, 1.81f, Game::GameCamera.GetCameraPos().z);
 				}
 				else
-					Settings::Camera::FreeRoam = true;
+					Settings::Camera::Type = Settings::Camera::CameraType::FreeRoam;
 			} break;
 
 			//@INCOMPLETE: This is being done for a crouch effect, but it's still not right/complete.
 			case 'C':
 			{
-				if (!Settings::Camera::FreeRoam)
+				if (Settings::Camera::Type != Settings::Camera::CameraType::FreeRoam)
 				{
 					if (!Game::player.isCrouched)
 					{
@@ -305,7 +305,7 @@ void Scene01::Handle_input()
 			Game::GameCamera.AdjustPosition(Game::GameCamera.GetRightVector() * Game::player.MoveSpeed * G3D::Core::PerformanceClock.DeltaTime);
 		}
 
-		if (Settings::Camera::FreeRoam)
+		if (Settings::Camera::Type == Settings::Camera::CameraType::FreeRoam)
 		{
 			if (G3D::Core::Keyboard.KeyIsPressed(0x11))//Left Control
 			{

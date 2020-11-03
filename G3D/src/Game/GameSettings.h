@@ -44,7 +44,9 @@ namespace Settings
 
 	namespace Camera
 	{
-		static bool FreeRoam = true;
+		enum class CameraType { FreeRoam, FPS, ThirdPerson, Overhead };
+
+		CameraType Type = CameraType::FreeRoam;
 		static float FOV = 59.0f; // Vertical FoV
 		static float CameraSpeed = 0.02f;
 	}

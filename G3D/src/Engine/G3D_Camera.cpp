@@ -4,16 +4,6 @@ using namespace DirectX;
 
 namespace G3D
 {
-	Camera::Camera()
-	{
-		mPos = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
-		mPosVector = DirectX::XMLoadFloat3(&mPos);
-		mRot = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
-		mRotVector = DirectX::XMLoadFloat3(&mRot);
-
-		UpdateViewMatrix();
-	}
-
 	void Camera::Load()
 	{
 		Load(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
@@ -21,6 +11,11 @@ namespace G3D
 
 	void Camera::Load(float x, float y, float z, float rX, float rY, float rZ)
 	{
+		mPos = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
+		mPosVector = DirectX::XMLoadFloat3(&mPos);
+		mRot = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
+		mRotVector = DirectX::XMLoadFloat3(&mRot);
+
 		defaultX = x;
 		defaultY = y;
 		defaultZ = z;
@@ -40,6 +35,7 @@ namespace G3D
 
 		SetPosition(x, y, z);
 		SetRotation(rX, rY, rZ);
+		UpdateViewMatrix();
 	}
 
 	void Camera::SetPosition(const DirectX::XMVECTOR& pos)

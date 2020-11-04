@@ -3,12 +3,9 @@
 
 namespace G3D
 {
-	class Camera
+	struct Camera
 	{
-	public:
-		Camera();
-
-		void Load();
+		inline void Load();
 		void Load(float x, float y, float z, float rX, float rY, float rZ);
 
 		inline const DirectX::XMMATRIX& GetViewMatrix() const

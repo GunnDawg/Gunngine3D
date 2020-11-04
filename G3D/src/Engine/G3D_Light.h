@@ -4,15 +4,16 @@ namespace G3D
 {
 	struct AmbientLight
 	{
-	public:
-		AmbientLight()
+		inline void Load()
 		{
-			Load();
+			SetColor(1.0f, 1.0f, 1.0f);
+			SetStrength(1.0f);
 		}
 
-		AmbientLight(float r, float g, float b, float str)
+		inline void Load(float r, float g, float b, float str)
 		{
-			Load(r, g, b, str);
+			SetColor(r, g, b);
+			SetStrength(str);
 		}
 
 		inline void SetColor(float r, float g, float b)
@@ -45,24 +46,10 @@ namespace G3D
 
 		DirectX::XMFLOAT3 Color;
 		float Strength = 0.8f;
-
-	private:
-		inline void Load()
-		{
-			SetColor(1.0f, 1.0f, 1.0f);
-			SetStrength(1.0f);
-		}
-
-		inline void Load(float r, float g, float b, float str)
-		{
-			SetColor(r, g, b);
-			SetStrength(str);
-		}
 	};
 
 	struct DirectionalLight
 	{
-
 		DirectX::XMMATRIX worldPos;
 
 		DirectX::XMFLOAT3 lightColor;
@@ -71,7 +58,6 @@ namespace G3D
 
 	struct SpotLight
 	{
-
 		DirectX::XMMATRIX worldPos;
 	};
 
@@ -85,13 +71,11 @@ namespace G3D
 
 	struct AreaLight
 	{
-
 		DirectX::XMMATRIX worldPos;
 	};
 
 	struct VolumeLight
 	{
-
 		DirectX::XMMATRIX worldPos;
 	};
 }

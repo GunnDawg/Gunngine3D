@@ -37,9 +37,9 @@ namespace G3D
 			spriteFont->DrawString(spriteBatch.get(), TitleBuffer, DirectX::XMFLOAT2((Settings::Display::Width / 2) - 55, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
 		spriteBatch->End();
 
-		if (Settings::Dev::DevMode)
+		if (Settings::Dev::DevModeEnabled)
 		{
-			if (Settings::Dev::ShowingBasic)
+			if (Settings::Dev::ShowBasicDebugInformationEnabled)
 			{
 				//@MOVE: All of this needs to be moved out into some debug structure so that this class
 				//is not specific to printing ONLY debug information.
@@ -126,7 +126,7 @@ namespace G3D
 					spriteFont->DrawString(spriteBatch.get(), Buffer, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
 				spriteBatch->End();
 			}
-			else if (Settings::Dev::ShowingLights)
+			else if (Settings::Dev::ShowLightInformationEnabled)
 			{
 				local_persist char Buffer[256];
 				local_persist float r, g, b;

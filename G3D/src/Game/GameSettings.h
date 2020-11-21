@@ -4,10 +4,11 @@ namespace Settings
 {
 	namespace Dev
 	{
-		static bool DevMode = false;
-		static bool ShowingBasic = false;
-		static bool ShowingLights = false;
-		static bool DebugOverlay = true;
+		static bool DevModeEnabled = false;
+		static bool ShowBasicDebugInformationEnabled = false;
+		static bool ShowLightInformationEnabled = false;
+		static bool DebugOverlayEnabled = true;
+		static bool RequirementChecksEnabled = true;
 	}
 
 	namespace General

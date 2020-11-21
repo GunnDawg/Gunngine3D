@@ -43,7 +43,7 @@ namespace G3D
 		}
 
 		#ifdef _DEBUG
-			Settings::Dev::DevMode = true;
+			Settings::Dev::DevModeEnabled = true;
 		#endif
 
 		return G3D_OK;
